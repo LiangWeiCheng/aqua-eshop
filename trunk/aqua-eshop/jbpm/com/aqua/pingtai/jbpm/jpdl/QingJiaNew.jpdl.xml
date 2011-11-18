@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<process description="QingJiaNew" key="QingJiaNew" name="QingJiaNew" version="1" xmlns="http://jbpm.org/4.4/jpdl">
+   <start name="start1" g="142,16,48,48">
+      <transition name="去填写请假单" to="填写请假单" g="-83,-17"/>
+   </start>
+   
+   <task name="填写请假单" g="118,116,92,52">
+      <transition name="提交部门经理审批" to="部门经理审批" g="-107,-13"/>
+   </task>
+   
+   <task name="部门经理审批" g="120,224,92,52">
+      <transition name="是否大于3天" to="exclusive1" g="-79,-6"/>
+   </task>
+   
+   <decision name="exclusive1" expr="#{countDay>=3 ? '大于3天' : '小于3天'}" g="143,337,48,48">
+      <transition name="小于3天" to="结束" g="-24,6"/>
+      <transition name="大于3天" to="总经理审批" g="-38,-14"/>
+   </decision>
+   
+   <task name="总经理审批" g="346,227,92,52">
+      <transition name="to end1" to="结束" g="-47,-17"/>
+   </task>
+   
+   <end name="结束" g="373,338,48,48"/>
+</process>

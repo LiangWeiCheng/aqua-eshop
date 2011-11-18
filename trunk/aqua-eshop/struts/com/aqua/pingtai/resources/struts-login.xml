@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+	"http://struts.apache.org/dtds/struts-2.1.7.dtd">
+
+<struts>
+	
+	<package name="loginPackage" extends="struts-default" namespace="/loginPackage" >
+	
+		<interceptors>
+			<interceptor name="formToken" class="com.aqua.pingtai.interceptor.FormTokenInterceptor"/><!-- 表单重复提交 -->
+			<interceptor-stack name="pingTaiStack">
+				<interceptor-ref name="formToken" />
+				<interceptor-ref name="defaultStack"/>
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="pingTaiStack"/><!--必须重写-->
+		
+		<default-action-ref name="pingTaiDefaultAction"></default-action-ref><!--默认action,处理不存在的action-->
+		
+		<global-results><!-- 定义全局Result -->
+			<result name="redirect" type="redirect">${returnPageURL}</result>
+			<result name="dispatcher" type="dispatcher">${returnPageURL}</result>
+			<result name="login" type="dispatcher">/WEB-INF/jsp/error/toRedirectLogin.jsp</result>
+			<result name="exceptionError" type="dispatcher">/WEB-INF/jsp/error/exception.jsp</result>
+		</global-results>
+		
+		<global-exception-mappings><!-- 全局异常处理 -->
+			<exception-mapping result="exceptionError" exception="java.lang.NullPointerException" />
+			<exception-mapping result="exceptionError" exception="java.lang.NoSuchMethodException" />
+			<exception-mapping result="exceptionError" exception="java.lang.Exception" /> 
+		</global-exception-mappings>
+		
+		<action name="pingTaiDefaultAction" class="pingTaiDefaultAction" /><!-- 默认action:处理不存在的action-->
+		
+		<action name="loginPingTaiAction" class="loginPingTaiAction" />
+	
+		<action name="authImagePingTaiAction" class="authImagePingTaiAction"></action>
+		
+	</package>
+	
+</struts>

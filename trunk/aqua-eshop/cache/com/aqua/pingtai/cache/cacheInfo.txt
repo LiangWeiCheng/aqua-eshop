@@ -1,0 +1,22 @@
+
+hibernate缓存提供者可以是oscache 和  ehcache
+
+
+实体类中加上@Cache(usage=CacheConcurrencyStrategy.READ_ONLY)
+应用的是hibernate类
+
+在一次请求中:
+	1.不管hibernate.cache.use_second_level_cache等于true还是等于false
+		查询同一条数据都执行一次select
+	
+	2.
+	
+在多次请求中:
+	1.在实体类中加上@Cache(usage=CacheConcurrencyStrategy.READ_ONLY)
+		同时hibernate.cache.use_second_level_cache=true
+		无论多少次请求都只有一次select
+	
+	2.在实体类中加上@Cache(usage=CacheConcurrencyStrategy.READ_ONLY)
+		同时hibernate.cache.use_second_level_cache=false
+		一次请求执行一次select
+		多次请求执行多次select

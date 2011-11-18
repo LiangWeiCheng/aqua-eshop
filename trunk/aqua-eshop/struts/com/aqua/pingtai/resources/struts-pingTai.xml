@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+	"http://struts.apache.org/dtds/struts-2.1.7.dtd">
+
+<struts>
+	
+	<package name="pingTai" extends="struts-default" namespace="/pingTai" >
+		
+		<interceptors>
+			<interceptor name="authority" class="com.aqua.pingtai.interceptor.AuthorityInterceptor"/><!-- 认证权限拦截器 -->
+			<interceptor name="formToken" class="com.aqua.pingtai.interceptor.FormTokenInterceptor"/><!-- 表单重复提交 -->
+			<interceptor name="queryParameterInterceptor" class="com.aqua.pingtai.interceptor.QueryParameterInterceptor" /><!-- 查询封装 -->
+			<interceptor-stack name="pingTaiStack">
+				<interceptor-ref name="authority" />
+				<interceptor-ref name="formToken" />
+				<interceptor-ref name="queryParameterInterceptor" />
+				<interceptor-ref name="defaultStack"/>
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="pingTaiStack"/><!--必须重写-->
+		
+		<default-action-ref name="pingTaiDefaultAction"></default-action-ref><!--默认action,处理不存在的action-->
+		
+		<global-results><!-- 定义全局Result -->
+			<result name="redirect" type="redirect">${returnPageURL}</result>
+			<result name="dispatcher" type="dispatcher">${returnPageURL}</result>
+			<result name="login" type="dispatcher">/WEB-INF/jsp/error/toRedirectLogin.jsp</result>
+			<result name="operatorMessage" type="dispatcher">/WEB-INF/jsp/error/operatorMessage.jsp</result>
+			<result name="exceptionError" type="dispatcher">/WEB-INF/jsp/error/exception.jsp</result>
+		</global-results>
+		
+		<global-exception-mappings><!-- 全局异常处理 -->
+			<exception-mapping result="exceptionError" exception="java.lang.NullPointerException" />
+			<exception-mapping result="exceptionError" exception="java.lang.NoSuchMethodException" />
+			<exception-mapping result="exceptionError" exception="java.lang.Exception" /> 
+		</global-exception-mappings>
+		
+		<action name="pingTaiDefaultAction" class="pingTaiDefaultAction" /><!-- 默认action:处理不存在的action-->
+		
+		<action name="testBaseAction" class="testBaseAction" />
+		
+		<action name="kindEditorFileUploadAction" class="kindEditorFileUploadAction">
+			<interceptor-ref name="fileUpload">
+				<param name="allowedTypes">image/x-png,image/gif,image/pjpeg</param><!-- 配置允许上传的文件类型 -->
+				<param name="maximumSize">2097152</param> <!-- 配置允许上传的文件大小(字节) 2M=1024*1024*2-->
+			</interceptor-ref> 
+			<interceptor-ref name="pingTaiStack"/><!-- 拦截器 -->
+			<result name="input">/WEB-INF/jsp/error/kindEditorError.jsp</result><!-- 必须得,失败后转向的页面 -->
+		</action>
+		
+		<action name="userPingTaiAction" class="userPingTaiAction" />
+		
+		<action name="dictPingTaiAction" class="dictPingTaiAction" />
+		
+		<action name="groupPingTaiAction" class="groupPingTaiAction" />
+		
+		<action name="rolePingTaiAction" class="rolePingTaiAction" />
+		
+		<action name="operatorPingTaiAction" class="operatorPingTaiAction" />
+		
+		<action name="menuPingTaiAction" class="menuPingTaiAction" />
+		
+		<action name="processDefinitionPingTaiAction" class="processDefinitionPingTaiAction" />
+				
+		<action name="departmentPingTaiAction" class="departmentPingTaiAction"></action>
+		
+		<action name="taskOperatorPingTaiAction" class="taskOperatorPingTaiAction"></action>
+		
+		<action name="swimlanePingTaiAction" class="swimlanePingTaiAction"></action>
+		
+		<action name="taskLogPingTaiAction" class="taskLogPingTaiAction"></action>
+		
+		<action name="sysLogPingTaiAction" class="sysLogPingTaiAction"></action>
+		
+	</package>
+	
+</struts>

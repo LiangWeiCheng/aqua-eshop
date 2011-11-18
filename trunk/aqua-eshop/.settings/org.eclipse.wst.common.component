@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="JXC">
+        <wb-resource deploy-path="/" source-path="/WebContent"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/cache"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/compass"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/jbpm"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/jni"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/payment"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/quartz"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/struts"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/webServices"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/application"/>
+        <property name="java-output-path" value="/SSHDJ/build/classes"/>
+        <property name="context-root" value="aqua-eshop"/>
+    </wb-module>
+</project-modules>

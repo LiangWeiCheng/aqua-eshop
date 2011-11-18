@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Struts2Diagram version="2.0">
+  <package name="default" location="380,115" size="170,70" />
+  <webResource name="error.jsp" path="jsp/system/error.jsp" location="90,205" size="150,55" />
+</Struts2Diagram>
+

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans-2.5.xsd	
+						http://www.springframework.org/schema/context
+						http://www.springframework.org/schema/context/spring-context-2.5.xsd
+						http://www.springframework.org/schema/aop
+						http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+						http://www.springframework.org/schema/tx
+						http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+						http://cxf.apache.org/jaxws 
+						http://cxf.apache.org/schemas/jaxws.xsd"
+	default-autowire="byName"
+	default-lazy-init="true">
+	
+	<!--  
+	使用了<context:component-scan/>就可以移除此注释了
+	<context:annotation-config/>
+	-->
+	
+	<tx:annotation-driven transaction-manager="txManager"/>
+	
+	<context:component-scan base-package="com.aqua.pingtai.dao.impl"/>
+	<context:component-scan base-package="com.aqua.pingtai.service.impl"/>
+	<context:component-scan base-package="com.aqua.pingtai.jbpm.dao.impl"/>
+	<context:component-scan base-package="com.aqua.pingtai.jbpm.service.impl"/><!-- IdentitySessionImpl -->
+	<context:component-scan base-package="com.aqua.pingtai.jbpm.extend"/>
+	<context:component-scan base-package="com.aqua.application.admin.dao.impl"/>
+	<context:component-scan base-package="com.aqua.application.admin.service.impl"/>
+	
+	<bean id="placeholderConfig" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location">
+			<value>classpath:init.properties</value>
+		</property>
+	</bean>
+	
+	<!--<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName"><value>${driverClassName}</value></property>
+		<property name="url"><value>${url}</value></property>
+		<property name="username"><value>${username}</value></property>
+		<property name="password"><value>${password}</value></property>
+		
+		<property name="initialSize"><value>5</value></property>-->	<!-- 初始化连接 -->
+		<!--<property name="maxIdle"><value>5</value></property>-->	<!-- 最大空闲连接 -->
+		<!--<property name="minIdle"><value>1</value></property>-->	<!-- 最小空闲连接 -->
+		<!--<property name="maxActive"><value>10</value></property>-->	<!-- 最大连接数量 -->
+		<!--<property name="logAbandoned"><value>true</value></property>-->	<!--是否在自动回收超时连接的时候打印连接的超时错误-->
+		<!-- 
+			超时时间(以秒数为单位)
+			设置超时时间有一个要注意的地方，超时时间=现在的时间-程序中创建Connection的时间，如果 maxActive比较大，比如超过100，
+			那么removeAbandonedTimeout可以设置长一点比如180，也就是三分钟无响应的连接进行 回收，当然应用的不同设置长度也不同 -->
+		<!--<property name="removeAbandonedTimeout"><value>300</value></property>-->
+		<!--<property name="maxWait"><value>120000</value></property>-->	<!--当没有可用连接时,连接池等待连接被归还的最大时间(以毫秒计数)-->
+		<!--<property name="validationQuery"><value>SELECT COUNT(*) FROM DUAL</value></property>-->	<!-- 下面3条依赖于此 -->
+		<!--<property name="testOnBorrow"><value>true</value></property>-->	<!-- 指明是否在从池中取出连接前进行检验 -->
+		<!--<property name="testOnReturn"><value>true</value></property>-->	<!-- 指明是否在归还到池中前进行检验 -->
+		<!--<property name="testWhileIdle"><value>true</value></property>-->	<!-- 指明连接是否被空闲连接回收器(如果有)进行检验 -->
+		<!--<property name="removeAbandoned"><value>true</value></property>-->	<!-- 标记是否删除泄露的连接 -->
+		<!-- 在空闲连接回收器线程运行期间休眠的时间值,以毫秒为单位. 如果设置为非正数,则不运行空闲连接回收器线程 -->
+		<!--<property name="timeBetweenEvictionRunsMillis"><value>60</value></property>-->
+		<!--<property name="numTestsPerEvictionRun"><value>20</value></property>-->	<!-- 在每次空闲连接回收器线程(如果有)运行时检查的连接数量 -->
+	<!--</bean>-->
+	
+	<bean id="dataSource" class="com.jolbox.bonecp.BoneCPDataSource" destroy-method="close">   
+		<property name="driverClass" value="${driverClassName}" />   
+		<property name="jdbcUrl" value="${url}" />   
+		<property name="username" value="${username}"/>   
+		<property name="password" value="${password}"/>   
+		
+		<property name="partitionCount" value="${partitionCount}"/>
+		<property name="maxConnectionsPerPartition" value="${maxConnectionsPerPartition}"/>   
+		<property name="minConnectionsPerPartition" value="${minConnectionsPerPartition}"/>
+		<property name="acquireIncrement" value="${acquireIncrement}"/> 
+		<property name="poolAvailabilityThreshold" value="${poolAvailabilityThreshold}"/>
+		<property name="connectionTimeout" value="${connectionTimeout}"/>
+		
+		<property name="releaseHelperThreads" value="${releaseHelperThreads}"/>
+		<property name="statementReleaseHelperThreads" value="${statementReleaseHelperThreads}"/>
+		<property name="maxConnectionAge" value="${maxConnectionAge}"/>
+		<property name="idleMaxAge" value="${idleMaxAge}"/>
+		<property name="idleConnectionTestPeriod" value="${idleConnectionTestPeriod}"/>   
+		   
+		<property name="acquireRetryAttempts" value="${acquireRetryAttempts}"/>   
+		<property name="acquireRetryDelay" value="${acquireRetryDelay}"/>
+		<property name="lazyInit" value="${lazyInit}"/>
+		<property name="statementCacheSize" value="${statementCacheSize}"/>
+		<property name="disableJMX" value="${disableJMX}"/>
+		<property name="poolName" value="${poolName}"/>
+	</bean>
+	
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean" >
+		<property name="dataSource"><ref bean="dataSource"/></property>
+		<property name="packagesToScan">
+			<list>
+				<value>com.aqua.pingtai.entity.bean.authority</value>
+				<value>com.aqua.pingtai.jbpm.entity</value>
+				<value>com.aqua.application.entity</value>
+			</list>
+		</property>
+		<property name="mappingLocations">   
+		   <list>   
+		    <value>classpath:jbpm.execution.hbm.xml</value>   
+		    <value>classpath:jbpm.history.hbm.xml</value>   
+		    <value>classpath:jbpm.identity.hbm.xml</value><!--  注释   -->
+		    <value>classpath:jbpm.repository.hbm.xml</value>   
+		    <value>classpath:jbpm.task.hbm.xml</value>   
+		   </list>   
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+				<prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
+				<prop key="hibernate.cache.use_second_level_cache">${hibernate.cache.use_second_level_cache}</prop>
+				<prop key="hibernate.cache.provider_class">${hibernate.cache.provider_class}</prop>
+				<prop key="hibernate.jdbc.batch_size">25</prop>
+				<prop key="hibernate.jdbc.fetch_size">50</prop>
+				<prop key="hibernate.max_fetch_depth">3</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<bean id="daoHibernateBase" class="com.aqua.pingtai.dao.base.DaoHibernateBase">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="daoJdbcBase" class="com.aqua.pingtai.dao.base.DaoJdbcBase">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	<bean id="txManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+    
+    <bean id="jdbcExceptionTranslator" class="org.springframework.jdbc.support.SQLErrorCodeSQLExceptionTranslator"> 
+		<property name="dataSource"><ref bean="dataSource"/></property> 
+    </bean>
+    
+    <bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate"> 
+		<property name="sessionFactory"><ref bean="sessionFactory"/></property> 
+		<property name="jdbcExceptionTranslator">
+			<ref bean="jdbcExceptionTranslator"/>
+		</property>
+    </bean> 
+	
+	<bean id="springHelper" class="org.jbpm.pvm.internal.processengine.SpringHelper">   
+        <property name="jbpmCfg" value="jbpm.cfg.xml" />   
+	</bean>   
+	
+	<bean id="processEngine" factory-bean="springHelper"  factory-method="createProcessEngine"/>
+    
+    <bean id="jbpmTemplate" class="com.aqua.pingtai.jbpm.extend.JbpmTemplate">   
+        <property name="processEngine" ref="processEngine" />   
+	</bean>
+	
+	<bean id="oscacheFactory" class="com.aqua.pingtai.cache.OscacheFactory"></bean>
+	
+</beans>

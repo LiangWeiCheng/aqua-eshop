@@ -1,0 +1,98 @@
+
+body {
+	margin-left: 3px;
+	margin-top: 0px;
+	margin-right: 3px;
+	margin-bottom: 0px;
+}
+
+.STYLE1 {
+	color: #e1e2e3;
+	font-size: 12px;
+}
+
+.STYLE6 {
+	color: #000000; font-size: 12;
+	bgcolor:#FFFFFF;
+}
+
+.STYLE10 {
+	color: #000000; 
+	font-size: 13px;
+	height: 25px;
+}
+
+.STYLE19 {
+	color: #344b50;
+	font-size: 12px;
+	height: 25px;
+}
+
+.STYLE21 {
+	font-size: 12px;
+	color: #3b6375;
+}
+
+.STYLE22 {
+	font-size: 12px;
+	color: #295568;
+}
+
+
+a:link {
+	color:#006400;
+	text-decoration:none;
+}
+   	
+a:visited {
+	color:#030303;
+	text-decoration:none;
+}
+   	
+a:hover {
+	color:#00688B;
+	text-decoration:none;
+}
+   	
+a:active {
+	color:#B22222;
+	text-decoration:none;
+}
+
+/*一个字的Button*/
+.button1 {
+	background-image: url(../../images/pingTai/main_35.gif);
+	background-repeat: no-repeat;
+	width: 10px;
+	height: 15px;
+	padding: 4px;
+	text-align: center;
+	color: white;
+	border: 1px #666666 none;
+	font-size: 12px;
+}
+
+/*两个字的Button*/
+.button2 {
+	background-image: url(../../images/pingTai/bg_01.jpg);
+	background-repeat: no-repeat;
+	width: 62px;
+	height: 21px;
+	padding: 4px;
+	text-align: center;
+	color: white;
+	border: 1px #666666 none;
+	font-size: 12px;
+}
+
+/*四个字的Button*/
+.button4 {
+	background-image: url(../../images/pingTai/bg_01.jpg);
+	width: 92px;
+	height: 21px;
+	padding: 4px;
+	text-align: center;
+	color: white;
+	border: 1px #666666 none;
+	font-size: 12px;
+}

@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Struts2Diagram version="2.0">
+  <package name="admin" location="0,0" size="0,0">
+    <action name="adminDefaultAction" location="0,0" size="0,0">
+      <result name="success" />
+    </action>
+    <action name="indexAction" location="0,0" size="0,0">
+      <result name="success" />
+      <result name="jsp" />
+      <result name="error" />
+      <result name="logout" />
+    </action>
+    <action name="functionAction" location="0,0" size="0,0">
+      <result name="funcIndex" />
+      <result name="toAddFuntion" />
+    </action>
+    <action name="productClassAction" location="0,0" size="0,0">
+      <result name="classLeftOne" />
+      <result name="classLeftTwo" />
+      <result name="classCenter" />
+      <result name="addOneClass" />
+      <result name="toTwoClass" />
+      <result name="addTwoClass" />
+      <result name="addTuiJianClass" />
+      <result name="toUpdateProductClass" />
+      <result name="updateProductClassOK" />
+      <result name="errorPage" />
+    </action>
+    <action name="sysParameterAction" location="0,0" size="0,0">
+      <result name="gotoKeFuPageList" />
+      <result name="addKeFuOk" />
+      <result name="toUpdateKeFu" />
+      <result name="updateKeFuOk" />
+      <result name="toImagesList" />
+      <result name="redirect" />
+      <result name="dispatcher" />
+      <result name="input" />
+      <result name="addIndexPageImageSuccess" />
+      <result name="addIndexPageImageError" />
+    </action>
+    <action name="productAction" location="0,0" size="0,0">
+      <result name="gotoProductListPage" />
+      <result name="input" />
+      <result name="addProductSuccess" />
+      <result name="addProductError" />
+      <result name="toUpdatePage" />
+      <result name="updateProductOk" />
+    </action>
+    <action name="adminOrderFormAction" location="0,0" size="0,0">
+      <result name="dispatcher" />
+      <result name="redirect" />
+    </action>
+    <action name="adminChangeProductAction" location="0,0" size="0,0">
+      <result name="toChangeListPage" />
+      <result name="toChangeAdd" />
+    </action>
+    <action name="adminRandAwardAction" location="0,0" size="0,0">
+      <result name="dispatcher" />
+      <result name="redirect" />
+    </action>
+    <action name="adminUsersManageAction" location="0,0" size="0,0">
+      <result name="dispatcher" />
+      <result name="redirect" />
+    </action>
+    <action name="adminMiaoShaAction" location="0,0" size="0,0">
+      <result name="dispatcher" />
+      <result name="redirect" />
+      <result name="input" />
+    </action>
+    <action name="adminRoleManageAction" location="0,0" size="0,0">
+      <result name="dispatcher" />
+      <result name="redirect" />
+    </action>
+    <action name="adminStatAction" location="0,0" size="0,0">
+      <result name="dispatcher" />
+      <result name="redirect" />
+    </action>
+    <action name="adminTellStatAction" location="0,0" size="0,0">
+      <result name="dispatcher" />
+      <result name="redirect" />
+    </action>
+    <action name="adminInfomationAction" location="0,0" size="0,0">
+      <result name="dispatcher" />
+      <result name="redirect" />
+    </action>
+  </package>
+  <package name="index" location="0,0" size="0,0">
+    <action name="clientDefaultAction" location="0,0" size="0,0">
+      <result name="success" />
+    </action>
+    <action name="index" location="0,0" size="0,0">
+      <result name="success" />
+    </action>
+  </package>
+  <package name="client" location="0,0" size="0,0">
+    <action name="clientDefaultAction" location="0,0" size="0,0">
+      <result name="success" />
+    </action>
+    <action name="productAction" location="0,0" size="0,0">
+      <result name="gotoProductListPage" />
+      <result name="gotoproductDetailsPage" />
+      <result name="toGouWuChe" />
+      <result name="errorGouWuChe" />
+      <result name="deleteProductToGouWuChe" />
+      <result name="gotoJieSuanPage" />
+      <result name="updateProductCount" />
+      <result name="redirect" />
+      <result name="dispatcher" />
+    </action>
+    <action name="clientPaymentAction" location="0,0" size="0,0">
+      <result name="gotoRepayPage" />
+      <result name="gotoCallBackPage" />
+      <result name="dispatcher" />
+      <result name="redirect" />
+    </action>
+    <action name="clientLoginAction" location="0,0" size="0,0">
+      <result name="success" />
+      <result name="error" />
+      <result name="returnLogin" />
+      <result name="redirect" />
+      <result name="dispatcher" />
+    </action>
+    <action name="clientChangeProductAction" location="0,0" size="0,0">
+      <result name="redirect" />
+      <result name="dispatcher" />
+    </action>
+    <action name="clientOrderFormAction" location="0,0" size="0,0">
+      <result name="redirect" />
+      <result name="dispatcher" />
+    </action>
+    <action name="clientUserInfoManage" location="0,0" size="0,0">
+      <result name="redirect" />
+      <result name="dispatcher" />
+    </action>
+    <action name="clientMiaoShaAction" location="0,0" size="0,0">
+      <result name="redirect" />
+      <result name="dispatcher" />
+    </action>
+    <action name="clientInfomationAction" location="0,0" size="0,0">
+      <result name="redirect" />
+      <result name="dispatcher" />
+    </action>
+  </package>
+</Struts2Diagram>
+

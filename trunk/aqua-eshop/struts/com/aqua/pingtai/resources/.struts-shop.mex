@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Struts2Diagram version="2.0">
+  <package name="/ApplicationAdmin" location="0,0" size="0,0">
+    <action name="pingTaiDefaultAction" location="0,0" size="0,0" />
+    <action name="productClass/ApplicationAdminAction" location="0,0" size="0,0" />
+    <action name="product/ApplicationAdminAction" location="0,0" size="0,0">
+      <result name="input">
+        <resourceEdge source="input" routing="0" target="productAdd.jsp" />
+      </result>
+    </action>
+    <action name="productKindEditor/ApplicationAdminAction" location="0,0" size="0,0">
+      <result name="input">
+        <resourceEdge source="input" routing="0" target="kindEditorError.jsp" />
+      </result>
+    </action>
+    <action name="productAppraise/ApplicationAdminAction" location="0,0" size="0,0" />
+    <action name="backNote/ApplicationAdminAction" location="0,0" size="0,0" />
+    <action name="deliverType/ApplicationAdminAction" location="0,0" size="0,0" />
+    <action name="orderForm/ApplicationAdminAction" location="0,0" size="0,0" />
+    <action name="paymentType/ApplicationAdminAction" location="0,0" size="0,0" />
+    <action name="provider/ApplicationAdminAction" location="0,0" size="0,0" />
+    <action name="stockNote/ApplicationAdminAction" location="0,0" size="0,0" />
+    <action name="guide/ApplicationAdminAction" location="0,0" size="0,0" />
+    <action name="guideAppraise/ApplicationAdminAction" location="0,0" size="0,0" />
+    <action name="shopKindEditor/ApplicationAdminAction" location="0,0" size="0,0">
+      <result name="input">
+        <resourceEdge source="input" routing="0" target="kindEditorError.jsp" />
+      </result>
+    </action>
+    <action name="clientLevel/ApplicationAdminAction" location="0,0" size="0,0" />
+  </package>
+  <package name="/ApplicationClient" location="0,0" size="0,0">
+    <action name="pingTaiDefaultAction" location="0,0" size="0,0" />
+    <action name="alipayLogin/ApplicationClientAction" location="0,0" size="0,0" />
+  </package>
+  <webResource name="kindEditorError.jsp" path="/WEB-INF/jsp/error/kindEditorError.jsp" location="1551,345" size="150,55" />
+  <webResource name="productAdd.jsp" path="/WEB-INF/jsp/jxc/admin/product/productAdd.jsp" location="0,0" size="0,0" />
+</Struts2Diagram>
+

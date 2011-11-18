@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+
+<struts>
+
+    <!-- 处理未知 Result -->
+    <bean type="com.opensymphony.xwork2.UnknownHandler" name="notHandler" class="com.aqua.pingtai.struts.extend.action.NotHandler"/>
+    
+    <include file="com/aqua/pingtai/resources/struts-login.xml" />
+    
+    <include file="com/aqua/pingtai/resources/struts-pingTai.xml" />
+    
+    <include file="com/aqua/pingtai/resources/struts-application.xml" />
+
+    <unknown-handler-stack>
+        <unknown-handler-ref name="notHandler" />
+    </unknown-handler-stack>
+    
+</struts>
