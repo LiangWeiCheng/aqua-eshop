@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<process name="TellOrderFormName001" xmlns="http://jbpm.org/4.4/jpdl" key="TellOrderFormKey001" version="1" description="订单流程,版本是1,名字是OrderFormName001,key是OrderFormKey001">
+   
+   <start name="start1" g="42,10,48,48">
+      <transition name="to 下订单" to="下订单" g="-54,-18"/>
+   </start>
+   
+   <task name="下订单" g="21,107,92,52">
+      <transition name="to exclusive1" to="发货还是取消" g="-36,-20"/>
+   </task>
+   
+   <decision name="发货还是取消" g="236,109,48,48" expr="#{removetask==0 ? '取消订单' : '商家正在备货'}">
+      <transition name="to 取消订单" to="取消订单" g="-28,-18"/>
+      <transition name="to 正在备货" to="正在备货" g="-66,-18"/>
+   </decision>
+   
+   <end name="无效订单" g="648,104,48,48"/>
+   
+   <task name="取消订单" g="434,104,92,52">
+      <transition name="to 无效订单" to="无效订单" g="-34,-18"/>
+   </task>
+   
+   <task name="正在备货" g="36,241,92,52">
+      <transition name="to 已经发货" to="已经发货" g="-38,-20"/>
+   </task>
+   
+   <task name="已经发货" g="235,240,92,52">
+      <transition name="to 用户确认" to="用户确认" g="-41,-20"/>
+   </task>
+   
+   <task name="用户确认" g="444,239,92,52">
+      <transition name="to 订单结束" to="订单结束" g="-31,-18"/>
+   </task>
+   
+   <end name="订单结束" g="659,242,48,48"/>
+   
+</process>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<process description="退货流程" key="OrderFormRemoveKey001" name="OrderFormRemoveName001" version="1" xmlns="http://jbpm.org/4.4/jpdl">
+   
+   <start g="74,15,48,48" name="start1">
+      <transition g="-66,-18" name="to 是否退货" to="是否退货"/>
+   </start>
+     
+   <decision expr="#{removetask==0 ? '退货' : '退款'}" g="73,125,48,48" name="是否退货">
+      <transition g="-29,-21" name="to 退货" to="退货"/>
+      <transition g="-42,-18" name="to 退款" to="退款"/>
+   </decision>
+   
+   <task g="239,125,92,52" name="退货">
+      <transition g="-31,-21" name="to 退货状态" to="退货状态"/>
+   </task>
+   
+   <task g="52,239,92,52" name="退款">
+      <transition g="-66,-18" name="to 退款状态" to="退款状态"/>
+   </task>
+   
+   <end g="740,441,48,48" name="退货结束"/>
+   
+   <task g="717,345,92,52" name="退货审核">
+      <transition g="12,-13" name="to 退货结束" to="退货结束"/>
+   </task>
+   
+   <task g="452,123,92,52" name="退货状态">
+      <transition g="8,-15" name="to 退货是否成功" to="退货是否成功"/>
+   </task>
+   
+   <decision expr="#{removeProduct==0 ? '退货完成' : '退货失败'}" g="474,241,48,48" name="退货是否成功">
+      <transition g="-36,-21" name="to 退货完成" to="退货完成"/>
+      <transition g="-32,-22" name="to 退货失败" to="退货失败"/>
+   </decision>
+   
+   <task g="239,241,92,52" name="退货完成">
+      <transition g="-14,-19" name="to 退款" to="退款"/>
+   </task>
+   
+   <task g="716,237,92,52" name="退货失败">
+      <transition g="-66,-18" name="to 退货审核" to="退货审核"/>
+   </task>
+   
+   <task g="51,354,92,52" name="退款状态">
+      <transition g="-39,-21" name="to 退款是否成功" to="退款是否成功"/>
+   </task>
+   
+   <decision expr="#{removePrice==0 ? '退款成功' : '退款失败'}" g="266,356,48,48" name="退款是否成功">
+      <transition g="-59,-20" name="to 退款成功" to="退款成功"/>
+      <transition g="-58,9" name="to 退款失败" to="退款失败"/>
+   </decision>
+   
+   <task g="452,321,92,52" name="退款成功">
+      <transition g="-66,-18" name="to 退货审核" to="退货审核"/>
+   </task>
+   
+   <task g="453,395,92,52" name="退款失败">
+      <transition g="-66,-18" name="to 退货审核" to="退货审核"/>
+   </task>
+   
+</process>

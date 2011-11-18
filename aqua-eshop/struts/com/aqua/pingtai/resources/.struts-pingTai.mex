@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Struts2Diagram version="2.0">
+  <package name="pingTai" location="10,10" size="1015,385">
+    <action name="pingTaiDefaultAction" location="65,198" size="150,40" />
+    <action name="testBaseAction" location="65,303" size="150,40" />
+    <action name="kindEditorFileUploadAction" location="800,302" size="150,41">
+      <result name="input">
+        <resourceEdge source="input" routing="0" target="kindEditorError.jsp" />
+      </result>
+    </action>
+    <action name="userPingTaiAction" location="800,58" size="150,40" />
+    <action name="dictPingTaiAction" location="310,58" size="150,40" />
+    <action name="groupPingTaiAction" location="310,233" size="150,40" />
+    <action name="rolePingTaiAction" location="555,233" size="150,40" />
+    <action name="operatorPingTaiAction" location="555,128" size="150,40" />
+    <action name="menuPingTaiAction" location="0,0" size="0,0" />
+    <action name="processDefinitionPingTaiAction" location="0,0" size="0,0" />
+    <action name="assignModePingTaiAction" location="0,0" size="0,0" />
+    <action name="departmentPingTaiAction" location="0,0" size="0,0" />
+    <action name="taskOperatorPingTaiAction" location="0,0" size="0,0" />
+  </package>
+  <webResource name="kindEditorError.jsp" path="/WEB-INF/jsp/error/kindEditorError.jsp" location="1061,275" size="150,55" />
+</Struts2Diagram>
+

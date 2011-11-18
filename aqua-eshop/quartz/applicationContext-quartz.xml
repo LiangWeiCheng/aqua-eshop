@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans-2.5.xsd	
+						http://www.springframework.org/schema/context
+						http://www.springframework.org/schema/context/spring-context-2.5.xsd
+						http://www.springframework.org/schema/aop
+						http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+						http://www.springframework.org/schema/tx
+						http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+						http://cxf.apache.org/jaxws 
+						http://cxf.apache.org/schemas/jaxws.xsd"
+	default-lazy-init="true">
+	
+	<!-- *********************测试触发	开始 *****************************-->
+	
+	<!-- 要调用的工作类:测试 -->  
+    <bean id="quartzJob" class="com.aqua.pingtai.quartz.QuartzJob"></bean>
+    
+    <!-- 定义调用对象和调用对象的方法 -->  
+    <bean id="jobtask" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject"><!-- 调用的类 -->  
+            <ref bean="quartzJob"/>  
+        </property>
+        <property name="targetMethod"><!-- 调用类中的方法 -->   
+            <value>work</value>  
+        </property>  
+    </bean>
+    
+    <!-- 定义触发时间 -->  
+    <bean id="doTime" class="org.springframework.scheduling.quartz.CronTriggerBean">  
+        <property name="jobDetail"><!-- 要触发的任务 -->  
+            <ref bean="jobtask"/>  
+        </property>
+        <property name="cronExpression"><!-- cron表达式 -->  
+            <value>59 59 23 * * ?</value>  
+        </property>  
+    </bean>
+    
+    <!-- *********************测试触发	结束 *****************************-->
+    
+    
+    
+    
+    <!-- *********************Compass定时重建索引	开始 *****************************-->
+    
+	<!-- 要调用的工作类:quartz定时重建索引 -->  
+    <bean id="quartzUpdateCompassIndex" class="com.aqua.pingtai.compass.index.QuartzUpdateCompassIndex">
+    	<property name="compassGps" ref="compassGps" />
+    </bean>
+    
+	<!-- 定义调用对象和调用对象的方法 -->  
+    <bean id="compassTask" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject"><!-- 调用的类 -->  
+            <ref bean="quartzUpdateCompassIndex"/>  
+        </property>
+        <property name="targetMethod"><!-- 调用类中的方法 -->   
+            <value>startCompassUpdateIndex</value>  
+        </property>  
+    </bean>
+    
+    <!-- 定义触发时间:注意compass -->  
+    <bean id="compassStartTime" class="org.springframework.scheduling.quartz.CronTriggerBean">  
+        <property name="jobDetail"><!-- 要触发的任务 -->  
+            <ref bean="compassTask"/>  
+        </property>
+        <property name="cronExpression"><!-- cron表达式 -->  
+            <value>59 59 23 * * ?</value>  
+        </property>  
+    </bean>
+    
+    <!-- *********************Compass定时重建索引	结束*****************************-->
+    
+    
+    
+    <!-- *********************触发任务***************************-->
+   	
+   	<!-- 总管理类 如果将lazy-init='false'那么容器启动就会执行调度程序  -->  
+   	<bean id="startQuertz" lazy-init="true" autowire="no" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">  
+        <property name="triggers">  
+            <list>  
+                <ref bean="doTime"/>
+                <ref bean="compassStartTime"/>
+            </list>  
+        </property>  
+    </bean>  
+    
+</beans>

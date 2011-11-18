@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<process description="订单流程,版本是1,名字是OrderFormName001,key是OrderFormKey001" key="OrderFormKey001" name="OrderFormName001" version="1" xmlns="http://jbpm.org/4.4/jpdl">
+  
+   <start g="64,11,48,48" name="start1">
+      <transition g="11,-13" name="to 等待顾客支付" to="等待顾客支付"/>
+   </start>
+   
+   <task g="42,125,92,52" name="等待顾客支付">
+      <transition g="-43,-22" name="to 支付或则取消?" to="支付或则取消?"/>
+   </task>
+   
+   <task g="234,230,92,52" name="商家正在备货">
+      <transition g="-42,-20" name="to 商家已经发货" to="商家已经发货"/>
+   </task>
+   
+   <task g="452,229,92,52" name="商家已经发货">
+      <transition g="7,-18" name="to 等待用户确认" to="等待用户确认"/>
+   </task>
+   
+   <task g="452,343,92,52" name="等待用户确认">
+      <transition g="-34,-18" name="to 订单完成" to="订单完成"/>
+   </task>
+   
+   <end g="659,343,48,48" name="订单完成"/>
+   
+   <end g="652,126,48,48" name="无效订单"/>
+   
+   <decision expr="#{removetask==0 ? '取消订单' : '商家正在备货'}" g="256,127,48,48" name="支付或则取消?">
+      <transition g="-90,-18" name="to 商家正在备货" to="商家正在备货"/>
+      <transition g="-30,-19" name="to 取消订单" to="取消订单"/>
+   </decision>
+   
+   <task g="434,126,92,52" name="取消订单">
+      <transition name="to 无效订单" to="无效订单" g="-28,-17"/>
+   </task>
+   
+</process>

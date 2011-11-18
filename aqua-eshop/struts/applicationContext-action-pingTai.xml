@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans-2.5.xsd	
+						http://www.springframework.org/schema/context
+						http://www.springframework.org/schema/context/spring-context-2.5.xsd
+						http://www.springframework.org/schema/aop
+						http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+						http://www.springframework.org/schema/tx
+						http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+						http://cxf.apache.org/jaxws 
+						http://cxf.apache.org/schemas/jaxws.xsd"
+	default-lazy-init="true">
+						
+	<!-- 默认处理action -->					
+	<bean id="pingTaiDefaultAction" class="com.aqua.pingtai.struts.extend.action.PingTaiDefaultAction" scope="prototype" autowire="byName" />
+	
+	<bean id="testBaseAction" class="com.aqua.pingtai.action.test.TestBaseAction" scope="prototype" autowire="byName" />
+	
+	<bean id="kindEditorFileUploadAction" class="com.aqua.pingtai.action.KindEditorFileUploadAction" scope="prototype" autowire="byName" />
+	
+	<bean id="loginPingTaiAction" class="com.aqua.pingtai.action.LoginAction" scope="prototype" autowire="byName" />
+	
+	<bean id="userPingTaiAction" class="com.aqua.pingtai.action.UserAction" scope="prototype" autowire="byName" />
+	
+	<bean id="dictPingTaiAction" class="com.aqua.pingtai.action.DictManagerAction" scope="prototype" autowire="byName" />
+	
+	<bean id="groupPingTaiAction" class="com.aqua.pingtai.action.GroupAction" scope="prototype" autowire="byName" />
+	
+	<bean id="rolePingTaiAction" class="com.aqua.pingtai.action.RoleAction" scope="prototype" autowire="byName" />
+	
+	<bean id="operatorPingTaiAction" class="com.aqua.pingtai.action.OperatorAction" scope="prototype" autowire="byName" />
+	
+	<bean id="menuPingTaiAction" class="com.aqua.pingtai.action.MenuAction" scope="prototype" autowire="byName" />
+	
+	<bean id="processDefinitionPingTaiAction" class="com.aqua.pingtai.jbpm.action.ProcessDefinitionAction" scope="prototype" autowire="byName" />
+	
+	<bean id="departmentPingTaiAction" class="com.aqua.pingtai.action.DepartmentAction" scope="prototype" autowire="byName" />
+	
+	<bean id="taskOperatorPingTaiAction" class="com.aqua.pingtai.jbpm.action.TaskOperatorAction" scope="prototype" autowire="byName" />
+	
+	<bean id="swimlanePingTaiAction" class="com.aqua.pingtai.jbpm.action.SwimlaneAction" scope="prototype" autowire="byName" />
+	
+	<bean id="authImagePingTaiAction" class="com.aqua.pingtai.action.AuthImageAction" scope="prototype" autowire="byName" />
+	
+	<bean id="taskLogPingTaiAction" class="com.aqua.pingtai.jbpm.action.TaskLogAction" scope="prototype" autowire="byName" />
+	
+	<bean id="sysLogPingTaiAction" class="com.aqua.pingtai.action.SysLogAction" scope="prototype" autowire="byName" />
+	
+</beans>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans-2.5.xsd	
+						http://www.springframework.org/schema/context
+						http://www.springframework.org/schema/context/spring-context-2.5.xsd
+						http://www.springframework.org/schema/aop
+						http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+						http://www.springframework.org/schema/tx
+						http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+						http://cxf.apache.org/jaxws 
+						http://cxf.apache.org/schemas/jaxws.xsd"
+	default-autowire="byName"
+	default-lazy-init="true">
+	
+	<import resource="classpath:META-INF/cxf/cxf.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
+	
+	<bean id="securityHandler" class="org.apache.cxf.ws.security.wss4j.WSS4JInInterceptor">  
+       <constructor-arg>  
+            <map>  
+              	<entry key="action" value="UsernameToken Timestamp" />  
+               	<entry key="passwordType" value="PasswordText" />  
+               	<entry key="passwordCallbackClass" value="com.aqua.pingtai.webservice.cxf.security.SecurityHandler" />  
+            </map>  
+       </constructor-arg>  
+   	</bean>  
+	
+	<bean id="helloWordBean" class="com.aqua.pingtai.webservice.xfire.impl.HelloWorldImpl" />   
+       
+    <jaxws:server id="registerWebService" serviceClass="com.aqua.pingtai.webservice.xfire.impl.HelloWorldImpl" address="/HelloWorld">  
+        <jaxws:serviceBean>  
+            <ref bean="helloWordBean" />
+        </jaxws:serviceBean>  
+    </jaxws:server>
+    
+   	<jaxws:endpoint id="helloWorld" implementor="#helloWordBean" address="/HelloWorld2">
+   		<jaxws:inInterceptors>  
+           	<bean class="org.apache.cxf.binding.soap.saaj.SAAJInInterceptor" />  
+           	<ref bean="securityHandler" />  
+        </jaxws:inInterceptors> 
+   	</jaxws:endpoint>
+  	
+</beans>
