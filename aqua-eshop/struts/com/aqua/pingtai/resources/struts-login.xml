@@ -39,4 +39,12 @@
 		
 	</package>
 	
+	<!-- Json Action -->
+    <package name="loginJsonPackage" extends="json-default" namespace="/loginJsonPackage">
+        <action name="LoginJsonAction" class="com.aqua.pingtai.action.json.LoginJsonAction">
+            <result type="json">
+                <param name="root">jsonOperator</param>
+            </result>
+        </action>
+    </package>
 </struts>

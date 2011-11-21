@@ -12,6 +12,7 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/struts"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/webServices"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/application"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/test"/>
         <property name="java-output-path" value="/SSHDJ/build/classes"/>
         <property name="context-root" value="aqua-eshop"/>
     </wb-module>

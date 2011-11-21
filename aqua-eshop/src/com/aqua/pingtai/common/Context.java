@@ -107,18 +107,6 @@ public class Context {
 	 */
 	@SuppressWarnings("unchecked")
 	public static Boolean hasPrivilege(String operator){
-		/*User currentUser = getCurrentUser();
-		if(null!=currentUser){
-			String selectOperator = "select * from pingtai_operator where url='"+operator+"' and ids in (select operatorIds from pingtai_roleoperator where roleIds in (select roleIds from pingtai_rolegroup where groupIds in ( select groupIds from pingtai_usergroup where userIds="+currentUser.getIds()+")))";
-			OperatorDao operatorDaoImpl = (OperatorDaoImpl)getSpringBean("operatorDaoImpl");
-			List<Operator> operatorList = operatorDaoImpl.selectUserOperator(selectOperator);
-			if(operatorList.size()!=1){
-				return false;
-			}else{
-				return true;
-			}
-		}
-		return false;*/
 		User currentUser = getCurrentUser();
 		Set<Group> groupSet = currentUser.getGroupSet();
 		OscacheFactory oscacheFactory = (OscacheFactory) Context.getSpringBean("oscacheFactory");
@@ -132,7 +120,6 @@ public class Context {
 			}
 		}
 		return false;
-		//return true;
 	}
 	
 	/**
