@@ -1,112 +1,52 @@
-<%@ page language="java" isELIgnored="false" import="java.util.*" pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
-<%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ page language="java" isELIgnored="false" import="java.util.*"
+	pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 
 <!-- left.jsp -->
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-    <title>菜单测试</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<meta http-equiv="pragma" content="no-cache">
-	<meta http-equiv="cache-control" content="no-cache">
-	<meta http-equiv="expires" content="0">    
-	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-	<meta http-equiv="description" content="This is my page">
-	<style type="text/css">
-		<!--
-		body {
-			margin-left: 0px;
-			margin-top: 0px;
-			margin-right: 0px;
-			margin-bottom: 0px;
-		}
-		
-		.STYLE3 {
-			font-size: 12px;
-			color: #435255;
-		}
-		
-		.STYLE4 {
-			font-size: 12px
-		}
-		
-		.STYLE5 {
-			font-size: 12px;
-			font-weight: bold;
-		}
-		
-		a:link {
-		   	color:#006400;
-		   	text-decoration:none;
-	   	}
-	   	
-	   	a:visited {
-		   	color:#030303;
-		   	text-decoration:none;
-	   	}
-	   	
-	   	a:hover {
-		   	color:#00688B;
-		   	text-decoration:none;
-	   	}
-	   	
-	   	a:active {
-		   	color:#B22222;
-	   	   	text-decoration:none;
-	  	}
-		-->
-	</style>
-	<script type="text/javascript">
-		function onclickEvent(thisNode) {
-			closeAll();
-			var index = thisNode.rowIndex + 1;
-			var tr = document.getElementById('menuTable').rows[index];
-			var isNone = tr.style.display;
-			if (isNone != "none") {
-				tr.style.display = "none";
-				openDefaultTr();
-			} else {
-				tr.style.display = "";
-			}
-		}
-
-		function closeAll() {
-			var tableNode = document.getElementById('menuTable');
-			var rows = document.getElementById('menuTable').rows.length;
-			for ( var i = 0; i < rows; i++) {
-				var rowNode = tableNode.rows[i];
-				var className = rowNode.className;
-				if (className == "twoTrClass") {
-					rowNode.style.display = "none";
-				}
-			}
-		}
-
-		function openDefaultTr() {
-			var tableNode = document.getElementById('menuTable');
-			var rows = document.getElementById('menuTable').rows.length;
-			var rowNode = tableNode.rows[1];
-			rowNode.style.display = "";
-		}
-	</script>
+<title>菜单测试</title>
+<style type="text/css">
+	@import "${pageContext.request.contextPath }/jsFile/dojoroot/dojo/resources/dojo.css";
+	@import "${pageContext.request.contextPath }/jsFile/dojoroot/dijit/themes/soria/soria.css";
+</style>
+<script type="text/javascript"
+	djConfig="parseOnLoad: true, isDebug: true" src="${pageContext.request.contextPath }/jsFile/dojoroot/dojo/dojo.js"></script>
+<script>
+	dojo.require("dojo.data.ItemFileReadStore");
+	dojo.require("dijit.Tree");
+	dojo.require("dijit.layout.ContentPane");
+	dojo.addOnLoad(function() {
+		dojo.subscribe("tree", null, function(message) {
+			console.log("选择的结点:" + message.node.item.name);
+			console.log("选择的结点:" + message.node.item.link);
+			parent.right.window.location.href = message.node.item.link;
+			//dojo.byId("cc").attr('href', message.node.item.link);//打开树结点的网页连接 
+			//dojo.byId("cc").refresh();
+			//在此可以调用XHR修改后台JSON数据，这样可以增加或修改树的结点 
+		});
+	});
+	var treeStore = new dojo.data.ItemFileReadStore({
+        url : '${pageContext.request.contextPath }/loginJsonPackage/LoginJsonAction!getJsonMenu.action'
+    });
+	var treeModel = new dijit.tree.ForestStoreModel({
+		query : {
+			type : 'parentObj'
+		},
+		store : treeStore,
+		root : true,
+		rootId : "eShop",
+		rootLabel : "eShop系统",
+		childrenAttrs : [ 'children' ]
+	});
+</script>
 </head>
-<body onload="closeAll();openDefaultTr()">
-
-	<%-- 输出 --%>
-	<%
-		Object menuStringObject = request.getSession().getAttribute("menuString"); 
-		if(null!=menuStringObject){
-	%>	
-			<%=(String)menuStringObject %>
-	<%	
-		}
-	%>
-	
-	<%-- 删除 --%>
-	<%
-		//request.getSession().removeAttribute("menuString"); 
-	%>
-	
+<body class="soria">
+	<div dojoType="dijit.Tree" id="tree" jsId="tree " model="treeModel" openOnClick="true" showRoot="false"></div>
+	<div dojoType="dijit.layout.ContentPane" region="bottom" id="cc"
+		style="background-color: #ACBFD0; height: 200px;" splitter="true">
+	</div>
 </body>
 </html>
 

@@ -53,4 +53,5 @@
 	
 	<bean id="sysLogPingTaiAction" class="com.aqua.pingtai.action.SysLogAction" scope="prototype" autowire="byName" />
 	
+    <bean id="LoginJsonAction" class="com.aqua.pingtai.action.json.LoginJsonAction" scope="prototype" autowire="byName" />
 </beans>
