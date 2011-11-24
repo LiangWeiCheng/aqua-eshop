@@ -37,7 +37,7 @@
 		});
 	});
 	var treeStore = new dojo.data.ItemFileReadStore({
-		url : '${pageContext.request.contextPath }/loginJsonPackage/LoginJsonAction!getJsonMenu.action'
+		url : '${pageContext.request.contextPath }/jsonPackage/loginJsonAction!getJsonMenu.action'
 	});
 	var treeModel = new dijit.tree.ForestStoreModel({
 		query : {
@@ -49,30 +49,28 @@
 		rootLabel : "eShop系统",
 		childrenAttrs : [ 'children' ]
 	});
-	
-	
-    var gridLayout=[
-                    {
-                        cells:[
-                            [
-                                {name:'学号',field:"id",width:"10em"},
-                                {name:'姓名',field:"name",width:"5em"}
-                            ]
-                        ],
-                        noscroll:true
-                    },
-                    {
-                        cells:[
-                                [
-                                 {name:'数学',field:"math",width:"5em",editable:true},
-                                 {name:'物理',field:"physics",width:"5em",editable:true,
-                                    type: dojox.grid.cells._Widget,widgetClass:"dijit.form.NumberTextBox",
-                                    constraint:{min:0,max:100},editorProps:{required:true}},
-                                 {name:'化学',field:"chemistry",width:"5em"}
-                                ]
-                              ]
-                    }
-                ];
+
+	var gridLayout = [ // 布局是由多个 view 组成的数组
+	{ // 每个 view 对象包含名为 cells 的数组
+		cells : [ //cells 是由多个 row 组成的数组
+		[ //row 是由多个描述映射关系的对象组成的数组
+		{
+			name : '类型排序',
+			field : "id",
+			width : "5em"
+		}, {
+			name : '类型名称',
+			field : "name",
+			width : "5em",
+			editable : true,
+		}, {
+			name : '类型编号',
+			field : "number",
+			width : "5em",
+			editable : true
+		}, ] ],
+		noscroll : true
+	}, ];
 </script>
 </head>
 <body class="soria">
@@ -94,7 +92,7 @@
 		<div dojoType="dijit.layout.ContentPane" splitter="true" region="center" id="center">
 	            eShop系统欢迎信息
 			<span dojoType="dojo.data.ItemFileWriteStore" jsId="dataStore" 
-			    url="${pageContext.request.contextPath }/loginJsonPackage/LoginJsonAction!getTest.action"> 
+			    url="${pageContext.request.contextPath }/jsonPackage/dictJsonAction!getDicts.action"> 
 			</span>
 <div id="grid" dojoType="dojox.grid.DataGrid" jsId="icGrid"
     store="dataStore" clientSort="true" style="width: 30em; height: 15em;"
