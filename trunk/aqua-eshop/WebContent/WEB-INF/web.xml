@@ -11,7 +11,7 @@
 	<!-- spring 处理log4j -->
 	<context-param>
         <param-name>webAppRootKey</param-name>
-        <param-value>littleAnt4bu4.root</param-value>
+        <param-value>aqua.root</param-value>
     </context-param>
     <context-param>
         <param-name>log4jConfigLocation</param-name>
