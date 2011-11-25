@@ -55,11 +55,6 @@ public class LoginJsonAction extends BaseAction {
 		}
     }
 
-    public String saveTest() throws Exception {
-		System.out.println(request.getAttributeNames());
-			return SUCCESS;
-    }
-
 	/**
 	 * 登录成功后查询操作权限
 	 * @return

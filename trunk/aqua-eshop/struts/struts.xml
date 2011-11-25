@@ -14,6 +14,20 @@
     
     <include file="com/aqua/pingtai/resources/struts-application.xml" />
 
+    <!-- Json Action -->
+    <package name="jsonPackage" extends="json-default" namespace="/jsonPackage">
+        <action name="loginJsonAction" class="loginJsonAction">
+            <result type="json">
+                <param name="root">jsonOperator</param>
+            </result>
+        </action>
+        <action name="dictJsonAction" class="dictJsonAction">
+            <result type="json">
+                <param name="root">jsonMap</param>
+            </result>
+        </action>
+    </package>
+
     <unknown-handler-stack>
         <unknown-handler-ref name="notHandler" />
     </unknown-handler-stack>
