@@ -49,28 +49,26 @@
 		rootLabel : "eShop系统",
 		childrenAttrs : [ 'children' ]
 	});
-
-	var gridLayout = [ // 布局是由多个 view 组成的数组
-	{ // 每个 view 对象包含名为 cells 的数组
-		cells : [ //cells 是由多个 row 组成的数组
-		[ //row 是由多个描述映射关系的对象组成的数组
-		{
-			name : '类型排序',
-			field : "id",
-			width : "5em"
-		}, {
-			name : '类型名称',
-			field : "name",
-			width : "5em",
-			editable : true,
-		}, {
-			name : '类型编号',
-			field : "number",
-			width : "5em",
-			editable : true
-		}, ] ],
-		noscroll : true
-	}, ];
+	
+	
+    var gridLayout=[ // 布局是由多个 view 组成的数组
+                     { // 每个 view 对象包含名为 cells 的数组
+                         cells:[ //cells 是由多个 row 组成的数组
+                         [ //row 是由多个描述映射关系的对象组成的数组
+                         {name:'类型排序',field:"id",width:"5em"}, 
+                         ] 
+                         ], 
+                         noscroll:true 
+                         }, 
+                         { 
+                         cells:[ 
+                         [ 
+                         {name:'类型名称',field:"name",width:"5em",editable: true, }, 
+                         {name:'类型编号',field:"number",width:"5em",editable: true}, 
+                         ] 
+                         ] 
+                         } 
+                         ];
 </script>
 </head>
 <body class="soria">
