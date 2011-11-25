@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -24,7 +25,9 @@ import com.opensymphony.xwork2.ActionSupport;
 
 @SuppressWarnings("serial")
 public abstract class BaseAction extends ActionSupport implements ServletRequestAware, ServletResponseAware, Serializable{
-
+	@Resource
+	DaoHibernateBase daoHibernateBase;
+	
 	public Boolean isSearch;//是否查询
 	public QueryParameter queryParameter;//封装查询参数
 	public QueryResult queryResult;//查询结果
@@ -111,7 +114,7 @@ public abstract class BaseAction extends ActionSupport implements ServletRequest
 		if(userOperatorDataLevel.equals("userOperatorDataLevel_yongHuJi")){//用户级
 			createUser.append(" creator.ids=").append(currentUser.getIds()).append(" or ");
 		}else if(userOperatorDataLevel.equals("userOperatorDataLevel_buMenJi")){//部门级
-			DaoHibernateBase daoHibernateBase = (DaoHibernateBase)Context.getSpringBean("daoHibernateBase");
+//			DaoHibernateBase daoHibernateBase = (DaoHibernateBase)Context.getSpringBean("daoHibernateBase");
 			List<User> userList = null;
 			try {
 				userList = daoHibernateBase.findManyEntity(User.class, " where department.ids="+currentUser.getDepartment().getIds());

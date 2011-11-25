@@ -49,29 +49,20 @@ public class LoginAction extends BaseAction {
 	 * @return
 	 */
 	public String loginPingTai(){
-		// 先从Session中验证用户是否存在
-		user = Context.getCurrentUser();
-		if(null!=user && null!=user.getIds() && 0l!=user.getIds()){
-			// 修改为直接返回新的index.jsp页面
-			returnPageURL = "/index.jsp";
-			return "redirect";
-		} else {
-			Object yanZhengMaKeyObject = getSession().get("yanZhengMaKey");
-			String yanZhengMaKey = null;
-			if(null!=yanZhengMa && null!=yanZhengMaKeyObject){
-				yanZhengMaKey = ((String)yanZhengMaKeyObject).toLowerCase();//统一小写
-				yanZhengMa = yanZhengMa.toLowerCase();//统一小写
-				if(yanZhengMa.equals(yanZhengMaKey)){
-					User resultUser = userServiceImpl.userLogin(user);
-					if(null!=resultUser){
-						getSession().put("currentUser", resultUser);
-						getSession().put("clientIp", WebUtil.getIpAddr(request));
-						// 修改为直接返回新的index.jsp页面
-						returnPageURL = "/index.jsp";
-						return "redirect";
-	//					returnPageURL = "/loginPackage/loginPingTaiAction!selectOperator.action";
-	//					return "redirect";
-					}
+		Object yanZhengMaKeyObject = getSession().get("yanZhengMaKey");
+		String yanZhengMaKey = null;
+		if(null!=yanZhengMa && null!=yanZhengMaKeyObject){
+			yanZhengMaKey = ((String)yanZhengMaKeyObject).toLowerCase();//统一小写
+			yanZhengMa = yanZhengMa.toLowerCase();//统一小写
+			if(yanZhengMa.equals(yanZhengMaKey)){
+				User resultUser = userServiceImpl.userLogin(user);
+				if(null!=resultUser){
+					getSession().put("currentUser", resultUser);
+					getSession().put("clientIp", WebUtil.getIpAddr(request));
+					// 修改为直接返回新的index.jsp页面
+					returnPageURL = "/index.jsp";
+//					returnPageURL = "/loginPackage/loginPingTaiAction!selectOperator.action";
+					return "redirect";
 				}
 			}
 		}
