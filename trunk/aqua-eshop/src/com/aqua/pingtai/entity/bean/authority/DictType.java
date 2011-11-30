@@ -72,6 +72,12 @@ public class DictType extends EntityBase{
 		this.numbers = numbers;
 	}
 
+	@Override
+	public String toString() {
+		return "DictType [numbers=" + numbers + ", names=" + names
+				+ ", orderIds=" + orderIds + ", dictSet=" + dictSet + "]";
+	}
+
 	/*@Override
 	public int hashCode() {
 		final int prime = 31;

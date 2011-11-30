@@ -13,7 +13,7 @@ import com.aqua.pingtai.service.DictService;
 public class DictManagerAction extends BaseAction {
 	
 	@Resource(name="dictServiceImpl")
-	private DictService dictServiceImpl;
+	protected DictService dictServiceImpl;
 	
 	private DictType dictType;
 	private Dict dict;
