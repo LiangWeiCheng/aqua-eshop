@@ -16,14 +16,25 @@
 
     <!-- Json Action -->
     <package name="jsonPackage" extends="json-default" namespace="/jsonPackage">
+	<global-results>
+        <result name="success" type="json"><param name="root">success</param></result>
+        <result name="error" type="json"><param name="root">error</param></result>
+        <!-- <result name="exception" type="json">exception</result> -->
+	</global-results>
+	<global-exception-mappings>
+	   <exception-mapping exception="java.lang.Exception" result="exception"/>
+	</global-exception-mappings>
         <action name="loginJsonAction" class="loginJsonAction">
             <result type="json">
                 <param name="root">jsonOperator</param>
             </result>
         </action>
         <action name="dictJsonAction" class="dictJsonAction">
-            <result type="json">
-                <param name="root">jsonMap</param>
+            <result name="dictType" type="json">
+                <param name="root">dictTypeMap</param>
+            </result>
+            <result name="dict" type="json">
+                <param name="root">dictMap</param>
             </result>
         </action>
     </package>

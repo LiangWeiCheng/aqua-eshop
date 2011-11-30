@@ -43,10 +43,10 @@ public class LoginJsonAction extends BaseAction {
     public String getJsonMenu() throws Exception {
 		user = Context.getCurrentUser();
 		// 测试用户
-		User loginUser = new User();
-		loginUser.setUserName("admins");
-		loginUser.setPassWord("000000");
-		user = userServiceImpl.userLogin(loginUser);
+//		User loginUser = new User();
+//		loginUser.setUserName("admins");
+//		loginUser.setPassWord("000000");
+//		user = userServiceImpl.userLogin(loginUser);
 		
 		if(null!=user && null!=user.getIds() && 0l!=user.getIds()){
 			return SUCCESS;

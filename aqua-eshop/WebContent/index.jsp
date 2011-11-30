@@ -55,7 +55,7 @@
                      { // 每个 view 对象包含名为 cells 的数组
                          cells:[ //cells 是由多个 row 组成的数组
                          [ //row 是由多个描述映射关系的对象组成的数组
-                         {name:'类型排序',field:"id",width:"5em"}, 
+                         {name:'类型排序',field:"id"}, 
                          ] 
                          ], 
                          noscroll:true 
@@ -63,8 +63,8 @@
                          { 
                          cells:[ 
                          [ 
-                         {name:'类型名称',field:"name",width:"5em",editable: true, }, 
-                         {name:'类型编号',field:"number",width:"5em",editable: true}, 
+                         {name:'类型名称',field:"name", editable: true, }, 
+                         {name:'类型编号',field:"number", editable: true}, 
                          ] 
                          ] 
                          } 
@@ -90,16 +90,17 @@
 		<div dojoType="dijit.layout.ContentPane" splitter="true" region="center" id="center">
 	            eShop系统欢迎信息
 			<span dojoType="dojo.data.ItemFileWriteStore" jsId="dataStore" 
-			    url="${pageContext.request.contextPath }/jsonPackage/dictJsonAction!getDicts.action"> 
+			    url="${pageContext.request.contextPath }/jsonPackage/dictJsonAction!getDictTypes.action"> 
 			</span>
 <div id="grid" dojoType="dojox.grid.DataGrid" jsId="icGrid"
     store="dataStore" clientSort="true" style="width: 30em; height: 15em;"
     structure=gridLayout rowSelector="20px">
     <script type="dojo/method" event="onApplyEdit" args="inRowIndex">
         var item=icGrid.getItem(inRowIndex);
+        console.debug(item);
         if(item){
             dojo.xhrPost({
-                url:"${pageContext.request.contextPath }/loginJsonPackage/LoginJsonAction!saveTest.action",
+                url:"${pageContext.request.contextPath }/jsonPackage/dictJsonAction!upDictType.action",
                 content:item,
                 timeout:3000,
                 error:function(error){
