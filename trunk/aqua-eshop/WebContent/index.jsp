@@ -101,6 +101,7 @@
         if(item){
             dojo.xhrPost({
                 url:"${pageContext.request.contextPath }/jsonPackage/dictJsonAction!upDictType.action",
+                preventCache: true,//解决IE缓存问题
                 content:item,
                 timeout:3000,
                 error:function(error){
