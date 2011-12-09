@@ -46,7 +46,7 @@ public interface UserService {
 	 * @param queryString
 	 * @return
 	 */
-	public List<User> queryUser(String queryString, QueryResult queryResult);
+//	public List<User> queryUser(String queryString, QueryResult queryResult);
 	
 	/**
 	 * 查询用户列表
