@@ -21,11 +21,11 @@ import com.aqua.pingtai.utils.MyMD5Util;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.compass.core.Compass;
-import org.compass.core.CompassHits;
-import org.compass.core.CompassQuery;
-import org.compass.core.CompassSession;
-import org.compass.core.CompassTemplate;
+//import org.compass.core.Compass;
+//import org.compass.core.CompassHits;
+//import org.compass.core.CompassQuery;
+//import org.compass.core.CompassSession;
+//import org.compass.core.CompassTemplate;
 import org.jbpm.api.IdentityService;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
@@ -51,8 +51,8 @@ public class UserServiceImpl implements UserService {
 	@Resource(name="userDaoImpl")
 	public UserDao userDao;
 	
-	@Resource(name="compassTemplate")
-	public CompassTemplate compassTemplate;
+//	@Resource(name="compassTemplate")
+//	public CompassTemplate compassTemplate;
 	
 	@Resource(name="daoHibernateBase")
 	private DaoHibernateBase daoHibernateBase;
@@ -194,24 +194,24 @@ public class UserServiceImpl implements UserService {
 	 * @param queryString
 	 * @return
 	 */
-	public List<User> queryUser(String queryString, QueryResult queryResult){
-		List<User> list = new ArrayList<User>();
-		Compass compass = compassTemplate.getCompass();
-		CompassSession session=compass.openSession();
-
-		CompassHits hits = session.queryBuilder().queryString("userName:"+queryString).toQuery()
-		.addSort("userName", CompassQuery.SortPropertyType.STRING, CompassQuery.SortDirection.REVERSE).hits();
-		for(int i=0;i<hits.length();i++){
-			Object obj = hits.data(i);
-			if(obj instanceof User){
-				User user=(User)hits.data(i);
-				user.setUserName(hits.highlighter(i).fragment("userName"));//高亮显示
-				list.add(user);
-			}
-		}
-		
-		System.out.println("查询条件:"+queryString);
-		System.out.println("总记录数:"+hits.getLength());
+//	public List<User> queryUser(String queryString, QueryResult queryResult){
+//		List<User> list = new ArrayList<User>();
+//		Compass compass = compassTemplate.getCompass();
+//		CompassSession session=compass.openSession();
+//
+//		CompassHits hits = session.queryBuilder().queryString("userName:"+queryString).toQuery()
+//		.addSort("userName", CompassQuery.SortPropertyType.STRING, CompassQuery.SortDirection.REVERSE).hits();
+//		for(int i=0;i<hits.length();i++){
+//			Object obj = hits.data(i);
+//			if(obj instanceof User){
+//				User user=(User)hits.data(i);
+//				user.setUserName(hits.highlighter(i).fragment("userName"));//高亮显示
+//				list.add(user);
+//			}
+//		}
+//		
+//		System.out.println("查询条件:"+queryString);
+//		System.out.println("总记录数:"+hits.getLength());
 		/*
 		Long currentPage = queryResult.getCurrentPage();//当前页数
 		Long maxResult = queryResult.getMaxResult();//抓取数
@@ -232,8 +232,8 @@ public class UserServiceImpl implements UserService {
 		queryResult.setResultList(list2);//记录集
 		queryResult.compute();//计算
 		*/
-		return new ArrayList<User>(list);
-	}
+//		return new ArrayList<User>(list);
+//	}
 	
 	/**
 	 * 查询用户列表
@@ -359,13 +359,13 @@ public class UserServiceImpl implements UserService {
 		this.userDao = userDao;
 	}
 
-	public CompassTemplate getCompassTemplate() {
-		return compassTemplate;
-	}
-
-	public void setCompassTemplate(CompassTemplate compassTemplate) {
-		this.compassTemplate = compassTemplate;
-	}
+//	public CompassTemplate getCompassTemplate() {
+//		return compassTemplate;
+//	}
+//
+//	public void setCompassTemplate(CompassTemplate compassTemplate) {
+//		this.compassTemplate = compassTemplate;
+//	}
 
 	public DaoHibernateBase getDaoHibernateBase() {
 		return daoHibernateBase;

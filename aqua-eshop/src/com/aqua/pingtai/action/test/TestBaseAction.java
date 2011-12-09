@@ -77,14 +77,14 @@ public class TestBaseAction extends BaseAction {
 	 * @return
 	 */
 	//http://localhost:8088/SSHD/pingTai/testBaseAction!query2.action
-	public String query2(){
-		List<User> list = userServiceImpl.queryUser("*test*", new QueryResult());
-		for (User user : list) {
-			System.out.println(user.getUserName());
-		}
-		returnPageURL = "/WEB-INF/jsp/pingtai/queryTest.jsp";
-		return "dispatcher";
-	}
+//	public String query2(){
+//		List<User> list = userServiceImpl.queryUser("*test*", new QueryResult());
+//		for (User user : list) {
+//			System.out.println(user.getUserName());
+//		}
+//		returnPageURL = "/WEB-INF/jsp/pingtai/queryTest.jsp";
+//		return "dispatcher";
+//	}
 	
 	//http://localhost:8088/SSHD/pingTai/testBaseAction!query3.action
 	public String query3(){

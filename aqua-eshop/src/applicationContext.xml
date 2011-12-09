@@ -165,6 +165,7 @@
     <bean id="loginJsonAction" class="com.aqua.pingtai.action.json.LoginJsonAction" scope="prototype" autowire="byName" />
     <bean id="dictJsonAction" class="com.aqua.pingtai.action.json.DictJsonAction" scope="prototype" autowire="byName" />
     
-    <!-- 如果有必要的话，准备之后整合到一个文件中 -->
+    <!-- 如果有必要的话，准备之后整合到一个文件中 
     <import resource="classpath:applicationContext-compass.xml"/>
+    -->
 </beans>
