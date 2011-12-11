@@ -11,6 +11,24 @@ import com.aqua.pingtai.entity.base.EntityBase;
 @Table(name="pingtai_syslog")
 public class SysLog extends EntityBase {
 	
+	/**
+	 * 正常操作日志(Type)
+	 */
+	public static final String SUCCESS_TYPE = "s";
+	/**
+	 * 错误操作日志(Type)
+	 */
+	public static final String ERROR_TYPE = "e";
+	
+	/**
+	 * 用户类型错误(Title)
+	 */
+	public static final String USER_TYPE_ERROR_TITLE = "用户类型错误";
+	/**
+	 * 用户权限错误(Title)
+	 */
+	public static final String USER_AUTHORITY_ERROR_TITLE = "用户权限错误";
+	
 	@Column(name="titles",length=50,columnDefinition="varchar(50)",nullable=true)
 	private String titles;//标题
 	
@@ -43,6 +61,10 @@ public class SysLog extends EntityBase {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "SysLog [titles=" + titles + ", types=" + types
+				+ ", description=" + description + "]";
+	}
 }

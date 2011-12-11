@@ -212,5 +212,19 @@ public abstract class BaseAction extends ActionSupport implements ServletRequest
 		this.returnParamater2 = returnParamater2;
 	}
 
+    /**
+     * 返回"success"字符串
+     * @return
+     */
+    public String getSuccess() {
+    	return SUCCESS;
+    }
 
+    /**
+     * 返回"error"字符串
+     * @return
+     */
+    public String getError() {
+    	return SUCCESS;
+    }
 }

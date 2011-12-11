@@ -11,35 +11,60 @@
 <script type="text/javascript" src="jsFile/dojoroot/dojo/dojo.js"
     djConfig="parseOnLoad: true, isDebug: true">
 </script>
-<script>
+<script type="text/javascript">
+dojo.require("dijit.Dialog");
+dojo.require("dijit.form.ValidationTextBox");
+dojo.require("dijit.form.Button");
+dojo.require("dijit.form.Form");
+dojo.require("dojox.validate");
+
+dojo.addOnLoad(function() {
+	dijit.byId("loginDialog").show();
+	var queryParams = dojo.queryToObject(location.search.substring(1));
+	if (queryParams["error"] == "user") {
+		alert("用户名或密码错误，请重新输入。")
+	} else if (queryParams["error"] == "yanzhengma") {
+		alert("验证码错误，请重新输入。")
+	}
+});
+
 </script>
 </head>
 <body class="soria">
-    <div id="dialogAB" data-dojo-type="dijit.Dialog" data-dojo-props="title:'请登录Aqua系统'">
-        <form action="loginPackage/loginPingTaiAction!loginPingTai.action" method="post">
+    <div id="loginDialog" data-dojo-type="dijit.Dialog" data-dojo-props="title:'请登录Aqua系统'" style="display:none;">
+        <form id="loginForm" dojoType="dijit.form.Form" action="loginPackage/loginPingTaiAction!loginPingTai.action" method="post">
+        <script type="dojo/method" event="onSubmit">
+		if (!this.validate()) {
+        	return false;
+		} else {
+			return true;
+		}
+		</script>
         <div class="dijitDialogPaneContentArea">
             <table>
                 <tr>
-                    <td><label for="name">用户名: </label></td>
-                    <td><input type="text" name="user.userName" placeholder="请输入登录名" id="userNameId" dojoType="dijit.form.TextBox" maxlength="16" /></td>
+                    <td><label for="userNameId">用户名: </label></td>
+                    <td><input type="text" name="user.userName" placeholder="请输入用户名" id="userNameId" dojoType="dijit.form.ValidationTextBox" maxlength="16" required="true" missingMessage="请输入用户名" /></td>
                 </tr>
                 <tr>
-                    <td><label for="loc">密码: </label></td>
-                    <td><input type="text" name="user.passWord" placeholder="请输入登录密码" id="passWordId" dojoType="dijit.form.TextBox" maxlength="16" /></td>
+                    <td><label for="passWordId">密码: </label></td>
+                    <td><input type="text" name="user.passWord" placeholder="请输入登录密码" id="passWordId" dojoType="dijit.form.ValidationTextBox" maxlength="16" required="true" missingMessage="请输入登录密码" /></td>
                 </tr>
                 <tr>
-                    <td><label for="date">验证码: </label></td>
+                    <td><label for="yanZhengMa">验证码: </label></td>
                     <td>
-                    <input type="text" name="yanZhengMa" placeholder="请输入验证码" id="yanZhengMaId" dojoType="dijit.form.TextBox" maxlength="10" />
                     <img id="yanZhengMa" src="loginPackage/authImagePingTaiAction!toImageJsp.action?rand=<%=Math.random()%>" onclick="this.src='loginPackage/authImagePingTaiAction!toImageJsp.action?rand='+Math.random();" width="60" height="18">
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                    <input type="text" name="yanZhengMa" placeholder="请输入验证码" id="yanZhengMaId" dojoType="dijit.form.ValidationTextBox" maxlength="10" required="true" missingMessage="请输入验证码" />
                     </td>
                 </tr>
             </table>
         </div>
-        
-        <div class="dijitDialogPaneActionBar">
-	        <button dojoType="dojox.form.BusyButton" busyLabel="登录中，请稍侯…">登录</button>
-        </div>
+        <input type="submit" value="登录" label="登录" id="submitButton" dojoType="dijit.form.Button" />  
         </form>
     </div>
 </body>

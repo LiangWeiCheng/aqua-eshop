@@ -21,6 +21,8 @@ import com.aqua.pingtai.entity.bean.authority.User;
 import com.aqua.pingtai.service.MenuService;
 import com.aqua.pingtai.service.OperatorService;
 import com.aqua.pingtai.service.UserService;
+import com.aqua.pingtai.utils.WebUtil;
+import com.opensymphony.xwork2.ActionContext;
 
 @SuppressWarnings({"serial"})
 public class LoginJsonAction extends BaseAction {
@@ -38,29 +40,44 @@ public class LoginJsonAction extends BaseAction {
 	private String yanZhengMa;
 	private String menuString;
 	
-	private HashMap<String, Serializable> jsonOperator;
+	public HashMap<String, Serializable> jsonOperator;
 	
-    public String getJsonMenu() throws Exception {
-		user = Context.getCurrentUser();
-		// 测试用户
-//		User loginUser = new User();
-//		loginUser.setUserName("admins");
-//		loginUser.setPassWord("000000");
-//		user = userServiceImpl.userLogin(loginUser);
-		
-		if(null!=user && null!=user.getIds() && 0l!=user.getIds()){
-			return SUCCESS;
-		} else {
-			return ERROR;
+	/**
+	 * 登录平台
+	 * @return
+	 */
+	public String login(){
+		System.out.println(user.getUserName());
+		Object yanZhengMaKeyObject = getSession().get("yanZhengMaKey");
+		String yanZhengMaKey = null;
+		if(null!=yanZhengMa && null!=yanZhengMaKeyObject){
+			yanZhengMaKey = ((String)yanZhengMaKeyObject).toLowerCase();//统一小写
+			yanZhengMa = yanZhengMa.toLowerCase();//统一小写
+			if(yanZhengMa.equals(yanZhengMaKey)){
+				User resultUser = userServiceImpl.userLogin(user);
+				if(null!=resultUser){
+					getSession().put("currentUser", resultUser);
+					getSession().put("clientIp", WebUtil.getIpAddr(request));
+					return SUCCESS;
+				}
+			}
 		}
-    }
+		return ERROR;
+	}
 
 	/**
 	 * 登录成功后查询操作权限
 	 * @return
 	 */
-	public HashMap<String, Serializable> getJsonOperator(){
+	public String getJsonMenu(){
 		jsonOperator = new JSONObject();
+		user = Context.getCurrentUser();
+		User loginUser = new User();
+		loginUser.setUserName("admins");
+		loginUser.setPassWord("000000");
+		User user = userServiceImpl.userLogin(loginUser);
+		
+		request.getSession().setAttribute("currentUser", user);
 		if(null!=user && null!=user.getIds() && 0l!=user.getIds()){
 			String selectOperator = "select ids,names,url from pingtai_operator where ids in (select operatorIds from pingtai_roleoperator where roleIds in (select roleIds from pingtai_rolegroup where groupIds in ( select groupIds from pingtai_usergroup where userIds="+user.getIds()+")))";
 			List<Operator> operatorList = operatorServiceImpl.selectUserOperator(selectOperator);
@@ -108,7 +125,7 @@ public class LoginJsonAction extends BaseAction {
 			jsonOperator.put("error", "user is null");
 		}
 		System.out.println(jsonOperator);
-		return jsonOperator;
+		return "jsonMenu";
 	}
 
 	public User getUser() {

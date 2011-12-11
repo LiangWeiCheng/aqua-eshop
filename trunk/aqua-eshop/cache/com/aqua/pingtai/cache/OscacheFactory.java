@@ -10,7 +10,7 @@ public class OscacheFactory {
 	private static Object lock = new Object();
 	
 	public OscacheFactory() {
-		oscacheExtends = new OscacheExtends("littleAntOScache", 3600*24*365);
+		oscacheExtends = new OscacheExtends("aquaOScache", 3600*24*365);
 	}
 	
 	public static OscacheFactory getInstance(){
