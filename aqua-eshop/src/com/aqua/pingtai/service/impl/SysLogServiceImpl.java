@@ -64,7 +64,9 @@ public class SysLogServiceImpl implements SysLogService {
 	public void setDaoJdbcBase(DaoJdbcBase daoJdbcBase) {
 		this.daoJdbcBase = daoJdbcBase;
 	}
-	
-	
-	
+
+	@Override
+	public void save(SysLog entity) {
+		sysLogDaoImpl.save(entity);
+	}
 }

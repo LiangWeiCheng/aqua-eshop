@@ -1,13 +1,13 @@
 package com.aqua.test;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
 import junit.framework.Assert;
 
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.junit.Test;
 import org.springframework.test.AbstractTransactionalSpringContextTests;
@@ -38,6 +38,7 @@ public class TestJsonMenu extends AbstractTransactionalSpringContextTests {
         return configLocations; 
 	}
 
+	@SuppressWarnings("unchecked")
 	@Test
 	public void testGetJsonOperator() {
 		System.out.println("testGetJsonOperator");
@@ -55,35 +56,28 @@ public class TestJsonMenu extends AbstractTransactionalSpringContextTests {
 		}
 		List<Menu> menuList = menuServiceImpl.getMenuByHQL(" where parentMenu.menuLevel='-1' and menuType='menuType_houTai' and menuLevel='1' order by orderIds asc");
 		JSONObject jsonOperator = new JSONObject();
+//		HashMap<String, String> map = new HashMap<String, String>();
 		jsonOperator.put("identifier", "name");
 		jsonOperator.put("label", "name");
-		JSONArray items = new JSONArray();
+//		jsonOperator.putAll(map);
+		
+		System.out.println(jsonOperator.toJSONString());
 		
 		for (Menu menu : menuList) {
 			Set<Menu> menuSet = menu.getMenuSet();
 			if(menuSet.size()==0){
 				continue;
 			}
-			JSONObject parentObj = new JSONObject();
-			parentObj.put("name", menu.getNames());
-			parentObj.put("type", "parentObj");
-			JSONArray children = new JSONArray();
+			System.out.println("main-" + menu.getNames());
 			
 			for (Iterator<Menu> iterator = menuSet.iterator(); iterator.hasNext();) {
 				Menu menuTwo = (Menu) iterator.next();
 				boolean bool = operatorStringList.contains(menuTwo.getUrl().trim());
 				if(bool){
-					JSONObject childrenObj = new JSONObject();
-					childrenObj.put("_reference", menuTwo.getNames());
-					children.add(childrenObj);
+					System.out.println("sub-" + menuTwo.getNames());
 				}
 			}
-			parentObj.put("children", children);
-			items.add(parentObj);
 		}
-
-		jsonOperator.put("items", items);
-		System.out.println(jsonOperator.toJSONString());
 		Assert.assertEquals(loginUser.getUserName(), user.getUserName());
 	}
 

@@ -17,11 +17,6 @@ import javax.persistence.Table;
 
 import com.aqua.pingtai.entity.base.EntityBase;
 
-import org.compass.annotations.Index;
-import org.compass.annotations.Searchable;
-import org.compass.annotations.SearchableComponent;
-import org.compass.annotations.SearchableProperty;
-import org.compass.annotations.Store;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -29,7 +24,6 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Entity
 @Table(name="pingtai_user")
 @Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
-@Searchable(root=true)
 public class User extends EntityBase {
 
 	@ManyToOne(targetEntity=Department.class,cascade={CascadeType.REFRESH},fetch=FetchType.EAGER,optional=true)//多对一
@@ -37,24 +31,19 @@ public class User extends EntityBase {
 	private Department department;//用户所在的部门
 	
 	@Column(nullable=true,name="userOperatorDataLevel",length=50,columnDefinition="varchar(50)")
-	@SearchableProperty(name="userOperatorDataLevel",index=Index.TOKENIZED,store=Store.YES,boost=1)//store是否存储; boost:优先级
 	private String userOperatorDataLevel;//用户操作数据级别
 	
 	@Column(nullable=true,name="userName",length=50,columnDefinition="varchar(50)")
-	@SearchableProperty(name="userName",index=Index.TOKENIZED,store=Store.YES,boost=1)//store是否存储; boost:优先级
 	private String userName;//用户名
 	
 	@Column(nullable=true,name="passWord",length=50,columnDefinition="varchar(200)")
-	@SearchableProperty(name="passWord",index=Index.NO,store=Store.YES,boost=1)//index:是否索引; store是否存储; boost:优先级
 	private String passWord;//用户密码
 	
 	@Column(name="userClass",nullable=true,length=25,columnDefinition="varchar(25)")
-	@SearchableProperty(name="userClass",index=Index.NO,store=Store.YES,boost=1)
 	private String userClass;//用户分类
 	
 	@OneToOne(cascade={CascadeType.ALL},fetch=FetchType.EAGER,optional=true,targetEntity=UserInfo.class)//optional=true,optional声明关系是否是必须存在的,即是否允许其中一端为null
 	@JoinColumn(name="userInfoIds",columnDefinition="bigint(20)",unique=true,nullable=true)
-	@SearchableComponent
 	private UserInfo userInfo;//用户详细信息
 	
 	@ManyToMany(cascade={CascadeType.REFRESH},fetch=FetchType.EAGER)

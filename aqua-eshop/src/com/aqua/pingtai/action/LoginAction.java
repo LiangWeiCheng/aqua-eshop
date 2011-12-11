@@ -59,15 +59,18 @@ public class LoginAction extends BaseAction {
 				if(null!=resultUser){
 					getSession().put("currentUser", resultUser);
 					getSession().put("clientIp", WebUtil.getIpAddr(request));
-					// 修改为直接返回新的index.jsp页面
-					returnPageURL = "/index.jsp";
 //					returnPageURL = "/loginPackage/loginPingTaiAction!selectOperator.action";
-					return "redirect";
+					returnPageURL = "/index.jsp";
+//					return "redirect";
+				} else {
+					returnPageURL = "/login.html?error=user";
 				}
+			} else {
+				returnPageURL = "/login.html?error=yanzhengma";
 			}
 		}
 		ActionContext.getContext().getSession().remove("currentUser");
-		returnPageURL = "/loginPackage/loginPingTaiAction!toLoginJsp.action";
+//		returnPageURL = "/loginPackage/loginPingTaiAction!toLoginJsp.action";
 		return "redirect";
 	}
 	

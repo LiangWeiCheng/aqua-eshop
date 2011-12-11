@@ -18,10 +18,6 @@ import javax.persistence.Version;
 
 import com.aqua.pingtai.entity.bean.authority.User;
 
-import org.compass.annotations.Index;
-import org.compass.annotations.SearchableId;
-import org.compass.annotations.Store;
-
 @SuppressWarnings("serial")
 @MappedSuperclass
 public abstract class EntityBase implements Serializable {
@@ -32,7 +28,6 @@ public abstract class EntityBase implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="ids",length=20,unique=true,columnDefinition="bigint(20)")
-	@SearchableId(name="ids",store=Store.YES,boost=1,index=Index.TOKENIZED)
 	protected Long ids;
 
 	/**

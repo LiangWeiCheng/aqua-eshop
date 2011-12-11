@@ -1,6 +1,9 @@
 package com.aqua.test;
 
-import javax.servlet.http.HttpServletRequest;
+import java.io.UnsupportedEncodingException;
+
+import javax.annotation.Resource;
+import javax.servlet.ServletException;
 
 import org.apache.struts2.StrutsSpringTestCase;
 import org.apache.struts2.dispatcher.mapper.ActionMapping;
@@ -14,6 +17,10 @@ import org.springframework.orm.hibernate3.SessionHolder;
 import org.springframework.transaction.support.TransactionSynchronizationManager;
 
 import com.aqua.pingtai.action.json.DictJsonAction;
+import com.aqua.pingtai.common.QueryParameter;
+import com.aqua.pingtai.common.QueryResult;
+import com.aqua.pingtai.entity.bean.authority.User;
+import com.aqua.pingtai.service.UserService;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionProxy;
 
@@ -22,6 +29,8 @@ import com.opensymphony.xwork2.ActionProxy;
  * 
  */
 public class TestDict extends StrutsSpringTestCase {
+	
+	private UserService userServiceImpl;
 
 	@Override
 	protected void setUp() throws Exception {
@@ -29,6 +38,14 @@ public class TestDict extends StrutsSpringTestCase {
 		SessionFactory sessionFactory = (SessionFactory) applicationContext.getBean("sessionFactory");
 		Session hibernateSession = getSession(sessionFactory);
 		TransactionSynchronizationManager.bindResource(sessionFactory, new SessionHolder(hibernateSession));
+
+		// 模拟登录
+		User loginUser = new User();
+		loginUser.setUserName("admins");
+		loginUser.setPassWord("000000");
+		userServiceImpl = (UserService) applicationContext.getBean("userServiceImpl");
+		User user = userServiceImpl.userLogin(loginUser);
+		request.getSession().setAttribute("currentUser", user);
 	}
 
 	private Session getSession(SessionFactory sessionFactory) throws DataAccessResourceFailureException {
@@ -58,17 +75,30 @@ public class TestDict extends StrutsSpringTestCase {
 
 		request.setParameter("username", "FD");
 		dictJsonAction.request = request;
-		// System.out.println(dictJsonAction.getDicts().toString());
+//		System.out.println(dictJsonAction.getActionClassFullName());
+		System.out.println(dictJsonAction.getDictTypes());
 		System.out.println(proxy.getMethod());
 
 		String result = proxy.execute();
 		assertEquals(Action.SUCCESS, result);
 		// assertEquals("FD", dictJsonAction.getUsername());
 	}
+	
+	@Test
+	public void testDictTypeList() throws UnsupportedEncodingException, ServletException {
+		String data = executeAction("/pingTai/dictPingTaiAction!dictTypeList.action");
+		
+		System.out.println(data.toString());
+		assertNotNull(data);
+	}
 
 	@Test
 	public void testGetDictTypes() throws Exception {
-		String data = executeAction("/jsonPackage/dictJsonAction!getDictTypes.action");
+//		QueryResult queryResult = new QueryResult();//查询结果
+//		request.getSession().setAttribute("com.aqua.pingtai.action.pingtai.DictManagerAction.java", queryParameter);
+		
+		// 输出json数据
+		String data = executeAction("/jsonPackage/dictJsonAction!getDictTypes.action?queryResult.currentPage=2");
 		System.out.println(data.toString());
 		assertNotNull(data);
 	}

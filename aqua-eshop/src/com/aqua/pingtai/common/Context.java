@@ -123,6 +123,28 @@ public class Context {
 	}
 	
 	/**
+	 * 得到操作权限名称
+	 * @param operator
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	public static String getOperatorName(String operator){
+		User currentUser = getCurrentUser();
+		Set<Group> groupSet = currentUser.getGroupSet();
+		OscacheFactory oscacheFactory = (OscacheFactory) Context.getSpringBean("oscacheFactory");
+		for (Group group : groupSet) {
+			List<Operator> operatorList = (List<Operator>) oscacheFactory.getObject(group.getIds()+"groupIds");
+			for (Operator operators : operatorList) {
+				String url = operators.getUrl();
+				if(operator.equals(url)){
+					return operators.getNames();
+				}
+			}
+		}
+		return "";
+	}
+	
+	/**
 	 * 获取当前登录用户
 	 * @return
 	 */
