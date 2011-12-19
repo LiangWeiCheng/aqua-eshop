@@ -168,4 +168,27 @@
     <!-- 如果有必要的话，准备之后整合到一个文件中 
     <import resource="classpath:applicationContext-compass.xml"/>
     -->
+        <!-- 发送邮件的配置 Begin -->
+    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host">
+            <value>smtp.163.com</value>
+        </property>
+        <property name="username">
+            <value>hzhzhf</value>
+        </property>
+        <property name="password">
+            <value></value>
+        </property>
+        <property name="port">
+            <value>25</value>
+        </property>
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.smtp.auth">true</prop>
+                <prop key="mail.smtp.timeout">25000</prop>
+            </props>
+        </property>
+    </bean>
+    <!-- 发送邮件的配置 End -->
+    
 </beans>
