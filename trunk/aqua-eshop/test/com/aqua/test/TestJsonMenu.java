@@ -34,7 +34,7 @@ public class TestJsonMenu extends AbstractTransactionalSpringContextTests {
 	 */
 	@Override
 	protected String[] getConfigLocations() {
-		String[] configLocations = { "applicationContext.xml", "applicationContext-compass.xml" }; 
+		String[] configLocations = { "applicationContext.xml" }; 
         return configLocations; 
 	}
 
