@@ -4,15 +4,27 @@
     "http://struts.apache.org/dtds/struts-2.1.7.dtd">
 
 <struts>
+    <!--  Overwrite Convention -->
+    <constant name="struts.convention.action.suffix" value="Controller"/>
+    <constant name="struts.convention.action.mapAllMatches" value="true"/>
+    <constant name="struts.convention.default.parent.package" value="rest-default"/>
+    
+    <constant name="struts.action.extension" value="action,do,xhtml,xml,json"/>
+    <constant name="struts.convention.package.locators" value="json"/>
+    <constant name="struts.rest.defaultExtension" value="json" />
+    
+    <package name="loginPackage" extends="struts-default" namespace="/loginPackage" >
+        <action name="authImagePingTaiAction" class="com.aqua.pingtai.action.AuthImageAction"></action>
+    </package>
 
     <!-- 处理未知 Result -->
     <bean type="com.opensymphony.xwork2.UnknownHandler" name="notHandler" class="com.aqua.pingtai.struts.extend.action.NotHandler"/>
     
+    <!-- 
     <include file="com/aqua/pingtai/resources/struts-login.xml" />
-    
     <include file="com/aqua/pingtai/resources/struts-pingTai.xml" />
-    
     <include file="com/aqua/pingtai/resources/struts-application.xml" />
+     -->
 
     <!-- Json Action -->
     <package name="jsonPackage" extends="json-default" namespace="/jsonPackage">
