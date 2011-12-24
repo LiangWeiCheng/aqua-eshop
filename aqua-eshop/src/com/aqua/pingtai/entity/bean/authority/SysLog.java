@@ -16,9 +16,17 @@ public class SysLog extends EntityBase {
 	 */
 	public static final String SUCCESS_TYPE = "s";
 	/**
+	 * 正常操作日志(Type)NAME
+	 */
+	public static final String SUCCESS_TYPE_NAME = "正常操作日志";
+	/**
 	 * 错误操作日志(Type)
 	 */
 	public static final String ERROR_TYPE = "e";
+	/**
+	 * 错误操作日志(Type)NAME
+	 */
+	public static final String ERROR_TYPE_NAME = "错误操作日志";
 	
 	/**
 	 * 用户类型错误(Title)
