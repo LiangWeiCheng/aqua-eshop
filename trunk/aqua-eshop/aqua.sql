@@ -1,24 +1,31 @@
-/*
-Navicat MySQL Data Transfer
+-- phpMyAdmin SQL Dump
+-- version 3.2.4
+-- http://www.phpmyadmin.net
+--
+-- 主机: localhost
+-- 生成日期: 2011 年 12 月 24 日 14:07
+-- 服务器版本: 5.1.41
+-- PHP 版本: 5.3.1
 
-Source Server         : localhost_mysql
-Source Server Version : 50136
-Source Host           : localhost:3306
-Source Database       : sshdj
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
-Target Server Type    : MYSQL
-Target Server Version : 50136
-File Encoding         : 65001
 
-Date: 2011-06-02 15:03:20
-*/
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
 
-SET FOREIGN_KEY_CHECKS=0;
--- ----------------------------
--- Table structure for `application_alipay_returnparamater`
--- ----------------------------
-DROP TABLE IF EXISTS `application_alipay_returnparamater`;
-CREATE TABLE `application_alipay_returnparamater` (
+--
+-- 数据库: `aqua`
+--
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `application_alipay_returnparamater`
+--
+
+CREATE TABLE IF NOT EXISTS `application_alipay_returnparamater` (
   `ids` bigint(20) NOT NULL AUTO_INCREMENT,
   `createdDate` datetime DEFAULT NULL,
   `modifiedDate` datetime DEFAULT NULL,
@@ -41,20 +48,21 @@ CREATE TABLE `application_alipay_returnparamater` (
   PRIMARY KEY (`ids`),
   UNIQUE KEY `ids` (`ids`),
   KEY `FK30446D7BF045F6D` (`creatorUserIds`),
-  KEY `FK30446D79BC52230` (`modifiedUserIds`),
-  CONSTRAINT `FK30446D79BC52230` FOREIGN KEY (`modifiedUserIds`) REFERENCES `pingtai_user` (`ids`),
-  CONSTRAINT `FK30446D7BF045F6D` FOREIGN KEY (`creatorUserIds`) REFERENCES `pingtai_user` (`ids`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  KEY `FK30446D79BC52230` (`modifiedUserIds`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
 
--- ----------------------------
--- Records of application_alipay_returnparamater
--- ----------------------------
+--
+-- 转存表中的数据 `application_alipay_returnparamater`
+--
 
--- ----------------------------
--- Table structure for `application_qingjia`
--- ----------------------------
-DROP TABLE IF EXISTS `application_qingjia`;
-CREATE TABLE `application_qingjia` (
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `application_qingjia`
+--
+
+CREATE TABLE IF NOT EXISTS `application_qingjia` (
   `ids` bigint(20) NOT NULL AUTO_INCREMENT,
   `createdDate` datetime DEFAULT NULL,
   `modifiedDate` datetime DEFAULT NULL,
@@ -79,21 +87,21 @@ CREATE TABLE `application_qingjia` (
   UNIQUE KEY `ids` (`ids`),
   KEY `FKC3CCE3A2BF045F6D` (`creatorUserIds`),
   KEY `FKC3CCE3A28EB82C68` (`qingJiaUserIds`),
-  KEY `FKC3CCE3A29BC52230` (`modifiedUserIds`),
-  CONSTRAINT `FKC3CCE3A28EB82C68` FOREIGN KEY (`qingJiaUserIds`) REFERENCES `pingtai_user` (`ids`),
-  CONSTRAINT `FKC3CCE3A29BC52230` FOREIGN KEY (`modifiedUserIds`) REFERENCES `pingtai_user` (`ids`),
-  CONSTRAINT `FKC3CCE3A2BF045F6D` FOREIGN KEY (`creatorUserIds`) REFERENCES `pingtai_user` (`ids`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  KEY `FKC3CCE3A29BC52230` (`modifiedUserIds`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
 
--- ----------------------------
--- Records of application_qingjia
--- ----------------------------
+--
+-- 转存表中的数据 `application_qingjia`
+--
 
--- ----------------------------
--- Table structure for `jbpm4_deployment`
--- ----------------------------
-DROP TABLE IF EXISTS `jbpm4_deployment`;
-CREATE TABLE `jbpm4_deployment` (
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `jbpm4_deployment`
+--
+
+CREATE TABLE IF NOT EXISTS `jbpm4_deployment` (
   `DBID_` bigint(20) NOT NULL,
   `NAME_` longtext COLLATE utf8_bin,
   `TIMESTAMP_` bigint(20) DEFAULT NULL,
@@ -101,17 +109,21 @@ CREATE TABLE `jbpm4_deployment` (
   PRIMARY KEY (`DBID_`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- ----------------------------
--- Records of jbpm4_deployment
--- ----------------------------
-INSERT INTO jbpm4_deployment VALUES ('30022', null, '0', 'active');
-INSERT INTO jbpm4_deployment VALUES ('130008', null, '0', 'active');
+--
+-- 转存表中的数据 `jbpm4_deployment`
+--
 
--- ----------------------------
--- Table structure for `jbpm4_deployprop`
--- ----------------------------
-DROP TABLE IF EXISTS `jbpm4_deployprop`;
-CREATE TABLE `jbpm4_deployprop` (
+INSERT INTO `jbpm4_deployment` (`DBID_`, `NAME_`, `TIMESTAMP_`, `STATE_`) VALUES
+(30022, NULL, 0, 'active'),
+(130008, NULL, 0, 'active');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `jbpm4_deployprop`
+--
+
+CREATE TABLE IF NOT EXISTS `jbpm4_deployprop` (
   `DBID_` bigint(20) NOT NULL,
   `DEPLOYMENT_` bigint(20) DEFAULT NULL,
   `OBJNAME_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
@@ -120,23 +132,26 @@ CREATE TABLE `jbpm4_deployprop` (
   `LONGVAL_` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`DBID_`),
   KEY `FK_DEPLPROP_DEPL` (`DEPLOYMENT_`),
-  KEY `IDX_DEPLPROP_DEPL` (`DEPLOYMENT_`),
-  CONSTRAINT `FK_DEPLPROP_DEPL` FOREIGN KEY (`DEPLOYMENT_`) REFERENCES `jbpm4_deployment` (`DBID_`)
+  KEY `IDX_DEPLPROP_DEPL` (`DEPLOYMENT_`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- ----------------------------
--- Records of jbpm4_deployprop
--- ----------------------------
-INSERT INTO jbpm4_deployprop VALUES ('130011', '130008', 'QingJiaNew', 'langid', 'jpdl-4.4', null);
-INSERT INTO jbpm4_deployprop VALUES ('130012', '130008', 'QingJiaNew', 'pdid', 'QingJiaNew-1', null);
-INSERT INTO jbpm4_deployprop VALUES ('130013', '130008', 'QingJiaNew', 'pdkey', 'QingJiaNew', null);
-INSERT INTO jbpm4_deployprop VALUES ('130014', '130008', 'QingJiaNew', 'pdversion', null, '1');
+--
+-- 转存表中的数据 `jbpm4_deployprop`
+--
 
--- ----------------------------
--- Table structure for `jbpm4_execution`
--- ----------------------------
-DROP TABLE IF EXISTS `jbpm4_execution`;
-CREATE TABLE `jbpm4_execution` (
+INSERT INTO `jbpm4_deployprop` (`DBID_`, `DEPLOYMENT_`, `OBJNAME_`, `KEY_`, `STRINGVAL_`, `LONGVAL_`) VALUES
+(130011, 130008, 'QingJiaNew', 'langid', 'jpdl-4.4', NULL),
+(130012, 130008, 'QingJiaNew', 'pdid', 'QingJiaNew-1', NULL),
+(130013, 130008, 'QingJiaNew', 'pdkey', 'QingJiaNew', NULL),
+(130014, 130008, 'QingJiaNew', 'pdversion', NULL, 1);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `jbpm4_execution`
+--
+
+CREATE TABLE IF NOT EXISTS `jbpm4_execution` (
   `DBID_` bigint(20) NOT NULL,
   `CLASS_` varchar(255) COLLATE utf8_bin NOT NULL,
   `DBVERSION_` int(11) NOT NULL,
@@ -164,23 +179,23 @@ CREATE TABLE `jbpm4_execution` (
   KEY `IDX_EXEC_SUBPI` (`SUBPROCINST_`),
   KEY `IDX_EXEC_PARENT` (`PARENT_`),
   KEY `IDX_EXEC_SUPEREXEC` (`SUPEREXEC_`),
-  KEY `IDX_EXEC_INSTANCE` (`INSTANCE_`),
-  CONSTRAINT `FK_EXEC_INSTANCE` FOREIGN KEY (`INSTANCE_`) REFERENCES `jbpm4_execution` (`DBID_`),
-  CONSTRAINT `FK_EXEC_PARENT` FOREIGN KEY (`PARENT_`) REFERENCES `jbpm4_execution` (`DBID_`),
-  CONSTRAINT `FK_EXEC_SUBPI` FOREIGN KEY (`SUBPROCINST_`) REFERENCES `jbpm4_execution` (`DBID_`),
-  CONSTRAINT `FK_EXEC_SUPEREXEC` FOREIGN KEY (`SUPEREXEC_`) REFERENCES `jbpm4_execution` (`DBID_`)
+  KEY `IDX_EXEC_INSTANCE` (`INSTANCE_`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- ----------------------------
--- Records of jbpm4_execution
--- ----------------------------
-INSERT INTO jbpm4_execution VALUES ('200001', 'pvm', '1', '填写请假单', 'QingJiaNew-1', '', null, null, 'QingJiaNew.200001', 'active-root', null, '0', '200004', null, '200001', null, null, null);
+--
+-- 转存表中的数据 `jbpm4_execution`
+--
 
--- ----------------------------
--- Table structure for `jbpm4_hist_actinst`
--- ----------------------------
-DROP TABLE IF EXISTS `jbpm4_hist_actinst`;
-CREATE TABLE `jbpm4_hist_actinst` (
+INSERT INTO `jbpm4_execution` (`DBID_`, `CLASS_`, `DBVERSION_`, `ACTIVITYNAME_`, `PROCDEFID_`, `HASVARS_`, `NAME_`, `KEY_`, `ID_`, `STATE_`, `SUSPHISTSTATE_`, `PRIORITY_`, `HISACTINST_`, `PARENT_`, `INSTANCE_`, `SUPEREXEC_`, `SUBPROCINST_`, `PARENT_IDX_`) VALUES
+(200001, 'pvm', 1, '填写请假单', 'QingJiaNew-1', b'1', NULL, NULL, 'QingJiaNew.200001', 'active-root', NULL, 0, 200004, NULL, 200001, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `jbpm4_hist_actinst`
+--
+
+CREATE TABLE IF NOT EXISTS `jbpm4_hist_actinst` (
   `DBID_` bigint(20) NOT NULL,
   `CLASS_` varchar(255) COLLATE utf8_bin NOT NULL,
   `DBVERSION_` int(11) NOT NULL,
@@ -198,45 +213,47 @@ CREATE TABLE `jbpm4_hist_actinst` (
   KEY `FK_HACTI_HPROCI` (`HPROCI_`),
   KEY `FK_HTI_HTASK` (`HTASK_`),
   KEY `IDX_HTI_HTASK` (`HTASK_`),
-  KEY `IDX_HACTI_HPROCI` (`HPROCI_`),
-  CONSTRAINT `FK_HACTI_HPROCI` FOREIGN KEY (`HPROCI_`) REFERENCES `jbpm4_hist_procinst` (`DBID_`),
-  CONSTRAINT `FK_HTI_HTASK` FOREIGN KEY (`HTASK_`) REFERENCES `jbpm4_hist_task` (`DBID_`)
+  KEY `IDX_HACTI_HPROCI` (`HPROCI_`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- ----------------------------
--- Records of jbpm4_hist_actinst
--- ----------------------------
-INSERT INTO jbpm4_hist_actinst VALUES ('130018', 'task', '1', '130015', 'task', 'QingJiaNew.130015', '填写请假单', '2011-02-27 20:48:01', '2011-02-27 20:48:21', '20003', 'jbpm_no_task_outcome_specified_jbpm', '1', '130017');
-INSERT INTO jbpm4_hist_actinst VALUES ('130022', 'task', '1', '130015', 'task', 'QingJiaNew.130015', '部门经理审批', '2011-02-27 20:48:21', '2011-02-27 21:18:26', '1805457', 'jbpm_no_task_outcome_specified_jbpm', '1', '130021');
-INSERT INTO jbpm4_hist_actinst VALUES ('150001', 'excl', '0', '130015', 'decision', 'QingJiaNew.130015', 'exclusive1', '2011-02-27 21:18:29', '2011-02-27 21:18:29', '234', '小于3天', '1', null);
-INSERT INTO jbpm4_hist_actinst VALUES ('160004', 'task', '1', '160001', 'task', 'QingJiaNew.160001', '填写请假单', '2011-02-28 20:36:41', '2011-02-28 20:37:48', '67511', 'jbpm_no_task_outcome_specified_jbpm', '1', '160003');
-INSERT INTO jbpm4_hist_actinst VALUES ('160008', 'task', '1', '160001', 'task', 'QingJiaNew.160001', '部门经理审批', '2011-02-28 20:37:48', '2011-02-28 20:45:15', '447546', 'jbpm_no_task_outcome_specified_jbpm', '1', '160007');
-INSERT INTO jbpm4_hist_actinst VALUES ('160009', 'excl', '0', '160001', 'decision', 'QingJiaNew.160001', 'exclusive1', '2011-02-28 20:45:15', '2011-02-28 20:45:15', '47', '大于3天', '1', null);
-INSERT INTO jbpm4_hist_actinst VALUES ('160011', 'task', '1', '160001', 'task', 'QingJiaNew.160001', '总经理审批', '2011-02-28 20:45:15', '2011-02-28 20:47:26', '131245', 'jbpm_no_task_outcome_specified_jbpm', '1', '160010');
-INSERT INTO jbpm4_hist_actinst VALUES ('170004', 'task', '1', '170001', 'task', 'QingJiaNew.170001', '填写请假单', '2011-02-28 21:13:30', '2011-02-28 21:13:52', '22314', 'jbpm_no_task_outcome_specified_jbpm', '1', '170003');
-INSERT INTO jbpm4_hist_actinst VALUES ('170008', 'task', '1', '170001', 'task', 'QingJiaNew.170001', '部门经理审批', '2011-02-28 21:13:52', '2011-02-28 21:14:14', '22868', 'jbpm_no_task_outcome_specified_jbpm', '1', '170007');
-INSERT INTO jbpm4_hist_actinst VALUES ('170009', 'excl', '0', '170001', 'decision', 'QingJiaNew.170001', 'exclusive1', '2011-02-28 21:14:14', '2011-02-28 21:14:14', '20', '大于3天', '1', null);
-INSERT INTO jbpm4_hist_actinst VALUES ('170011', 'task', '1', '170001', 'task', 'QingJiaNew.170001', '总经理审批', '2011-02-28 21:14:14', '2011-02-28 21:14:39', '25028', 'jbpm_no_task_outcome_specified_jbpm', '1', '170010');
-INSERT INTO jbpm4_hist_actinst VALUES ('180004', 'task', '1', '180001', 'task', 'QingJiaNew.180001', '填写请假单', '2011-06-01 15:13:44', '2011-06-01 15:32:19', '1115806', 'jbpm_no_task_outcome_specified_jbpm', '1', '180003');
-INSERT INTO jbpm4_hist_actinst VALUES ('180008', 'task', '1', '180005', 'task', 'QingJiaNew.180005', '填写请假单', '2011-06-01 15:13:57', '2011-06-01 15:31:46', '1069308', 'jbpm_no_task_outcome_specified_jbpm', '1', '180007');
-INSERT INTO jbpm4_hist_actinst VALUES ('190004', 'task', '1', '190001', 'task', 'QingJiaNew.190001', '填写请假单', '2011-06-01 15:26:54', '2011-06-01 15:31:16', '262231', 'jbpm_no_task_outcome_specified_jbpm', '1', '190003');
-INSERT INTO jbpm4_hist_actinst VALUES ('190008', 'task', '1', '190005', 'task', 'QingJiaNew.190005', '填写请假单', '2011-06-01 15:28:28', '2011-06-01 15:30:26', '118247', 'jbpm_no_task_outcome_specified_jbpm', '1', '190007');
-INSERT INTO jbpm4_hist_actinst VALUES ('190012', 'task', '1', '190005', 'task', 'QingJiaNew.190005', '部门经理审批', '2011-06-01 15:30:26', '2011-06-01 15:30:47', '21348', 'jbpm_no_task_outcome_specified_jbpm', '1', '190011');
-INSERT INTO jbpm4_hist_actinst VALUES ('190013', 'excl', '0', '190005', 'decision', 'QingJiaNew.190005', 'exclusive1', '2011-06-01 15:30:47', '2011-06-01 15:30:47', '30', '小于3天', '1', null);
-INSERT INTO jbpm4_hist_actinst VALUES ('190017', 'task', '1', '190001', 'task', 'QingJiaNew.190001', '部门经理审批', '2011-06-01 15:31:16', '2011-06-01 15:31:30', '14028', 'jbpm_no_task_outcome_specified_jbpm', '1', '190016');
-INSERT INTO jbpm4_hist_actinst VALUES ('190018', 'excl', '0', '190001', 'decision', 'QingJiaNew.190001', 'exclusive1', '2011-06-01 15:31:30', '2011-06-01 15:31:30', '16', '小于3天', '1', null);
-INSERT INTO jbpm4_hist_actinst VALUES ('190022', 'task', '1', '180005', 'task', 'QingJiaNew.180005', '部门经理审批', '2011-06-01 15:31:46', '2011-06-01 15:31:55', '9187', 'jbpm_no_task_outcome_specified_jbpm', '1', '190021');
-INSERT INTO jbpm4_hist_actinst VALUES ('190023', 'excl', '0', '180005', 'decision', 'QingJiaNew.180005', 'exclusive1', '2011-06-01 15:31:55', '2011-06-01 15:31:55', '0', '大于3天', '1', null);
-INSERT INTO jbpm4_hist_actinst VALUES ('190025', 'task', '1', '180005', 'task', 'QingJiaNew.180005', '总经理审批', '2011-06-01 15:31:55', '2011-06-01 15:32:03', '8050', 'jbpm_no_task_outcome_specified_jbpm', '1', '190024');
-INSERT INTO jbpm4_hist_actinst VALUES ('190029', 'task', '1', '180001', 'task', 'QingJiaNew.180001', '部门经理审批', '2011-06-01 15:32:19', '2011-06-01 15:32:28', '9041', 'jbpm_no_task_outcome_specified_jbpm', '1', '190028');
-INSERT INTO jbpm4_hist_actinst VALUES ('190030', 'excl', '0', '180001', 'decision', 'QingJiaNew.180001', 'exclusive1', '2011-06-01 15:32:28', '2011-06-01 15:32:28', '16', '小于3天', '1', null);
-INSERT INTO jbpm4_hist_actinst VALUES ('200004', 'task', '0', '200001', 'task', 'QingJiaNew.200001', '填写请假单', '2011-06-02 10:25:18', null, '0', null, '1', '200003');
+--
+-- 转存表中的数据 `jbpm4_hist_actinst`
+--
 
--- ----------------------------
--- Table structure for `jbpm4_hist_detail`
--- ----------------------------
-DROP TABLE IF EXISTS `jbpm4_hist_detail`;
-CREATE TABLE `jbpm4_hist_detail` (
+INSERT INTO `jbpm4_hist_actinst` (`DBID_`, `CLASS_`, `DBVERSION_`, `HPROCI_`, `TYPE_`, `EXECUTION_`, `ACTIVITY_NAME_`, `START_`, `END_`, `DURATION_`, `TRANSITION_`, `NEXTIDX_`, `HTASK_`) VALUES
+(130018, 'task', 1, 130015, 'task', 'QingJiaNew.130015', '填写请假单', '2011-02-27 20:48:01', '2011-02-27 20:48:21', 20003, 'jbpm_no_task_outcome_specified_jbpm', 1, 130017),
+(130022, 'task', 1, 130015, 'task', 'QingJiaNew.130015', '部门经理审批', '2011-02-27 20:48:21', '2011-02-27 21:18:26', 1805457, 'jbpm_no_task_outcome_specified_jbpm', 1, 130021),
+(150001, 'excl', 0, 130015, 'decision', 'QingJiaNew.130015', 'exclusive1', '2011-02-27 21:18:29', '2011-02-27 21:18:29', 234, '小于3天', 1, NULL),
+(160004, 'task', 1, 160001, 'task', 'QingJiaNew.160001', '填写请假单', '2011-02-28 20:36:41', '2011-02-28 20:37:48', 67511, 'jbpm_no_task_outcome_specified_jbpm', 1, 160003),
+(160008, 'task', 1, 160001, 'task', 'QingJiaNew.160001', '部门经理审批', '2011-02-28 20:37:48', '2011-02-28 20:45:15', 447546, 'jbpm_no_task_outcome_specified_jbpm', 1, 160007),
+(160009, 'excl', 0, 160001, 'decision', 'QingJiaNew.160001', 'exclusive1', '2011-02-28 20:45:15', '2011-02-28 20:45:15', 47, '大于3天', 1, NULL),
+(160011, 'task', 1, 160001, 'task', 'QingJiaNew.160001', '总经理审批', '2011-02-28 20:45:15', '2011-02-28 20:47:26', 131245, 'jbpm_no_task_outcome_specified_jbpm', 1, 160010),
+(170004, 'task', 1, 170001, 'task', 'QingJiaNew.170001', '填写请假单', '2011-02-28 21:13:30', '2011-02-28 21:13:52', 22314, 'jbpm_no_task_outcome_specified_jbpm', 1, 170003),
+(170008, 'task', 1, 170001, 'task', 'QingJiaNew.170001', '部门经理审批', '2011-02-28 21:13:52', '2011-02-28 21:14:14', 22868, 'jbpm_no_task_outcome_specified_jbpm', 1, 170007),
+(170009, 'excl', 0, 170001, 'decision', 'QingJiaNew.170001', 'exclusive1', '2011-02-28 21:14:14', '2011-02-28 21:14:14', 20, '大于3天', 1, NULL),
+(170011, 'task', 1, 170001, 'task', 'QingJiaNew.170001', '总经理审批', '2011-02-28 21:14:14', '2011-02-28 21:14:39', 25028, 'jbpm_no_task_outcome_specified_jbpm', 1, 170010),
+(180004, 'task', 1, 180001, 'task', 'QingJiaNew.180001', '填写请假单', '2011-06-01 15:13:44', '2011-06-01 15:32:19', 1115806, 'jbpm_no_task_outcome_specified_jbpm', 1, 180003),
+(180008, 'task', 1, 180005, 'task', 'QingJiaNew.180005', '填写请假单', '2011-06-01 15:13:57', '2011-06-01 15:31:46', 1069308, 'jbpm_no_task_outcome_specified_jbpm', 1, 180007),
+(190004, 'task', 1, 190001, 'task', 'QingJiaNew.190001', '填写请假单', '2011-06-01 15:26:54', '2011-06-01 15:31:16', 262231, 'jbpm_no_task_outcome_specified_jbpm', 1, 190003),
+(190008, 'task', 1, 190005, 'task', 'QingJiaNew.190005', '填写请假单', '2011-06-01 15:28:28', '2011-06-01 15:30:26', 118247, 'jbpm_no_task_outcome_specified_jbpm', 1, 190007),
+(190012, 'task', 1, 190005, 'task', 'QingJiaNew.190005', '部门经理审批', '2011-06-01 15:30:26', '2011-06-01 15:30:47', 21348, 'jbpm_no_task_outcome_specified_jbpm', 1, 190011),
+(190013, 'excl', 0, 190005, 'decision', 'QingJiaNew.190005', 'exclusive1', '2011-06-01 15:30:47', '2011-06-01 15:30:47', 30, '小于3天', 1, NULL),
+(190017, 'task', 1, 190001, 'task', 'QingJiaNew.190001', '部门经理审批', '2011-06-01 15:31:16', '2011-06-01 15:31:30', 14028, 'jbpm_no_task_outcome_specified_jbpm', 1, 190016),
+(190018, 'excl', 0, 190001, 'decision', 'QingJiaNew.190001', 'exclusive1', '2011-06-01 15:31:30', '2011-06-01 15:31:30', 16, '小于3天', 1, NULL),
+(190022, 'task', 1, 180005, 'task', 'QingJiaNew.180005', '部门经理审批', '2011-06-01 15:31:46', '2011-06-01 15:31:55', 9187, 'jbpm_no_task_outcome_specified_jbpm', 1, 190021),
+(190023, 'excl', 0, 180005, 'decision', 'QingJiaNew.180005', 'exclusive1', '2011-06-01 15:31:55', '2011-06-01 15:31:55', 0, '大于3天', 1, NULL),
+(190025, 'task', 1, 180005, 'task', 'QingJiaNew.180005', '总经理审批', '2011-06-01 15:31:55', '2011-06-01 15:32:03', 8050, 'jbpm_no_task_outcome_specified_jbpm', 1, 190024),
+(190029, 'task', 1, 180001, 'task', 'QingJiaNew.180001', '部门经理审批', '2011-06-01 15:32:19', '2011-06-01 15:32:28', 9041, 'jbpm_no_task_outcome_specified_jbpm', 1, 190028),
+(190030, 'excl', 0, 180001, 'decision', 'QingJiaNew.180001', 'exclusive1', '2011-06-01 15:32:28', '2011-06-01 15:32:28', 16, '小于3天', 1, NULL),
+(200004, 'task', 0, 200001, 'task', 'QingJiaNew.200001', '填写请假单', '2011-06-02 10:25:18', NULL, 0, NULL, 1, 200003);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `jbpm4_hist_detail`
+--
+
+CREATE TABLE IF NOT EXISTS `jbpm4_hist_detail` (
   `DBID_` bigint(20) NOT NULL,
   `CLASS_` varchar(255) COLLATE utf8_bin NOT NULL,
   `DBVERSION_` int(11) NOT NULL,
@@ -267,22 +284,21 @@ CREATE TABLE `jbpm4_hist_detail` (
   KEY `IDX_HDET_HVAR` (`HVAR_`),
   KEY `IDX_HDET_HACTI` (`HACTI_`),
   KEY `IDX_HDET_HTASK` (`HTASK_`),
-  KEY `IDX_HDET_HPROCI` (`HPROCI_`),
-  CONSTRAINT `FK_HDETAIL_HACTI` FOREIGN KEY (`HACTI_`) REFERENCES `jbpm4_hist_actinst` (`DBID_`),
-  CONSTRAINT `FK_HDETAIL_HPROCI` FOREIGN KEY (`HPROCI_`) REFERENCES `jbpm4_hist_procinst` (`DBID_`),
-  CONSTRAINT `FK_HDETAIL_HTASK` FOREIGN KEY (`HTASK_`) REFERENCES `jbpm4_hist_task` (`DBID_`),
-  CONSTRAINT `FK_HDETAIL_HVAR` FOREIGN KEY (`HVAR_`) REFERENCES `jbpm4_hist_var` (`DBID_`)
+  KEY `IDX_HDET_HPROCI` (`HPROCI_`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- ----------------------------
--- Records of jbpm4_hist_detail
--- ----------------------------
+--
+-- 转存表中的数据 `jbpm4_hist_detail`
+--
 
--- ----------------------------
--- Table structure for `jbpm4_hist_procinst`
--- ----------------------------
-DROP TABLE IF EXISTS `jbpm4_hist_procinst`;
-CREATE TABLE `jbpm4_hist_procinst` (
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `jbpm4_hist_procinst`
+--
+
+CREATE TABLE IF NOT EXISTS `jbpm4_hist_procinst` (
   `DBID_` bigint(20) NOT NULL,
   `DBVERSION_` int(11) NOT NULL,
   `ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
@@ -297,23 +313,27 @@ CREATE TABLE `jbpm4_hist_procinst` (
   PRIMARY KEY (`DBID_`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- ----------------------------
--- Records of jbpm4_hist_procinst
--- ----------------------------
-INSERT INTO jbpm4_hist_procinst VALUES ('130015', '1', 'QingJiaNew.130015', 'QingJiaNew-1', null, '2011-02-27 20:48:01', '2011-02-27 21:18:29', '1828266', 'ended', '结束', '1');
-INSERT INTO jbpm4_hist_procinst VALUES ('160001', '1', 'QingJiaNew.160001', 'QingJiaNew-1', null, '2011-02-28 20:36:41', '2011-02-28 20:47:26', '645274', 'ended', '结束', '1');
-INSERT INTO jbpm4_hist_procinst VALUES ('170001', '1', 'QingJiaNew.170001', 'QingJiaNew-1', null, '2011-02-28 21:13:30', '2011-02-28 21:14:39', '69059', 'ended', '结束', '1');
-INSERT INTO jbpm4_hist_procinst VALUES ('180001', '1', 'QingJiaNew.180001', 'QingJiaNew-1', null, '2011-06-01 15:13:44', '2011-06-01 15:32:28', '1124072', 'ended', '结束', '1');
-INSERT INTO jbpm4_hist_procinst VALUES ('180005', '1', 'QingJiaNew.180005', 'QingJiaNew-1', null, '2011-06-01 15:13:57', '2011-06-01 15:32:03', '1086065', 'ended', '结束', '1');
-INSERT INTO jbpm4_hist_procinst VALUES ('190001', '1', 'QingJiaNew.190001', 'QingJiaNew-1', null, '2011-06-01 15:26:54', '2011-06-01 15:31:30', '276059', 'ended', '结束', '1');
-INSERT INTO jbpm4_hist_procinst VALUES ('190005', '1', 'QingJiaNew.190005', 'QingJiaNew-1', null, '2011-06-01 15:28:28', '2011-06-01 15:30:47', '139396', 'ended', '结束', '1');
-INSERT INTO jbpm4_hist_procinst VALUES ('200001', '0', 'QingJiaNew.200001', 'QingJiaNew-1', null, '2011-06-02 10:25:18', null, null, 'active', null, '1');
+--
+-- 转存表中的数据 `jbpm4_hist_procinst`
+--
 
--- ----------------------------
--- Table structure for `jbpm4_hist_task`
--- ----------------------------
-DROP TABLE IF EXISTS `jbpm4_hist_task`;
-CREATE TABLE `jbpm4_hist_task` (
+INSERT INTO `jbpm4_hist_procinst` (`DBID_`, `DBVERSION_`, `ID_`, `PROCDEFID_`, `KEY_`, `START_`, `END_`, `DURATION_`, `STATE_`, `ENDACTIVITY_`, `NEXTIDX_`) VALUES
+(130015, 1, 'QingJiaNew.130015', 'QingJiaNew-1', NULL, '2011-02-27 20:48:01', '2011-02-27 21:18:29', 1828266, 'ended', '结束', 1),
+(160001, 1, 'QingJiaNew.160001', 'QingJiaNew-1', NULL, '2011-02-28 20:36:41', '2011-02-28 20:47:26', 645274, 'ended', '结束', 1),
+(170001, 1, 'QingJiaNew.170001', 'QingJiaNew-1', NULL, '2011-02-28 21:13:30', '2011-02-28 21:14:39', 69059, 'ended', '结束', 1),
+(180001, 1, 'QingJiaNew.180001', 'QingJiaNew-1', NULL, '2011-06-01 15:13:44', '2011-06-01 15:32:28', 1124072, 'ended', '结束', 1),
+(180005, 1, 'QingJiaNew.180005', 'QingJiaNew-1', NULL, '2011-06-01 15:13:57', '2011-06-01 15:32:03', 1086065, 'ended', '结束', 1),
+(190001, 1, 'QingJiaNew.190001', 'QingJiaNew-1', NULL, '2011-06-01 15:26:54', '2011-06-01 15:31:30', 276059, 'ended', '结束', 1),
+(190005, 1, 'QingJiaNew.190005', 'QingJiaNew-1', NULL, '2011-06-01 15:28:28', '2011-06-01 15:30:47', 139396, 'ended', '结束', 1),
+(200001, 0, 'QingJiaNew.200001', 'QingJiaNew-1', NULL, '2011-06-02 10:25:18', NULL, NULL, 'active', NULL, 1);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `jbpm4_hist_task`
+--
+
+CREATE TABLE IF NOT EXISTS `jbpm4_hist_task` (
   `DBID_` bigint(20) NOT NULL,
   `DBVERSION_` int(11) NOT NULL,
   `EXECUTION_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
@@ -328,37 +348,40 @@ CREATE TABLE `jbpm4_hist_task` (
   `SUPERTASK_` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`DBID_`),
   KEY `FK_HSUPERT_SUB` (`SUPERTASK_`),
-  KEY `IDX_HSUPERT_SUB` (`SUPERTASK_`),
-  CONSTRAINT `FK_HSUPERT_SUB` FOREIGN KEY (`SUPERTASK_`) REFERENCES `jbpm4_hist_task` (`DBID_`)
+  KEY `IDX_HSUPERT_SUB` (`SUPERTASK_`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- ----------------------------
--- Records of jbpm4_hist_task
--- ----------------------------
-INSERT INTO jbpm4_hist_task VALUES ('130017', '1', 'QingJiaNew.130015', 'jbpm_no_task_outcome_specified_jbpm', '1', '0', 'completed', '2011-02-27 20:48:01', '2011-02-27 20:48:21', '20003', '1', null);
-INSERT INTO jbpm4_hist_task VALUES ('130021', '1', 'QingJiaNew.130015', 'jbpm_no_task_outcome_specified_jbpm', '1', '0', 'completed', '2011-02-27 20:48:21', '2011-02-27 21:18:26', '1805488', '1', null);
-INSERT INTO jbpm4_hist_task VALUES ('160003', '1', 'QingJiaNew.160001', 'jbpm_no_task_outcome_specified_jbpm', '1', '0', 'completed', '2011-02-28 20:37:15', '2011-02-28 20:37:48', '33541', '1', null);
-INSERT INTO jbpm4_hist_task VALUES ('160007', '1', 'QingJiaNew.160001', 'jbpm_no_task_outcome_specified_jbpm', '1', '0', 'completed', '2011-02-28 20:37:58', '2011-02-28 20:45:15', '437577', '1', null);
-INSERT INTO jbpm4_hist_task VALUES ('160010', '1', 'QingJiaNew.160001', 'jbpm_no_task_outcome_specified_jbpm', '1', '0', 'completed', '2011-02-28 20:45:17', '2011-02-28 20:47:26', '129245', '1', null);
-INSERT INTO jbpm4_hist_task VALUES ('170003', '1', 'QingJiaNew.170001', 'jbpm_no_task_outcome_specified_jbpm', '1', '0', 'completed', '2011-02-28 21:13:31', '2011-02-28 21:13:52', '21314', '1', null);
-INSERT INTO jbpm4_hist_task VALUES ('170007', '1', 'QingJiaNew.170001', 'jbpm_no_task_outcome_specified_jbpm', '1', '0', 'completed', '2011-02-28 21:13:52', '2011-02-28 21:14:14', '22886', '1', null);
-INSERT INTO jbpm4_hist_task VALUES ('170010', '1', 'QingJiaNew.170001', 'jbpm_no_task_outcome_specified_jbpm', '1', '0', 'completed', '2011-02-28 21:14:14', '2011-02-28 21:14:39', '25043', '1', null);
-INSERT INTO jbpm4_hist_task VALUES ('180003', '1', 'QingJiaNew.180001', 'jbpm_no_task_outcome_specified_jbpm', '1', '0', 'completed', '2011-06-01 15:13:44', '2011-06-01 15:32:19', '1115821', '1', null);
-INSERT INTO jbpm4_hist_task VALUES ('180007', '1', 'QingJiaNew.180005', 'jbpm_no_task_outcome_specified_jbpm', '1', '0', 'completed', '2011-06-01 15:13:57', '2011-06-01 15:31:46', '1069308', '1', null);
-INSERT INTO jbpm4_hist_task VALUES ('190003', '1', 'QingJiaNew.190001', 'jbpm_no_task_outcome_specified_jbpm', '1', '0', 'completed', '2011-06-01 15:26:54', '2011-06-01 15:31:16', '262231', '1', null);
-INSERT INTO jbpm4_hist_task VALUES ('190007', '1', 'QingJiaNew.190005', 'jbpm_no_task_outcome_specified_jbpm', '1', '0', 'completed', '2011-06-01 15:28:28', '2011-06-01 15:30:26', '118248', '1', null);
-INSERT INTO jbpm4_hist_task VALUES ('190011', '1', 'QingJiaNew.190005', 'jbpm_no_task_outcome_specified_jbpm', '1', '0', 'completed', '2011-06-01 15:30:26', '2011-06-01 15:30:47', '21348', '1', null);
-INSERT INTO jbpm4_hist_task VALUES ('190016', '1', 'QingJiaNew.190001', 'jbpm_no_task_outcome_specified_jbpm', '1', '0', 'completed', '2011-06-01 15:31:16', '2011-06-01 15:31:30', '14028', '1', null);
-INSERT INTO jbpm4_hist_task VALUES ('190021', '1', 'QingJiaNew.180005', 'jbpm_no_task_outcome_specified_jbpm', '1', '0', 'completed', '2011-06-01 15:31:46', '2011-06-01 15:31:55', '9187', '1', null);
-INSERT INTO jbpm4_hist_task VALUES ('190024', '1', 'QingJiaNew.180005', 'jbpm_no_task_outcome_specified_jbpm', '1', '0', 'completed', '2011-06-01 15:31:55', '2011-06-01 15:32:03', '8050', '1', null);
-INSERT INTO jbpm4_hist_task VALUES ('190028', '1', 'QingJiaNew.180001', 'jbpm_no_task_outcome_specified_jbpm', '1', '0', 'completed', '2011-06-01 15:32:19', '2011-06-01 15:32:28', '9041', '1', null);
-INSERT INTO jbpm4_hist_task VALUES ('200003', '0', 'QingJiaNew.200001', null, '1', '0', null, '2011-06-02 10:25:18', null, '0', '1', null);
+--
+-- 转存表中的数据 `jbpm4_hist_task`
+--
 
--- ----------------------------
--- Table structure for `jbpm4_hist_var`
--- ----------------------------
-DROP TABLE IF EXISTS `jbpm4_hist_var`;
-CREATE TABLE `jbpm4_hist_var` (
+INSERT INTO `jbpm4_hist_task` (`DBID_`, `DBVERSION_`, `EXECUTION_`, `OUTCOME_`, `ASSIGNEE_`, `PRIORITY_`, `STATE_`, `CREATE_`, `END_`, `DURATION_`, `NEXTIDX_`, `SUPERTASK_`) VALUES
+(130017, 1, 'QingJiaNew.130015', 'jbpm_no_task_outcome_specified_jbpm', '1', 0, 'completed', '2011-02-27 20:48:01', '2011-02-27 20:48:21', 20003, 1, NULL),
+(130021, 1, 'QingJiaNew.130015', 'jbpm_no_task_outcome_specified_jbpm', '1', 0, 'completed', '2011-02-27 20:48:21', '2011-02-27 21:18:26', 1805488, 1, NULL),
+(160003, 1, 'QingJiaNew.160001', 'jbpm_no_task_outcome_specified_jbpm', '1', 0, 'completed', '2011-02-28 20:37:15', '2011-02-28 20:37:48', 33541, 1, NULL),
+(160007, 1, 'QingJiaNew.160001', 'jbpm_no_task_outcome_specified_jbpm', '1', 0, 'completed', '2011-02-28 20:37:58', '2011-02-28 20:45:15', 437577, 1, NULL),
+(160010, 1, 'QingJiaNew.160001', 'jbpm_no_task_outcome_specified_jbpm', '1', 0, 'completed', '2011-02-28 20:45:17', '2011-02-28 20:47:26', 129245, 1, NULL),
+(170003, 1, 'QingJiaNew.170001', 'jbpm_no_task_outcome_specified_jbpm', '1', 0, 'completed', '2011-02-28 21:13:31', '2011-02-28 21:13:52', 21314, 1, NULL),
+(170007, 1, 'QingJiaNew.170001', 'jbpm_no_task_outcome_specified_jbpm', '1', 0, 'completed', '2011-02-28 21:13:52', '2011-02-28 21:14:14', 22886, 1, NULL),
+(170010, 1, 'QingJiaNew.170001', 'jbpm_no_task_outcome_specified_jbpm', '1', 0, 'completed', '2011-02-28 21:14:14', '2011-02-28 21:14:39', 25043, 1, NULL),
+(180003, 1, 'QingJiaNew.180001', 'jbpm_no_task_outcome_specified_jbpm', '1', 0, 'completed', '2011-06-01 15:13:44', '2011-06-01 15:32:19', 1115821, 1, NULL),
+(180007, 1, 'QingJiaNew.180005', 'jbpm_no_task_outcome_specified_jbpm', '1', 0, 'completed', '2011-06-01 15:13:57', '2011-06-01 15:31:46', 1069308, 1, NULL),
+(190003, 1, 'QingJiaNew.190001', 'jbpm_no_task_outcome_specified_jbpm', '1', 0, 'completed', '2011-06-01 15:26:54', '2011-06-01 15:31:16', 262231, 1, NULL),
+(190007, 1, 'QingJiaNew.190005', 'jbpm_no_task_outcome_specified_jbpm', '1', 0, 'completed', '2011-06-01 15:28:28', '2011-06-01 15:30:26', 118248, 1, NULL),
+(190011, 1, 'QingJiaNew.190005', 'jbpm_no_task_outcome_specified_jbpm', '1', 0, 'completed', '2011-06-01 15:30:26', '2011-06-01 15:30:47', 21348, 1, NULL),
+(190016, 1, 'QingJiaNew.190001', 'jbpm_no_task_outcome_specified_jbpm', '1', 0, 'completed', '2011-06-01 15:31:16', '2011-06-01 15:31:30', 14028, 1, NULL),
+(190021, 1, 'QingJiaNew.180005', 'jbpm_no_task_outcome_specified_jbpm', '1', 0, 'completed', '2011-06-01 15:31:46', '2011-06-01 15:31:55', 9187, 1, NULL),
+(190024, 1, 'QingJiaNew.180005', 'jbpm_no_task_outcome_specified_jbpm', '1', 0, 'completed', '2011-06-01 15:31:55', '2011-06-01 15:32:03', 8050, 1, NULL),
+(190028, 1, 'QingJiaNew.180001', 'jbpm_no_task_outcome_specified_jbpm', '1', 0, 'completed', '2011-06-01 15:32:19', '2011-06-01 15:32:28', 9041, 1, NULL),
+(200003, 0, 'QingJiaNew.200001', NULL, '1', 0, NULL, '2011-06-02 10:25:18', NULL, 0, 1, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `jbpm4_hist_var`
+--
+
+CREATE TABLE IF NOT EXISTS `jbpm4_hist_var` (
   `DBID_` bigint(20) NOT NULL,
   `DBVERSION_` int(11) NOT NULL,
   `PROCINSTID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
@@ -371,20 +394,21 @@ CREATE TABLE `jbpm4_hist_var` (
   KEY `FK_HVAR_HPROCI` (`HPROCI_`),
   KEY `FK_HVAR_HTASK` (`HTASK_`),
   KEY `IDX_HVAR_HTASK` (`HTASK_`),
-  KEY `IDX_HVAR_HPROCI` (`HPROCI_`),
-  CONSTRAINT `FK_HVAR_HPROCI` FOREIGN KEY (`HPROCI_`) REFERENCES `jbpm4_hist_procinst` (`DBID_`),
-  CONSTRAINT `FK_HVAR_HTASK` FOREIGN KEY (`HTASK_`) REFERENCES `jbpm4_hist_task` (`DBID_`)
+  KEY `IDX_HVAR_HPROCI` (`HPROCI_`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- ----------------------------
--- Records of jbpm4_hist_var
--- ----------------------------
+--
+-- 转存表中的数据 `jbpm4_hist_var`
+--
 
--- ----------------------------
--- Table structure for `jbpm4_id_group`
--- ----------------------------
-DROP TABLE IF EXISTS `jbpm4_id_group`;
-CREATE TABLE `jbpm4_id_group` (
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `jbpm4_id_group`
+--
+
+CREATE TABLE IF NOT EXISTS `jbpm4_id_group` (
   `DBID_` bigint(20) NOT NULL,
   `DBVERSION_` int(11) NOT NULL,
   `ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
@@ -393,19 +417,21 @@ CREATE TABLE `jbpm4_id_group` (
   `PARENT_` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`DBID_`),
   KEY `FK_GROUP_PARENT` (`PARENT_`),
-  KEY `IDX_GROUP_PARENT` (`PARENT_`),
-  CONSTRAINT `FK_GROUP_PARENT` FOREIGN KEY (`PARENT_`) REFERENCES `jbpm4_id_group` (`DBID_`)
+  KEY `IDX_GROUP_PARENT` (`PARENT_`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- ----------------------------
--- Records of jbpm4_id_group
--- ----------------------------
+--
+-- 转存表中的数据 `jbpm4_id_group`
+--
 
--- ----------------------------
--- Table structure for `jbpm4_id_membership`
--- ----------------------------
-DROP TABLE IF EXISTS `jbpm4_id_membership`;
-CREATE TABLE `jbpm4_id_membership` (
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `jbpm4_id_membership`
+--
+
+CREATE TABLE IF NOT EXISTS `jbpm4_id_membership` (
   `DBID_` bigint(20) NOT NULL,
   `DBVERSION_` int(11) NOT NULL,
   `USER_` bigint(20) DEFAULT NULL,
@@ -415,20 +441,21 @@ CREATE TABLE `jbpm4_id_membership` (
   KEY `FK_MEM_GROUP` (`GROUP_`),
   KEY `FK_MEM_USER` (`USER_`),
   KEY `IDX_MEM_GROUP` (`GROUP_`),
-  KEY `IDX_MEM_USER` (`USER_`),
-  CONSTRAINT `FK_MEM_GROUP` FOREIGN KEY (`GROUP_`) REFERENCES `jbpm4_id_group` (`DBID_`),
-  CONSTRAINT `FK_MEM_USER` FOREIGN KEY (`USER_`) REFERENCES `jbpm4_id_user` (`DBID_`)
+  KEY `IDX_MEM_USER` (`USER_`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- ----------------------------
--- Records of jbpm4_id_membership
--- ----------------------------
+--
+-- 转存表中的数据 `jbpm4_id_membership`
+--
 
--- ----------------------------
--- Table structure for `jbpm4_id_user`
--- ----------------------------
-DROP TABLE IF EXISTS `jbpm4_id_user`;
-CREATE TABLE `jbpm4_id_user` (
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `jbpm4_id_user`
+--
+
+CREATE TABLE IF NOT EXISTS `jbpm4_id_user` (
   `DBID_` bigint(20) NOT NULL,
   `DBVERSION_` int(11) NOT NULL,
   `ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
@@ -439,15 +466,18 @@ CREATE TABLE `jbpm4_id_user` (
   PRIMARY KEY (`DBID_`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- ----------------------------
--- Records of jbpm4_id_user
--- ----------------------------
+--
+-- 转存表中的数据 `jbpm4_id_user`
+--
 
--- ----------------------------
--- Table structure for `jbpm4_job`
--- ----------------------------
-DROP TABLE IF EXISTS `jbpm4_job`;
-CREATE TABLE `jbpm4_job` (
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `jbpm4_job`
+--
+
+CREATE TABLE IF NOT EXISTS `jbpm4_job` (
   `DBID_` bigint(20) NOT NULL,
   `CLASS_` varchar(255) COLLATE utf8_bin NOT NULL,
   `DBVERSION_` int(11) NOT NULL,
@@ -471,19 +501,21 @@ CREATE TABLE `jbpm4_job` (
   KEY `IDX_JOBLOCKEXP` (`LOCKEXPTIME_`),
   KEY `IDX_JOB_CFG` (`CFG_`),
   KEY `IDX_JOB_EXE` (`EXECUTION_`),
-  KEY `IDX_JOB_PRINST` (`PROCESSINSTANCE_`),
-  CONSTRAINT `FK_JOB_CFG` FOREIGN KEY (`CFG_`) REFERENCES `jbpm4_lob` (`DBID_`)
+  KEY `IDX_JOB_PRINST` (`PROCESSINSTANCE_`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- ----------------------------
--- Records of jbpm4_job
--- ----------------------------
+--
+-- 转存表中的数据 `jbpm4_job`
+--
 
--- ----------------------------
--- Table structure for `jbpm4_lob`
--- ----------------------------
-DROP TABLE IF EXISTS `jbpm4_lob`;
-CREATE TABLE `jbpm4_lob` (
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `jbpm4_lob`
+--
+
+CREATE TABLE IF NOT EXISTS `jbpm4_lob` (
   `DBID_` bigint(20) NOT NULL,
   `DBVERSION_` int(11) NOT NULL,
   `BLOB_VALUE_` longblob,
@@ -491,21 +523,24 @@ CREATE TABLE `jbpm4_lob` (
   `NAME_` longtext COLLATE utf8_bin,
   PRIMARY KEY (`DBID_`),
   KEY `FK_LOB_DEPLOYMENT` (`DEPLOYMENT_`),
-  KEY `IDX_LOB_DEPLOYMENT` (`DEPLOYMENT_`),
-  CONSTRAINT `FK_LOB_DEPLOYMENT` FOREIGN KEY (`DEPLOYMENT_`) REFERENCES `jbpm4_deployment` (`DBID_`)
+  KEY `IDX_LOB_DEPLOYMENT` (`DEPLOYMENT_`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- ----------------------------
--- Records of jbpm4_lob
--- ----------------------------
-INSERT INTO jbpm4_lob VALUES ('130009', '0', 0x3C3F786D6C2076657273696F6E3D22312E302220656E636F64696E673D225554462D38223F3E0D0A0D0A3C70726F63657373206465736372697074696F6E3D2251696E674A69614E657722206B65793D2251696E674A69614E657722206E616D653D2251696E674A69614E6577222076657273696F6E3D22312220786D6C6E733D22687474703A2F2F6A62706D2E6F72672F342E342F6A70646C223E0D0A2020203C7374617274206E616D653D227374617274312220673D223134322C31362C34382C3438223E0D0A2020202020203C7472616E736974696F6E206E616D653D22E58EBBE5A1ABE58699E8AFB7E58187E58D952220746F3D22E5A1ABE58699E8AFB7E58187E58D952220673D222D38332C2D3137222F3E0D0A2020203C2F73746172743E0D0A2020200D0A2020203C7461736B206E616D653D22E5A1ABE58699E8AFB7E58187E58D952220673D223131382C3131362C39322C3532223E0D0A2020202020203C7472616E736974696F6E206E616D653D22E68F90E4BAA4E983A8E997A8E7BB8FE79086E5AEA1E689B92220746F3D22E983A8E997A8E7BB8FE79086E5AEA1E689B92220673D222D3130372C2D3133222F3E0D0A2020203C2F7461736B3E0D0A2020200D0A2020203C7461736B206E616D653D22E983A8E997A8E7BB8FE79086E5AEA1E689B92220673D223132302C3232342C39322C3532223E0D0A2020202020203C7472616E736974696F6E206E616D653D22E698AFE590A6E5A4A7E4BA8E33E5A4A92220746F3D226578636C7573697665312220673D222D37392C2D36222F3E0D0A2020203C2F7461736B3E0D0A2020200D0A2020203C6465636973696F6E206E616D653D226578636C7573697665312220657870723D22237B636F756E744461793E3D33203F2027E5A4A7E4BA8E33E5A4A927203A2027E5B08FE4BA8E33E5A4A9277D2220673D223134332C3333372C34382C3438223E0D0A2020202020203C7472616E736974696F6E206E616D653D22E5B08FE4BA8E33E5A4A92220746F3D22E7BB93E69D9F2220673D222D32342C36222F3E0D0A2020202020203C7472616E736974696F6E206E616D653D22E5A4A7E4BA8E33E5A4A92220746F3D22E680BBE7BB8FE79086E5AEA1E689B92220673D222D33382C2D3134222F3E0D0A2020203C2F6465636973696F6E3E0D0A2020200D0A2020203C7461736B206E616D653D22E680BBE7BB8FE79086E5AEA1E689B92220673D223334362C3232372C39322C3532223E0D0A2020202020203C7472616E736974696F6E206E616D653D22746F20656E64312220746F3D22E7BB93E69D9F2220673D222D34372C2D3137222F3E0D0A2020203C2F7461736B3E0D0A2020200D0A2020203C656E64206E616D653D22E7BB93E69D9F2220673D223337332C3333382C34382C3438222F3E0D0A3C2F70726F636573733E, '130008', 0x51696E674A69614E65772E6A70646C2E786D6C);
-INSERT INTO jbpm4_lob VALUES ('130010', '0', 0x89504E470D0A1A0A0000000D4948445200000352000001D0080200000024A3CCAA000037D049444154789CEDDD7D705CE57DE8F1CEF4CFFC974C667A6927E5E64EDA1B7A69E9749A813BED1D3ACD1D9A99DB509A175272D39092046E4B9A9062421208B28563130411B5490491B10CB2BD76245BC6325E0B19D9526C599664D9ACE4952CC92B4B166BBD6EF46AEB05F9FE761FE978BD2F4747AB959F3DE7F97EE619CDBE9C73F6ECFA30FBE5D9B7DFB90E00000003FC8EEE1D000000C0AD40F60100001881EC0300003002D90700006004B20F0000C008641F00008011C83E00000023907D0000004620FB0000008C40F60100001881EC0300003002D90700006004B20F0000C008641F00008011C83E00000023907D0000004620FB0000008C40F60100001881EC0300003002D90700006004B2CFCB1616163E8C999F9F9F4B43AE52CBC8C2BAF7170000AC21B2CF9B54F049D5CDCCCC5CBD7A756A6A6A72727222895C2857C902B2982C4CFC0100E061649FD758C177EDDA35A9BA83F55B376EFFA7FFF7D3BFF8A7A73FF18FDFFFF83F7CEF6332E4849C950BE5AAB74F6E1D1919191B1B93856515E20F0000AF22FBBC233EF8C627C6B6963DFEAD0D7FFAE575B7FDEBA6BFFCD95BFF5C5E5B702674F883C9A00C392167E542B94A1690C564E12B03E1482442FC0100E055649F47A8E69B9D9D9D9E9E2E3D92F7EDFC3FFBC67377BCB2E7D18E819391F95E9B210BC862B2B0ACF2D691BCC1C1C1B1B131D9886C8AF20300C04BC83E2F50CD373333333535F5FC1B5F7EE887B717FABE6D5F7BC94356911565F5FEFEFED1D151D9946C90F20300C033C83ED7B39A2F3C1C7AEA3FFFF7E32FDC5D777ECF4A9B4F0D595156978D5C0805868787272626283F00003C83EC7337ABF924D124D79EDE72DFC0D50B99359F1AB2BA6C443675E9D2A5A1A121CA0F0000CF20FBDC4DBD9F6F6A6A2A7FDB971E7FE1EE55369F557EB229D9A094DFF0F0B06C5CBDCF4FF77D050000AB42F6B9D8C2C2C2DCDCDCF4F4F40EFF330FFDF0F68C5FDB4DF96AAF6CB0E4F033BDBDBDA3A3A3721372434CF80100E06A649F8B7DF8E187D7AE5D8BFC76E45BF97FE6F4331C732BF884876CF67CB0B5BFBF7F6C6C4C6E88093F00005C8DEC732B35D537393959B8F7D16F3CF7E9E199EEE1998B43B3DD3286E5EFCCC5E8D999E889E8E95935E4AA8BB14BA20BCB2A437276562D105D317AF9ECD285B31765B3B2F1AEAEAEC1C141B92126FC00007035B2CFAD16A7FA22916FAEFF1F2FED7E243C1DFC206EC8D9F054ECAF3A3B15BB5C5D32D51E9E6E0F2F2D7663F9E9C565ACB3B259D9782010E8EBEB931B62C20F00005723FB5CC99AEADB5BF3B32FADBBADA9E79D9EB196D8382B7F2FA9D3E3D113EAF4A5F196C505C6CFAA657AA2979CBD141D3716B616B8145BA529744836BEFBE8A6CECE4E26FC0000703BB2CF95D497B68C8D8DE5FDEA814737FE79C7F0C98E91FA0B6A0C9F54A363584EAB4BEA3BA22376E148EC746CC9D8DF93B1CB6367AD6BD559B96AE4A46CFCB95F3DD0DADA7AF9F265B939F5652EBAEF3D0000C804D9E74AD25E57AF5E1D19897E9843CA2F70E5BD403836AEBCF7FED2885D78542E7C3FFCDEE202578E06D4E5EA4438B6586C81E82A4B270237567F4F9A4F6EA2B9B939140AC9CDC98D927D0000B814D9E74AF3F3F35353534343430FFEE00F8A0E7EBFA9EF9DA6BE43B1BFD1D1AC4EF45A17CADF43CDB14B9AE5B4BABC572D63ADB57449DC85B2B06C5C6EA2A1A1A1ABAB4B6E4E6E546E5AF7BD0700009920FB5C49BDB16F6060E081273EBEEFD4CB272FEE3B19DA7FF2E2FEFAD08D11BD24B4AF3EB44F9D38B978E13E5938B680BA4A9D556371316B49B950362E3771E2C4898E8E0EB939F5F63EDDF71E00006482EC732569AF8989897038FC0FDFFB58F5F91DB55D7B64D4C5FE2E9EE85467F7C6CEEEADEBDC7BF3B57279F41275615DA7B5FADEC5B3D1E5A30B1C6DDB2137515757170C06E5E6E446C93E00005C8AEC73A5F8EC7BB7F58D6317761FBBB06B69ECBEE96C67F4ECF10BBB8E77EE52278E75EE8A9E55172E2EBF746DE7AEF8EDC83255ADDBE5266A6B6BC93E0000DC8EEC73252BFB1E78E2E37B4F6C8EE65AE7EEC586EB54312725A7FA6FF752F0ED56D7AAD38BCDB7D479C7978A707199C57577EDF9CD66B909C9BEF3E7CF937D0000B81AD9E74A56F63DF8D41F6CD9FF6FEAF5D9BA2EEBA5DBC59768D52BBCB55D375EE1B516A8BDB1985AC01A7BE24EEC918DCB4D907D00007800D9E74A56F67D73C39D3F2EFA3FF19FE4A8EFB9E9831DA92FB1BF3C6EC8C6E52678911700000F20FB5CC9CABE678BFEFE5BF97F6A7D758BFAF69666EB3B5CACD3976F5CDE9CB8D8E1E6E8782771C456918DCB4DF0910E00003C80EC7325EB0B5CDEAACAFBD293FFE578FBEEC0959AA5AF625E1CAD717F97AEAD69B51608D7DC5865E9AB9E97BED5B9465D521BDC2D1B2F39FC13BEC00500000F20FB5CC9FABAE6AEAEAE7FC9FB93CD6FFDDFC5DF615BFC7DB6C571E317DB466EBE36E9ECE2CFB5C55D2597C86665E3870F1FE6EB9A0100F000B2CF95AC1F670B854205BBBEF1F04FFE7BCFF8D94B632D97C6CFF6C8DFB1969EB1B3D1D3D1B1743676EDE28572C9B81AD14B16578C9E38ABB610DBC859D9AC6CBCBABA9A1F670300C003C83E5792F69A9999191B1BBB7CF9722070EE9B1BEE943EFB603A189E0E5A7F3F583CDDBE7876AA5D5D155E5CA07DE974FB8D65D48553D1CB6583B2D983956FD7D6D6B6B6B6CA0DC9CDC98D927D0000B814D9E74A0B0B0BEAED7D8383839D9D9DBF3AB8EEA11FDE7E3CB06B68A67B78F6E2D0CCC56119B3DDD1BF33DD43B3EA7477F4EF6CF7E2B5331787624B4657510B47C7C5D8E83EDEBA4B36F8FADBEB8E1C3972FAF469B909B921F5C63EB969DDF71E00006482EC73AB0F3FFCF0DAB56B9148A4AFAF2F1008AC2FFEC2E32FDC3D70F54264BE77954336229B920D1E3C78B0B6B656362E3721372437C7541F0000EE45F6B955FC845F5757575353D3BA57FEF6E92DF7A52ABF4B2B6A3ED9886C6AFFFEFD478F1E95CDCAC699EA0300C003C83E1753137E636363FDFDFDC160B0EE74B5E4DAE32FDC5D777E4F26F37C73BDB2A2AC2E1B3970784F5555D5A953A764B3B271B909A6FA0000703BB2CFC5D484DFF4F4F4E8E8686F6F6F5B5BDBC9932737147FE1A11FDE5EE8FBF64AB34F56911565F57DFBF61D39724436251B94CDCAC6E52698EA0300C0EDC83E77FBF0C30F676767A7A6A68687872F5DBAD4DADA2AB9B6ADF207DFCAFFB36F3C77C72B7B1EED1838695F7BB2802C260BCB2AC5077FB07FFFFEAAAA2AD9886C4A36289B958DCB4D30D5070080DB917DEEB6B0B0A0BECC6562626268684842ADADADEDD4A95347DFAB2EDCF3E83737DCF9E575B7FDEBA6BFFCD95BFF5C5E5B702674F883C9A00C392167E542B94A1690C564E1F27D65070F1E3C7AF4A8AC2E1B914DC90665B3EA4B5B98EA0300C0EDC83ED78B2FBFE1E1E1DEDEDE6030D8D4D4545B5B7BE4C891DDD53FCDDFF6E5C736FEC53F3DFD897FFCFEC7FFE17B1F932127E4AC5C2857C902E5E5E5127CB2B0AC222BCAEAB211D914CD07008097907D5E6095DFD4D4D4E8E8687F7F7F5757572010387DFAB4945C7575F5E1C3872B2B2BA5EDDE7EFBED03317242CECA8572952C208BC9C2B28AAC28ABCB466453341F00005E42F679842ABFD9D9D9E9E9E9B1B1B1C1C1C1BEBEBECECECED6D6D6E6E6E686868613274ED4D5D5D5C691B372A15C250BC862B2B0AC222BCAEAB211F57E3E9A0F0000CF20FBBC4395DFDCDCDCB56BD726272723918834DCE5CB9743A15057575747474730E67C8C3A2D17CA55B2802C260BCB2AB2A2AC2E1BA1F90000F018B2CF6B12E26F6C6C6C6464646868686060209C442E94AB6401598CE00300C0DBC83E6FB2E26F6666E6EAD5AB53535352751349E442B94A1690C5083E0000BC8DECF332157F627E7E7E2E0DB94A2D43F00100E06D649F592A2A2A74EF020000D083EC334B5E5E9EEE5D0000007A907D6621FB00003016D96716B20F000063917D6621FB00003016D96716B20F000063917D6621FB00003016D967904824525858A87B2F0000801E649F41C83E00004C46F6A57DDD33E1F2E4C5F296936EAD15EDC6B2FBB0EC5A16B20F000093917DCB74D8B249B76CC62DBB1D6BB1848D272F9370732B7DA31ED9070080C9C8BECC67FBEC2F5FD1CDD974647C3E2EDB8EF6C83E00004C6668F62D9B50E926DE524EBF394C319B651C665FF285C9CBDB20FB00003099A1D9176FD9693CFB693FFBEA4A9989E99649D79AF18B394CCC94C2E170515191C385010080C7907D8EB2CF7E96CEC9F6ED8B2DE53C9FCD7E6636DB170A854A4A4A1C2E0C00003CC6C4ECB399364B4EB1EBB6D37B4E66E01C6EE7FADACFF6917D000098CCC4EC8B67D34C36BDB5A2CD3AD94E5ED26C5FBA585C76B76D907D000098CCE8EC4B9959F19724D758CA251D6E79A5B37D29AF5ACD841FD9070080C9CCCDBE949D177FDABEB796BD2A79B32B9AED8BDF07273BEF04D9070080C90CCDBE954E9BE5D9BEE46AB3FC7567B386E96291EC030000D96268F6A59332A76C722D79C9E4764C998CF6B37D29270B1DEE838D9696968A8A8A0C560400001E40F61984EC0300C064649F41C83E00004C46F61984EC0300C064649F41C83E00004C46F61984EC0300C064649F41EAEBEBFD7EBFEEBD0000007A907D06A989D1BD170000400FB2CF20641F00002623FB0C42F601006032B2CF20641F00002623FB0C42F601006032B2CF20641F00002623FB0C525151D1D2D2A27B2F0000801E649F41C83E00004C46F61984EC0300C064649F41C83E00004C46F61984EC0300C064649F41C83E00004C46F619C4E7F3058341DD7B010000F420FB0C525252120A8574EF050000D083EC3308D9070080C9C83E83907D0000988CEC3308D9070080C9C83E83907D0000988CECF3BE8D1B37E6DDACA8A848F74E0100805B8DECF3BE9D3B77C637DF8103077C3E9FEE9D020000B71AD9E77D57AE5CD9B061836ABEFCFCFC6DDBB6F1522F00000622FB8CB075EB56957DA5A5A5BCC20B008099C83E23B4B4B4AC5FBF5EB26FE7CE9D8D8D8DBA770700006840F69962D3A64DF9F9F92FBFFCF2DCDC9CEE7D0100001A907DA6A8AAAA5ABF7EFD81030774EF080000D083EC33C5DCDC5C7E7EFEF0F0B0EE1D0100007A907D0000004620FB0000008C40F60100001881EC0300003002D90700006004B20F0000C008645F0E5958B87EE85CEF4F2A9AEE2DA894F1BB8FBD9EE3E3EE4D15B29FDFF5D5EF3CD5353533AFFBF103000076C8BE9C303239F383B2D31F7DA2447BC9AD667C7DFBB1AE8171DD8F250000488DECD3AFF454D76DEB4A5539DD955FFEECFEA623810F648C8ECF4F5FBD9ECB43EDE78B47DEB7E6263FF29D6D3FA9685A58D0FD9802008024649F4E9247DFF5D5AB60BAEF95C32D3D11ED2597F108F68F3FF8DA51755FEEFF45D5C8E48CEE47170000DC84ECD34935DF47BEB36D4BF579EDDD96ADF93FF552F5BD0595CCF901009053C83E6D4A4F75A9E69354D29E6B591C2D3D11F59AF50FCA4EEB7E8C0100C00D649F1E9747A7541BBD7EBC437BA8657D1C6F1F909C957BD7DC33ACFB910600008BC83E3DD4CBBBF7BF5AA53DD1D6683CBBBF49BDD4ABFB910600008BC83E0DA666E6D56498AB3FC3613F46C7E7D574E6994B4CF801009013C83E0DCA9B436A264C7B9CADE9F8F65B7572379F3BD0A4FBF106000051649F068F95467B28BFB2457B99ADE978FB4CAFDCCD3F7FBE5CF7E30D0000A2C83E0DD4971B7BEC03BCC9231C9991BB79DBBA52DD8F3700008822FB34F8E48F764B0F05FBC7B597D95A0FF51646DD8F3700008822FB34503F6591FBBFBD46F60100E025649F062AFB6C6AE9DE7BEFB539AB2EB1976E2D2737E77019276BA97BAAFBF106000051649F060EB36FD9A45B36E396DD4E7244269F4DD9794E9A8FEC030020A7907D1AAC7EB66F45ED65BFBC4D47C6E7E3B2ED48F6010090E3C83E0DECB32FDDC45BCAE9378729663FD5E724FB329BF323FB0000C81D649F06CE67FBECA7FDECABCBFE55DA8465D2B526B37D00007806D9A7C18AB2CF7E96CE7E24675CCAA4735290CCF60100E076649F065999ED733203E7703BCCF601006002B24F83ACCCF6AD68666ED93474128BCE6719C93E00007210D9A78193EC4BF9DAEB6AB26F45B37D29AFCA60C28FEC03002077907D1A38F924AF4D6F2D7BD52A67FBE2F781D93E00003C83ECD360D9D9BE9499E5B0B712926ED959C374B148F60100E031649F06CEB3CF26D752CE11A65B3E650BA68CBC949385641F00001E40F669B0A2D93E570FB20F0080DC41F66970DBBA5289A160FFB8F62C5BEBA1EEA9EEC71B000044917D1ADCBDA94262E878FB80F62C5BEB2177F3A34F94E87EBC01004014D9A7C1575E3F2A3DF4FAF10EED59B6A6A3A17B58EEE61DCFEDD5FD7803008028B24F83576BCE4B0F3DF8DA51ED65B6A6E3D9FD4D72371F2BADD3FD7803008028B24F83EEC171E9A18F7C675B68704A7B9CADDDB82BBF5CEEE6A1F77B753FDE0000208AECD3E3FE5F544912FDFBEE7AED71B646E3CD935D72076F5B573A3D33AFFBC106000051649F1ECD3DC36AC2AFA17B587BA2657D842333EA33BCAFD69CD7FD4803008045649F365F7FE39884D1277FB4DB632FF58E8ECFDF5B502977EDEE4D150B0BBA1F650000B084ECD3666A665E7D93CB1DCFED6DE98968CFB5AC8C70644635DF6DEB4ABB07C7753FC60000E006B24FA7AE81F1BB9E2F575F6EB7A5FABCF6685BE5D8DB1852AFEDCADD69BE34ACFBD10500003721FB349BBA36FF60EC6BFCD4B4DFB3FB9B5CF76EBF60FFF88B47DE579FDB952121CB3C1F00003988ECD36F61E17AE5B95E693E954D6AA869B31C1FC9FBFCD2BBEFF37E3E00007213D9972BA496CACF841E2BAD7345F0C58F8F3E51F2F0F6633B4F75F15D2D0000E432B20F0000C008641F00008011C83E00000023907D0000004620FB0000008C40F60100001881EC33486565E5DCDC9CEEBD0000007A907D06292C2C8C4422BAF7020000E841F61984EC0300C064649F41C83E00004C46F61984EC0300C064649F41C83E00004C46F61984EC0300C064649F418A8A8AC2E1B0EEBD0000007A907D06292929098542BAF7020000E841F61984EC0300C064649F41C83E00004C46F61984EC0300C064649F41C83E00004C46F61984EC0300C064EECBBEBCBC3CEB443C9B2597DDD48A6E28E1E696BD95F8256DB6B3EC06E3F767A537ADF87CBE6030B8A25500008067B83BFB922F4CB770F2E509EDB5A2A44BB94CCA9E4BB889947721650EA6DC94CD23E0444545454B4BCB8A560100009EE1EEECB3C92CFB84B2DFEC8AF6C1E6DA740B2767DF8A6E2BE3FE23FB000030999BB2CFA6E1563AEF95BCEE8A5A2ADD2A29D7B24F52FB7D8BBFD05A9EEC030000197053F629F6B37DC98B5D4F1F52D76D27DE9C645FCAFA5CE96C5FF27DB14FDB846B9D272FD9070080C95C9C7D2B5A26A19FD205D68AB22FE1B47DA2A55CD27EDD656F2865EFDA20FB000030992BB32F61B22D61622C5DC0D917927D8A65B0B0C3293D9BAB12AACE261F1D22FB000030999BB22FB984AEAFE41D782937E5642ACE66CB095B48976B29574F7749CAD3C95D6BBF8729555757D7D5D5AD68150000E0196ECA3E2579562FB9059317B6B93CE3EC737895FD949ECD55E9F231E3ECAB8959D12A0000C033BC907DF64BA69BED4B5E6CD959BA74AB2F3BB797706106B37DD753DDF195F61FD9070080C9BC997DC929961C5E09336AF62996F2AA94B38C296FC8F9966DAE4D981ABC9EF4502C8BEC0300C0642ECBBE84E249596F36D994B29356947DC99382099727EC8FFD02E96E62453B6F739713907D000098CC65D987D520FB00003019D96710B20F000093917D06696C6CACACACD4BD170000400FB2CF202D2D2D151515BAF7020000E841F61984EC0300C064649F41C83E00004C46F61984EC0300C064649F41C83E00004C46F61984EC0300C064649F4142A150494989EEBD0000007A907D0621FB00003019D96710B20F000093917D0621FB00003019D96710B20F000093917D0621FB00003019D96710B20F000093917D06894422858585BAF7020000E841F61984EC0300C064649F41C83E00004C46F61984EC0300C064649F41C83E00004C46F61984EC0300C064649F11366EDC9877B3A2A222DD3B0500006E29B2CF083B77EE8C6FBE03070EF87C3EDD3B0500006E29B2CF0857AE5CD9B061836ABEE79F7F7EDBB66DA15048F74E0100805B8AEC33C5D6AD5B55F6EDDDBB97577801003010D9678A969696F5EBD7ABEC6B6C6CD4BD3B0000E05623FB0CB269D326C9BEC2C2C2B9B939DDFB0200006E35B2CF20555555927D7EBF5FF78E0000000DC83E83CCCDCD6DD8B061626242F78E0000000DC83E00000023907D0000004620FB0000008C40F60100001881EC0300003002D90700006004B22FE72C2C5C3F74AEF727154DF71654CAF8DDC75ECFF171F7A60AD9CFEFFAEA779EEA9A9A99D7FDF8010080D4C8BE1C323239F383B2D31F7DA2447BC9AD667C7DFBB1AE8171DD8F2500004844F6E58AD2535DB7AD2B55E574577EF9B3FB9B8E043E90313A3E3F7DF57A2E0FB59F2F1E79DF9A9BFCC877B6FDA4A2696141F7630A0000E2907DFA491E7DD757AF82E9BE570EB7F444B4975CC623D83FFEE06B47D57DB9FF1755239333BA1F5DAC09DE8A00006E44F6E9A79AEF23DFD9B6A5FABCF66ECBD6FC9F7AA95A9E6899F3F318DE8A0000EE45F669567AAA4B359FA492F65CCBE268E989A8D7AC2511743FC6C81ADE8A0000AE46F6E97479744A3D89BE7EBC43FBF362D6C7F1F6017966957BD7DC33ACFB91C66AF1560400F000B24F27F53C7AFFAB55DA9F08D7683CBBBF49BDD4ABFB91C66AF1560400F000B24F9BA999793519E6EA8913FB313A3EAFA633CF5C62C2CFC5782B02007803D9A74D797348CD34687FF25BD3F1EDB7EAE46E3E77A049F7E38D0CF1560400F00CB24F9BC74AA33D945FD9A2FD996F4DC7DB677AE56EFEF9F3E5BA1F6F6488B722008067907DDAA84F147AEC55B3E4118ECCC8DDBC6D5DA9EEC71B99E0AD0800E025649F369FFCD16E79A609F68F6B7FDA5BEBA1BA41F7E38D4CF0560400F012B24F1BF5FD11B9FF8567AB1F649F7BF1560400F012B24F1B957D094F3FF7DE7BAFCD939375EDBDA938DC48C2066DB6B3EC06E3F7C76649754F753FDEC8046F4500002F21FBB449C8BEE4F65A51D2A55C2665CF25DC44CA6E4B9983293745F6791B6F4500002F21FBB44939DB97B2E49CCCDED92F9C70E1B2DD667F8B4EB22F7E0B649F7BF1560400F012B24F9BE4D9BE84D30EE7D2EC5749B956BAE9C08499459B2DC4AF4BF679D8B2FF73627F80D91F42E9B696F131B9D2FF6AE20747290013907DDA243FA1A64C28FB804B5E37E16932E5EC9DC3E93AFB5778D32D9C7C733CA1BA9793EC737294A63BAE122EB439266D0EC8844D917D00900ED9A74DFC13AACD33D9B24FA836CFBBF689E6B0FF9C9C4ED8384FA89EE1E4AD08F61DB66C082E7B0426FF87609F9599F51F47290013907DDA64F0DE3E27D967B370BA4A4B376BE2E4E93C5D3EF284EA0DCE8FD2151D90F607A7CD21B76C4ADA1C93641F00907DDA38F924EF4AB32F790BE9726DD927D174CB273C3D3BD9439E50DD2B2BD997F2F04B58D1E658B22FC274C776BAFF9AC83E002623FBB4598B8F7438BCCAFE7934B3A758B2CF93569F7D364748CA3474D27F4E4E276CDCBEF9384A011882ECD3C649F6A5CB2CFB67D965D74A7E22B44943E74FB109D5C813AA0764F7BD7D368799FDFF6FACE8B6D2E523D90700649F36CE5FE4759E7DC93D97BC9693651C5E9BF07C9CEEB9962754F772F8495E875D98F2385FB608535E922E2B537624D907000AD9A78DF31779EDF32BF91934F9E936E532CB4E9C38B9DD943B9FB01D9E50DD6B45D9679F710E93CEE6984C77C4A64B40B20F0012907DDAAC7E1EC52D832754F772F8DEBE74FF03107FDA3E0A53FE6F49CADB7278DADA3187FDC7510AC004649F36B7AD2B35E4D74ED53DD5FD7823132BCDBEE40B534E21A79C78B65FC6E1B5095383D38EA7FDC83E002620FBB4B97B53853CCD1C6F1FD09E656B3DE46E7EF48912DD8F3732619F7D295FDC4FF75681E46552CEF02DBB8C4DC3A59BDBB3DF2BB20F8039C83E6DBEF2FA51799A79FD7887F62C5BD3D1D03D2C77F38EE7F6EA7EBC9109DE8A00005E42F669F36ACD79799A79F0B5A3DA9FF0D6743CBBBF49EEE663A575BA1F6F6482B722008097907DDA740F8ECBD3CC47BEB32D3438A5FD396FEDC65DF9E572370FBDDFABFBF14626782B02007809D9A7D3FDBFA892279B7FDF5DAFFD396F8DC69B27BBE40EDEB6AE747A665EF7838D4CF0560400F012B24FA7E69E6135E127CF3ADA9FF9B23EC29119F5C2D9AB35E7753FD2C8106F4500002F21FB34FBFA1BC7E4F9E6933FDAEDB1977A47C7E7EF2DA894BB76F7A68A8505DD8F3232C55B1100C04BC83ECDA666E6D5DBA7EE786E6F4B4F44FBF35F56463832A39AEFB675A5D20DBA1F63AC0A6F450000CF20FBF4EB1A18BFEBF972F58EF22DD5E7B53F0BAE72EC6D0CA9D776E5EE345F1AD6FDE862B5782B02007806D99713A6AECD3F187BEFBC9AF67B767F93EB9E6283FDE32F1E795FBD5826434296793ECFE0AD0800E00D645FAE90679DCA73BDD27C2A9BD450F310393E92F7F9A577DFE749D44B782B02007803D9975BA496CACF841E2BAD7345F0C58F8F3E51F2F0F6633B4F75F106294FE2AD0800E001641F0047782B0200B81DD907C029DE8A0000AE46F6015819DE8A00002E45F60100001881EC0300003002D9079865E3C68D79A9BCF8E28BBA770D00B0B6C83EE3545656CECDCDE9DE0B68B36BD7AE84E0CBCFCF7FF9E5979B9A9A74EF1A00606D917DC6292C2C8C4422BAF702DA4C4C4C48E7C537DFBE7DFBEAEAEA74EF170060CD917DC621FB0C77F5EAD52D5BB6A8E67BFEF9E7DF7BEFBDB2B232DD3B0500B815C83EE3907DC692E0ABA9A99103E0C891236AC2AFAAAAAAA4A424375FF4E7DD08009075649F71C83E034D4C4CF8FDFE828202C93E89BFEBB177F8BDF6DA6BC5C5C57295EEBD4B8D031500B28EEC330ECFA646917FEBCACA4AF947AFAFAF8F9F3C93DA930BC3E1B0C67DB3C7810A005947F61987675343C8BF72454585FC73373636BAF1D5D29292925028A47B2F00C053C83EE3907D9E170E87CBCACAE41FBAA5A545F7BE648EEC0380AC23FB8C535C5CDCD7D7A77B2FB026E45FD6E7F3151515050201DDFBB25A724782C1A0EEBD00004F21FB8CC3248A27C9BFA9FCCB4AD37B26952A2A2A5C3D5B09003988EC330ED9E731D27925311EFB6725FB0020EBC83EE378AF0F8C25C1575454E4F3F93CF90F5A13A37B2F00C053C83EE3907D1ED0D2D252585828C197CBDFC0B24A641F00641DD9671CB2CFBDE6E6E654F055545478FEE3D88D8D8D959595BAF702003C85EC330ED9E746127CF5F5F586049F22812B7756F75E0080A7907DC621FBDCC5FA215DBFDF9FB33FA4B616028140595999EEBD00004F21FB8CC30724DDC20A3EF96B54F029EA2B6974EF0500780AD9671CB22FF749E4F9FDFE828202093E893FDDBB93657931F167532E46F60140D6917DC621FB72592412A9ACAC2C2C2CACAFAFD7F843BAE9522CEBDB4F48C0784343435BB76E5DD3DD0000D3907DC621FB7293049FFCD348F03536366A0C3EE596659FCD6DC903228FC69AEE06009886EC330ED9976BC2E170595999244E8EFCBBE42D49BED0C98A091B49B91D27D977F5EAD5CD9B37677207000069907DC621FB72475F5F9FCFE72B2A2A0A0402BAF7E526C9AD96F272FB659C9C70B84D004056907DC621FB7281FABC427171713018D4BD2F2964967D093379641F00E41AB2CF387EBFBFBEBE5EF75E984B3AAF242697BF3D7135B37D366BAD34FB0A0B0B0DF96E6A00B835C8BE1BF252B1BF36DD1B98AC559CDF50BA8D649D077EEA34371FD86549F0151515F97CBE5C0E3E4BCAE3DFC92A6AB1E4D309CB242F968CEC0380EC22FB6E487EEEB1799E735212D95AC65A322B4DE3E1EC5BE932D6926B1D8BEA877425F8C2E170B6B66902A9641E3100C822B2EF06E74FFC29A731522EE6E446ED7726E32DA76378F6ADDD039B6C6E6E4E059F393FA49B5D39FE523800B80ED9778393D9BEF8E0B359CCFEF265975976E3645F66CBACE9031B4F82AFBEBE9EE05BA5D2D2D2CECE4EDD7B0100DE41F6DD603FDB977C3661DD745BB09F3B5CB633C8BEEB2E796015EB8774FD7EBF813FA49B5D7CEA1C00B28BECCBD06A269C1C164CFCD90CBA271D37665F82DC7C60ADE093BF045F56907D00905D645F54169FFBE3B7793DD339A76517C86C9714B7675F0E3EB012797EBFBFA0A0401E5889BF0CB68094AAABABEBEAEA74EF05007807D99742BAE7FE1575E1DAD589C32DA7D3D8D858595999D9BAB920A71ED84824220F666161617D7DBDF61FD2F51EB7FF2F0A00E41AB2EF86742FFC252F906EC59497D867C4B2734E59CFBE9696968A8A8ACCD6D52E771E58093E791825F824A309BE35525757575D5DAD7B2F00C03BC8BE1BE2B3CF7E81652F5F659D5C4FFF3D23CEB79C8EC9D9773D1B0F6C381C2E2B2B93E0E36D676BCDD5C72A00E420B26F51FC4CCF2A5FE4B54F0AE75739593883F273EF53A9F607B6AFAFCFE7F3151515050201E71B47C6DC7BAC02406E22FBA212667AD255DDB2B37D29A791D25D956EDAC9E1EA4EAE4AC98D4FA5DA1FD85028545252525C5C1C0C0657B2E35815F5B0EBDE0B00F00EB2CF386ECC3E8DA4F34A62F8B9885B8FEC0380EC22FB8C43F63924C1575454E4F3F9083E5DC2E1B0FC13E8DE0B00F00EB2CF388140A0ACAC4CF75EE434F543BA127C921DBAF7C568914844FE2174EF05007807D9671C5E384B676E6E4E051F3FA49B23C83E00C82EB2CF38645F3209BEFAFA7A822F0765F62D45008094C83EE3907DF1AC1FD2F5FBFDFC906E0E22FB00208BC83EE3907D8A157CF297E0CB59050505FCEB0040B6907DC621FB2423FC7EBFF484049FC49FEEDD811DE9725E7607806C21FB8C6372F649405456564A49D4D7D7F343BAAEB075EBD6A1A121DD7B01001E41F619C7CCEC93E0ABA8A890E06B6C6C24F85C842FCA06802C22FB8C63DA57E0CAFD2D2B2B93E06B6969D1BD2F5831B20F00B288EC338E39DF85D6D7D7E7F3F9A471038180EE7D418624D9F9E703806C21FB8C6342F6A917B28B8B8B83C1A0EE7DC1AA545454304D0B00D942F619C7DBD9279D5712C32B83DEE0F7FBEBEBEB75EF05007804D9671CAF669F045F515191CFE723F8BCA42646F75E008047907DC6F15EF6A91FD295E00B87C3BAF7055946F6014016917DC6F14CF6CDCDCDA9E0E387743D4CFE89E5DF57F75E008047907DC6F140F649F0D5D7D7137C2620FB00208BC83E836CDCB831EF66AEFB023FEB8774FD7E3F3FD5EA6D1E385C0120D7907D06D9B97367FC93E88103077C3E9FEE9D72CA0A3EF94BF099C0D5872B00E426B2CF2057AE5CD9B061837A127DFEF9E7B76DDBE68A0FBD4AE4F9FDFE828202093E893FDDBB835BC4A5872B00E432B2CF2C5BB76E55CFA37BF7EECDFD97CC2291486565656161617D7D3D3FA46B20771DAE0090FBC83EB3B4B4B4AC5FBF5E3D8F363636EADE9DB424F82A2A2A24F86427093E63B9E5700500B720FB8CB369D326791E95A2CACD9C0A87C3656565B27BFC2417AEC70E5729BF9C3D5C01C05DC83EE354555549F6F9FD7EDD3B92A8AFAFCFE7F3151515050201DDFB825C91B3872B00B811D9679CB9B9B90D1B36E4D4876143A1504949497171713018D4BD2FC82D3978B802807B917DD0493AAF24860F690200B0D6C83EE821C1575454E4F3F9083E00006E0DB2CF200B311F265197DFB2DD503FA42BC1170E876FD98D020000B2CF142AF846474323235D8303DD326662E6E6E6E6E7E755FCADE90EC80DA9E0E387740100D082EC33C252F375BFF18B4F5BE3725F706262627A7A5AE26F4DCB4F82AFBEBE9EE0430616D2D0BD5F00E04A649FF7A9E61B19E992D4DBFEEA1F6CDBF28732E4C41BBFFCE3EEAEB3D261127F57AF5E9538CB7AF9593FA4EBF7FBF930269C887F2B82FCDF881C96B349AC29EA5BFF1605007035B2CFE3929BEF6C4BE1D9338556F95DE8681C1A1A1A1F1FCF6EF959C1277F093E3861059F1C875363E3DDA79B03EFD61CFBD58E9AD7B6AB21672F9C6C880C8F4C4D4DC90176EDDA359580C41F003844F679598AE63B53383AF69BC86F4F44CBEFD568F96D7BF58FDA830D527E63636359293F893CBFDF5F505020C1271BCCE2DD815759C127B577E2CDDDC50F3DF2E4EF7FFA7B1FFBAF29875CF5DA17BF263938D0DF2F079B24A0F41FF107004E907D9E95B2F924F824FB92CB2F78FED4EACB2F1289545656161616D6D7D7F3535A70481DA8926E35AF6D7FF68ECFC4E7DD0B7FFD77859FFB42E9238FCB901372363E076561FF2BBF1C1E1C4A8E3FDDF709007214D9E74DE9E6F9467F7B626CB26972B26934D67FD92A3F09BE8A8A0A09BEC6C646820FCEA903B5BFAD7DE33D9F5531F7D427FE64FBC38F9E7B73E7D5CECEF9DEDE8421179ED9B14B16B0FA2FFF337FD3567B62646444BD4575767696F2038074C83E0F4A37CF276332D67C6AA869BF55965F381C2E2B2B93E06B6969B935F70E9EA10ED4B307FDAAE19EF8F87FF3FDDB7F445ACE26D75EF290C54A1F795C5651F382C776EE191C1C9443776A6A8AF2038074C83EAF49FBDA6EACF9C696863AAD5EF33DDB9249F9F5F5F5F97CBEA2A2A24020708BEF233CC06A3E956E1BEFF96CFFF13A27C1173FFA6A8EE77FE66F54321EDDB153FE27241289507E00900ED9E729299AEFDCCFE35FDB9D8C6B3EABFCA2EFF33BF773E7E5170A854A4A4A8A8B8B83C1A0AE7B0A5753076AE0DD1AD57CAF7DF16B295FD2753264C5ADF77F4595DFB19D7B283F00B041F6794772F3B59C7D7964F4F868E4F8F8C4A9E8183F2D2332DEA0CE5A27640119B2F0B2E5279D5712C30FE92263D6FBF99EBEFD4EC9B5C2CF7D61B6A727B3E65343567FE9BE07D4FB02CF1CABA5FC00201DB2CF23929BAFF9CC0B43C3EFC9188D9C8C8EB1DF2C9E4835D492B24ABAF23B7FFE7C515191CFE723F8B04A72ACCA41A55E9CCDBBEBAF26DBDA52C6DCE0A9D3359B5E7AED8B5FDB72DF036A943EF278C3D6A2940BCB46F2EEBC476DB0A3BD7D6060C03A74C93E00B0907D5E90DC7C0DA7377F307044C6952B87F6EDFC9F7261F53B5F1D193E363872D3900BE52A5940160BC796971593CBEF8D37DED8BD7B777F7F3FCFA0582575AC1E79698B24DAF77FEF5329DFCF270D278597EE7BFB9EBEFD4EC9C1E4B56453B24159E0CD6736C8FF9C0C0E0E4E4C4C5CBB768D093F00B0907DAE97DC7CA74FE55FEEADBCDC7FB0F7F201D57C6A541D7A50DACE1A72D6BA4A169385FB3E88AE25AB67F7FBFC008BFA4E66F5F2EEDB4FFE38B9DE7AAB6BD4B5F6E3B52F7E2D799A70FF779F522FF5BE7FE68C6C696424FA7B1EEAB8D57DBF012027907DEE96DC7C274FADEFBB5C1EEA2D9786FBF55BF75861B7587E955F92CB2F5DAE94130957C9C272955A573642F921EBD4E17AEC573B549C8D9F0BCC7477C78FD03B7E27CDA7C6CFEEF96CC2EAB241F55D30BFFEE98B5D5D5DE170588E5B26FC00C042F6B95872F3FDE6C48F2F867C3224DD6424849D1A470E7D5146CAAB7A2EEDEFE9DDDF79718F6C413645F921BBE4B091E3A7F0735F90322B7DE4F1C9B6B684F1B3A52F6D7638DE7EF2C7376DA1B56DFBC38F46BF0EE67F7DAEB5B5357EC28F231600AE937DEE95DC7CC78F3DDDD1597AA163A7749B1A870FFC63CABC4B3964616BC50B9DA5B229D920E5872C52AFF0AA2F6D3957BA2BD2D414696A8CFD6D8A34361E79367F45CDA746E81DBFACBBB89DC6A6736FEE545FE6D274AAA1ABAB6B6060606262427DA457F7BD0700FDC83E5752CD373ADA1DD77CEBDADADF90D1112B366B1CAAB8DF49F3C9621D1DBB6EACD8B14B6D2DB9FCC6C7C7A5FCE6E7E7791E85E5E5975F7EFBEDB7E5C0B05F4C8E990B271BD4EF6A0C1E3F9E30E27F90D7F9287DE4F184EDA80F761CDC51DAD1DEDEDFDF6FBDCE7B6B1E0A00C865649F2B49F68D8E86E29B2FD0FABA8CB6F61219ADED3BDA3AB69F6FDF71BE233A0EEDFFFB659A6FFFDF073B7644D7EDD82E7F65C5E8DF8E1D6A9BEF55AFB3CAAF3DD820E537313131333323E5A7FB6140AEC88BD9B061C31B6FBC71E5CA95748BC93173724FB934D90B7FFD7797FD87A3E3B05F8D86AD4519349F0C89C5BE4387A21B59DAA0FA795F5F4161FCEBBC1CAE00709DEC73A9C597777FF9C7D27C926581D65FCA387FFE0D1981F3C532D409EB6C65F9E7D3359F5C15BF70C28A6ACBAAFC8AB77EEADCD9DAFEFEFE4824323D3D3D3737A7FB6140AEC88BB37EFDFA9FFFFCE70D0D0D09CBA837F6D5BCB65D7D0EF7E2BE7DF1E3ED277F9C59F6C948D8947AEFE09BCF6C3877EE5C2814E2ED7D006021FB5C49B26F70A05B65DFF1634FAB69B9F31D3BD43C9F8C60C78EC509BCF692A0ED849F5C252BAAB5D46C9F9A298CFE5D9AF0532FF54AF635351EEDE9E9B126FC4A4A4AF28034366FDE1C7FD04A75CDCECE1EFDE53669B2E2871EB9B06B57FC28FDEABF649C7D273617C46F4A9A5265DF993367BABABA060707D52F76907D0040F6B992957DD60778D55BF12E7496AA4F635C58C9DBFBA26FEC8BAD72E1E615D536AD8FF44AF69D3EFD6E7777F7C0C0C0F8F8B8649FEE8701B9C24ABDBD7BF7EED9B3A7B0B0B0B2B2321289C42F93907DC11D3BE2C72AB32F7E5309D9677DAA83EC0300B2CF9524FBA4BA2EF705B7BDFA47B177DDFDE18993CFA956B33E8DBBA20FF3C67F8C37FEC3BCB259ABF96A8F1F0C0402641F9249F0959797EFD8B14382AFB1B131E5673BE2B36FEBFD5F4998ED53DFB49CD948D894F5222FD9070009C83E5752D9274F66DD5D67ADF23B796AFDC5902FFAAD7BBDD1AFDF0BF596A7FB7EBE74DFE7D773697F745DF91BFBF23FEBE73AA4F96A6A2A9A9B9BDBDADAE25FE4D5FD3020576CDEBCB9B4B4B4B3B3D36619957DD6473A12DE90B79A8F74246C4AFDDAEFAF7FFA22D9070009C83E5792EC9B9B9B9B9E9E8E4422173A1AADF26B38BDB9F77279DFE5F24B97A33FC59132EFAA2ABF94FC131D6A447FA563E9873AAC1FE795E67BEFBDFD0D0D0D8140409ED7F9480732A3B2AFADF6C4F7625FE012FDF8ADFAECEDD2C8F00B5CBEFA2F8B1F078E7D8C57366B7D810BD9070009C83E579227B0F9F97935E1373434D41E6CB0CAAFF9CC0BAADEC20347E27F9077FBCD3FCB1BFF83BCDB977E96F783812397FB0FCA908D2434DFB973E72E5CB8D0D7D7C717B820332AFB22C323EAEB9A1BB616257CDF5E665FD77C71DFBEF88DA85943B9899AA347F94807002420FB5C497D5DB384D7D5AB57C7C7C725C582E74F59E5D772E62509381957AE1C8A2FBFEA77BE3A38726C64F85878B8464EC8D9F8E69385D55AB27A72F3757474F4F6F69AF075CD797979E92E4FE716EFA14BA92F7091027BE9BE07A4CCB63FFC68A431FABB1ABF8DFBBB39F6FAACF3B1FFBB4FC57E9FA371E9073F1A8B1F7A442EDF78CF674F9C38C117B8004002B2CFAD54F9C9939944D8D8D85862F935FF7C68F83D19838355AAFC24F246232713862A3F59401653CBCB8A36CD67C28FB339C938E7A9472CC693FF5B9002F3BFF24B29B3A73EF12743F5A7127E93B7ABE2E0D3B7DFE9B0F95EF9DBCF4FB6DEB4BA6CF0C9DFFFB45CB5EDA96724FBF8BA66004840F6B9987DF99D3BF79FA391E33222E30D32C6274EC9583C3D7E5A9D8D8ED8E991D1E3326415C39BEFFAEAB2CF3EE9CC4CBD7872E45CBB766DA0BF5F9A4FE2CCF76FFF31D3DD9D3042EFF8F3EEBC67D9E68B4E16B69C4D58B7F491C7555056FBFDA74F9F0E0683FC381B00C423FBDCCDBEFCDE7F7FCBE8D86F648C4D36A931B9F47772E9B48CC86F4FC832B230CD777D15D9177FE1B20B984965DFD4D8F8AF7FFAA2F4D9F77FEF53BDD535F3BDBD0963B2ADCDE6FB5C240A1BB61625AF259B521FE6287AFC3F4E9C3811FF790EB20F0014B2CFF59C979FD579F1A74769BE18ABC9924FD82CBCA205C83EEBED7D8357AEA8AF59C9BBEBAF265BDB921B4EC55FCDA6974A1F797CCB7D0FA8212D7866C7AED40BB7B6A939C267EFF84CCDD1A3A74F9F8E7F859737F6018042F679C1B2E5179DCFFBED89C99B67FBA2CD37F61BB98AE6BB9EA6F6E22FB417BF4A066B19421DA8D7AE5D9383AAADBE41BDD4FBD27D0FCCF6F4A48C398743567FE1B39F572FEF1EDC51AA3ECCD1D5D5150E87AD57783D7CE8028073649F473899F393C28B9FED53B38034DFF5F4AFCF66FC2E3D66FBD29103697676766A6A6A6464E4E49E72F5652E859FFBC2645BEA39BF6587ACA83E1A2C9BF215144AF3A977F559537D7273BCC20B000AD9E71D2B2A3F9A2F9E4DEA651670C90BA84B283F6BC26F6262627070F0D8CE3DAAFCF2EEBCA7FF78DD4A9B4F56515FF2AC9AAFB6B656BDBC1B0A8564E3D6BBFABC7DF4028073649FA7382C3F5EDB8D67DF79CEB3CF7E9A90ECB3A877F8A94374606040CA4FBDDAFBFDDFFBD4F6871F4DF756BF84317E2E200BABCF70C8EAF1CDA73EC9611DC0DE3E7A016045C83EAF71F23E3F9ACFC65A7C818B93178ECDA10E51F5526F24120987C3678ED5E6DDF557EA83BA4FFEFEA78B1F7AE4CC8E5D33DDDDC9B52717CA55B280FA7E3E354D787047697CF3C90665B3D6CBBBA61DC0006083ECF3A065CB8FE6B3B19AEC73B830E5975C7E1DEDEDBFFEE98BF1DFD52C6197FF99BF79E9BE07B63FFCA80C392167ADDA53937CDB9E7AA6E6E851F5752D341F002C8BECF326FBF2B39AAFA6A682E6B338F980ED8A3E846BB3A4999FE48D97507E0303033D3D3DEF9F39E32B2894C253AFDEA61C72D50B9FFDFC9BCF6CA8F6FBD50738E4000E0683B2BA6C84E603001B649F67A52B3FA93D356A8F1F6C6E6E0E0402172E5CA0F970EBC5979F1C7B838383721C767575B5B6B636D69FAADEB967DF965F4ADE5943CE1EDC51AAA6F76401157C6A924F5694D56523341F00D820FBBC2CB9FCDA830DE7CED636351E3D7DFA5D09BEB6B6B6CECECEBEBE3E9A0F5A58E527C7DEC4C4C4C8C8C8C0C0808ABF8EF67649BA733167E2A84BE42A5940059FAC222BCAEAB2119A0F006C907D1E175F7EE3E3E39277FDFDFD3D3D3DDD317242CECA857215CD072DAC4334FABB6D535356FCC99129492787682814EA8A2367E542B94A1650C1A726F964750E6000B047F6795F7CF9C9736A241291CE1B88911372564D93F094095D166212E24F626E747454AA6E30461DB1EAB45C2857C902B25842F0710003800DB2CF08EA39757E7E7E6666667A7A5A9E2CC763E4849C950BE52A9A0F7AC5C7DFECECACEA3F65228E75A12C208B117C00E01CD9670AABFCE46972268E9CA5F9903BACF8B30ED7D924D6414BF001C08A907D0072D7421ABAF70B005C89EC0300003002D90700006004B20F0000C008641F00008011C83E00000023907D0000004620FB0000008C40F60100001881EC0300003002D90700006004B20F0000C008641F00008011C83E00000023907D0000004620FB0000008C40F60100001881EC0300003002D90700006004B20F0000C008641F00008011C83E00000023907D0000004620FB0000008C40F60100001881EC0300003002D90700006004B20F0000C008641F00008011C83E00000023907D0000004620FB0000008C40F60100001881EC0300003002D90700006004B20F0000C008641F00008011C83E00000023907D0000004620FB0000008C40F60100001881EC0300003002D90700006004B20F0000C008641F00008011C83E00000023907D0000004620FB0000008C40F60100001881EC0300003002D90700006004B20F0000C008641F00008011C83E00000023907D0000004620FB0000008C40F60100001881EC0300003002D90700006004B20F0000C008641F00008011C83E00000023907D0000004620FB0000008C40F60100001881EC0300003002D90700006004B20F0000C008641F00008011C83E00000023907D0000004620FB0000008C40F60100001881EC0300003002D90700006004B20F0000C008641F00008011C83E00000023907D00000046F8FF5B4AAF2BC40880BA0000000049454E44AE426082, '130008', 0x51696E674A69614E65772E706E67);
+--
+-- 转存表中的数据 `jbpm4_lob`
+--
 
--- ----------------------------
--- Table structure for `jbpm4_participation`
--- ----------------------------
-DROP TABLE IF EXISTS `jbpm4_participation`;
-CREATE TABLE `jbpm4_participation` (
+INSERT INTO `jbpm4_lob` (`DBID_`, `DBVERSION_`, `BLOB_VALUE_`, `DEPLOYMENT_`, `NAME_`) VALUES
+(130009, 0, 0x3c3f786d6c2076657273696f6e3d22312e302220656e636f64696e673d225554462d38223f3e0d0a0d0a3c70726f63657373206465736372697074696f6e3d2251696e674a69614e657722206b65793d2251696e674a69614e657722206e616d653d2251696e674a69614e6577222076657273696f6e3d22312220786d6c6e733d22687474703a2f2f6a62706d2e6f72672f342e342f6a70646c223e0d0a2020203c7374617274206e616d653d227374617274312220673d223134322c31362c34382c3438223e0d0a2020202020203c7472616e736974696f6e206e616d653d22e58ebbe5a1abe58699e8afb7e58187e58d952220746f3d22e5a1abe58699e8afb7e58187e58d952220673d222d38332c2d3137222f3e0d0a2020203c2f73746172743e0d0a2020200d0a2020203c7461736b206e616d653d22e5a1abe58699e8afb7e58187e58d952220673d223131382c3131362c39322c3532223e0d0a2020202020203c7472616e736974696f6e206e616d653d22e68f90e4baa4e983a8e997a8e7bb8fe79086e5aea1e689b92220746f3d22e983a8e997a8e7bb8fe79086e5aea1e689b92220673d222d3130372c2d3133222f3e0d0a2020203c2f7461736b3e0d0a2020200d0a2020203c7461736b206e616d653d22e983a8e997a8e7bb8fe79086e5aea1e689b92220673d223132302c3232342c39322c3532223e0d0a2020202020203c7472616e736974696f6e206e616d653d22e698afe590a6e5a4a7e4ba8e33e5a4a92220746f3d226578636c7573697665312220673d222d37392c2d36222f3e0d0a2020203c2f7461736b3e0d0a2020200d0a2020203c6465636973696f6e206e616d653d226578636c7573697665312220657870723d22237b636f756e744461793e3d33203f2027e5a4a7e4ba8e33e5a4a927203a2027e5b08fe4ba8e33e5a4a9277d2220673d223134332c3333372c34382c3438223e0d0a2020202020203c7472616e736974696f6e206e616d653d22e5b08fe4ba8e33e5a4a92220746f3d22e7bb93e69d9f2220673d222d32342c36222f3e0d0a2020202020203c7472616e736974696f6e206e616d653d22e5a4a7e4ba8e33e5a4a92220746f3d22e680bbe7bb8fe79086e5aea1e689b92220673d222d33382c2d3134222f3e0d0a2020203c2f6465636973696f6e3e0d0a2020200d0a2020203c7461736b206e616d653d22e680bbe7bb8fe79086e5aea1e689b92220673d223334362c3232372c39322c3532223e0d0a2020202020203c7472616e736974696f6e206e616d653d22746f20656e64312220746f3d22e7bb93e69d9f2220673d222d34372c2d3137222f3e0d0a2020203c2f7461736b3e0d0a2020200d0a2020203c656e64206e616d653d22e7bb93e69d9f2220673d223337332c3333382c34382c3438222f3e0d0a3c2f70726f636573733e, 130008, 'QingJiaNew.jpdl.xml'),
+(130010, 0, 0x89504e470d0a1a0a0000000d4948445200000352000001d0080200000024a3ccaa000037d049444154789ceddd7d705ce57de8f1cef4cffc974c667a6927e5e64eda1b7a69e9749a813bed1d3acd1d9a99db509a175272d39092046e4b9a9062421208b28563130411b5490491b10cb2bd76245bc6325e0b19d9526c599664d9ace4952cc92b4b166bbd6ef46aeb05f9fe761fe978bd2f4747ab959f3de7f97ee619cdbe9c73f6ecfa30fbe5d9b7dfb90e00000003fc8eee1d000000c0ad40f60100001881ec0300003002d90700006004b20f0000c008641f00008011c83e00000023907d0000004620fb0000008c40f60100001881ec0300003002d90700006004b20f0000c008641f00008011c83e00000023907d0000004620fb0000008c40f60100001881ec0300003002d90700006004b2cfcb1616163e8c999f9f9f4b43ae52cbc8c2baf7170000ac21b2cf9b54f049d5cdcccc5cbd7a756a6a6a72727222895c2857c902b2982c4cfc0100e061649fd758c177edda35a9ba83f55b376effa7fff7d3bff8a7a73ff18fdffff83f7cef6332e4849c950be5aab74f6e1d1919191b1b93856515e20f0000af22fbbc233ef8c627c6b6963dfead0d7ffae575b7fdeba6bffcd95bff5c5e5b702674f883c9a00c392167e542b94a1690c564e12b03e1482442fc0100e055649f47a8e69b9d9d9d9e9e2e3d92f7edfc3ffbc67377bcb2e7d18e819391f95e9b210bc862b2b0acf2d691bcc1c1c1b1b131d9886c8af20300c04bc83e2f50cd373333333535f5fc1b5f7ee887b717fabe6d5f7bc94356911565f5fefefed1d151d9946c90f20300c033c83ed7b39a2f3c1c7aea3ffff7e32fdc5d777ecf4a9b4f0d595156978d5c0805868787272626283f00003c83ec7337abf924d124d79ede72dfc0d50b99359f1ab2ba6c443675e9d2a5a1a121ca0f0000cf20fbdc4dbd9f6f6a6a2a7fdb971e7fe1ee55369f557eb229d9a094dff0f0b06c5cbdcf4ff77d050000ab42f6b9d8c2c2c2dcdcdcf4f4f40eff330ffdf0f68c5fdb4df96aaf6cb0e4f033bdbdbda3a3a3721372434cf80100e06a649f8b7df8e187d7ae5d8bfc76e45bf97fe6f4331c732bf884876cf67cb0b5bfbf7f6c6c4c6e88093f00005c8dec732b35d537393959b8f7d16f3cf7e9e199eee1998b43b3dd3286e5efccc5e8d999e889e8e95935e4aa8bb14ba20bcb2a437276562d105d317af9ecd285b31765b3b2f1aeaeaec1c141b92126fc00007035b2cfad16a7fa22916faeff1f2fed7e243c1dfc206ec8d9f054ecaf3a3b15bb5c5d32d51e9e6e0f2f2d7663f9e9c565acb3b259d9782010e8ebeb931b62c20f00005723fb5cc99aeadb5bf3b32fadbbada9e79d9eb196d8382b7f2fa9d3e3d113eaf4a5f196c505c6cfaa657aa2979cbd141d3716b616b8145ba529744836befbe8a6cece4e26fc0000703bb2cf95d497b68c8d8de5fdea814737fe79c7f0c98e91fa0b6a0c9f54a363584eab4bea3ba22376e148ec746cc9d8df93b1cb6367ad6bd559b96ae4a46cfcb95f3dd0dada7af9f265b939f5652ebaef3d0000c804d9e74ad25e57af5e1d19897e9843ca2f70e5bd403836aebcf7fed2885d78542e7c3ffcdee202578e06d4e5ea4438b6586c81e82a4b270237567f4f9a4f6ea2b9b939140ac9cdc98d927d0000b814d9e74af3f3f35353534343430ffee00f8a0e7ebfa9ef9da6be43b1bfd1d1ac4ef45a17cadf43cdb14b9ae5b4babc572d63adb57449dc85b2b06c5c6ea2a1a1a1abab4b6e4e6e546e5af7bd0700009920fb5c49bdb16f6060e081273ebeefd4cb272fee3b19da7ff2e2fefad08d11bd24b4af3eb44f9d38b978e13e5938b680ba4a9d556371316b49b950362e3771e2c4898e8e0eb939f5f63eddf71e00006482ec732569af8989897038fc0fdffb58f5f91db55d7b64d4c5fe2e9ee85467f7c6ceeeadebdc7bf3b57279f41275615da7b5fadec5b3d1e5a30b1c6ddb2137515757170c06e5e6e446c93e00005c8aec73a5f8ec7bb7f58d6317761fbbb06b69ecbee96c67f4ecf10bbb8e77ee52278e75ee8a9e55172e2ebf746de7aef8edc83255addbe5266a6b6bc93e0000dc8eec73252bfb1e78e2e37b4f6c8ee65ae7eec586eb54312725a7fa6ff752f0ed56d7aad38bcdb7d479c7978a707199c57577edf9cd66b909c9bef3e7cf937d0000b81ad9e74a56f63df8d41f6cd9ff6feaf5d9ba2eeba5dbc59768d52bbcb55d375ee1b516a8bdb1985ac01a7be24eec918dcb4d907d00007800d9e74a56f67d73c39d3f2efa3ff19fe4a8efb9e9831da92fb1bf3c6ec8c6e52678911700000f20fb5cc9cabe678bfefe5bf97f6a7d758bfaf69666eb3b5cacd3976f5cde9cb8d8e1e6e8782771c456918dcb4df0910e00003c80ec7325eb0b5cdeaacafbd293ffe578fbeec0959aa5af625e1cad717f97aead69b51608d7dc5865e9ab9e97bed5b9465d521bdc2d1b2f39fc13bec00500000f20fb5cc9fabae6aeaeae7fc9fb93cd6ffddfc5df615bfc7db6c571e317db466ebe36e9ece2cfb5c55d2597c86665e3870f1fe6eb9a0100f000b2cf95ac1f670b854205bbbef1f04ffe7bcff8d94b632d97c6cff6c8dfb1969eb1b3d1d3d1b1743676ede28572c9b81ad14b16578c9e38abb610dbc859d9ac6cbcbaba9a1f670300c003c83e5792f69a9999191b1bbb7cf9722070ee9b1bee943efb603a189e0e5a7f3f583cddbe7876aa5d5d155e5ca07de974fb8d65d48553d1cb6583b2d983956fd7d6d6b6b6b6ca0dc9cdc98d927d0000b814d9e74a0b0b0beaed7d8383839d9d9dbf3ab8eea11fde7e3cb06b68a67b78f6e2d0ccc56119b3ddd1bf33dd43b3ea7477f4ef6cf7e2b5331787624b4657510b47c7c5d8e83edeba4b36f8fadbeb8e1c3972faf469b909b921f5c63eb969ddf71e00006482ec73ab0f3ffcf0dab56b9148a4afaf2f1008ac2ffec2e32fdc3d70f54264be77954336229b920d1e3c78b0b6b656362e3721372437c7541f0000ee45f6b955fc845f5757575353d3ba57fef6e92df7a52abf4b2b6a3ed9886c6afffefd478f1e95cdcac699ea0300c003c83e1753137e636363fdfdfdc160b0ee74b5e4dae32fdc5d777e4f26f37c73bdb2a2ac2e1b3970784f5555d5a953a764b3b271b909a6fa0000703bb2cfc5d484dff4f4f4e8e8686f6f6f5b5bdbc9932737147fe1a11fde5ee8fbf64ab34f56911565f57dfbf61d39724436251b94cdcac6e52698ea0300c0edc83e77fbf0c30f676767a7a6a68687872f5dbad4dada2ab9b6adf207dfcaffb36f3c77c72b7b1eed1838695f7bb2802c260bcb2ac5077fb07ffffeaaaa2ad9886c4a36289b958dcb4d30d5070080db917deeb6b0b0a0becc6562626268684842adadadedd4a95347dfab2edcf3e83737dcf9e575b7fdeba6bffcd95bff5c5e5b702674f883c9a00c392167e542b94a1690c564e1f27d65070f1e3c7af4a8ac2e1b914dc90665b3ea4b5b98ea0300c0edc83ed78b2fbfe1e1e1dedede6030d8d4d4545b5b7be4c891ddd53fcddff6e5c736fec53f3dfd897ffcfec7ffe17b1f932127e4ac5c2857c902e5e5e5127cb2b0ac222bcaeab211d914cd07008097907d5e6095dfd4d4d4e8e8687f7f7f5757572010387dfab4945c7575f5e1c3872b2b2ba5edde7efbed03317242ceca8572952c208bc9c2b28aac28abcb466453341f00005e42f679842abfd9d9d9e9e9e9b1b1b1c1c1c1bebebecececed6d6d6e6e6e686868613274ed4d5d5d5c691b372a15c250bc862b2b0ac222bcaeab211f57e3e9a0f0000cf20fbbc4395dfdcdcdcb56bd726272723918834dce5cb9743a15057575747474730e67c8c3a2d17ca55b2802c260bcb2ab2a2ac2e1ba1f90000f018b2cf6b12e26f6c6c6c6464646868686060209c442e94ab6401598ce00300c0dbc83e6fb2e26f6666e6ead5ab53535352751349e442b94a1690c5083e0000bc8decf332157f627e7e7e2e0db94a2d43f00100e06d649f592a2a2a74ef020000d083ec334b5e5e9eee5d0000007a907d6621fb00003016d96716b20f000063917d6621fb00003016d96716b20f000063917d6621fb00003016d967904824525858a87b2f0000801e649f41c83e00004c46f6a57ddd33e1f2e4c5f296936ead15edc6b2fbb0ec5a16b20f000093917dcb74d8b249b76cc62dbb1d6bb1848d272f9370732b7da31ed9070080c9c8becc67fbec2f5fd1cdd974647c3e2edb8ef6c83e00004c6668f62d9b50e926de524ebf394c319b651c665ff285c9cbdb20fb00003099a1d9176fd9693cfb693ffbea4a9989e99649d79af18b394ccc94c2e170515191c385010080c7907d8eb2cf7e96cec9f6ed8b2de53c9fcd7e6636db170a854a4a4a1c2e0c00003cc6c4ecb399364b4eb1ebb6d37b4e66e01c6ee7fadacff6917d000098ccc4ec8b67d34c36bdb5a2cd3ad94e5ed26c5fba585c76b76d907d000098cce8ec4b9959f19724d758ca251d6e79a5b37d29af5acd841fd9070080c9cccdbe949d177fdabeb796bd2a79b32b9aed8bdf07273bef04d9070080c90ccdbe954e9be5d9bee46ab3fc7567b386e96291ec030000d96268f6a59332a76c722d79c9e4764c998cf6b37d29270b1dee838d9696968a8a8a0c560400001e40f61984ec0300c064649f41c83e00004c46f61984ec0300c064649f41c83e00004c46f61984ec0300c064649f41eaebebfd7ebfeebd0000007a907d06a989d1bd170000400fb2cf20641f00002623fb0c42f601006032b2cf20641f00002623fb0c42f601006032b2cf20641f00002623fb0c525151d1d2d2a27b2f0000801e649f41c83e00004c46f61984ec0300c064649f41c83e00004c46f61984ec0300c064649f41c83e00004c46f619c4e7f3058341dd7b010000f420fb0c525252120a8574ef050000d083ec3308d9070080c9c83e83907d0000988cec3308d9070080c9c83e83907d0000988cecf3be8d1b37e6ddaca8a848f74e0100805b8decf3be9d3b77c637df8103077c3e9fee9d020000b71ad9e77d57ae5cd9b061836abefcfcfc6ddbb6f1522f00000622fb8cb075eb56957da5a5a5bcc20b008099c83e23b4b4b4ac5fbf5eb26fe7ce9d8d8d8dba770700006840f69962d3a64df9f9f92fbffcf2dcdc9cee7d0100001a907da6a8aaaa5abf7efd81030774ef080000d083ec33c5dcdc5c7e7efef0f0b0ee1d0100007a907d0000004620fb0000008c40f60100001881ec0300003002d90700006004b20f0000c008645f0e5958b87ee85cef4f2a9aee2da894f1bb8fbd9ee3e3ee4d15b29fdff5d5ef3cd5353533affbf103000076c8be9c303239f383b2d31f7da2447bc9ad667c7dfbb1ae8171dd8f250000488decd3aff454d76deb4a5539dd955ffeecfea623810f648c8ecf4f5fbd9ecb43ede78b47deb7e6263ff29d6d3fa9685a58d0fd9802008024649f4e9247dff5d5ab60baef95c32d3d11ed2597f108f68f3ff8da51755feeff45d5c8e48cee47170000dc84ecd34935df47beb36d4bf579eddd96adf93ff552f5bd0595ccf901009053c83e6d4a4f75a9e69354d29e6b591c2d3d11f59af50fca4eeb7e8c0100c00d649f1e9747a7541bbd7ebc437ba8657d1c6f1f909c957bd7dc33acfb910600008bc83e3dd4cbbbf7bf5aa53dd1d6683cbbbf49bdd4abfb910600008bc83e0da666e6d56498ab3fc3613f46c7e7d574e6994b4cf801009013c83e0dca9b436a264c7b9cade9f8f65b7572379f3bd0a4fbf106000051649f068f95467b28bfb2457b99ade978fb4cafdccd3f7fbe5cf7e30d0000a2c83e0dd4971b7bec03bcc9231c9991bb79dbba52dd8f3700008822fb34f8e48f764b0f05fbc7b597d95a0ff51646dd8f3700008822fb34503f6591fbbfbd46f60100e025649f062afb6c6ae9de7befb539ab2eb1976e2d2737e77019276ba97baafbf106000051649f060eb36fd9a45b36e396dd4e7244269f4dd9794e9a8fec030020a7907d1aac7eb66f45ed65bfbc4d47c6e7e3b2ed48f6010090e3c83e0decb32fddc45bcae9378729663fd5e724fb329bf323fb0000c81d649f06ce67fbeca7fdecabcbfe55da8465d2b526b37d00007806d9a7c18ab2cf7e96ce7e24675ccaa4735290ccf60100e076649f065999ed733203e7703bccf601006002b24f83acccf6ad68666ed93474128bce6719c93e00007210d9a78193ec4bf9daeb6ab26f45b37d29afca60c28fec03002077907d1a38f924af4d6f2d7bd52a67fbe2f781d93e00003c83ecd360d9d9be9499e5b0b712926ed959c374b148f60100e031649f06ceb3cf26d752ce11a65b3e650ba68cbc949385641f00001e40f669b0a2d93e570fb20f0080dc41f66970dbba5289a160ffb8f62c5beba1eea9eec71b000044917d1adcbda94262e878fb80f62c5beb2177f3a34f94e87ebc01004014d9a7c1575e3f2a3df4faf10eed59b6a6a3a17b58eee61dcfedd5fd7803008028b24f83576bce4b0f3df8da51ed65b6a6e3d9fd4d72371f2badd3fd7803008028b24f83eec171e9a18f7c675b68704a7b9cadddb82bbf5ceee6a1f77b753fde0000208aecd3e3fe5f544912fdfbee7aed71b646e3cd935d72076f5b573a3d33affbc106000051649f1ecd3dc36ac2afa17b587ba2657d842333ea33bcafd69cd7fd4803008045649f365f7fe39884d1277fb4db632ff58e8ecfdf5b502977edee4d150b0bba1f650000b084ecd3666a665e7d93cb1dcfed6de98968cfb5ac8c70644635df6deb4abb07c7753fc60000e006b24fa7ae81f1bb9e2f575f6eb7a5fabcf6685be5d8db1852afedcadd69be34acfbd10500003721fb349bba36ff60ec6bfcd4b4dfb3fb9b5cf76ebf60fff88b47de579fdb952121cb3c1f00003988ecd36f61e17ae5b95e693e954d6aa869b31c1fc9fbfcd2bbeff37e3e00007213d9972ba496cacf841e2bad7345f0c58f8f3e51f2f0f6633b4f75f15d2d0000e432b20f0000c008641f00008011c83e00000023907d0000004620fb0000008c40f60100001881ec33486565e5dcdc9ceebd0000007a907d06292c2c8c4422baf7020000e841f61984ec0300c064649f41c83e00004c46f61984ec0300c064649f41c83e00004c46f61984ec0300c064649f418a8a8ac2e1b0eebd0000007a907d06292929098542baf7020000e841f61984ec0300c064649f41c83e00004c46f61984ec0300c064649f41c83e00004c46f61984ec0300c064eecbbebcbc3ceb443c9b2597ddd48a6e28e1e696bd95f8256db6b3ec06e3f767a537adf87cbe6030b8a25500008067b83bfb922f4cb770f2e509edb5a2a44bb94cca9e4bb889947721650ea6dc94cd23e0444545454b4bcb8a560100009ee1eeecb3c92cfb84b2dfec8af6c1e6da740b2767df8a6e2be3fe23fb000030999bb2cfa6e1563aef95bcee8a5a2add2a29d7b24f52fb7d8bbfd05a9eec030000197053f629f6b37dc98b5d4f1f52d76d27de9c645fcafa5ce96c5ff27db14fdb846b9d272fd9070080c95c9c7d2b5a26a19fd205d68ab22fe1b47da2a55cd27edd656f2865efda20fb000030992bb32f61b22d61622c5dc0d917927d8a65b0b0c3293d9bab12aace261f1d22fb000030999bb22fb984aeafe41d782937e5642ace66cb095b48976b29574f7749cad3c95d6bbf8729555757d7d5d5ad68150000e0196eca3e2579562fb9059317b6b93ce3ec737895fd949ecd55e9f231e3ecab8959d12a0000c033bc907df64ba69bed4b5e6cd959ba74ab2f3bb797706106b37dd753ddf195f61fd9070080c9bc997dc929961c5e09336af62996f2aa94b38c296fc8f9966dae4d981abc9ef4502c8bec0300c0642ecbbe84e249596f36d994b29356947dc99382099727ec8ffd02e96e62453b6f739713907d000098cc65d987d520fb00003019d96710b20f000093917d06696c6cacacacd4bd170000400fb2cf202d2d2d151515baf7020000e841f61984ec0300c064649f41c83e00004c46f61984ec0300c064649f41c83e00004c46f61984ec0300c064649f4142a150494989eebd0000007a907d0621fb00003019d96710b20f000093917d0621fb00003019d96710b20f000093917d0621fb00003019d96710b20f000093917d06894422858585baf7020000e841f61984ec0300c064649f41c83e00004c46f61984ec0300c064649f41c83e00004c46f61984ec0300c064649f11366edc9877b3a2a222dd3b0500006e29b2cf083b77ee8c6fbe03070ef87c3edd3b0500006e29b2cf0857ae5cd9b061836abee79f7f7edbb66da15048f74e0100805b8aec33c5d6ad5b55f6edddbb97577801003010d9678a969696f5ebd7abec6b6c6cd4bd3b0000e05623fb0cb269d326c9bec2c2c2b9b939ddfb0200006e35b2cf20555555927d7ebf5ff78e0000000dc83e83cccdcd6dd8b061626242f78e0000000dc83e00000023907d0000004620fb0000008c40f60100001881ec0300003002d90700006004b22fe72c2c5c3f74aef727154df71654caf8ddc75ecff171f7a60ad9cfeffaea779eea9a9a99d7fdf8010080d4c8be1c323239f383b2d31f7da2447bc9ad667c7dfbb1ae8171dd8f2500004844f6e58ad2535db7ad2b55e574577ef9b3fb9b8e043e90313a3e3f7df57a2e0fb59f2f1e79df9a9bfcc877b6fda4a2696141f7630a0000e2907dfa491e7dd757af82e9be570eb7f444b4975cc623d83ffee06b47d57db9ff1755239333ba1f5dac09de8a00006e44f6e9a79aef23dfd9b6a5fabcf66ecbd6fc9f7aa95a9e6899f3f318de8a0000ee45f669567aaa4b359fa492f65ccbe268e989a8d7ac2511743fc6c81ade8a0000ae46f6e97479744a3d89be7ebc43fbf362d6c7f1f6017966957bd7dc33acfb91c66af1560400f000b24f27f53c7affab55da9f08d7683cbbbf49bdd4abfb91c66af1560400f000b24f9ba999793519e6ea8913fb313a3eafa633cf5c62c2cfc5782b02007803d9a74d797348cd34687ff25bd3f1edb7eae46e3e77a049f7e38d0cf1560400f00cb24f9bc74aa33d945fd9a2fd996f4dc7db677ae56efef9f3e5ba1f6f6488b722008067907ddaa84f147aec55b3e4118eccc8ddbc6d5da9eec71b99e0ad0800e025649f369ffcd16e79a609f68f6b7fda5beba1ba41f7e38d4cf0560400f012b24f1bf5fd11b9ff8567ab1f649f7bf1560400f012b24f1b957d094f3ff7de7bafcd939375edbda938dc48c2066db6b3ec06e3f7c76649754f753fdec8046f4500002f21fbb449c8bee4f65a51d2a55c2665cf25dc44ca6e4b9983293745f6791b6f4500002f21fbb44939db97b2e49cccded92f9c70e1b2dd667f8b4eb22f7e0b649f7bf1560400f012b24f9be4d9be84d30ee7d2ec5749b956bae9c08499459b2dc4af4bf679d8b2ff73627f80d91f42e9b696f131b9d2ff6ae20747290013907dda243fa1a64c28fb804b5e37e16932e5ec9dc3e93afb5778d32d9c7c733ca1ba9793ec737294a63bae122eb439266d0ec8844d917d00900ed9a74dfc13aacd33d9b24fa836cfbbf689e6b0ff9c9c4ed8384fa89ee1e4ad08f61db66c082e7b0426ff87609f9599f51f47290013907dda64f0de3e27d967b370ba4a4b376be2e4e93c5d3ef284ea0dce8fd2151d90f607a7cd21b76c4ada1c93641f00907dda38f924ef4ab32f790be9726dd927d174cb273c3d3bd9439e50dd2b2bd997f2f04b58d1e658b22fc274c776baff9ac83e002623fbb4598b8f7438bccafe7934b3a758b2cf93569f7d364748ca3474d27f4e4e276cdcbef9384a011882ecd3c649f6a5cb2cfb67d965d74a7e22b44943e74fb109d5c813aa0764f7bd7d368799fdff6face8b6d2e523d90700649f36ce5fe4759e7dc93d97bc9693651c5e9bf07c9ceeb9962754f772f8495e875d98f2385fb608535e922e2b537624d907000ad9a78df31779edf32bf91934f9e936e532cb4e9c38b9dd943b9fb01d9e50dd6b45d9679f710e93cee6984c77c4a64b40b20f0012907ddaac7e1ec52d832754f772f8debe74ff03107fda3e0a53fe6f49cadb7278dada3187fdc7510ac004649f36b7ad2b35e4d74ed53dd5fd7823132bcdbee40b534e21a79c78b65fc6e1b5095383d38ea7fdc83e002620fbb4b97b53853ccd1c6f1fd09e656b3de46e7ef48912dd8f3732619f7d295fdc4ff75681e46552cef02dbb8c4dc3a59bdbb3df2bb20f8039c83e6dbef2fa51799a79fd7887f62c5bd3d1d03d2c77f38ee7f6ea7ebc9109de8a00005e42f669f36acd79799a79f0b5a3da9ff0d6743cbbbf49eee663a575ba1f6f6482b722008097907dda740f8ecbd3cc47beb32d3438a5fd396fedc65df9e572370fbddfabfbf14626782b02007809d9a7d3fdbfa892279b7fdf5daffd396f8dc69b27bbe40edeb6ae747a665ef7838d4cf0560400f012b24fa7e69e6135e127cf3ada9ff9b23ec29119f5c2d9ab35e7753fd2c8106f4500002f21fb34fbfa1bc7e4f9e6933fdaedb1977a47c7e7ef2da894bb76f7a68a8505dd8f3232c55b1100c04bc83ecda666e6d5dba7ee786e6f4b4f44fbf35f56463832a39aefb675a5d20dba1f63ac0a6f450000cf20fbf4eb1a18bfebf972f58ef22dd5e7b53f0bae72ec6d0ca9d776e5ee345f1ad6fde862b5782b02007806d99713a6aecd3f187befbc9af67b767f93eb9e6283fde32f1e795fbd5826434296793ecfe0ad0800e00d645fae90679dca73bdd27c2a9bd450f310393e92f7f9a577dfe749d44b782b02007803d9975ba496cacf841e2bad7345f0c58f8f3e51f2f0f6633b4f75f106294fe2ad0800e001641f0047782b0200b81dd907c029de8a0000ae46f6015819de8a00002e45f60100001881ec0300003002d9079865e3c68d79a9bcf8e28bba770d00b0b6c83ee3545656cecdcde9de0b68b36bd7ae84e0cbcfcf7ff9e5979b9a9a74ef1a00606d917dc6292c2c8c4422baf702da4c4c4c48e7c537dfbe7dfbeaeaea74ef170060cd917dc621fb0c77f5ead52d5bb6a8e67bfef9e7df7befbdb2b232dd3b0500b815c83ee3907dc692e0aba9a99103e0c891236ac2afaaaaaaa4a424375ff4e7dd08009075649f71c83e034d4c4cf8fdfe828202c93e89bfebb177f8bdf6da6bc5c5c57295eebd4b8d031500b28eec330ecfa646917febcaca4af947afafaf8f9f3c93da930bc3e1b0c67db3c7810a005947f61987675343c8bf72454585fc73373636baf1d5d29292925028a47b2f00c053c83ee3907d9e170e87cbcacae41fbaa5a545f7be648eec0380ac23fb8c535c5cdcd7d7a77b2fb026e45fd6e7f3151515050201ddfbb25a724782c1a0eebd00004f21fb8cc3248a27c9bfa9fccb4ad37b26952a2a2a5c3d5b09003988ec330ed9e731d27925311efb6725fb0020ebc83ee378af0f8c25c1575454e4f3f93cf90f5a13a37b2f00c053c83ee3907d1ed0d2d252585828c197cbdfc0b24a641f00641dd9671cb2cfbde6e6e654f055545478fee3d88d8d8d959595baf702003c85ec330ed9e746127cf5f5f586049f22812b7756f75e0080a7907dc621fbdcc5fa215dbfdf9fb33fa4b616028140595999eebd00004f21fb8cc30724ddc20a3ef96b54f029ea2b6974ef0500780ad9671cb22ff749e4f9fdfe828202093e893fddbb93657931f167532e46f60140d6917dc621fb72592412a9acac2c2c2cacafafd7f843bae9522cebdb4f48c0784343435bb76e5dd3dd0000d3907dc621fb7293049ffcd348f03536366a0c3ee596659fcd6dc903228fc69aee06009886ec330ed9976bc2e170595999244e8efcbbe42d49bed0c98a091b49b91d27d977f5ead5cd9b37677207000069907dc621fb72475f5f9fcfe72b2a2a0a0402baf7e526c9ad96f272fb659c9c70b84d004056907dc621fb7281fabc427171713018d4bd2f2964967d093379641f00e41ab2cf387ebfbfbebe5ef75e984b3aaf242697bf3d7135b37d366bad34fb0a0b0b0df96e6a00b835c8be1bf252b1bf36dd1b98ac559cdf50ba8d649d077eea34371fd86549f0151515f97cbe5c0e3e4bcae3dfc92a6ab1e4d309cb242f968cec0380ec22fb6e487eeeb1799e735212d95ac65a322b4de3e1ec5be932d6926b1d8bea877425f8c2e170b6b66902a9641e3100c822b2ef06e74ffc29a731522ee6e446ed7726e32da76378f6addd039b6c6e6e4e059f393fa49b5d39fe523800b80ed9778393d9bef8e0b359ccfef265975976e3645f66cbace9031b4f82afbebe9ee05ba5d2d2d2cece4edd7b0100de41f6dd603fdb977c3661dd745bb09f3b5cb633c8beeb2e796015eb8774fd7ebf813fa49b5d7cea1c00b28beccbd06a269c1c164cfcd90cba271d37665f82dc7c60ade093bf045f56907d00905d645f54169ffbe3b7793dd339a76517c86c9714b7675f0e3eb012797ebfbfa0a0401e5889bf0cb68094aaababebeaea74ef05007807d99742bae7fe1575e1dad589c32da7d3d8d858595999d9bab920a71ed84824220f666161617d7dbdf61fd2f51eb7ff2f0a00e41ab2ef86742ffc252f906ec59497d867c4b2734e59cfbe9696968a8a8accd6d52e771e58093e791825f824a309be35525757575d5dad7b2f00c03bc8be1be2b3cf7e81652f5f659d5c4fff3d23ceb79c8ec9d9773d1b0f6c381c2e2b2b93e0e36d676bcdd5c72a00e420b26f51fc4ccf2a5fe4b54f0ae75739593883f273ef53a9f607b6afafcfe7f3151515050201e71b47c6dc7bac02406e22fba212667ad255ddb2b37d29a791d25d956edac9e1ea4eae4ac98d4fa5da1fd85028545252525c5c1c0c0657b2e35815f5b0ebde0b00f00eb2cf386ecc3e8da4f34a62f8b9885b8fec0380ec22fb8c43f63924c1575454e4f3f9083e5dc2e1b0fc13e8de0b00f00eb2cf388140a0acac4cf75ee434f543ba127c921dbaf7c568914844fe2174ef05007807d9671c5e384b676e6e4e051f3fa49b23c83e00c82eb2cf38645f3209befafa7a822f0765f62d45008094c83ee3907df1ac1fd2f5fbfdfc906e0e22fb00208bc83ee3907d8a157cf297e0cb59050505fceb0040b6907dc621fb2423fc7ebff484049fc49feedd811de9725e7607806c21fb8c6372f649405456564a49d4d7d7f343baaeb075ebd6a1a121dd7b01001e41f619c7ccec93e0aba8a890e06b6c6c24f85c842fca06802c22fb8c63da57e0cafd2d2b2b93e06b6969d1bd2f5831b20f00b288ec338e39df85d6d7d7e7f3f9a471038180ee7d418624d9f9e703806c21fb8c6342f6a917b28b8b8b83c1a0ee7dc1aa545454304d0b00d942f619c7dbd9279d5712c32b83dee0f7fbebebeb75ef05007804d9671caf669f045f515191cfe723f8bca42646f75e008047907dc6f15ef6a91fd295e00b87c3baf7055946f6014016917dc6f14cf6cdcdcda9e0e387743d4cfe89e5df57f75e008047907dc6f140f649f0d5d7d7137c2620fb00208bc83e836cdcb831ef66aefb023feb8774fd7e3f3fd5ea6d1e385c0120d7907d06d9b97367fc93e88103077c3e9fee9d72ca0a3ef94bf099c0d5872b00e426b2cf2057ae5cd9b061837a127dfef9e7b76ddbe68a0fbd4ae4f9fdfe828202093e893fddbb835bc4a5872b00e432b2cf2c5bb76e55cfa37bf7eecdfd97cc2291486565656161617d7d3d3fa46b20771dae0090fbc83eb3b4b4b4ac5fbf5e3d8f363636eade9db424f82a2a2a24f86427093e63b9e5700500b720fb8cb369d326791e95a2cacd9c0a87c3656565b27bfc2417aec70e5729bf9c3d5c01c05dc83ee354555549f6f9fd7edd3b92a8afafcfe7f3151515050201ddfb825c91b3872b00b811d9679cb9b9b90d1b36e4d4876143a1504949497171713018d4bd2fc82d3978b802807b917dd0493aaf24860f690200b0d6c83ee821c1575454e4f3f9083e00006e0db2cf200b311f265197dfb2dd503fa42bc1170e876fd98d020000b2cf142af846474323235d8303dd326662e6e6e6e6e7e755fcade90ec80da9e0e387740100d082ec33c252f375bff18b4f5be3725f706262627a7a5ae26f4dcb4f82afbebe9ee0430616d2d0bd5f00e04a649ff7a9e61b19e992d4dbfeea1f6cdbf28732e4c41bbffce3eeaeb3d261127f57af5e9538cb7af9593fa4ebf7fbf930269c887f2b82fcdf881c96b349ac29ea5bff1605007035b2cfe3929bef6c4be1d9338556f95de8681c1a1a1a1f1fcf6ef959c1277f093e3861059f1c875363e3dda79b03efd61cfbd58e9ad7b6ab21672f9c6c880c8f4c4d4dc90176edda359580c41f003844f679598ae63b53383af69bc86f4f44cbefd568f96d7bf58fda830d527e63636359293f893cbfdf5f505020c1271bcce2dd815759c127b577e2cdddc50f3df2e4ef7ffa7b1ffbaf29875cf5da17bf263938d0df2f079b24a0f41ff107004e907d9e95b2f924f824fb92cb2f78fed4eacb2f1289545656161616d6d7d7f3535a70481da8926e35af6d7ff68ecfc4e7dd0b7ffd77859ffb42e9238fcb901372363e076561ff2bbf1c1e1c4a8e3fddf709007214d9e74de9e6f9467f7b626cb26972b26934d67fd92a3f09be8a8a0a09bec6c646820fcea903b5bfad7de33d9f5531f7d427fe64fbc38f9e7b73e7d5cecef9dede8421179ed9b14b16b0fa2fff337fd3567b62646444bd4575767696f2038074c83e0f4a37cf276332d67c6aa869bf55965f381c2e2b2b93e06b6969b935f70e9ea10ed4b307fdaae19ef8f87ff3fddb7f445ace26d75ef290c54a1f795c5651f382c776ee191c1c9443776a6a8af2038074c83eaf49fbda6eacf9c696863aad5ef33ddb9249f9f5f5f5f97cbea2a2a24020708bef233cc06a3e956e1beff96cfff13a27c1173ffa6a8ee77fe66f54321eddb153fe27241289507e00900ed9e729299aefdccfe35fdb9d8c6b3eabfca2eff33bf773e7e5170a854a4a4a8a8b8b83c1a0ae7b0a5753076ae0dd1ad57caf7df16b295fd2753264c5adf77f4595dfb19d7b283f00b041f6794772f3b59c7d7964f4f868e4f8f8c4a9e8183f2d2332dea0ce5a27640119b2f0b2e5279d5712c30fe92263d6fbf99ebefd4ec9b5c2cf7d61b6a727b3e65343567fe9be07d4fb02cf1caba5fc00201db2cf23929baff9cc0b43c3efc9188d9c8c8eb1df2c9e4835d492b24abaf23b7ffe7c515191cfe723f8b04a72acca41a55e9ccdbbebaf26dbda52c6dce0a9d3359b5e7aed8b5fdb72df036a943ef278c3d6a2940bcb46f2eebc476db0a3bd7d6060c03a74c93e00b0907d5e90dc7c0da7377f307044c6952b87f6edfc9f7261f53b5f1d193e363872d3900be52a5940160bc796971593cbef8d37ded8bd7b777f7f3fcfa0582575ac1e79698b24daf77fef5329dfcf270d278597ee7bfb9ebefd4ec9c1e4b56453b24159e0cd6736c8ff9c0c0e0e4e4c4c5cbb768d093f00b0907dae97dc7ca74fe55feeadbcdc7fb0f7f201d57c6a541d7a50dace1a72d6ba4a169385fb3e88ae25ab67f7fbfc008bfa4e66f5f2eedb4ffe38b9de7aab6bd4b5f6e3b52f7e2d799a70ff779f522ff5be7fe68c6c696424fa7b1eeab8d57dbf012027907dee96dc7c274fadefbb5c1eea2d9786fbf55bf75861b7587e955f92cb2f5dae94130957c9c272955a573642f921ebd4e17aec573b549c8d9f0bcc7477c78fd03b7e27cda7c6cfeef96cc2eab241f55d30bffee98b5d5d5de170588e5b26fc00c042f6b95872f3fde6c48f2f867c3224dd6424849d1a470e7d5146caab7a2eedefe9dddf79718f6c413645f921bbe4b091e3a7f0735f90322b7de4f1c9b6b684f1b3a52f6d7638de7ef2c7376da1b56dfbc38f46bf0ee67f7daeb5b5357ec28f231600ae937dee95dc7cc78f3dddd1597aa163a7749b1a870ffc63cabc4b3964616bc50b9da5b229d920e5872c52aff0aa2f6d3957ba2bd2d414696a8cfd6d8a34361e79367f45cda746e81dbfacbbb89dc6a6736fee545fe6d274aaa1abab6b6060606262427da457f7bd0700fdc83e5752cd373ada1dd77cebdadadf90d1112b366b1caab8df49f3c9621d1dbb6eacd8b14b6d2db9fcc6c7c7a5fce6e7e7791e85e5e5975f7efbedb7e5c0b05f4c8e990b271bd4ef6a0c1e3f9e30e27f90d7f9287de4f184eda80f761cdc51dad1dededfdf6fbdce7b6b1e0a00c865649f2b49f68d8e86e29b2fd0faba8cb6f61219aded3bda3ab69f6fdf71be233a0eedfffb659a6fffdf073b7644d7edd82e7f65c5e8df8e1d6a9bef55afb3caaf3dd820e537313131333323e5a7fb6140aec88bd9b061c31b6fbc71e5ca95748bc93173724fb934d90b7ffd7797fd87a3e3b05f8d86ad4519349f0c89c5be4387a21b59daa0fa795f5f4161fcebbc1cae00709dec73a9c597777ff9c7d27c926581d65fca387ffe0d1981f3c532d409eb6c65f9e7d3359f5c15bf70c28a6acbaafc8ab77eeadcd9dafefefe4824323d3d3d3737a7fb6140aec88bb37efdfa9ffffce70d0d0d09cba837f6d5bcb65d7d0ef7e2be7df1e3ed277f9c59f6c948d8947aefe09bcf6c3877ee5c2814e2ed7d006021fb5c49b26f70a05b65dff1634fab69b9f31d3bd43c9f8c60c78ec509bcf692a0ed849f5c252baab5d46c9f9a298cfe5d9af0532ff54af635351eede9e9b126fc4a4a4af28034366fde1c7fd04a75cdcece1efde53669b2e2871eb9b06b57fc28fdeabf649c7d273617c46f4a9a5265df993367bababa060707d52f76907d0040f6b992957dd60778d55bf12e7496aa4f635c58c9dbfba26fec8bad72e1e615d536ad8ff44af69d3efd6e7777f7c0c0c0f8f8b8649fee8701b9c24abdbd7bf7eed9b3a7b0b0b0b2b2321289c42f93907dc11d3be2c72ab32f7e5309d9677daa83ec0300b2cf9524fba4ba2ef705b7bdfa47b177ddfde18993cfa956b33e8dbba20ff3c67f8c37fec3bcb259abf96a8f1f0c0402641f9249f0959797efd8b14382afb1b131e5673be2b36febfd5f4998ed53dfb49cd948d894f5222fd9070009c83e5752d9274f66dd5d67adf23b796afdc5902ffaad7bbdd1afdf0bf596a7fb7ebe74dfe7d773697f745df91bfbf23febe73aa4f96a6a2a9a9b9bdbdadae25fe4d5fd3020576cdebcb9b4b4b4b3b3d36619957dd6473a12de90b79a8f74246c4afddaefaf7ffa22d9070009c83e5792ec9b9b9b9b9e9e8e4422173a1aadf26b38bdb9f77279dfe5f24b97a33fc59132efaa2abf94fc131d6a447fa563e9873aac1fe795e67befbdfd0d0d0d8140409ed7f9480732a3b2afadf6c4f7625fe012fdf8adfaecedd2c8f00b5cbefa2f8b1f078e7d8c57366b7d810bd9070009c83e579227b0f9f97935e1373434d41e6cb0caaff9cc0baadec20347e27f9077fbcd3fcb1bff83bcdb977e96f783812397fb0fca908d2434dfb973e72e5cb8d0d7d7c717b820332afb22c323eaeb9a1bb616257cdf5e665fd77c71dfbef88da85943b9899aa347f94807002420fb5c497d5db384d7d5ab57c7c7c725c582e74f59e5d772e62509381957ae1c8a2fbfea77be3a38726c64f85878b8464ec8d9f8e69385d55ab27a72f3757474f4f6f69af075cd797979e92e4fe716efa14ba92f7091027be9be07a4ccb63ffc68a431fabb1abf8dfbbb39f6faacf3b1ffbb4fc57e9fa371e9073f1a8b1f7a442edf78cf674f9c38c117b8004002b2cfad54f9c9939944d8d8d85862f935ff7c68f83d19838355aafc24f246232713862a3f59401653cbcb8a36cd67c28fb339c938e7a9472cc693ff5b9002f3bff24b29b3a73ef12743f5a7127e93b7abe2e0d3b7dfe9b0f95ef9dbcf4fb6deb4ba6cf0c9dfffb45cb5eda96724fbf8ba66004840f6b9987df99d3bf79fa391e33222e30d32c6274ec9583c3d7e5a9d8d8ed8e991d1e3326415c39beffaeab2cf3ee9cc4cbd7872e45cbb766da0bf5f9a4fe2ccf76fff31d3dd9d3042eff8f3eebc67d9e68b4e16b69c4d58b7f491c7555056fbfda74f9f0e0683fc381b00c423fbdccdbefcde7f7fcbe8d86f648c4d36a931b9f47772e9b48cc86f4fc832b230cd777d15d9177fe1b20b984965dfd4d8f8af7ffaa2f4d9f77fef53bdd535f3bdbd0963b2adcde6fb5c240a1bb61625af259b521fe6287afc3f4e9c3811ff790eb20f0014b2cff59c979fd579f1a74769be18abc9924fd82cbca205c83eebed7d8357aea8af59c9bbebaf265bdb921b4ec55fcda6974a1f797ccb7d0fa8212d7866c7aed40bb7b6a939c267eff84ccdd1a3a74f9f8e7f859737f6018042f679c1b2e5179dcffbed89c99b67fba2cd37f61bb98ae6bb9ea6f6e22fb417bf4a066b19421da8d7ae5d9383aaadbe41bdd4fbd27d0fccf6f4a48c398743567fe1b39f572fef1edc51aa3eccd1d5d5150e87ad57783d7ce8028073649f473899f393c28b9fed53b38034dff5f4afcf66fc2e3d66fbd29103697676766a6a6a6464e4e49e72f5652e859ffbc2645bea39bf6587aca83e1a2c9bf215144af3a977f559537d7273bcc20b000ad9e71d2b2a3f9a2f9e4dea651670c90ba84b283f6bc26f6262627070f0d8ce3daafcf2eebca7ff78dd4a9b4f56515ff2ac9aafb6b656bdbc1b0a8564e3d6bbfabc7df4028073649fa7382c3f5edb8d67df79ceb3cf7e9a90ecb3a877f8a94374606040ca4fbddafbfddffbd4f6871f4df756bf84317e2e200babcf70c8eaf1cda73ec9611dc0de3e7a016045c83eaf71f23e3f9acfc65a7c818b93178ecda10e51f5526f24120987c3678ed5e6ddf557ea83ba4ffefea78b1f7ae4cc8e5d33ddddc9b52717ca55b280fa7e3e354d787047697cf3c90665b3d6cbbba61dc0006083ecf3a065cb8fe6b3b19aec73b830e5975c7e1dededbffee98bf1dfd52c6197ff99bf79e9be07b63ffca80c392167adda53937cdb9e7aa6e6e851f5752d341f002c8becf326fbf2b39aafa6a682e6b338f980ed8a3e846bb3a4999fe48d97507e0303033d3d3def9f39e32b2894c253afdea61c72d50b9ffdfc9bcf6ca8f6fbd50738e4000e0683b2ba6c84e603001b649f67a52b3fa93d356a8f1f6c6e6e0e0402172e5ca0f970ebc5979f1c7b838383721c767575b5b6b636d69faadeb967df965f4ade5943ce1edc51aaa6f76401157c6a924f5694d56523341f00d820fbbc2cb9fcda830de7ced636351e3d7dfa5d09beb6b6b6cececebebe3e9a0f5a58e527c7dec4c4c4c8c8c8c0c0808abf8ef67649ba733167e2a84be42a5940059fac222bcaeab2119a0f006c907d1e175f7ee3e3e39277fdfdfd3d3d3ddd317242ceca857215cd072dac4334fabb6d535356fcc99129492787682814ea8a2367e542b94a1650c1a726f964750e6000b047f6795f7cf9c9736a241291ce1b88911372564d93f094095d166212e24f626e747454aa6e30461db1eab45c2857c902b25842f0710003800db2cf08ea39757e7e7e6666667a7a5a9e2cc763e4849c950be52a9a0f7ac5c7dfececacea3f65228e75a12c208b117c00e01cd9670aabfce46972268e9ca5f9903bacf8b30ed7d924d6414bf001c08a907d0072d7421abaf70b005c89ec0300003002d90700006004b20f0000c008641f00008011c83e00000023907d0000004620fb0000008c40f60100001881ec0300003002d90700006004b20f0000c008641f00008011c83e00000023907d0000004620fb0000008c40f60100001881ec0300003002d90700006004b20f0000c008641f00008011c83e00000023907d0000004620fb0000008c40f60100001881ec0300003002d90700006004b20f0000c008641f00008011c83e00000023907d0000004620fb0000008c40f60100001881ec0300003002d90700006004b20f0000c008641f00008011c83e00000023907d0000004620fb0000008c40f60100001881ec0300003002d90700006004b20f0000c008641f00008011c83e00000023907d0000004620fb0000008c40f60100001881ec0300003002d90700006004b20f0000c008641f00008011c83e00000023907d0000004620fb0000008c40f60100001881ec0300003002d90700006004b20f0000c008641f00008011c83e00000023907d0000004620fb0000008c40f60100001881ec0300003002d90700006004b20f0000c008641f00008011c83e00000023907d0000004620fb0000008c40f60100001881ec0300003002d90700006004b20f0000c008641f00008011c83e00000023907d00000046f8ff5b4aaf2bc40880ba0000000049454e44ae426082, 130008, 'QingJiaNew.png');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `jbpm4_participation`
+--
+
+CREATE TABLE IF NOT EXISTS `jbpm4_participation` (
   `DBID_` bigint(20) NOT NULL,
   `DBVERSION_` int(11) NOT NULL,
   `GROUPID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
@@ -516,36 +551,41 @@ CREATE TABLE `jbpm4_participation` (
   PRIMARY KEY (`DBID_`),
   KEY `FK_PART_SWIMLANE` (`SWIMLANE_`),
   KEY `FK_PART_TASK` (`TASK_`),
-  KEY `IDX_PART_TASK` (`TASK_`),
-  CONSTRAINT `FK_PART_SWIMLANE` FOREIGN KEY (`SWIMLANE_`) REFERENCES `jbpm4_swimlane` (`DBID_`),
-  CONSTRAINT `FK_PART_TASK` FOREIGN KEY (`TASK_`) REFERENCES `jbpm4_task` (`DBID_`)
+  KEY `IDX_PART_TASK` (`TASK_`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- ----------------------------
--- Records of jbpm4_participation
--- ----------------------------
+--
+-- 转存表中的数据 `jbpm4_participation`
+--
 
--- ----------------------------
--- Table structure for `jbpm4_property`
--- ----------------------------
-DROP TABLE IF EXISTS `jbpm4_property`;
-CREATE TABLE `jbpm4_property` (
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `jbpm4_property`
+--
+
+CREATE TABLE IF NOT EXISTS `jbpm4_property` (
   `KEY_` varchar(255) COLLATE utf8_bin NOT NULL,
   `VERSION_` int(11) NOT NULL,
   `VALUE_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`KEY_`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- ----------------------------
--- Records of jbpm4_property
--- ----------------------------
-INSERT INTO jbpm4_property VALUES ('next.dbid', '21', '210001');
+--
+-- 转存表中的数据 `jbpm4_property`
+--
 
--- ----------------------------
--- Table structure for `jbpm4_swimlane`
--- ----------------------------
-DROP TABLE IF EXISTS `jbpm4_swimlane`;
-CREATE TABLE `jbpm4_swimlane` (
+INSERT INTO `jbpm4_property` (`KEY_`, `VERSION_`, `VALUE_`) VALUES
+('next.dbid', 21, '210001');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `jbpm4_swimlane`
+--
+
+CREATE TABLE IF NOT EXISTS `jbpm4_swimlane` (
   `DBID_` bigint(20) NOT NULL,
   `DBVERSION_` int(11) NOT NULL,
   `NAME_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
@@ -553,19 +593,21 @@ CREATE TABLE `jbpm4_swimlane` (
   `EXECUTION_` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`DBID_`),
   KEY `FK_SWIMLANE_EXEC` (`EXECUTION_`),
-  KEY `IDX_SWIMLANE_EXEC` (`EXECUTION_`),
-  CONSTRAINT `FK_SWIMLANE_EXEC` FOREIGN KEY (`EXECUTION_`) REFERENCES `jbpm4_execution` (`DBID_`)
+  KEY `IDX_SWIMLANE_EXEC` (`EXECUTION_`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- ----------------------------
--- Records of jbpm4_swimlane
--- ----------------------------
+--
+-- 转存表中的数据 `jbpm4_swimlane`
+--
 
--- ----------------------------
--- Table structure for `jbpm4_task`
--- ----------------------------
-DROP TABLE IF EXISTS `jbpm4_task`;
-CREATE TABLE `jbpm4_task` (
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `jbpm4_task`
+--
+
+CREATE TABLE IF NOT EXISTS `jbpm4_task` (
   `DBID_` bigint(20) NOT NULL,
   `CLASS_` char(1) COLLATE utf8_bin NOT NULL,
   `DBVERSION_` int(11) NOT NULL,
@@ -591,21 +633,23 @@ CREATE TABLE `jbpm4_task` (
   PRIMARY KEY (`DBID_`),
   KEY `FK_TASK_SWIML` (`SWIMLANE_`),
   KEY `FK_TASK_SUPERTASK` (`SUPERTASK_`),
-  KEY `IDX_TASK_SUPERTASK` (`SUPERTASK_`),
-  CONSTRAINT `FK_TASK_SUPERTASK` FOREIGN KEY (`SUPERTASK_`) REFERENCES `jbpm4_task` (`DBID_`),
-  CONSTRAINT `FK_TASK_SWIML` FOREIGN KEY (`SWIMLANE_`) REFERENCES `jbpm4_swimlane` (`DBID_`)
+  KEY `IDX_TASK_SUPERTASK` (`SUPERTASK_`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- ----------------------------
--- Records of jbpm4_task
--- ----------------------------
-INSERT INTO jbpm4_task VALUES ('200003', 'T', '1', '填写请假单', null, 'open', null, '1', null, '0', '2011-06-02 10:25:18', null, null, '', 'QingJiaNew.200001', '填写请假单', '', null, '200001', '200001', null, '填写请假单');
+--
+-- 转存表中的数据 `jbpm4_task`
+--
 
--- ----------------------------
--- Table structure for `jbpm4_variable`
--- ----------------------------
-DROP TABLE IF EXISTS `jbpm4_variable`;
-CREATE TABLE `jbpm4_variable` (
+INSERT INTO `jbpm4_task` (`DBID_`, `CLASS_`, `DBVERSION_`, `NAME_`, `DESCR_`, `STATE_`, `SUSPHISTSTATE_`, `ASSIGNEE_`, `FORM_`, `PRIORITY_`, `CREATE_`, `DUEDATE_`, `PROGRESS_`, `SIGNALLING_`, `EXECUTION_ID_`, `ACTIVITY_NAME_`, `HASVARS_`, `SUPERTASK_`, `EXECUTION_`, `PROCINST_`, `SWIMLANE_`, `TASKDEFNAME_`) VALUES
+(200003, 'T', 1, '填写请假单', NULL, 'open', NULL, '1', NULL, 0, '2011-06-02 10:25:18', NULL, NULL, b'1', 'QingJiaNew.200001', '填写请假单', b'0', NULL, 200001, 200001, NULL, '填写请假单');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `jbpm4_variable`
+--
+
+CREATE TABLE IF NOT EXISTS `jbpm4_variable` (
   `DBID_` bigint(20) NOT NULL,
   `CLASS_` varchar(255) COLLATE utf8_bin NOT NULL,
   `DBVERSION_` int(11) NOT NULL,
@@ -630,23 +674,23 @@ CREATE TABLE `jbpm4_variable` (
   KEY `IDX_VAR_EXESYS` (`EXESYS_`),
   KEY `IDX_VAR_TASK` (`TASK_`),
   KEY `IDX_VAR_EXECUTION` (`EXECUTION_`),
-  KEY `IDX_VAR_LOB` (`LOB_`),
-  CONSTRAINT `FK_VAR_EXECUTION` FOREIGN KEY (`EXECUTION_`) REFERENCES `jbpm4_execution` (`DBID_`),
-  CONSTRAINT `FK_VAR_EXESYS` FOREIGN KEY (`EXESYS_`) REFERENCES `jbpm4_execution` (`DBID_`),
-  CONSTRAINT `FK_VAR_LOB` FOREIGN KEY (`LOB_`) REFERENCES `jbpm4_lob` (`DBID_`),
-  CONSTRAINT `FK_VAR_TASK` FOREIGN KEY (`TASK_`) REFERENCES `jbpm4_task` (`DBID_`)
+  KEY `IDX_VAR_LOB` (`LOB_`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- ----------------------------
--- Records of jbpm4_variable
--- ----------------------------
-INSERT INTO jbpm4_variable VALUES ('200002', 'string', '0', 'crruentUserIds', null, '', '200001', null, null, null, null, null, null, '1', null, null);
+--
+-- 转存表中的数据 `jbpm4_variable`
+--
 
--- ----------------------------
--- Table structure for `pingtai_department`
--- ----------------------------
-DROP TABLE IF EXISTS `pingtai_department`;
-CREATE TABLE `pingtai_department` (
+INSERT INTO `jbpm4_variable` (`DBID_`, `CLASS_`, `DBVERSION_`, `KEY_`, `CONVERTER_`, `HIST_`, `EXECUTION_`, `TASK_`, `LOB_`, `DATE_VALUE_`, `DOUBLE_VALUE_`, `CLASSNAME_`, `LONG_VALUE_`, `STRING_VALUE_`, `TEXT_VALUE_`, `EXESYS_`) VALUES
+(200002, 'string', 0, 'crruentUserIds', NULL, b'0', 200001, NULL, NULL, NULL, NULL, NULL, NULL, '1', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `pingtai_department`
+--
+
+CREATE TABLE IF NOT EXISTS `pingtai_department` (
   `ids` bigint(20) NOT NULL AUTO_INCREMENT,
   `createdDate` datetime DEFAULT NULL,
   `modifiedDate` datetime DEFAULT NULL,
@@ -667,25 +711,25 @@ CREATE TABLE `pingtai_department` (
   KEY `FK7CE251C7BF045F6D` (`creatorUserIds`),
   KEY `FK7CE251C79BC52230` (`modifiedUserIds`),
   KEY `FK7CE251C73F48C92B` (`principalUserIds`),
-  KEY `FK7CE251C72A908E8F` (`parentDepartmentIds`),
-  CONSTRAINT `FK7CE251C72A908E8F` FOREIGN KEY (`parentDepartmentIds`) REFERENCES `pingtai_department` (`ids`),
-  CONSTRAINT `FK7CE251C73F48C92B` FOREIGN KEY (`principalUserIds`) REFERENCES `pingtai_user` (`ids`),
-  CONSTRAINT `FK7CE251C79BC52230` FOREIGN KEY (`modifiedUserIds`) REFERENCES `pingtai_user` (`ids`),
-  CONSTRAINT `FK7CE251C7BF045F6D` FOREIGN KEY (`creatorUserIds`) REFERENCES `pingtai_user` (`ids`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  KEY `FK7CE251C72A908E8F` (`parentDepartmentIds`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=5 ;
 
--- ----------------------------
--- Records of pingtai_department
--- ----------------------------
-INSERT INTO pingtai_department VALUES ('1', '2010-11-23 14:47:57', '2010-11-23 14:48:00', 'youXiao', '0', '根节点', '公司部门组织结构', '1', '1', null, '-1', null, '1', '1', '#');
-INSERT INTO pingtai_department VALUES ('2', null, '2011-03-27 19:23:57', 'youXiao', '3', '系统平台部', '系统平台部', '1', '1', '1', null, null, null, '1', null);
-INSERT INTO pingtai_department VALUES ('4', null, '2011-03-27 19:24:12', 'youXiao', '4', '运维部', '运维部', '1', '1', '1', null, null, null, '2', null);
+--
+-- 转存表中的数据 `pingtai_department`
+--
 
--- ----------------------------
--- Table structure for `pingtai_dict`
--- ----------------------------
-DROP TABLE IF EXISTS `pingtai_dict`;
-CREATE TABLE `pingtai_dict` (
+INSERT INTO `pingtai_department` (`ids`, `createdDate`, `modifiedDate`, `valid`, `version`, `description`, `names`, `creatorUserIds`, `modifiedUserIds`, `principalUserIds`, `departmentLevel`, `images`, `orderIds`, `parentDepartmentIds`, `url`) VALUES
+(1, '2010-11-23 14:47:57', '2010-11-23 14:48:00', 'youXiao', 0, '根节点', '公司部门组织结构', 1, 1, NULL, -1, NULL, 1, 1, '#'),
+(2, NULL, '2011-03-27 19:23:57', 'youXiao', 3, '系统平台部', '系统平台部', 1, 1, 1, NULL, NULL, NULL, 1, NULL),
+(4, NULL, '2011-03-27 19:24:12', 'youXiao', 4, '运维部', '运维部', 1, 1, 1, NULL, NULL, NULL, 2, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `pingtai_dict`
+--
+
+CREATE TABLE IF NOT EXISTS `pingtai_dict` (
   `ids` bigint(20) NOT NULL AUTO_INCREMENT,
   `createdDate` datetime DEFAULT NULL,
   `modifiedDate` datetime DEFAULT NULL,
@@ -703,73 +747,74 @@ CREATE TABLE `pingtai_dict` (
   KEY `FKE47855EBBF045F6D` (`creatorUserIds`),
   KEY `FKE47855EB5B65E699` (`dictTypeIds`),
   KEY `FKE47855EB9BC52230` (`modifiedUserIds`),
-  KEY `numbersIndex` (`numbers`),
-  CONSTRAINT `FKE47855EB5B65E699` FOREIGN KEY (`dictTypeIds`) REFERENCES `pingtai_dicttype` (`ids`),
-  CONSTRAINT `FKE47855EB9BC52230` FOREIGN KEY (`modifiedUserIds`) REFERENCES `pingtai_user` (`ids`),
-  CONSTRAINT `FKE47855EBBF045F6D` FOREIGN KEY (`creatorUserIds`) REFERENCES `pingtai_user` (`ids`)
-) ENGINE=InnoDB AUTO_INCREMENT=159 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  KEY `numbersIndex` (`numbers`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=159 ;
 
--- ----------------------------
--- Records of pingtai_dict
--- ----------------------------
-INSERT INTO pingtai_dict VALUES ('18', '2010-10-22 22:45:13', null, 'youXiao', '0', '男', 'man', '1', 'man', null, null, '1');
-INSERT INTO pingtai_dict VALUES ('19', '2010-10-22 22:45:13', null, 'youXiao', '0', '女', 'woman', '2', 'woman', null, null, '1');
-INSERT INTO pingtai_dict VALUES ('28', '2010-10-23 00:12:44', null, 'youXiao', '0', '前台', 'userClass_qianTai', '1', 'userClass_qianTai', '1', null, '2');
-INSERT INTO pingtai_dict VALUES ('29', '2010-10-23 00:12:44', null, 'youXiao', '0', '后台', 'userClass_houTai', '2', 'userClass_houTai', '1', null, '2');
-INSERT INTO pingtai_dict VALUES ('63', '2010-10-23 00:26:30', null, 'youXiao', '0', '大专', 'wenHuaChenDu_dazhaun', '5', 'wenHuaChenDu_dazhaun', '1', null, '3');
-INSERT INTO pingtai_dict VALUES ('64', '2010-10-23 00:26:30', null, 'youXiao', '0', '初中', 'wenHuaChenDu_chuZhong', '2', 'wenHuaChenDu_chuZhong', '1', null, '3');
-INSERT INTO pingtai_dict VALUES ('65', '2010-10-23 00:26:30', null, 'youXiao', '0', '小学', 'wenHuaChenDu_xiaoXue', '1', 'wenHuaChenDu_xiaoXue', '1', null, '3');
-INSERT INTO pingtai_dict VALUES ('66', '2010-10-23 00:26:30', null, 'youXiao', '0', '中专', 'wenHuaChenDu_zhongzhuan', '4', 'wenHuaChenDu_zhongzhuan', '1', null, '3');
-INSERT INTO pingtai_dict VALUES ('67', '2010-10-23 00:26:30', null, 'youXiao', '0', '高中', 'wenHuaChenDu_gaoZhong', '3', 'wenHuaChenDu_gaoZhong', '1', null, '3');
-INSERT INTO pingtai_dict VALUES ('68', '2010-10-23 00:26:30', null, 'youXiao', '0', '本科', 'wenHuaChenDu_benKe', '6', 'wenHuaChenDu_benKe', '1', null, '3');
-INSERT INTO pingtai_dict VALUES ('69', '2010-10-23 00:26:30', null, 'youXiao', '0', '更高', 'wenHuaChenDu_gengGao', '7', 'wenHuaChenDu_gengGao', '1', null, '3');
-INSERT INTO pingtai_dict VALUES ('73', '2010-10-24 19:48:18', null, 'youXiao', '0', '已婚', 'marriage_yes', '2', 'marriage_yes', '1', null, '5');
-INSERT INTO pingtai_dict VALUES ('74', '2010-10-24 19:48:18', null, 'youXiao', '0', '未婚', 'marriage_no', '1', 'marriage_no', '1', null, '5');
-INSERT INTO pingtai_dict VALUES ('78', '2010-10-24 20:10:10', null, 'youXiao', '0', '群众', 'government_qunZhong', '1', 'government_qunZhong', '1', null, '6');
-INSERT INTO pingtai_dict VALUES ('79', '2010-10-24 20:10:10', null, 'youXiao', '0', '党员', 'government_dangYuan', '2', 'government_dangYuan', '1', null, '6');
-INSERT INTO pingtai_dict VALUES ('80', '2010-10-24 20:16:29', null, 'youXiao', '0', '汉族', 'folk_han', '1', 'folk_han', '1', null, '4');
-INSERT INTO pingtai_dict VALUES ('81', '2010-10-24 20:16:29', null, 'youXiao', '0', '其它', 'folk_qiTa', '2', 'folk_qiTa', '1', null, '4');
-INSERT INTO pingtai_dict VALUES ('83', '2010-10-25 11:27:33', null, 'youXiao', '0', 'A型', 'bloodGroup_A', '1', 'bloodGroup_A', '1', null, '7');
-INSERT INTO pingtai_dict VALUES ('84', '2010-10-25 11:27:33', null, 'youXiao', '0', 'B型', 'bloodGroup_B', '2', 'bloodGroup_B', '1', null, '7');
-INSERT INTO pingtai_dict VALUES ('85', '2010-10-25 11:27:33', null, 'youXiao', '0', 'AB型', 'bloodGroup_AB', '3', 'bloodGroup_AB', '1', null, '7');
-INSERT INTO pingtai_dict VALUES ('86', '2010-10-25 11:27:33', null, 'youXiao', '0', 'O型', 'bloodGroup_O', '4', 'bloodGroup_O', '1', null, '7');
-INSERT INTO pingtai_dict VALUES ('88', '2010-10-27 21:16:00', null, 'youXiao', '0', '前台菜单', 'menuType_qianTai', '1', 'menuType_qianTai', '1', null, '8');
-INSERT INTO pingtai_dict VALUES ('89', '2010-10-27 21:16:00', null, 'youXiao', '0', '后台菜单', 'menuType_houTai', '2', 'menuType_houTai', '1', null, '8');
-INSERT INTO pingtai_dict VALUES ('93', '2010-10-28 21:33:38', null, 'youXiao', '0', '一级', 'menuLevel_one', '1', '1', '1', null, '9');
-INSERT INTO pingtai_dict VALUES ('94', '2010-10-28 21:33:38', null, 'youXiao', '0', '二级', 'menuLevel_two', '2', '2', '1', null, '9');
-INSERT INTO pingtai_dict VALUES ('95', '2010-11-10 13:45:43', null, 'youXiao', '0', '即时支付', 'paymentType_instant', '1', 'paymentType_instant', '1', null, '10');
-INSERT INTO pingtai_dict VALUES ('96', '2010-11-10 13:45:43', null, 'youXiao', '0', '担保支付', 'paymentType_assure', '4', 'paymentType_assure', '1', null, '10');
-INSERT INTO pingtai_dict VALUES ('97', '2010-11-10 13:45:43', null, 'youXiao', '0', '货到付款', 'paymentType_cod', '2', 'paymentType_cod', '1', null, '10');
-INSERT INTO pingtai_dict VALUES ('98', '2010-11-10 13:45:43', null, 'youXiao', '0', '汇款', 'paymentType_remit', '3', 'paymentType_remit', '1', null, '10');
-INSERT INTO pingtai_dict VALUES ('99', '2010-11-10 13:51:32', null, 'youXiao', '0', '未支付', 'paymentStatus_no', '1', 'paymentStatus_no', '1', null, '11');
-INSERT INTO pingtai_dict VALUES ('100', '2010-11-10 13:51:32', null, 'youXiao', '0', '已支付', 'paymentStatus_yes', '3', 'paymentStatus_yes', '1', null, '11');
-INSERT INTO pingtai_dict VALUES ('101', '2010-11-10 13:51:32', null, 'youXiao', '0', '未结清', 'paymentStatus_part', '2', 'paymentStatus_part', '1', null, '11');
-INSERT INTO pingtai_dict VALUES ('106', '2010-11-10 14:08:11', null, 'youXiao', '0', '等待支付', 'orderFormStatus_waitPay', '1', 'orderFormStatus_waitPay', '1', null, '13');
-INSERT INTO pingtai_dict VALUES ('107', '2010-11-10 14:08:11', null, 'youXiao', '0', '等待发货', 'orderFormStatus_waitFaHuo', '2', 'orderFormStatus_waitFaHuo', '1', null, '13');
-INSERT INTO pingtai_dict VALUES ('108', '2010-11-10 14:08:11', null, 'youXiao', '0', '已经发货', 'orderFormStatus_alreadyFaHuo', '3', 'orderFormStatus_alreadyFaHuo', '1', null, '13');
-INSERT INTO pingtai_dict VALUES ('109', '2010-11-10 14:08:11', null, 'youXiao', '0', '订单结束', 'orderFormStatus_over', '4', 'orderFormStatus_over', '1', null, '13');
-INSERT INTO pingtai_dict VALUES ('112', '2010-11-11 15:24:13', null, 'youXiao', '0', '一级', 'productClass_one', '1', '1', '1', null, '14');
-INSERT INTO pingtai_dict VALUES ('113', '2010-11-11 15:24:13', null, 'youXiao', '0', '二级', 'productClass_two', '2', '2', '1', null, '14');
-INSERT INTO pingtai_dict VALUES ('114', '2010-11-11 16:17:15', null, 'youXiao', '0', '打开', 'productClassStatus_NO', '1', 'NO', '1', null, '15');
-INSERT INTO pingtai_dict VALUES ('115', '2010-11-11 16:17:15', null, 'youXiao', '0', '关闭', 'productClassStatus_OFF', '2', 'OFF', '1', null, '15');
-INSERT INTO pingtai_dict VALUES ('126', '2010-11-16 10:08:02', null, 'youXiao', '0', '待审核', 'appraiseStatus_daiShen', '1', 'daiShen', '1', null, '17');
-INSERT INTO pingtai_dict VALUES ('127', '2010-11-16 10:08:02', null, 'youXiao', '0', '审核通过', 'appraiseStatus_tongGuo', '2', 'tongGuo', '1', null, '17');
-INSERT INTO pingtai_dict VALUES ('128', '2010-11-16 10:08:02', null, 'youXiao', '0', '审核未通过', 'appraiseStatus_meiTongGuo', '3', 'meiTongGuo', '1', null, '17');
-INSERT INTO pingtai_dict VALUES ('134', '2010-11-16 10:31:39', null, 'youXiao', '0', '付款方式', 'guide_fuKuanFangShi', '1', 'fuKuanFangShi', '1', null, '18');
-INSERT INTO pingtai_dict VALUES ('135', '2010-11-16 10:31:39', null, 'youXiao', '0', '配送方式', 'guide_peiSongFangShi', '2', 'peiSongFangShi', '1', null, '18');
-INSERT INTO pingtai_dict VALUES ('136', '2010-11-16 10:31:39', null, 'youXiao', '0', '退货与换货', 'guide_tuiHuoHuanHuo', '3', 'tuiHuoHuanHuo', '1', null, '18');
-INSERT INTO pingtai_dict VALUES ('137', '2010-11-16 10:31:39', null, 'youXiao', '0', '帮助中心', 'guide_bangZhuZhongXin', '4', 'bangZhuZhongXin', '1', null, '18');
-INSERT INTO pingtai_dict VALUES ('138', '2010-11-16 10:31:39', null, 'youXiao', '0', '关于我们', 'guide_guanYuWoMen', '5', 'guanYuWoMen', '1', null, '18');
-INSERT INTO pingtai_dict VALUES ('139', '2011-01-23 10:07:01', null, 'youXiao', '0', '在售', 'productStatus_NO', '1', 'productStatus_NO', '1', null, '16');
-INSERT INTO pingtai_dict VALUES ('140', '2011-01-23 10:07:01', null, 'youXiao', '0', '停售', 'productStatus_OFF', '2', 'productStatus_OFF', '1', null, '16');
-INSERT INTO pingtai_dict VALUES ('157', '2011-05-24 20:37:48', null, 'youXiao', '0', '用户级', 'userOperatorDataLevel_yongHuJi', '1', 'userOperatorDataLevel_yongHuJi', '1', null, '19');
-INSERT INTO pingtai_dict VALUES ('158', '2011-05-24 20:37:48', null, 'youXiao', '0', '部门级', 'userOperatorDataLevel_buMenJi', '2', 'userOperatorDataLevel_buMenJi', '1', null, '19');
+--
+-- 转存表中的数据 `pingtai_dict`
+--
 
--- ----------------------------
--- Table structure for `pingtai_dicttype`
--- ----------------------------
-DROP TABLE IF EXISTS `pingtai_dicttype`;
-CREATE TABLE `pingtai_dicttype` (
+INSERT INTO `pingtai_dict` (`ids`, `createdDate`, `modifiedDate`, `valid`, `version`, `names`, `numbers`, `orderIds`, `value`, `creatorUserIds`, `modifiedUserIds`, `dictTypeIds`) VALUES
+(18, '2010-10-22 22:45:13', NULL, 'youXiao', 0, '男', 'man', 1, 'man', NULL, NULL, 1),
+(19, '2010-10-22 22:45:13', NULL, 'youXiao', 0, '女', 'woman', 2, 'woman', NULL, NULL, 1),
+(28, '2010-10-23 00:12:44', NULL, 'youXiao', 0, '前台', 'userClass_qianTai', 1, 'userClass_qianTai', 1, NULL, 2),
+(29, '2010-10-23 00:12:44', NULL, 'youXiao', 0, '后台', 'userClass_houTai', 2, 'userClass_houTai', 1, NULL, 2),
+(63, '2010-10-23 00:26:30', NULL, 'youXiao', 0, '大专', 'wenHuaChenDu_dazhaun', 5, 'wenHuaChenDu_dazhaun', 1, NULL, 3),
+(64, '2010-10-23 00:26:30', NULL, 'youXiao', 0, '初中', 'wenHuaChenDu_chuZhong', 2, 'wenHuaChenDu_chuZhong', 1, NULL, 3),
+(65, '2010-10-23 00:26:30', NULL, 'youXiao', 0, '小学', 'wenHuaChenDu_xiaoXue', 1, 'wenHuaChenDu_xiaoXue', 1, NULL, 3),
+(66, '2010-10-23 00:26:30', NULL, 'youXiao', 0, '中专', 'wenHuaChenDu_zhongzhuan', 4, 'wenHuaChenDu_zhongzhuan', 1, NULL, 3),
+(67, '2010-10-23 00:26:30', NULL, 'youXiao', 0, '高中', 'wenHuaChenDu_gaoZhong', 3, 'wenHuaChenDu_gaoZhong', 1, NULL, 3),
+(68, '2010-10-23 00:26:30', NULL, 'youXiao', 0, '本科', 'wenHuaChenDu_benKe', 6, 'wenHuaChenDu_benKe', 1, NULL, 3),
+(69, '2010-10-23 00:26:30', NULL, 'youXiao', 0, '更高', 'wenHuaChenDu_gengGao', 7, 'wenHuaChenDu_gengGao', 1, NULL, 3),
+(73, '2010-10-24 19:48:18', NULL, 'youXiao', 0, '已婚', 'marriage_yes', 2, 'marriage_yes', 1, NULL, 5),
+(74, '2010-10-24 19:48:18', NULL, 'youXiao', 0, '未婚', 'marriage_no', 1, 'marriage_no', 1, NULL, 5),
+(78, '2010-10-24 20:10:10', NULL, 'youXiao', 0, '群众', 'government_qunZhong', 1, 'government_qunZhong', 1, NULL, 6),
+(79, '2010-10-24 20:10:10', NULL, 'youXiao', 0, '党员', 'government_dangYuan', 2, 'government_dangYuan', 1, NULL, 6),
+(80, '2010-10-24 20:16:29', NULL, 'youXiao', 0, '汉族', 'folk_han', 1, 'folk_han', 1, NULL, 4),
+(81, '2010-10-24 20:16:29', NULL, 'youXiao', 0, '其它', 'folk_qiTa', 2, 'folk_qiTa', 1, NULL, 4),
+(83, '2010-10-25 11:27:33', NULL, 'youXiao', 0, 'A型', 'bloodGroup_A', 1, 'bloodGroup_A', 1, NULL, 7),
+(84, '2010-10-25 11:27:33', NULL, 'youXiao', 0, 'B型', 'bloodGroup_B', 2, 'bloodGroup_B', 1, NULL, 7),
+(85, '2010-10-25 11:27:33', NULL, 'youXiao', 0, 'AB型', 'bloodGroup_AB', 3, 'bloodGroup_AB', 1, NULL, 7),
+(86, '2010-10-25 11:27:33', NULL, 'youXiao', 0, 'O型', 'bloodGroup_O', 4, 'bloodGroup_O', 1, NULL, 7),
+(88, '2010-10-27 21:16:00', NULL, 'youXiao', 0, '前台菜单', 'menuType_qianTai', 1, 'menuType_qianTai', 1, NULL, 8),
+(89, '2010-10-27 21:16:00', NULL, 'youXiao', 0, '后台菜单', 'menuType_houTai', 2, 'menuType_houTai', 1, NULL, 8),
+(93, '2010-10-28 21:33:38', NULL, 'youXiao', 0, '一级', 'menuLevel_one', 1, '1', 1, NULL, 9),
+(94, '2010-10-28 21:33:38', NULL, 'youXiao', 0, '二级', 'menuLevel_two', 2, '2', 1, NULL, 9),
+(95, '2010-11-10 13:45:43', NULL, 'youXiao', 0, '即时支付', 'paymentType_instant', 1, 'paymentType_instant', 1, NULL, 10),
+(96, '2010-11-10 13:45:43', NULL, 'youXiao', 0, '担保支付', 'paymentType_assure', 4, 'paymentType_assure', 1, NULL, 10),
+(97, '2010-11-10 13:45:43', NULL, 'youXiao', 0, '货到付款', 'paymentType_cod', 2, 'paymentType_cod', 1, NULL, 10),
+(98, '2010-11-10 13:45:43', NULL, 'youXiao', 0, '汇款', 'paymentType_remit', 3, 'paymentType_remit', 1, NULL, 10),
+(99, '2010-11-10 13:51:32', NULL, 'youXiao', 0, '未支付', 'paymentStatus_no', 1, 'paymentStatus_no', 1, NULL, 11),
+(100, '2010-11-10 13:51:32', NULL, 'youXiao', 0, '已支付', 'paymentStatus_yes', 3, 'paymentStatus_yes', 1, NULL, 11),
+(101, '2010-11-10 13:51:32', NULL, 'youXiao', 0, '未结清', 'paymentStatus_part', 2, 'paymentStatus_part', 1, NULL, 11),
+(106, '2010-11-10 14:08:11', NULL, 'youXiao', 0, '等待支付', 'orderFormStatus_waitPay', 1, 'orderFormStatus_waitPay', 1, NULL, 13),
+(107, '2010-11-10 14:08:11', NULL, 'youXiao', 0, '等待发货', 'orderFormStatus_waitFaHuo', 2, 'orderFormStatus_waitFaHuo', 1, NULL, 13),
+(108, '2010-11-10 14:08:11', NULL, 'youXiao', 0, '已经发货', 'orderFormStatus_alreadyFaHuo', 3, 'orderFormStatus_alreadyFaHuo', 1, NULL, 13),
+(109, '2010-11-10 14:08:11', NULL, 'youXiao', 0, '订单结束', 'orderFormStatus_over', 4, 'orderFormStatus_over', 1, NULL, 13),
+(112, '2010-11-11 15:24:13', NULL, 'youXiao', 0, '一级', 'productClass_one', 1, '1', 1, NULL, 14),
+(113, '2010-11-11 15:24:13', NULL, 'youXiao', 0, '二级', 'productClass_two', 2, '2', 1, NULL, 14),
+(114, '2010-11-11 16:17:15', NULL, 'youXiao', 0, '打开', 'productClassStatus_NO', 1, 'NO', 1, NULL, 15),
+(115, '2010-11-11 16:17:15', NULL, 'youXiao', 0, '关闭', 'productClassStatus_OFF', 2, 'OFF', 1, NULL, 15),
+(126, '2010-11-16 10:08:02', NULL, 'youXiao', 0, '待审核', 'appraiseStatus_daiShen', 1, 'daiShen', 1, NULL, 17),
+(127, '2010-11-16 10:08:02', NULL, 'youXiao', 0, '审核通过', 'appraiseStatus_tongGuo', 2, 'tongGuo', 1, NULL, 17),
+(128, '2010-11-16 10:08:02', NULL, 'youXiao', 0, '审核未通过', 'appraiseStatus_meiTongGuo', 3, 'meiTongGuo', 1, NULL, 17),
+(134, '2010-11-16 10:31:39', NULL, 'youXiao', 0, '付款方式', 'guide_fuKuanFangShi', 1, 'fuKuanFangShi', 1, NULL, 18),
+(135, '2010-11-16 10:31:39', NULL, 'youXiao', 0, '配送方式', 'guide_peiSongFangShi', 2, 'peiSongFangShi', 1, NULL, 18),
+(136, '2010-11-16 10:31:39', NULL, 'youXiao', 0, '退货与换货', 'guide_tuiHuoHuanHuo', 3, 'tuiHuoHuanHuo', 1, NULL, 18),
+(137, '2010-11-16 10:31:39', NULL, 'youXiao', 0, '帮助中心', 'guide_bangZhuZhongXin', 4, 'bangZhuZhongXin', 1, NULL, 18),
+(138, '2010-11-16 10:31:39', NULL, 'youXiao', 0, '关于我们', 'guide_guanYuWoMen', 5, 'guanYuWoMen', 1, NULL, 18),
+(139, '2011-01-23 10:07:01', NULL, 'youXiao', 0, '在售', 'productStatus_NO', 1, 'productStatus_NO', 1, NULL, 16),
+(140, '2011-01-23 10:07:01', NULL, 'youXiao', 0, '停售', 'productStatus_OFF', 2, 'productStatus_OFF', 1, NULL, 16),
+(157, '2011-05-24 20:37:48', NULL, 'youXiao', 0, '用户级', 'userOperatorDataLevel_yongHuJi', 1, 'userOperatorDataLevel_yongHuJi', 1, NULL, 19),
+(158, '2011-05-24 20:37:48', NULL, 'youXiao', 0, '部门级', 'userOperatorDataLevel_buMenJi', 2, 'userOperatorDataLevel_buMenJi', 1, NULL, 19);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `pingtai_dicttype`
+--
+
+CREATE TABLE IF NOT EXISTS `pingtai_dicttype` (
   `ids` bigint(20) NOT NULL AUTO_INCREMENT,
   `createdDate` datetime DEFAULT NULL,
   `modifiedDate` datetime DEFAULT NULL,
@@ -784,38 +829,40 @@ CREATE TABLE `pingtai_dicttype` (
   UNIQUE KEY `ids` (`ids`),
   KEY `FKA35D6BC5BF045F6D` (`creatorUserIds`),
   KEY `FKA35D6BC59BC52230` (`modifiedUserIds`),
-  KEY `numbersIndex` (`numbers`),
-  CONSTRAINT `FKA35D6BC59BC52230` FOREIGN KEY (`modifiedUserIds`) REFERENCES `pingtai_user` (`ids`),
-  CONSTRAINT `FKA35D6BC5BF045F6D` FOREIGN KEY (`creatorUserIds`) REFERENCES `pingtai_user` (`ids`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  KEY `numbersIndex` (`numbers`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=20 ;
 
--- ----------------------------
--- Records of pingtai_dicttype
--- ----------------------------
-INSERT INTO pingtai_dicttype VALUES ('1', '2010-10-18 20:13:31', '2010-10-22 22:45:13', 'youXiao', '9', '性别', 'sex', '1', '1', null);
-INSERT INTO pingtai_dicttype VALUES ('2', '2010-10-22 23:00:38', '2010-10-23 00:12:28', 'youXiao', '2', '用户类型', 'userClass', '2', '1', null);
-INSERT INTO pingtai_dicttype VALUES ('3', '2010-10-22 23:39:56', '2010-10-23 00:26:30', 'youXiao', '6', '文化程度', 'wenHuaChenDu', '3', '1', null);
-INSERT INTO pingtai_dicttype VALUES ('4', '2010-10-22 23:51:12', '2010-10-24 20:16:29', 'youXiao', '2', '民族', 'folk', '4', '1', null);
-INSERT INTO pingtai_dicttype VALUES ('5', '2010-10-24 19:47:58', '2010-10-24 19:48:18', 'youXiao', '1', '婚姻状况', 'marriage', '5', '1', null);
-INSERT INTO pingtai_dicttype VALUES ('6', '2010-10-24 20:07:14', '2010-10-24 20:10:10', 'youXiao', '2', '政治面貌', 'government', '6', '1', null);
-INSERT INTO pingtai_dicttype VALUES ('7', '2010-10-25 11:26:42', '2010-10-25 11:27:33', 'youXiao', '1', '血型', 'bloodGroup', '7', '1', null);
-INSERT INTO pingtai_dicttype VALUES ('8', '2010-10-27 21:15:30', '2010-10-27 21:16:00', 'youXiao', '1', '菜单类型', 'menuType', '8', '1', null);
-INSERT INTO pingtai_dicttype VALUES ('9', '2010-10-27 22:18:30', '2010-10-28 21:33:38', 'youXiao', '2', '菜单级别', 'menuLevel', '9', '1', null);
-INSERT INTO pingtai_dicttype VALUES ('10', '2010-11-10 13:45:42', null, 'youXiao', '0', '支付类型', 'paymentType', '10', '1', null);
-INSERT INTO pingtai_dicttype VALUES ('11', '2010-11-10 13:51:32', null, 'youXiao', '0', '支付状态', 'paymentStatus', '11', '1', null);
-INSERT INTO pingtai_dicttype VALUES ('13', '2010-11-10 14:01:01', '2010-11-10 14:08:11', 'youXiao', '1', '订单状态', 'orderFormStatus', '12', '1', '1');
-INSERT INTO pingtai_dicttype VALUES ('14', '2010-11-11 15:16:13', '2010-11-11 15:24:13', 'youXiao', '1', '商品分类级别', 'productClass', '13', '1', '1');
-INSERT INTO pingtai_dicttype VALUES ('15', '2010-11-11 16:17:14', null, 'youXiao', '0', '商品分类状态', 'productClassStatus', '14', '1', null);
-INSERT INTO pingtai_dicttype VALUES ('16', null, '2011-01-23 10:07:01', 'youXiao', '1', '商品状态', 'productStatus', '15', '1', '1');
-INSERT INTO pingtai_dicttype VALUES ('17', '2010-11-15 00:09:00', '2010-11-16 10:08:02', 'youXiao', '1', '评论状态', 'appraiseStatus', '16', '1', '1');
-INSERT INTO pingtai_dicttype VALUES ('18', '2010-11-15 16:30:05', '2010-11-16 10:31:39', 'youXiao', '2', '用户指南分类', 'guide', '17', '1', '1');
-INSERT INTO pingtai_dicttype VALUES ('19', '2011-05-23 21:29:14', '2011-05-24 20:37:48', 'youXiao', '4', '用户操作数据级别', 'userOperatorDataLevel', '18', '1', '1');
+--
+-- 转存表中的数据 `pingtai_dicttype`
+--
 
--- ----------------------------
--- Table structure for `pingtai_group`
--- ----------------------------
-DROP TABLE IF EXISTS `pingtai_group`;
-CREATE TABLE `pingtai_group` (
+INSERT INTO `pingtai_dicttype` (`ids`, `createdDate`, `modifiedDate`, `valid`, `version`, `names`, `numbers`, `orderIds`, `creatorUserIds`, `modifiedUserIds`) VALUES
+(1, '2010-10-18 20:13:31', '2010-10-22 22:45:13', 'youXiao', 9, '性别', 'sex', 1, 1, NULL),
+(2, '2010-10-22 23:00:38', '2010-10-23 00:12:28', 'youXiao', 2, '用户类型', 'userClass', 2, 1, NULL),
+(3, '2010-10-22 23:39:56', '2010-10-23 00:26:30', 'youXiao', 6, '文化程度', 'wenHuaChenDu', 3, 1, NULL),
+(4, '2010-10-22 23:51:12', '2010-10-24 20:16:29', 'youXiao', 2, '民族', 'folk', 4, 1, NULL),
+(5, '2010-10-24 19:47:58', '2010-10-24 19:48:18', 'youXiao', 1, '婚姻状况', 'marriage', 5, 1, NULL),
+(6, '2010-10-24 20:07:14', '2010-10-24 20:10:10', 'youXiao', 2, '政治面貌', 'government', 6, 1, NULL),
+(7, '2010-10-25 11:26:42', '2010-10-25 11:27:33', 'youXiao', 1, '血型', 'bloodGroup', 7, 1, NULL),
+(8, '2010-10-27 21:15:30', '2010-10-27 21:16:00', 'youXiao', 1, '菜单类型', 'menuType', 8, 1, NULL),
+(9, '2010-10-27 22:18:30', '2010-10-28 21:33:38', 'youXiao', 2, '菜单级别', 'menuLevel', 9, 1, NULL),
+(10, '2010-11-10 13:45:42', NULL, 'youXiao', 0, '支付类型', 'paymentType', 10, 1, NULL),
+(11, '2010-11-10 13:51:32', NULL, 'youXiao', 0, '支付状态', 'paymentStatus', 11, 1, NULL),
+(13, '2010-11-10 14:01:01', '2010-11-10 14:08:11', 'youXiao', 1, '订单状态', 'orderFormStatus', 12, 1, 1),
+(14, '2010-11-11 15:16:13', '2010-11-11 15:24:13', 'youXiao', 1, '商品分类级别', 'productClass', 13, 1, 1),
+(15, '2010-11-11 16:17:14', NULL, 'youXiao', 0, '商品分类状态', 'productClassStatus', 14, 1, NULL),
+(16, NULL, '2011-01-23 10:07:01', 'youXiao', 1, '商品状态', 'productStatus', 15, 1, 1),
+(17, '2010-11-15 00:09:00', '2010-11-16 10:08:02', 'youXiao', 1, '评论状态', 'appraiseStatus', 16, 1, 1),
+(18, '2010-11-15 16:30:05', '2010-11-16 10:31:39', 'youXiao', 2, '用户指南分类', 'guide', 17, 1, 1),
+(19, '2011-05-23 21:29:14', '2011-05-24 20:37:48', 'youXiao', 4, '用户操作数据级别', 'userOperatorDataLevel', 18, 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `pingtai_group`
+--
+
+CREATE TABLE IF NOT EXISTS `pingtai_group` (
   `ids` bigint(20) NOT NULL AUTO_INCREMENT,
   `createdDate` datetime DEFAULT NULL,
   `modifiedDate` datetime DEFAULT NULL,
@@ -828,22 +875,24 @@ CREATE TABLE `pingtai_group` (
   PRIMARY KEY (`ids`),
   UNIQUE KEY `ids` (`ids`),
   KEY `FKAAC0F2EABF045F6D` (`creatorUserIds`),
-  KEY `FKAAC0F2EA9BC52230` (`modifiedUserIds`),
-  CONSTRAINT `FKAAC0F2EA9BC52230` FOREIGN KEY (`modifiedUserIds`) REFERENCES `pingtai_user` (`ids`),
-  CONSTRAINT `FKAAC0F2EABF045F6D` FOREIGN KEY (`creatorUserIds`) REFERENCES `pingtai_user` (`ids`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  KEY `FKAAC0F2EA9BC52230` (`modifiedUserIds`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=3 ;
 
--- ----------------------------
--- Records of pingtai_group
--- ----------------------------
-INSERT INTO pingtai_group VALUES ('1', '2010-10-26 21:54:10', '2010-11-01 14:16:19', 'youXiao', '14', '系统管理员组', '管理员', '1', '1');
-INSERT INTO pingtai_group VALUES ('2', '2010-10-26 21:56:10', '2011-03-09 20:27:39', 'youXiao', '17', '普通用户组', '普通用户', '1', '1');
+--
+-- 转存表中的数据 `pingtai_group`
+--
 
--- ----------------------------
--- Table structure for `pingtai_jbpm4_assignmode`
--- ----------------------------
-DROP TABLE IF EXISTS `pingtai_jbpm4_assignmode`;
-CREATE TABLE `pingtai_jbpm4_assignmode` (
+INSERT INTO `pingtai_group` (`ids`, `createdDate`, `modifiedDate`, `valid`, `version`, `description`, `names`, `creatorUserIds`, `modifiedUserIds`) VALUES
+(1, '2010-10-26 21:54:10', '2010-11-01 14:16:19', 'youXiao', 14, '系统管理员组', '管理员', 1, 1),
+(2, '2010-10-26 21:56:10', '2011-03-09 20:27:39', 'youXiao', 17, '普通用户组', '普通用户', 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `pingtai_jbpm4_assignmode`
+--
+
+CREATE TABLE IF NOT EXISTS `pingtai_jbpm4_assignmode` (
   `ids` bigint(20) NOT NULL AUTO_INCREMENT,
   `createdDate` datetime DEFAULT NULL,
   `modifiedDate` datetime DEFAULT NULL,
@@ -858,22 +907,24 @@ CREATE TABLE `pingtai_jbpm4_assignmode` (
   PRIMARY KEY (`ids`),
   UNIQUE KEY `ids` (`ids`),
   KEY `FK3920C067BF045F6D` (`creatorUserIds`),
-  KEY `FK3920C0679BC52230` (`modifiedUserIds`),
-  CONSTRAINT `FK3920C0679BC52230` FOREIGN KEY (`modifiedUserIds`) REFERENCES `pingtai_user` (`ids`),
-  CONSTRAINT `FK3920C067BF045F6D` FOREIGN KEY (`creatorUserIds`) REFERENCES `pingtai_user` (`ids`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  KEY `FK3920C0679BC52230` (`modifiedUserIds`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=3 ;
 
--- ----------------------------
--- Records of pingtai_jbpm4_assignmode
--- ----------------------------
-INSERT INTO pingtai_jbpm4_assignmode VALUES ('1', '2010-11-03 16:43:49', '2010-11-26 09:55:30', 'youXiao', '7', 'com.aqua.pingtai.jbpm.assignment.impl.AssignmentHandlerByEmployee.java', '分派到员工', 'paramaterOne', '/pingTai/userPingTaiAction!userListDialog.action', '1', '1');
-INSERT INTO pingtai_jbpm4_assignmode VALUES ('2', '2010-11-05 13:45:57', '2010-11-26 15:59:10', 'youXiao', '9', 'com.aqua.pingtai.jbpm.assignment.impl.AssignmentHandlerByManyEmployee.java', '分派到多个员工', 'paramaterOne', '/pingTai/userPingTaiAction!userListDialogTree.action', '1', '1');
+--
+-- 转存表中的数据 `pingtai_jbpm4_assignmode`
+--
 
--- ----------------------------
--- Table structure for `pingtai_jbpm4_groupimpl`
--- ----------------------------
-DROP TABLE IF EXISTS `pingtai_jbpm4_groupimpl`;
-CREATE TABLE `pingtai_jbpm4_groupimpl` (
+INSERT INTO `pingtai_jbpm4_assignmode` (`ids`, `createdDate`, `modifiedDate`, `valid`, `version`, `implClass`, `names`, `paramaterClassName`, `paramaterFindLink`, `creatorUserIds`, `modifiedUserIds`) VALUES
+(1, '2010-11-03 16:43:49', '2010-11-26 09:55:30', 'youXiao', 7, 'com.aqua.pingtai.jbpm.assignment.impl.AssignmentHandlerByEmployee.java', '分派到员工', 'paramaterOne', '/pingTai/userPingTaiAction!userListDialog.action', 1, 1),
+(2, '2010-11-05 13:45:57', '2010-11-26 15:59:10', 'youXiao', 9, 'com.aqua.pingtai.jbpm.assignment.impl.AssignmentHandlerByManyEmployee.java', '分派到多个员工', 'paramaterOne', '/pingTai/userPingTaiAction!userListDialogTree.action', 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `pingtai_jbpm4_groupimpl`
+--
+
+CREATE TABLE IF NOT EXISTS `pingtai_jbpm4_groupimpl` (
   `ids` bigint(20) NOT NULL AUTO_INCREMENT,
   `createdDate` datetime DEFAULT NULL,
   `modifiedDate` datetime DEFAULT NULL,
@@ -891,22 +942,23 @@ CREATE TABLE `pingtai_jbpm4_groupimpl` (
   UNIQUE KEY `id` (`id`),
   KEY `FK8EBD6D2ABF045F6D` (`creatorUserIds`),
   KEY `FK8EBD6D2A8C37B037` (`groupIds`),
-  KEY `FK8EBD6D2A9BC52230` (`modifiedUserIds`),
-  CONSTRAINT `FK8EBD6D2A8C37B037` FOREIGN KEY (`groupIds`) REFERENCES `pingtai_group` (`ids`),
-  CONSTRAINT `FK8EBD6D2A9BC52230` FOREIGN KEY (`modifiedUserIds`) REFERENCES `pingtai_user` (`ids`),
-  CONSTRAINT `FK8EBD6D2ABF045F6D` FOREIGN KEY (`creatorUserIds`) REFERENCES `pingtai_user` (`ids`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  KEY `FK8EBD6D2A9BC52230` (`modifiedUserIds`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=3 ;
 
--- ----------------------------
--- Records of pingtai_jbpm4_groupimpl
--- ----------------------------
-INSERT INTO pingtai_jbpm4_groupimpl VALUES ('2', '2010-11-08 14:45:58', null, 'youXiao', '0', '管理员', '1', '管理员', '管理员', '1', null, '1');
+--
+-- 转存表中的数据 `pingtai_jbpm4_groupimpl`
+--
 
--- ----------------------------
--- Table structure for `pingtai_jbpm4_swimlane`
--- ----------------------------
-DROP TABLE IF EXISTS `pingtai_jbpm4_swimlane`;
-CREATE TABLE `pingtai_jbpm4_swimlane` (
+INSERT INTO `pingtai_jbpm4_groupimpl` (`ids`, `createdDate`, `modifiedDate`, `valid`, `version`, `description`, `id`, `name`, `type`, `creatorUserIds`, `modifiedUserIds`, `groupIds`) VALUES
+(2, '2010-11-08 14:45:58', NULL, 'youXiao', 0, '管理员', '1', '管理员', '管理员', 1, NULL, 1);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `pingtai_jbpm4_swimlane`
+--
+
+CREATE TABLE IF NOT EXISTS `pingtai_jbpm4_swimlane` (
   `ids` bigint(20) NOT NULL AUTO_INCREMENT,
   `createdDate` datetime DEFAULT NULL,
   `modifiedDate` datetime DEFAULT NULL,
@@ -924,24 +976,26 @@ CREATE TABLE `pingtai_jbpm4_swimlane` (
   PRIMARY KEY (`ids`),
   UNIQUE KEY `ids` (`ids`),
   KEY `FK2008709BF045F6D` (`creatorUserIds`),
-  KEY `FK20087099BC52230` (`modifiedUserIds`),
-  CONSTRAINT `FK20087099BC52230` FOREIGN KEY (`modifiedUserIds`) REFERENCES `pingtai_user` (`ids`),
-  CONSTRAINT `FK2008709BF045F6D` FOREIGN KEY (`creatorUserIds`) REFERENCES `pingtai_user` (`ids`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  KEY `FK20087099BC52230` (`modifiedUserIds`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=24 ;
 
--- ----------------------------
--- Records of pingtai_jbpm4_swimlane
--- ----------------------------
-INSERT INTO pingtai_jbpm4_swimlane VALUES ('20', '2011-02-28 22:45:22', null, 'youXiao', '0', '4', 'Java小组', 'QingJiaNew-1', 'AAA', '2', '小二', 'AAA', '1', null);
-INSERT INTO pingtai_jbpm4_swimlane VALUES ('21', '2011-02-28 22:45:22', null, 'youXiao', '0', '5', 'c小组', 'QingJiaNew-1', 'BBB', '3', 'test002', 'BBB', '1', null);
-INSERT INTO pingtai_jbpm4_swimlane VALUES ('22', '2011-02-28 22:45:22', '2011-05-17 20:05:31', 'youXiao', '5', '7', '策划', 'QingJiaNew-1', 'CCC', '4', 'test003', 'CCC', '1', '1');
-INSERT INTO pingtai_jbpm4_swimlane VALUES ('23', '2011-02-28 22:45:22', '2011-02-28 22:53:03', 'youXiao', '2', '8', '实施', 'QingJiaNew-1', 'DDD', '5', '部门经理', 'DDD', '1', '1');
+--
+-- 转存表中的数据 `pingtai_jbpm4_swimlane`
+--
 
--- ----------------------------
--- Table structure for `pingtai_jbpm4_taskassignment`
--- ----------------------------
-DROP TABLE IF EXISTS `pingtai_jbpm4_taskassignment`;
-CREATE TABLE `pingtai_jbpm4_taskassignment` (
+INSERT INTO `pingtai_jbpm4_swimlane` (`ids`, `createdDate`, `modifiedDate`, `valid`, `version`, `groupIds`, `groupNames`, `processDefinitionId`, `swimlaneName`, `userIds`, `userNames`, `variableName`, `creatorUserIds`, `modifiedUserIds`) VALUES
+(20, '2011-02-28 22:45:22', NULL, 'youXiao', 0, '4', 'Java小组', 'QingJiaNew-1', 'AAA', '2', '小二', 'AAA', 1, NULL),
+(21, '2011-02-28 22:45:22', NULL, 'youXiao', 0, '5', 'c小组', 'QingJiaNew-1', 'BBB', '3', 'test002', 'BBB', 1, NULL),
+(22, '2011-02-28 22:45:22', '2011-05-17 20:05:31', 'youXiao', 5, '7', '策划', 'QingJiaNew-1', 'CCC', '4', 'test003', 'CCC', 1, 1),
+(23, '2011-02-28 22:45:22', '2011-02-28 22:53:03', 'youXiao', 2, '8', '实施', 'QingJiaNew-1', 'DDD', '5', '部门经理', 'DDD', 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `pingtai_jbpm4_taskassignment`
+--
+
+CREATE TABLE IF NOT EXISTS `pingtai_jbpm4_taskassignment` (
   `ids` bigint(20) NOT NULL AUTO_INCREMENT,
   `createdDate` datetime DEFAULT NULL,
   `modifiedDate` datetime DEFAULT NULL,
@@ -962,27 +1016,28 @@ CREATE TABLE `pingtai_jbpm4_taskassignment` (
   UNIQUE KEY `ids` (`ids`),
   KEY `FKCBC4BCE7BF045F6D` (`creatorUserIds`),
   KEY `FKCBC4BCE79BC52230` (`modifiedUserIds`),
-  KEY `FKCBC4BCE7C8439DC2` (`assignModeId`),
-  CONSTRAINT `FKCBC4BCE79BC52230` FOREIGN KEY (`modifiedUserIds`) REFERENCES `pingtai_user` (`ids`),
-  CONSTRAINT `FKCBC4BCE7BF045F6D` FOREIGN KEY (`creatorUserIds`) REFERENCES `pingtai_user` (`ids`),
-  CONSTRAINT `FKCBC4BCE7C8439DC2` FOREIGN KEY (`assignModeId`) REFERENCES `pingtai_jbpm4_assignmode` (`ids`)
-) ENGINE=InnoDB AUTO_INCREMENT=131 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  KEY `FKCBC4BCE7C8439DC2` (`assignModeId`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=131 ;
 
--- ----------------------------
--- Records of pingtai_jbpm4_taskassignment
--- ----------------------------
-INSERT INTO pingtai_jbpm4_taskassignment VALUES ('121', '2011-02-27 11:14:31', null, 'youXiao', '0', null, '', '', null, '/applicationAdmin/qingJiaApplicationAdminAction!qingJiaAdd.action', 'QingJia-1', '填写请假单', 'crruentUserIds', '1', null, 'bianLiang');
-INSERT INTO pingtai_jbpm4_taskassignment VALUES ('122', '2011-02-27 11:14:31', null, 'youXiao', '0', null, '5', '部门经理', null, '/applicationAdmin/qingJiaApplicationAdminAction!buMenJingLiAdd.action', 'QingJia-1', '部门经理审批', 'bb', '1', null, 'peiZhi');
-INSERT INTO pingtai_jbpm4_taskassignment VALUES ('123', '2011-02-27 11:14:31', null, 'youXiao', '0', null, '6', '总经理', null, '/applicationAdmin/qingJiaApplicationAdminAction!zongJingLiAdd.action', 'QingJia-1', '总经理审批', 'cc', '1', null, 'peiZhi');
-INSERT INTO pingtai_jbpm4_taskassignment VALUES ('128', '2011-02-27 20:43:21', null, 'youXiao', '0', null, '', '', null, '/applicationAdmin/qingJiaApplicationAdminAction!qingJiaAdd.action', 'QingJiaNew-1', '填写请假单', 'crruentUserIds', '1', null, 'bianLiang');
-INSERT INTO pingtai_jbpm4_taskassignment VALUES ('129', '2011-02-27 20:43:21', null, 'youXiao', '0', null, '1', '管理员', null, '/applicationAdmin/qingJiaApplicationAdminAction!buMenJingLiAdd.action', 'QingJiaNew-1', '部门经理审批', '', '1', null, 'peiZhi');
-INSERT INTO pingtai_jbpm4_taskassignment VALUES ('130', '2011-02-27 20:43:21', '2011-06-02 11:21:10', 'youXiao', '13', null, '1', '管理员', null, '/applicationAdmin/qingJiaApplicationAdminAction!zongJingLiAdd.action', 'QingJiaNew-1', '总经理审批', '', '1', '1', 'peiZhi');
+--
+-- 转存表中的数据 `pingtai_jbpm4_taskassignment`
+--
 
--- ----------------------------
--- Table structure for `pingtai_jbpm4_tasklog`
--- ----------------------------
-DROP TABLE IF EXISTS `pingtai_jbpm4_tasklog`;
-CREATE TABLE `pingtai_jbpm4_tasklog` (
+INSERT INTO `pingtai_jbpm4_taskassignment` (`ids`, `createdDate`, `modifiedDate`, `valid`, `version`, `assignModeId`, `assignModeParamaterId`, `assignModeParamaterName`, `countDay`, `processAction`, `processDefinitionId`, `taskName`, `variableName`, `creatorUserIds`, `modifiedUserIds`, `assignType`) VALUES
+(121, '2011-02-27 11:14:31', NULL, 'youXiao', 0, NULL, '', '', NULL, '/applicationAdmin/qingJiaApplicationAdminAction!qingJiaAdd.action', 'QingJia-1', '填写请假单', 'crruentUserIds', 1, NULL, 'bianLiang'),
+(122, '2011-02-27 11:14:31', NULL, 'youXiao', 0, NULL, '5', '部门经理', NULL, '/applicationAdmin/qingJiaApplicationAdminAction!buMenJingLiAdd.action', 'QingJia-1', '部门经理审批', 'bb', 1, NULL, 'peiZhi'),
+(123, '2011-02-27 11:14:31', NULL, 'youXiao', 0, NULL, '6', '总经理', NULL, '/applicationAdmin/qingJiaApplicationAdminAction!zongJingLiAdd.action', 'QingJia-1', '总经理审批', 'cc', 1, NULL, 'peiZhi'),
+(128, '2011-02-27 20:43:21', NULL, 'youXiao', 0, NULL, '', '', NULL, '/applicationAdmin/qingJiaApplicationAdminAction!qingJiaAdd.action', 'QingJiaNew-1', '填写请假单', 'crruentUserIds', 1, NULL, 'bianLiang'),
+(129, '2011-02-27 20:43:21', NULL, 'youXiao', 0, NULL, '1', '管理员', NULL, '/applicationAdmin/qingJiaApplicationAdminAction!buMenJingLiAdd.action', 'QingJiaNew-1', '部门经理审批', '', 1, NULL, 'peiZhi'),
+(130, '2011-02-27 20:43:21', '2011-06-02 11:21:10', 'youXiao', 13, NULL, '1', '管理员', NULL, '/applicationAdmin/qingJiaApplicationAdminAction!zongJingLiAdd.action', 'QingJiaNew-1', '总经理审批', '', 1, 1, 'peiZhi');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `pingtai_jbpm4_tasklog`
+--
+
+CREATE TABLE IF NOT EXISTS `pingtai_jbpm4_tasklog` (
   `ids` bigint(20) NOT NULL AUTO_INCREMENT,
   `createdDate` datetime DEFAULT NULL,
   `modifiedDate` datetime DEFAULT NULL,
@@ -1003,22 +1058,23 @@ CREATE TABLE `pingtai_jbpm4_tasklog` (
   UNIQUE KEY `ids` (`ids`),
   KEY `FKD629B66ABF045F6D` (`creatorUserIds`),
   KEY `FKD629B66A9BC52230` (`modifiedUserIds`),
-  KEY `FKD629B66AF4D89954` (`taskAssignmentId`),
-  CONSTRAINT `FKD629B66A9BC52230` FOREIGN KEY (`modifiedUserIds`) REFERENCES `pingtai_user` (`ids`),
-  CONSTRAINT `FKD629B66ABF045F6D` FOREIGN KEY (`creatorUserIds`) REFERENCES `pingtai_user` (`ids`),
-  CONSTRAINT `FKD629B66AF4D89954` FOREIGN KEY (`taskAssignmentId`) REFERENCES `pingtai_jbpm4_taskassignment` (`ids`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  KEY `FKD629B66AF4D89954` (`taskAssignmentId`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=2 ;
 
--- ----------------------------
--- Records of pingtai_jbpm4_tasklog
--- ----------------------------
-INSERT INTO pingtai_jbpm4_tasklog VALUES ('1', '2011-06-02 10:25:18', null, 'youXiao', '0', '填写请假单', 'QingJiaNew-1', 'QingJiaNew.200001', 'QingJiaNew', '', '200003', '开始', '2011-06-02 10:25:18', '1', null, '128');
+--
+-- 转存表中的数据 `pingtai_jbpm4_tasklog`
+--
 
--- ----------------------------
--- Table structure for `pingtai_jbpm4_taskloghistory`
--- ----------------------------
-DROP TABLE IF EXISTS `pingtai_jbpm4_taskloghistory`;
-CREATE TABLE `pingtai_jbpm4_taskloghistory` (
+INSERT INTO `pingtai_jbpm4_tasklog` (`ids`, `createdDate`, `modifiedDate`, `valid`, `version`, `names`, `processDefinitionId`, `processInstanceId`, `processName`, `taskDescription`, `taskId`, `taskState`, `timeLimit`, `creatorUserIds`, `modifiedUserIds`, `taskAssignmentId`) VALUES
+(1, '2011-06-02 10:25:18', NULL, 'youXiao', 0, '填写请假单', 'QingJiaNew-1', 'QingJiaNew.200001', 'QingJiaNew', '', '200003', '开始', '2011-06-02 10:25:18', 1, NULL, 128);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `pingtai_jbpm4_taskloghistory`
+--
+
+CREATE TABLE IF NOT EXISTS `pingtai_jbpm4_taskloghistory` (
   `ids` bigint(20) NOT NULL AUTO_INCREMENT,
   `createdDate` datetime DEFAULT NULL,
   `modifiedDate` datetime DEFAULT NULL,
@@ -1037,20 +1093,21 @@ CREATE TABLE `pingtai_jbpm4_taskloghistory` (
   PRIMARY KEY (`ids`),
   UNIQUE KEY `ids` (`ids`),
   KEY `FKEA1A02EABF045F6D` (`creatorUserIds`),
-  KEY `FKEA1A02EA9BC52230` (`modifiedUserIds`),
-  CONSTRAINT `FKEA1A02EA9BC52230` FOREIGN KEY (`modifiedUserIds`) REFERENCES `pingtai_user` (`ids`),
-  CONSTRAINT `FKEA1A02EABF045F6D` FOREIGN KEY (`creatorUserIds`) REFERENCES `pingtai_user` (`ids`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  KEY `FKEA1A02EA9BC52230` (`modifiedUserIds`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
 
--- ----------------------------
--- Records of pingtai_jbpm4_taskloghistory
--- ----------------------------
+--
+-- 转存表中的数据 `pingtai_jbpm4_taskloghistory`
+--
 
--- ----------------------------
--- Table structure for `pingtai_jbpm4_taskoperation`
--- ----------------------------
-DROP TABLE IF EXISTS `pingtai_jbpm4_taskoperation`;
-CREATE TABLE `pingtai_jbpm4_taskoperation` (
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `pingtai_jbpm4_taskoperation`
+--
+
+CREATE TABLE IF NOT EXISTS `pingtai_jbpm4_taskoperation` (
   `ids` bigint(20) NOT NULL AUTO_INCREMENT,
   `createdDate` datetime DEFAULT NULL,
   `modifiedDate` datetime DEFAULT NULL,
@@ -1066,21 +1123,21 @@ CREATE TABLE `pingtai_jbpm4_taskoperation` (
   UNIQUE KEY `ids` (`ids`),
   KEY `FKEBD5740DBF045F6D` (`creatorUserIds`),
   KEY `FKEBD5740DFAD37A42` (`taskAssignmentId`),
-  KEY `FKEBD5740D9BC52230` (`modifiedUserIds`),
-  CONSTRAINT `FKEBD5740D9BC52230` FOREIGN KEY (`modifiedUserIds`) REFERENCES `pingtai_user` (`ids`),
-  CONSTRAINT `FKEBD5740DBF045F6D` FOREIGN KEY (`creatorUserIds`) REFERENCES `pingtai_user` (`ids`),
-  CONSTRAINT `FKEBD5740DFAD37A42` FOREIGN KEY (`taskAssignmentId`) REFERENCES `pingtai_jbpm4_taskassignment` (`ids`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  KEY `FKEBD5740D9BC52230` (`modifiedUserIds`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
 
--- ----------------------------
--- Records of pingtai_jbpm4_taskoperation
--- ----------------------------
+--
+-- 转存表中的数据 `pingtai_jbpm4_taskoperation`
+--
 
--- ----------------------------
--- Table structure for `pingtai_jbpm4_taskoperator`
--- ----------------------------
-DROP TABLE IF EXISTS `pingtai_jbpm4_taskoperator`;
-CREATE TABLE `pingtai_jbpm4_taskoperator` (
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `pingtai_jbpm4_taskoperator`
+--
+
+CREATE TABLE IF NOT EXISTS `pingtai_jbpm4_taskoperator` (
   `ids` bigint(20) NOT NULL AUTO_INCREMENT,
   `createdDate` datetime DEFAULT NULL,
   `modifiedDate` datetime DEFAULT NULL,
@@ -1096,39 +1153,40 @@ CREATE TABLE `pingtai_jbpm4_taskoperator` (
   UNIQUE KEY `ids` (`ids`),
   KEY `FK51EE1D3EBF045F6D` (`creatorUserIds`),
   KEY `FK51EE1D3EFAD37A42` (`taskAssignmentId`),
-  KEY `FK51EE1D3E9BC52230` (`modifiedUserIds`),
-  CONSTRAINT `FK51EE1D3E9BC52230` FOREIGN KEY (`modifiedUserIds`) REFERENCES `pingtai_user` (`ids`),
-  CONSTRAINT `FK51EE1D3EBF045F6D` FOREIGN KEY (`creatorUserIds`) REFERENCES `pingtai_user` (`ids`),
-  CONSTRAINT `FK51EE1D3EFAD37A42` FOREIGN KEY (`taskAssignmentId`) REFERENCES `pingtai_jbpm4_taskassignment` (`ids`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  KEY `FK51EE1D3E9BC52230` (`modifiedUserIds`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
 
--- ----------------------------
--- Records of pingtai_jbpm4_taskoperator
--- ----------------------------
+--
+-- 转存表中的数据 `pingtai_jbpm4_taskoperator`
+--
 
--- ----------------------------
--- Table structure for `pingtai_jbpm4_usergroup`
--- ----------------------------
-DROP TABLE IF EXISTS `pingtai_jbpm4_usergroup`;
-CREATE TABLE `pingtai_jbpm4_usergroup` (
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `pingtai_jbpm4_usergroup`
+--
+
+CREATE TABLE IF NOT EXISTS `pingtai_jbpm4_usergroup` (
   `userIds` bigint(20) NOT NULL,
   `groupIds` bigint(20) NOT NULL,
   PRIMARY KEY (`userIds`,`groupIds`),
   KEY `FKFA022D7F59B665D5` (`groupIds`),
-  KEY `FKFA022D7F5FB6973B` (`userIds`),
-  CONSTRAINT `FKFA022D7F59B665D5` FOREIGN KEY (`groupIds`) REFERENCES `pingtai_jbpm4_groupimpl` (`ids`),
-  CONSTRAINT `FKFA022D7F5FB6973B` FOREIGN KEY (`userIds`) REFERENCES `pingtai_jbpm4_userimpl` (`ids`)
+  KEY `FKFA022D7F5FB6973B` (`userIds`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- ----------------------------
--- Records of pingtai_jbpm4_usergroup
--- ----------------------------
+--
+-- 转存表中的数据 `pingtai_jbpm4_usergroup`
+--
 
--- ----------------------------
--- Table structure for `pingtai_jbpm4_userimpl`
--- ----------------------------
-DROP TABLE IF EXISTS `pingtai_jbpm4_userimpl`;
-CREATE TABLE `pingtai_jbpm4_userimpl` (
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `pingtai_jbpm4_userimpl`
+--
+
+CREATE TABLE IF NOT EXISTS `pingtai_jbpm4_userimpl` (
   `ids` bigint(20) NOT NULL AUTO_INCREMENT,
   `createdDate` datetime DEFAULT NULL,
   `modifiedDate` datetime DEFAULT NULL,
@@ -1146,21 +1204,21 @@ CREATE TABLE `pingtai_jbpm4_userimpl` (
   UNIQUE KEY `id` (`id`),
   KEY `FKF79BD700BF045F6D` (`creatorUserIds`),
   KEY `FKF79BD7009BC52230` (`modifiedUserIds`),
-  KEY `FKF79BD7007EEF2919` (`userIds`),
-  CONSTRAINT `FKF79BD7007EEF2919` FOREIGN KEY (`userIds`) REFERENCES `pingtai_user` (`ids`),
-  CONSTRAINT `FKF79BD7009BC52230` FOREIGN KEY (`modifiedUserIds`) REFERENCES `pingtai_user` (`ids`),
-  CONSTRAINT `FKF79BD700BF045F6D` FOREIGN KEY (`creatorUserIds`) REFERENCES `pingtai_user` (`ids`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  KEY `FKF79BD7007EEF2919` (`userIds`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
 
--- ----------------------------
--- Records of pingtai_jbpm4_userimpl
--- ----------------------------
+--
+-- 转存表中的数据 `pingtai_jbpm4_userimpl`
+--
 
--- ----------------------------
--- Table structure for `pingtai_menu`
--- ----------------------------
-DROP TABLE IF EXISTS `pingtai_menu`;
-CREATE TABLE `pingtai_menu` (
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `pingtai_menu`
+--
+
+CREATE TABLE IF NOT EXISTS `pingtai_menu` (
   `ids` bigint(20) NOT NULL AUTO_INCREMENT,
   `createdDate` datetime DEFAULT NULL,
   `modifiedDate` datetime DEFAULT NULL,
@@ -1182,37 +1240,68 @@ CREATE TABLE `pingtai_menu` (
   KEY `FKE47C5F94BF045F6D` (`creatorUserIds`),
   KEY `FKE47C5F949BC52230` (`modifiedUserIds`),
   KEY `FKE47C5F947A3994AF` (`parentMenuIds`),
-  KEY `FKE47C5F94BEA745F9` (`operatorIds`),
-  CONSTRAINT `FKE47C5F947A3994AF` FOREIGN KEY (`parentMenuIds`) REFERENCES `pingtai_menu` (`ids`),
-  CONSTRAINT `FKE47C5F949BC52230` FOREIGN KEY (`modifiedUserIds`) REFERENCES `pingtai_user` (`ids`),
-  CONSTRAINT `FKE47C5F94BEA745F9` FOREIGN KEY (`operatorIds`) REFERENCES `pingtai_operator` (`ids`),
-  CONSTRAINT `FKE47C5F94BF045F6D` FOREIGN KEY (`creatorUserIds`) REFERENCES `pingtai_user` (`ids`)
-) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  KEY `FKE47C5F94BEA745F9` (`operatorIds`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=83 ;
 
--- ----------------------------
--- Records of pingtai_menu
--- ----------------------------
-INSERT INTO pingtai_menu VALUES ('1', '2010-10-27 20:46:37', '2010-10-27 20:46:40', 'youXiao', '1', '后台菜单组织结构', 'root', '1', '1', '1', '后台菜单_根节点', 'menuType_houTai', '-1', null, null, null);
-INSERT INTO pingtai_menu VALUES ('2', '2010-10-27 20:52:52', '2010-10-27 20:52:55', 'youXiao', '1', '根节点', 'root', '1', '1', '2', '前台菜单_根节点', 'menuType_qianTai', '-1', null, null, null);
-INSERT INTO pingtai_menu VALUES ('6', null, '2011-03-27 14:31:08', 'youXiao', '3', '系统配置管理', '#', '1', '1', '1', '平台管理', 'menuType_houTai', '1', '1', null, null);
-INSERT INTO pingtai_menu VALUES ('15', '2010-11-01 14:10:27', null, 'youXiao', '0', '用户管理', '/pingTai/userPingTaiAction!userList.action', '1', null, '6', '用户管理', 'menuType_houTai', '2', '1', null, 'main_46.gif');
-INSERT INTO pingtai_menu VALUES ('16', '2010-11-01 14:10:52', '2010-11-18 10:04:11', 'youXiao', '1', '分组管理', '/pingTai/groupPingTaiAction!groupList.action', '1', '1', '6', '分组管理', 'menuType_houTai', '2', '2', null, 'main_40.gif');
-INSERT INTO pingtai_menu VALUES ('17', '2010-11-01 14:11:39', '2010-11-18 10:04:30', 'youXiao', '1', '角色管理', '/pingTai/rolePingTaiAction!roleList.action', '1', '1', '6', '角色管理', 'menuType_houTai', '2', '3', null, 'main_48.gif');
-INSERT INTO pingtai_menu VALUES ('18', '2010-11-01 14:12:08', '2010-11-18 10:05:08', 'youXiao', '2', '功能管理', '/pingTai/operatorPingTaiAction!operatorList.action', '1', '1', '6', '功能管理', 'menuType_houTai', '2', '4', null, 'main_46.gif');
-INSERT INTO pingtai_menu VALUES ('19', '2010-11-01 14:12:31', '2010-11-18 10:05:49', 'youXiao', '1', '菜单管理', '/pingTai/menuPingTaiAction!menuList.action', '1', '1', '6', '菜单管理', 'menuType_houTai', '2', '5', null, 'main_52.gif');
-INSERT INTO pingtai_menu VALUES ('20', '2010-11-01 14:12:59', '2010-11-18 10:06:07', 'youXiao', '1', '字典管理', '/pingTai/dictPingTaiAction!dictTypeList.action', '1', '1', '6', '字典管理', 'menuType_houTai', '2', '6', null, 'main_46.gif');
-INSERT INTO pingtai_menu VALUES ('21', '2010-11-03 10:29:03', '2010-11-18 10:06:26', 'youXiao', '2', '流程管理', '/pingTai/processDefinitionPingTaiAction!processDefinitionList.action', '1', '1', '6', '流程管理', 'menuType_houTai', '2', '7', null, 'main_46.gif');
-INSERT INTO pingtai_menu VALUES ('23', null, '2011-06-01 15:09:27', 'youXiao', '3', '流程任务管理', '#', '1', '1', '1', '购物管理', 'menuType_houTai', '1', '1', null, null);
-INSERT INTO pingtai_menu VALUES ('35', '2010-11-23 11:12:33', '2010-11-23 11:20:16', 'youXiao', '1', '部门管理', '/pingTai/departmentPingTaiAction!departmentList.action', '1', '1', '6', '部门管理', 'menuType_houTai', '2', '2', null, 'main_48.gif');
-INSERT INTO pingtai_menu VALUES ('43', '2011-04-23 11:03:47', '2011-04-23 11:04:34', 'youXiao', '1', '系统日志', '/pingTai/sysLogPingTaiAction!icCardList.action', '1', '1', '6', '系统日志', 'menuType_houTai', '2', '10', null, 'main_52.gif');
-INSERT INTO pingtai_menu VALUES ('50', '2011-06-01 15:10:01', null, 'youXiao', '0', '任务列表', '/pingTai/taskLogPingTaiAction!taskLogList.action', '1', null, '23', '任务列表', 'menuType_houTai', '2', '1', null, 'main_48.gif');
-INSERT INTO pingtai_menu VALUES ('51', '2011-06-01 15:12:40', null, 'youXiao', '0', '请假管理', '/applicationAdmin/qingJiaApplicationAdminAction!qingJiaList.action', '1', null, '23', '请假管理', 'menuType_houTai', '2', '2', null, 'main_52.gif');
+--
+-- 转存表中的数据 `pingtai_menu`
+--
 
--- ----------------------------
--- Table structure for `pingtai_operator`
--- ----------------------------
-DROP TABLE IF EXISTS `pingtai_operator`;
-CREATE TABLE `pingtai_operator` (
+INSERT INTO `pingtai_menu` (`ids`, `createdDate`, `modifiedDate`, `valid`, `version`, `names`, `url`, `creatorUserIds`, `modifiedUserIds`, `parentMenuIds`, `description`, `menuType`, `menuLevel`, `orderIds`, `operatorIds`, `images`) VALUES
+(1, '2010-10-27 20:46:37', '2010-10-27 20:46:40', 'youXiao', 1, '后台菜单组织结构', 'root', 1, 1, 1, '后台菜单_根节点', 'menuType_houTai', -1, NULL, NULL, NULL),
+(2, '2010-10-27 20:52:52', '2010-10-27 20:52:55', 'youXiao', 1, '根节点', 'root', 1, 1, 2, '前台菜单_根节点', 'menuType_qianTai', -1, NULL, NULL, NULL),
+(6, NULL, '2011-12-09 05:38:40', 'youXiao', 4, '系统管理', '#', 1, 1, 1, '系统管理', 'menuType_houTai', 1, 1, NULL, NULL),
+(15, '2010-11-01 14:10:27', NULL, 'youXiao', 0, '用户管理', '/pingTai/userPingTaiAction!userList.action', 1, NULL, 6, '用户管理', 'menuType_houTai', 2, 1, NULL, 'main_46.gif'),
+(16, '2010-11-01 14:10:52', '2011-12-09 05:39:16', 'youXiao', 2, '用户组管理', '/pingTai/groupPingTaiAction!groupList.action', 1, 1, 6, '用户组管理', 'menuType_houTai', 2, 2, NULL, 'main_40.gif'),
+(17, '2010-11-01 14:11:39', '2011-12-09 05:41:55', 'youXiao', 2, '角色管理和权限管理', '/pingTai/rolePingTaiAction!roleList.action', 1, 1, 6, '角色管理', 'menuType_houTai', 2, 3, NULL, 'main_48.gif'),
+(18, '2010-11-01 14:12:08', '2011-12-09 05:47:01', 'youXiao', 5, '功能管理', '/pingTai/operatorPingTaiAction!operatorList.action', 1, 1, 6, '功能管理', 'menuType_houTai', 2, 50, NULL, 'main_46.gif'),
+(19, '2010-11-01 14:12:31', '2011-12-09 05:46:15', 'youXiao', 2, '菜单管理', '/pingTai/menuPingTaiAction!menuList.action', 1, 1, 6, '菜单管理', 'menuType_houTai', 2, 51, NULL, 'main_52.gif'),
+(20, '2010-11-01 14:12:59', '2011-12-09 05:42:41', 'youXiao', 2, '数据字典管理', '/pingTai/dictPingTaiAction!dictTypeList.action', 1, 1, 6, '数据字典管理', 'menuType_houTai', 2, 6, NULL, 'main_46.gif'),
+(21, '2010-11-03 10:29:03', '2011-12-09 05:47:15', 'youXiao', 3, '流程管理', '/pingTai/processDefinitionPingTaiAction!processDefinitionList.action', 1, 1, 6, '流程管理', 'menuType_houTai', 2, 52, NULL, 'main_46.gif'),
+(23, NULL, '2011-12-09 05:52:06', 'youXiao', 4, '流程任务管理', '#', 1, 1, 1, '购物管理', 'menuType_houTai', 1, 51, NULL, NULL),
+(35, '2010-11-23 11:12:33', '2011-12-09 05:44:32', 'youXiao', 5, '部门管理', '/pingTai/departmentPingTaiAction!departmentList.action', 1, 1, 6, '部门管理', 'menuType_houTai', 2, 4, NULL, 'main_48.gif'),
+(43, '2011-04-23 11:03:47', '2011-12-09 05:47:22', 'youXiao', 2, '系统日志', '/pingTai/sysLogPingTaiAction!icCardList.action', 1, 1, 6, '系统日志', 'menuType_houTai', 2, 53, NULL, 'main_52.gif'),
+(50, '2011-06-01 15:10:01', NULL, 'youXiao', 0, '任务列表', '/pingTai/taskLogPingTaiAction!taskLogList.action', 1, NULL, 23, '任务列表', 'menuType_houTai', 2, 1, NULL, 'main_48.gif'),
+(51, '2011-06-01 15:12:40', NULL, 'youXiao', 0, '请假管理', '/applicationAdmin/qingJiaApplicationAdminAction!qingJiaList.action', 1, NULL, 23, '请假管理', 'menuType_houTai', 2, 2, NULL, 'main_52.gif'),
+(52, '2011-12-09 05:48:12', NULL, 'youXiao', 0, '邮件服务器设置', '#', 1, NULL, 6, '邮件服务器设置', 'menuType_houTai', 2, 7, NULL, 'main_40.gif'),
+(53, '2011-12-09 05:48:37', NULL, 'youXiao', 0, '邮件提醒设置', '#', 1, NULL, 6, '邮件提醒设置', 'menuType_houTai', 2, 8, NULL, 'main_40.gif'),
+(54, '2011-12-09 05:48:53', NULL, 'youXiao', 0, '通用报表管理', '#', 1, NULL, 6, '通用报表管理', 'menuType_houTai', 2, 9, NULL, 'main_40.gif'),
+(55, '2011-12-09 05:49:51', NULL, 'youXiao', 0, '业务数据管理', '#', 1, NULL, 1, '业务数据管理', 'menuType_houTai', 1, 2, NULL, 'main_40.gif'),
+(56, '2011-12-09 05:50:16', NULL, 'youXiao', 0, '项目管理', '#', 1, NULL, 55, '项目管理', 'menuType_houTai', 2, 1, NULL, 'main_40.gif'),
+(57, '2011-12-09 05:50:35', NULL, 'youXiao', 0, '供应商管理', '#', 1, NULL, 55, '供应商管理', 'menuType_houTai', 2, 2, NULL, 'main_40.gif'),
+(58, '2011-12-09 05:50:51', NULL, 'youXiao', 0, '物料目录管理', '#', 1, NULL, 55, '物料目录管理', 'menuType_houTai', 2, 3, NULL, 'main_40.gif'),
+(59, '2011-12-09 05:51:09', NULL, 'youXiao', 0, '物料管理', '#', 1, NULL, 55, '物料管理', 'menuType_houTai', 2, 4, NULL, 'main_40.gif'),
+(60, '2011-12-09 05:51:24', NULL, 'youXiao', 0, '合同信息管理', '#', 1, NULL, 55, '合同信息管理', 'menuType_houTai', 2, 5, NULL, 'main_40.gif'),
+(61, '2011-12-09 05:51:46', NULL, 'youXiao', 0, '项目信息', '#', 1, NULL, 1, '项目信息', 'menuType_houTai', 1, 3, NULL, 'main_40.gif'),
+(62, '2011-12-09 05:52:23', NULL, 'youXiao', 0, '供应商信息', '#', 1, NULL, 1, '供应商信息', 'menuType_houTai', 1, 4, NULL, 'main_40.gif'),
+(63, '2011-12-09 05:52:36', NULL, 'youXiao', 0, '供应商查询', '#', 1, NULL, 62, '供应商查询', 'menuType_houTai', 2, 1, NULL, 'main_40.gif'),
+(64, '2011-12-09 05:52:50', NULL, 'youXiao', 0, '项目查询', '#', 1, NULL, 62, '项目查询', 'menuType_houTai', 2, 2, NULL, 'main_40.gif'),
+(65, '2011-12-09 05:53:06', NULL, 'youXiao', 0, '合同查询', '#', 1, NULL, 62, '合同查询', 'menuType_houTai', 2, 3, NULL, 'main_40.gif'),
+(66, '2011-12-09 05:53:25', NULL, 'youXiao', 0, '物料商城', '#', 1, NULL, 1, '物料商城', 'menuType_houTai', 1, 5, NULL, 'main_40.gif'),
+(67, '2011-12-09 05:53:36', NULL, 'youXiao', 0, '上会准备', '#', 1, NULL, 1, '上会准备', 'menuType_houTai', 1, 6, NULL, 'main_40.gif'),
+(68, '2011-12-09 05:53:50', NULL, 'youXiao', 0, '一次上会', '#', 1, NULL, 67, '一次上会', 'menuType_houTai', 2, 1, NULL, 'main_40.gif'),
+(69, '2011-12-09 05:54:02', NULL, 'youXiao', 0, '二次上会', '#', 1, NULL, 67, '二次上会', 'menuType_houTai', 2, 2, NULL, 'main_40.gif'),
+(70, '2011-12-09 05:54:17', NULL, 'youXiao', 0, '特殊情况', '#', 1, NULL, 67, '特殊情况', 'menuType_houTai', 2, 3, NULL, 'main_40.gif'),
+(71, '2011-12-09 05:54:40', NULL, 'youXiao', 0, '上会', '#', 1, NULL, 1, '上会', 'menuType_houTai', 1, 7, NULL, 'main_40.gif'),
+(72, '2011-12-09 05:54:54', NULL, 'youXiao', 0, '一次上会', '#', 1, NULL, 71, '一次上会', 'menuType_houTai', 2, 1, NULL, 'main_40.gif'),
+(73, '2011-12-09 05:55:14', NULL, 'youXiao', 0, '二次上会', '#', 1, NULL, 71, '二次上会', 'menuType_houTai', 2, 2, NULL, 'main_40.gif'),
+(74, '2011-12-09 05:55:26', NULL, 'youXiao', 0, '特殊情况', '#', 1, NULL, 71, '特殊情况', 'menuType_houTai', 2, 3, NULL, 'main_40.gif'),
+(75, '2011-12-09 05:55:44', NULL, 'youXiao', 0, '资料库', '#', 1, NULL, 1, '资料库', 'menuType_houTai', 1, 8, NULL, 'main_40.gif'),
+(76, '2011-12-09 05:55:59', NULL, 'youXiao', 0, '合同文件', '#', 1, NULL, 75, '合同文件', 'menuType_houTai', 2, 1, NULL, 'main_40.gif'),
+(77, '2011-12-09 05:56:17', NULL, 'youXiao', 0, '查询与分析', '#', 1, NULL, 1, '查询与分析', 'menuType_houTai', 1, 9, NULL, 'main_40.gif'),
+(78, '2011-12-09 05:56:30', NULL, 'youXiao', 0, '综合查询', '#', 1, NULL, 77, '综合查询', 'menuType_houTai', 2, 1, NULL, 'main_40.gif'),
+(79, '2011-12-09 05:56:44', NULL, 'youXiao', 0, '图形分析', '#', 1, NULL, 77, '图形分析', 'menuType_houTai', 2, 2, NULL, 'main_40.gif'),
+(80, '2011-12-09 05:56:55', NULL, 'youXiao', 0, '自定义报表', '#', 1, NULL, 77, '自定义报表', 'menuType_houTai', 2, 3, NULL, 'main_40.gif'),
+(81, '2011-12-09 05:57:11', NULL, 'youXiao', 0, '个人设置', '#', 1, NULL, 1, '个人设置', 'menuType_houTai', 1, 10, NULL, 'main_40.gif'),
+(82, '2011-12-09 05:57:30', NULL, 'youXiao', 0, '密码修改', '#', 1, NULL, 81, '密码修改', 'menuType_houTai', 2, 1, NULL, 'main_40.gif');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `pingtai_operator`
+--
+
+CREATE TABLE IF NOT EXISTS `pingtai_operator` (
   `ids` bigint(20) NOT NULL AUTO_INCREMENT,
   `createdDate` datetime DEFAULT NULL,
   `modifiedDate` datetime DEFAULT NULL,
@@ -1229,126 +1318,128 @@ CREATE TABLE `pingtai_operator` (
   UNIQUE KEY `ids` (`ids`),
   KEY `FK8FA95059BF045F6D` (`creatorUserIds`),
   KEY `FK8FA950599BC52230` (`modifiedUserIds`),
-  KEY `FK8FA95059DCA344F7` (`operatorClassIds`),
-  CONSTRAINT `FK8FA950599BC52230` FOREIGN KEY (`modifiedUserIds`) REFERENCES `pingtai_user` (`ids`),
-  CONSTRAINT `FK8FA95059BF045F6D` FOREIGN KEY (`creatorUserIds`) REFERENCES `pingtai_user` (`ids`)
-) ENGINE=InnoDB AUTO_INCREMENT=214 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  KEY `FK8FA95059DCA344F7` (`operatorClassIds`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=214 ;
 
--- ----------------------------
--- Records of pingtai_operator
--- ----------------------------
-INSERT INTO pingtai_operator VALUES ('4', '2010-11-01 11:35:06', null, 'youXiao', '0', '公共功能URL', '默认Action', '/loginPackage/pingTaiDefaultAction!execute.action', '1', null, null, '公共功能');
-INSERT INTO pingtai_operator VALUES ('5', '2010-11-01 11:35:53', '2010-11-01 12:01:36', 'youXiao', '2', '图片上传', 'kindEditor上传', '/pingTai/kindEditorFileUploadAction!uploadImage.action', '1', '1', null, '公共功能');
-INSERT INTO pingtai_operator VALUES ('6', '2010-11-01 11:37:18', '2010-11-01 12:01:44', 'youXiao', '2', '图片管理', 'kindEditor管理', '/pingTai/kindEditorFileUploadAction!imageFileManager.action', '1', '1', null, '公共功能');
-INSERT INTO pingtai_operator VALUES ('7', '2010-11-01 11:38:30', null, 'youXiao', '0', '验证登陆', '验证登陆', '/loginPackage/loginPingTaiAction!loginPingTai.action', '1', null, null, '后台登陆');
-INSERT INTO pingtai_operator VALUES ('8', '2010-11-01 11:40:24', null, 'youXiao', '0', '查询菜单', '查询菜单', '/loginPackage/loginPingTaiAction!selectOperator.action', '1', null, null, '后台登陆');
-INSERT INTO pingtai_operator VALUES ('9', '2010-11-01 11:40:52', null, 'youXiao', '0', '字典保存', '字典保存', '/pingTai/dictPingTaiAction!saveDictType.action', '1', null, null, '字典管理');
-INSERT INTO pingtai_operator VALUES ('10', '2010-11-01 11:41:36', null, 'youXiao', '0', '字典列表', '字典列表', '/pingTai/dictPingTaiAction!dictTypeList.action', '1', null, null, '字典管理');
-INSERT INTO pingtai_operator VALUES ('11', '2010-11-01 11:42:01', null, 'youXiao', '0', '字典查看', '字典查看', '/pingTai/dictPingTaiAction!viewDicts.action', '1', null, null, '字典管理');
-INSERT INTO pingtai_operator VALUES ('12', '2010-11-01 11:42:31', null, 'youXiao', '0', '字典更新', '字典更新', '/pingTai/dictPingTaiAction!updateDictType.action', '1', null, null, '字典管理');
-INSERT INTO pingtai_operator VALUES ('13', '2010-11-01 11:43:04', null, 'youXiao', '0', '字典删除', '字典删除', '/pingTai/dictPingTaiAction!deleteDictType.action', '1', null, null, '字典管理');
-INSERT INTO pingtai_operator VALUES ('14', '2010-11-01 11:43:28', null, 'youXiao', '0', '用户列表', '用户列表', '/pingTai/userPingTaiAction!userList.action', '1', null, null, '用户管理');
-INSERT INTO pingtai_operator VALUES ('15', '2010-11-01 11:44:00', '2010-11-01 16:38:05', 'youXiao', '1', '添加用户', '保存用户', '/pingTai/userPingTaiAction!userAdd.action', '1', '1', null, '用户管理');
-INSERT INTO pingtai_operator VALUES ('16', '2010-11-01 11:44:45', '2010-11-12 22:42:56', 'youXiao', '1', '查看用户', '准备更新用户', '/pingTai/userPingTaiAction!toUpdateUser.action', '1', '1', null, '用户管理');
-INSERT INTO pingtai_operator VALUES ('17', '2010-11-01 11:45:34', null, 'youXiao', '0', '更新用户', '更新用户', '/pingTai/userPingTaiAction!updateUser.action', '1', null, null, '用户管理');
-INSERT INTO pingtai_operator VALUES ('18', '2010-11-01 11:46:05', null, 'youXiao', '0', '删除用户', '删除用户', '/pingTai/userPingTaiAction!deleteUser.action', '1', null, null, '用户管理');
-INSERT INTO pingtai_operator VALUES ('19', '2010-11-01 11:46:30', null, 'youXiao', '0', '用户所在组', '用户所在组', '/pingTai/userPingTaiAction!userGroupView.action', '1', null, null, '用户管理');
-INSERT INTO pingtai_operator VALUES ('20', '2010-11-01 11:47:03', null, 'youXiao', '0', '更新用户所在组', '更新用户所在组', '/pingTai/userPingTaiAction!userGroupUpdate.action', '1', null, null, '用户管理');
-INSERT INTO pingtai_operator VALUES ('21', '2010-11-01 11:47:34', null, 'youXiao', '0', '用户分组保存', '用户分组保存', '/pingTai/groupPingTaiAction!saveGroup.action', '1', null, null, '用户分组');
-INSERT INTO pingtai_operator VALUES ('22', '2010-11-01 11:48:02', null, 'youXiao', '0', '用户分组查看', '用户分组查看', '/pingTai/groupPingTaiAction!viewGroup.action', '1', null, null, '用户分组');
-INSERT INTO pingtai_operator VALUES ('23', '2010-11-01 11:48:30', null, 'youXiao', '0', '用户分组更新', '用户分组更新', '/pingTai/groupPingTaiAction!updateGroup.action', '1', null, null, '用户分组');
-INSERT INTO pingtai_operator VALUES ('24', '2010-11-01 11:49:22', null, 'youXiao', '0', '用户分组删除', '用户分组删除', '/pingTai/groupPingTaiAction!deleteGroup.action', '1', null, null, '用户分组');
-INSERT INTO pingtai_operator VALUES ('25', '2010-11-01 11:49:45', null, 'youXiao', '0', '用户分组列表', '用户分组列表', '/pingTai/groupPingTaiAction!groupList.action', '1', null, null, '用户分组');
-INSERT INTO pingtai_operator VALUES ('26', '2010-11-01 11:50:10', null, 'youXiao', '0', '拥有的角色', '拥有的角色', '/pingTai/groupPingTaiAction!groupRoleView.action', '1', null, null, '用户分组');
-INSERT INTO pingtai_operator VALUES ('27', '2010-11-01 11:50:45', null, 'youXiao', '0', '更新拥有的角色', '更新拥有的角色', '/pingTai/groupPingTaiAction!groupRoleUpdate.action', '1', null, null, '用户分组');
-INSERT INTO pingtai_operator VALUES ('28', '2010-11-01 11:51:15', null, 'youXiao', '0', '角色保存', '角色保存', '/pingTai/rolePingTaiAction!saveRole.action', '1', null, null, '角色管理');
-INSERT INTO pingtai_operator VALUES ('29', '2010-11-01 11:51:39', null, 'youXiao', '0', '角色查看', '角色查看', '/pingTai/rolePingTaiAction!viewRole.action', '1', null, null, '角色管理');
-INSERT INTO pingtai_operator VALUES ('30', '2010-11-01 11:52:00', null, 'youXiao', '0', '角色更新', '角色更新', '/pingTai/rolePingTaiAction!updateRole.action', '1', null, null, '角色管理');
-INSERT INTO pingtai_operator VALUES ('31', '2010-11-01 11:52:26', null, 'youXiao', '0', '角色删除', '角色删除', '/pingTai/rolePingTaiAction!deleteRole.action', '1', null, null, '角色管理');
-INSERT INTO pingtai_operator VALUES ('32', '2010-11-01 11:53:16', null, 'youXiao', '0', '角色列表', '角色列表', '/pingTai/rolePingTaiAction!roleList.action', '1', null, null, '角色管理');
-INSERT INTO pingtai_operator VALUES ('35', '2010-11-01 11:55:03', null, 'youXiao', '0', '功能保存', '功能保存', '/pingTai/operatorPingTaiAction!saveOperator.action', '1', null, null, '功能管理');
-INSERT INTO pingtai_operator VALUES ('36', '2010-11-01 11:55:27', null, 'youXiao', '0', '功能查看', '功能查看', '/pingTai/operatorPingTaiAction!viewOperator.action', '1', null, null, '功能管理');
-INSERT INTO pingtai_operator VALUES ('37', '2010-11-01 11:55:51', null, 'youXiao', '0', '功能更新', '功能更新', '/pingTai/operatorPingTaiAction!updateOperator.action', '1', null, null, '功能管理');
-INSERT INTO pingtai_operator VALUES ('38', '2010-11-01 11:56:14', null, 'youXiao', '0', '功能删除', '功能删除', '/pingTai/operatorPingTaiAction!deleteOperator.action', '1', null, null, '功能管理');
-INSERT INTO pingtai_operator VALUES ('39', '2010-11-01 11:56:33', null, 'youXiao', '0', '功能列表', '功能列表', '/pingTai/operatorPingTaiAction!operatorList.action', '1', null, null, '功能管理');
-INSERT INTO pingtai_operator VALUES ('40', '2010-11-01 11:57:02', null, 'youXiao', '0', '菜单保存', '菜单保存', '/pingTai/menuPingTaiAction!saveMenu.action', '1', null, null, '菜单管理');
-INSERT INTO pingtai_operator VALUES ('41', '2010-11-01 11:57:21', null, 'youXiao', '0', '菜单查看', '菜单查看', '/pingTai/menuPingTaiAction!viewMenu.action', '1', null, null, '菜单管理');
-INSERT INTO pingtai_operator VALUES ('42', '2010-11-01 11:57:49', null, 'youXiao', '0', '菜单更新', '菜单更新', '/pingTai/menuPingTaiAction!updateMenu.action', '1', null, null, '菜单管理');
-INSERT INTO pingtai_operator VALUES ('43', '2010-11-01 11:58:38', null, 'youXiao', '0', '菜单删除', '菜单删除', '/pingTai/menuPingTaiAction!deleteMenu.action', '1', null, null, '菜单管理');
-INSERT INTO pingtai_operator VALUES ('44', '2010-11-01 11:58:59', null, 'youXiao', '0', '菜单列表', '菜单列表', '/pingTai/menuPingTaiAction!menuList.action', '1', null, null, '菜单管理');
-INSERT INTO pingtai_operator VALUES ('45', '2010-11-01 16:40:04', null, 'youXiao', '0', '添加用户', '添加用户', '/WEB-INF/jsp/pingtai/user/userAdd.jsp', '1', null, null, '用户管理');
-INSERT INTO pingtai_operator VALUES ('46', '2010-11-01 16:42:05', null, 'youXiao', '0', '添加分组', '添加分组', '/WEB-INF/jsp/pingtai/group/groupAdd.jsp', '1', null, null, '用户分组');
-INSERT INTO pingtai_operator VALUES ('47', '2010-11-01 16:43:08', null, 'youXiao', '0', '角色添加', '角色添加', '/WEB-INF/jsp/pingtai/role/roleAdd.jsp', '1', null, null, '角色管理');
-INSERT INTO pingtai_operator VALUES ('48', '2010-11-01 16:44:24', null, 'youXiao', '0', '功能添加', '功能添加', '/WEB-INF/jsp/pingtai/operator/operatorAdd.jsp', '1', null, null, '功能管理');
-INSERT INTO pingtai_operator VALUES ('49', '2010-11-01 16:45:26', null, 'youXiao', '0', '菜单添加', '菜单添加', '/WEB-INF/jsp/pingtai/menu/menuAdd.jsp', '1', null, null, '菜单管理');
-INSERT INTO pingtai_operator VALUES ('50', '2010-11-01 23:13:45', null, 'youXiao', '0', '字典添加', '字典添加', '/WEB-INF/jsp/pingtai/dict/dictTypeAdd.jsp', '1', null, null, '字典管理');
-INSERT INTO pingtai_operator VALUES ('51', '2010-11-03 10:26:05', null, 'youXiao', '0', '流程列表', '流程列表', '/pingTai/processDefinitionPingTaiAction!processDefinitionList.action', '1', null, null, '流程管理');
-INSERT INTO pingtai_operator VALUES ('52', '2010-11-03 10:26:34', null, 'youXiao', '0', '流程部署', '流程部署', '/pingTai/processDefinitionPingTaiAction!processUploadDeploy.action', '1', null, null, '流程管理');
-INSERT INTO pingtai_operator VALUES ('53', '2010-11-03 10:26:56', null, 'youXiao', '0', '查看流程图', '查看流程图', '/pingTai/processDefinitionPingTaiAction!viewProcessDefinitionImage.action', '1', null, null, '流程管理');
-INSERT INTO pingtai_operator VALUES ('54', '2010-11-03 10:27:26', '2010-11-03 11:56:11', 'youXiao', '1', '流程删除', '流程删除', '/pingTai/processDefinitionPingTaiAction!processRemove.action', '1', '1', null, '流程管理');
-INSERT INTO pingtai_operator VALUES ('55', '2010-11-03 16:19:05', null, 'youXiao', '0', '分派列表', '分派列表', '/pingTai/assignModePingTaiAction!assignModeList.action', '1', null, null, '分派方式');
-INSERT INTO pingtai_operator VALUES ('56', '2010-11-03 16:19:25', null, 'youXiao', '0', '分派保存', '分派保存', '/pingTai/assignModePingTaiAction!saveAssignMode.action', '1', null, null, '分派方式');
-INSERT INTO pingtai_operator VALUES ('57', '2010-11-03 16:19:51', null, 'youXiao', '0', '分派查看', '分派查看', '/pingTai/assignModePingTaiAction!viewAssignMode.action', '1', null, null, '分派方式');
-INSERT INTO pingtai_operator VALUES ('58', '2010-11-03 16:20:12', null, 'youXiao', '0', '分派更新', '分派更新', '/pingTai/assignModePingTaiAction!updateAssignMode.action', '1', null, null, '分派方式');
-INSERT INTO pingtai_operator VALUES ('59', '2010-11-03 16:20:34', null, 'youXiao', '0', '分派删除', '分派删除', '/pingTai/assignModePingTaiAction!deleteAssignMode.action', '1', null, null, '分派方式');
-INSERT INTO pingtai_operator VALUES ('60', '2010-11-03 16:20:57', null, 'youXiao', '0', '分派添加', '分派添加', '/WEB-INF/jsp/pingtai/jbpm/assignMode/assignModeAdd.jsp', '1', null, null, '分派方式');
-INSERT INTO pingtai_operator VALUES ('61', '2010-11-03 23:20:28', null, 'youXiao', '0', 'Task分派列表', 'Task分派列表', '/pingTai/processDefinitionPingTaiAction!viewProcessDefinitionTaskList.action', '1', null, null, '流程管理');
-INSERT INTO pingtai_operator VALUES ('62', '2010-11-03 23:21:13', null, 'youXiao', '0', 'Task分派保存', 'Task分派保存', '/pingTai/processDefinitionPingTaiAction!saveProcessDefinitionTaskFlowAssign.action', '1', null, null, '流程管理');
-INSERT INTO pingtai_operator VALUES ('63', '2010-11-05 15:46:12', null, 'youXiao', '0', '对话框', '对话框', '/pingTai/userPingTaiAction!userListDialog.action', '1', null, null, '用户管理');
-INSERT INTO pingtai_operator VALUES ('90', '2010-11-12 22:44:23', null, 'youXiao', '0', '查看用户', '查看用户', '/pingTai/userPingTaiAction!viewUser.action', '1', null, null, '用户管理');
-INSERT INTO pingtai_operator VALUES ('91', '2010-11-12 22:51:26', null, 'youXiao', '0', '用户分组修改', '用户分组修改', '/pingTai/groupPingTaiAction!toUpdateGroup.action', '1', null, null, '用户分组');
-INSERT INTO pingtai_operator VALUES ('92', '2010-11-12 22:59:34', null, 'youXiao', '0', '修改所在组', '修改所在组', '/pingTai/userPingTaiAction!toUserGroupUpdate.action', '1', null, null, '用户管理');
-INSERT INTO pingtai_operator VALUES ('93', '2010-11-12 23:06:03', null, 'youXiao', '0', '修改拥有的角色', '修改拥有的角色', '/pingTai/groupPingTaiAction!toGroupRoleUpdate.action', '1', null, null, '用户分组');
-INSERT INTO pingtai_operator VALUES ('95', '2010-11-12 23:21:32', null, 'youXiao', '0', '角色修改', '角色修改', '/pingTai/rolePingTaiAction!toUpdateRole.action', '1', null, null, '角色管理');
-INSERT INTO pingtai_operator VALUES ('96', '2010-11-12 23:27:58', null, 'youXiao', '0', '功能修改', '功能修改', '/pingTai/operatorPingTaiAction!toUpdateOperator.action', '1', null, null, '功能管理');
-INSERT INTO pingtai_operator VALUES ('97', '2010-11-12 23:34:40', null, 'youXiao', '0', '菜单修改', '菜单修改', '/pingTai/menuPingTaiAction!toUpdateMenu.action', '1', null, null, '菜单管理');
-INSERT INTO pingtai_operator VALUES ('98', '2010-11-12 23:48:47', null, 'youXiao', '0', '字典修改', '字典修改', '/pingTai/dictPingTaiAction!toUpdateDictType.action', '1', null, null, '字典管理');
-INSERT INTO pingtai_operator VALUES ('99', '2010-11-12 23:54:31', null, 'youXiao', '0', '分派修改', '分派修改', '/pingTai/assignModePingTaiAction!toUpdateAssignMode.action', '1', null, null, '分派方式');
-INSERT INTO pingtai_operator VALUES ('143', '2010-11-20 19:36:16', null, 'youXiao', '0', '注销', '注销', '/loginPackage/loginPingTaiAction!logout.action', '1', null, null, '后台登陆');
-INSERT INTO pingtai_operator VALUES ('144', '2010-11-20 19:36:50', null, 'youXiao', '0', '后台注销', '后台注销', '/loginPackage/loginPingTaiAction!logout.action', '1', null, null, '后台登陆');
-INSERT INTO pingtai_operator VALUES ('145', '2010-11-22 14:28:00', null, 'youXiao', '0', '数据访问级别控制', '能访问的用户', '/pingTai/userPingTaiAction!rowUserList.action', '1', null, null, '用户管理');
-INSERT INTO pingtai_operator VALUES ('146', '2010-11-22 15:37:09', null, 'youXiao', '0', '删除能访问的用户', '删除用户', '/pingTai/userPingTaiAction!rowUserListDelete.action', '1', null, null, '用户管理');
-INSERT INTO pingtai_operator VALUES ('147', '2010-11-22 16:08:13', null, 'youXiao', '0', '不能访问的用户', '不能访问的用户', '/pingTai/userPingTaiAction!rowUserListNo.action', '1', null, null, '用户管理');
-INSERT INTO pingtai_operator VALUES ('148', '2010-11-22 16:44:35', null, 'youXiao', '0', '添加用户', '添加用户', '/pingTai/userPingTaiAction!rowUserListAdd.action', '1', null, null, '用户管理');
-INSERT INTO pingtai_operator VALUES ('149', '2010-11-23 11:15:43', null, 'youXiao', '0', '部门保存', '部门保存', '/pingTai/departmentPingTaiAction!saveDepartment.action', '1', null, null, '部门管理');
-INSERT INTO pingtai_operator VALUES ('150', '2010-11-23 11:16:08', null, 'youXiao', '0', '部门查看', '部门查看', '/pingTai/departmentPingTaiAction!viewDepartment.action', '1', null, null, '部门管理');
-INSERT INTO pingtai_operator VALUES ('151', '2010-11-23 11:16:30', null, 'youXiao', '0', '部门修改', '部门修改', '/pingTai/departmentPingTaiAction!toUpdateDepartment.action', '1', null, null, '部门管理');
-INSERT INTO pingtai_operator VALUES ('152', '2010-11-23 11:17:00', null, 'youXiao', '0', '部门更新', '部门更新', '/pingTai/departmentPingTaiAction!updateDepartment.action', '1', null, null, '部门管理');
-INSERT INTO pingtai_operator VALUES ('153', '2010-11-23 11:17:21', null, 'youXiao', '0', '部门删除', '部门删除', '/pingTai/departmentPingTaiAction!deleteDepartment.action', '1', null, null, '部门管理');
-INSERT INTO pingtai_operator VALUES ('154', '2010-11-23 11:17:47', '2010-11-23 11:59:53', 'youXiao', '1', '部门列表', '部门列表', '/pingTai/departmentPingTaiAction!departmentList.action', '1', '1', null, '部门管理');
-INSERT INTO pingtai_operator VALUES ('155', '2010-11-23 11:18:11', null, 'youXiao', '0', '部门添加', '部门添加', '/WEB-INF/jsp/pingtai/department/departmentAdd.jsp', '1', null, null, '部门管理');
-INSERT INTO pingtai_operator VALUES ('156', '2010-11-24 13:38:16', null, 'youXiao', '0', '部门对话框', '部门对话框', '/pingTai/departmentPingTaiAction!departmentListDialog.action', '1', null, null, '部门管理');
-INSERT INTO pingtai_operator VALUES ('157', '2010-11-26 15:47:28', '2010-11-26 15:53:58', 'youXiao', '1', '对话框树', '对话框树', '/pingTai/userPingTaiAction!userListDialogTree.action', '1', '1', null, '用户管理');
-INSERT INTO pingtai_operator VALUES ('161', '2010-12-01 11:51:08', null, 'youXiao', '0', '角色拥有的功能', '角色拥有的功能', '/pingTai/operatorPingTaiAction!roleOperatorView.action', '1', null, null, '功能管理');
-INSERT INTO pingtai_operator VALUES ('162', '2010-12-01 11:51:28', null, 'youXiao', '0', '角色没有的功能', '角色没有的功能', '/pingTai/operatorPingTaiAction!roleNoOperatorView.action', '1', null, null, '功能管理');
-INSERT INTO pingtai_operator VALUES ('163', '2010-12-01 11:51:49', null, 'youXiao', '0', '角色删除功能', '角色删除功能', '/pingTai/operatorPingTaiAction!roleOperatorDelete.action', '1', null, null, '功能管理');
-INSERT INTO pingtai_operator VALUES ('164', '2010-12-01 11:52:10', null, 'youXiao', '0', '角色添加功能', '角色添加功能', '/pingTai/operatorPingTaiAction!roleOperatorAdd.action', '1', null, null, '功能管理');
-INSERT INTO pingtai_operator VALUES ('165', '2010-12-05 14:44:00', null, 'youXiao', '0', '泳道列表', '泳道列表', '/pingTai/swimlanePingTaiAction!swimlaneList.action', '1', null, null, '流程管理');
-INSERT INTO pingtai_operator VALUES ('166', '2010-12-05 14:44:25', null, 'youXiao', '0', '泳道更新', '泳道更新', '/pingTai/swimlanePingTaiAction!swimlaneUpdate.action', '1', null, null, '流程管理');
-INSERT INTO pingtai_operator VALUES ('167', '2011-02-26 10:30:18', null, 'youXiao', '0', '请假列表', '请假列表', '/applicationAdmin/qingJiaApplicationAdminAction!qingJiaList.action', '1', null, null, '请假管理');
-INSERT INTO pingtai_operator VALUES ('168', null, '2011-02-27 11:09:42', 'youXiao', '4', '领取请假单', '领取请假单', '/applicationAdmin/qingJiaApplicationAdminAction!qingJiaStart.action', '1', '1', null, '请假管理');
-INSERT INTO pingtai_operator VALUES ('169', '2011-02-26 18:52:53', null, 'youXiao', '0', '任务列表', '任务列表', '/pingTai/taskLogPingTaiAction!taskLogList.action', '1', null, null, '任务管理');
-INSERT INTO pingtai_operator VALUES ('170', '2011-02-26 19:20:49', null, 'youXiao', '0', '任务状态', '任务状态', '/pingTai/taskLogPingTaiAction!viewTaskState.action', '1', null, null, '任务管理');
-INSERT INTO pingtai_operator VALUES ('171', '2011-02-27 11:15:17', null, 'youXiao', '0', '填写请假单', '填写请假单', '/applicationAdmin/qingJiaApplicationAdminAction!qingJiaAdd.action', '1', null, null, '请假管理');
-INSERT INTO pingtai_operator VALUES ('172', '2011-02-27 11:15:43', null, 'youXiao', '0', '保存请假单', '保存请假单', '/applicationAdmin/qingJiaApplicationAdminAction!qingJiaSave.action', '1', null, null, '请假管理');
-INSERT INTO pingtai_operator VALUES ('173', '2011-02-27 16:01:38', null, 'youXiao', '0', '部门经理审批', '部门经理审批', '/applicationAdmin/qingJiaApplicationAdminAction!buMenJingLiAdd.action', '1', null, null, '请假管理');
-INSERT INTO pingtai_operator VALUES ('174', '2011-02-27 16:02:06', null, 'youXiao', '0', '部门经理保存', '部门经理保存', '/applicationAdmin/qingJiaApplicationAdminAction!buMenJingLiSave.action', '1', null, null, '请假管理');
-INSERT INTO pingtai_operator VALUES ('175', '2011-02-27 16:02:27', null, 'youXiao', '0', '总经理审批', '总经理审批', '/applicationAdmin/qingJiaApplicationAdminAction!zongJingLiAdd.action', '1', null, null, '请假管理');
-INSERT INTO pingtai_operator VALUES ('176', '2011-02-27 16:02:55', null, 'youXiao', '0', '总经理保存', '总经理保存', '/applicationAdmin/qingJiaApplicationAdminAction!zongJingLiSave.action', '1', null, null, '请假管理');
-INSERT INTO pingtai_operator VALUES ('177', null, '2011-02-28 21:08:37', 'youXiao', '1', '请假单明细', '请假单明细', '/applicationAdmin/qingJiaApplicationAdminAction!qingJiaView.action', '1', '1', null, '请假管理');
-INSERT INTO pingtai_operator VALUES ('178', '2011-03-21 19:21:17', null, 'youXiao', '0', '准备登录', '准备登录', '/applicationClient/alipayLoginApplicationClientAction!toLoginJsp.action', '1', null, null, '支付宝');
-INSERT INTO pingtai_operator VALUES ('179', '2011-03-21 19:21:43', null, 'youXiao', '0', '登录返回', '登录返回', '/applicationClient/alipayLoginApplicationClientAction!loginReturnUrl.action', '1', null, null, '支付宝');
-INSERT INTO pingtai_operator VALUES ('180', '2011-03-21 19:22:08', null, 'youXiao', '0', '准备支付', '准备支付', '/applicationClient/alipayPaymentApplicationClientAction!toAlipayPayment.action', '1', null, null, '支付宝');
-INSERT INTO pingtai_operator VALUES ('181', '2011-03-21 19:22:33', null, 'youXiao', '0', '支付返回', '支付返回', '/applicationClient/alipayPaymentApplicationClientAction!alipayReturnUrl.action', '1', null, null, '支付宝');
-INSERT INTO pingtai_operator VALUES ('182', '2011-03-21 19:22:52', null, 'youXiao', '0', '支付补单', '支付补单', '/applicationClient/alipayPaymentApplicationClientAction!alipayNotifyUrl.action', '1', null, null, '支付宝');
-INSERT INTO pingtai_operator VALUES ('212', '2011-04-23 11:00:14', null, 'youXiao', '0', '日志明细', '日志查看', '/pingTai/sysLogPingTaiAction!viewSysLog.action', '1', null, null, '日志管理');
-INSERT INTO pingtai_operator VALUES ('213', '2011-04-23 11:00:49', null, 'youXiao', '0', '日志列表', '日志列表', '/pingTai/sysLogPingTaiAction!icCardList.action', '1', null, null, '日志管理');
+--
+-- 转存表中的数据 `pingtai_operator`
+--
 
--- ----------------------------
--- Table structure for `pingtai_role`
--- ----------------------------
-DROP TABLE IF EXISTS `pingtai_role`;
-CREATE TABLE `pingtai_role` (
+INSERT INTO `pingtai_operator` (`ids`, `createdDate`, `modifiedDate`, `valid`, `version`, `description`, `names`, `url`, `creatorUserIds`, `modifiedUserIds`, `operatorClassIds`, `type`) VALUES
+(4, '2010-11-01 11:35:06', NULL, 'youXiao', 0, '公共功能URL', '默认Action', '/loginPackage/pingTaiDefaultAction!execute.action', 1, NULL, NULL, '公共功能'),
+(5, '2010-11-01 11:35:53', '2010-11-01 12:01:36', 'youXiao', 2, '图片上传', 'kindEditor上传', '/pingTai/kindEditorFileUploadAction!uploadImage.action', 1, 1, NULL, '公共功能'),
+(6, '2010-11-01 11:37:18', '2010-11-01 12:01:44', 'youXiao', 2, '图片管理', 'kindEditor管理', '/pingTai/kindEditorFileUploadAction!imageFileManager.action', 1, 1, NULL, '公共功能'),
+(7, '2010-11-01 11:38:30', NULL, 'youXiao', 0, '验证登陆', '验证登陆', '/loginPackage/loginPingTaiAction!loginPingTai.action', 1, NULL, NULL, '后台登陆'),
+(8, '2010-11-01 11:40:24', NULL, 'youXiao', 0, '查询菜单', '查询菜单', '/loginPackage/loginPingTaiAction!selectOperator.action', 1, NULL, NULL, '后台登陆'),
+(9, '2010-11-01 11:40:52', NULL, 'youXiao', 0, '字典保存', '字典保存', '/pingTai/dictPingTaiAction!saveDictType.action', 1, NULL, NULL, '字典管理'),
+(10, '2010-11-01 11:41:36', NULL, 'youXiao', 0, '字典列表', '字典列表', '/pingTai/dictPingTaiAction!dictTypeList.action', 1, NULL, NULL, '字典管理'),
+(11, '2010-11-01 11:42:01', NULL, 'youXiao', 0, '字典查看', '字典查看', '/pingTai/dictPingTaiAction!viewDicts.action', 1, NULL, NULL, '字典管理'),
+(12, '2010-11-01 11:42:31', NULL, 'youXiao', 0, '字典更新', '字典更新', '/pingTai/dictPingTaiAction!updateDictType.action', 1, NULL, NULL, '字典管理'),
+(13, '2010-11-01 11:43:04', NULL, 'youXiao', 0, '字典删除', '字典删除', '/pingTai/dictPingTaiAction!deleteDictType.action', 1, NULL, NULL, '字典管理'),
+(14, '2010-11-01 11:43:28', NULL, 'youXiao', 0, '用户列表', '用户列表', '/pingTai/userPingTaiAction!userList.action', 1, NULL, NULL, '用户管理'),
+(15, '2010-11-01 11:44:00', '2010-11-01 16:38:05', 'youXiao', 1, '添加用户', '保存用户', '/pingTai/userPingTaiAction!userAdd.action', 1, 1, NULL, '用户管理'),
+(16, '2010-11-01 11:44:45', '2010-11-12 22:42:56', 'youXiao', 1, '查看用户', '准备更新用户', '/pingTai/userPingTaiAction!toUpdateUser.action', 1, 1, NULL, '用户管理'),
+(17, '2010-11-01 11:45:34', NULL, 'youXiao', 0, '更新用户', '更新用户', '/pingTai/userPingTaiAction!updateUser.action', 1, NULL, NULL, '用户管理'),
+(18, '2010-11-01 11:46:05', NULL, 'youXiao', 0, '删除用户', '删除用户', '/pingTai/userPingTaiAction!deleteUser.action', 1, NULL, NULL, '用户管理'),
+(19, '2010-11-01 11:46:30', NULL, 'youXiao', 0, '用户所在组', '用户所在组', '/pingTai/userPingTaiAction!userGroupView.action', 1, NULL, NULL, '用户管理'),
+(20, '2010-11-01 11:47:03', NULL, 'youXiao', 0, '更新用户所在组', '更新用户所在组', '/pingTai/userPingTaiAction!userGroupUpdate.action', 1, NULL, NULL, '用户管理'),
+(21, '2010-11-01 11:47:34', NULL, 'youXiao', 0, '用户分组保存', '用户分组保存', '/pingTai/groupPingTaiAction!saveGroup.action', 1, NULL, NULL, '用户分组'),
+(22, '2010-11-01 11:48:02', NULL, 'youXiao', 0, '用户分组查看', '用户分组查看', '/pingTai/groupPingTaiAction!viewGroup.action', 1, NULL, NULL, '用户分组'),
+(23, '2010-11-01 11:48:30', NULL, 'youXiao', 0, '用户分组更新', '用户分组更新', '/pingTai/groupPingTaiAction!updateGroup.action', 1, NULL, NULL, '用户分组'),
+(24, '2010-11-01 11:49:22', NULL, 'youXiao', 0, '用户分组删除', '用户分组删除', '/pingTai/groupPingTaiAction!deleteGroup.action', 1, NULL, NULL, '用户分组'),
+(25, '2010-11-01 11:49:45', NULL, 'youXiao', 0, '用户分组列表', '用户分组列表', '/pingTai/groupPingTaiAction!groupList.action', 1, NULL, NULL, '用户分组'),
+(26, '2010-11-01 11:50:10', NULL, 'youXiao', 0, '拥有的角色', '拥有的角色', '/pingTai/groupPingTaiAction!groupRoleView.action', 1, NULL, NULL, '用户分组'),
+(27, '2010-11-01 11:50:45', NULL, 'youXiao', 0, '更新拥有的角色', '更新拥有的角色', '/pingTai/groupPingTaiAction!groupRoleUpdate.action', 1, NULL, NULL, '用户分组'),
+(28, '2010-11-01 11:51:15', NULL, 'youXiao', 0, '角色保存', '角色保存', '/pingTai/rolePingTaiAction!saveRole.action', 1, NULL, NULL, '角色管理'),
+(29, '2010-11-01 11:51:39', NULL, 'youXiao', 0, '角色查看', '角色查看', '/pingTai/rolePingTaiAction!viewRole.action', 1, NULL, NULL, '角色管理'),
+(30, '2010-11-01 11:52:00', NULL, 'youXiao', 0, '角色更新', '角色更新', '/pingTai/rolePingTaiAction!updateRole.action', 1, NULL, NULL, '角色管理'),
+(31, '2010-11-01 11:52:26', NULL, 'youXiao', 0, '角色删除', '角色删除', '/pingTai/rolePingTaiAction!deleteRole.action', 1, NULL, NULL, '角色管理'),
+(32, '2010-11-01 11:53:16', NULL, 'youXiao', 0, '角色列表', '角色列表', '/pingTai/rolePingTaiAction!roleList.action', 1, NULL, NULL, '角色管理'),
+(35, '2010-11-01 11:55:03', NULL, 'youXiao', 0, '功能保存', '功能保存', '/pingTai/operatorPingTaiAction!saveOperator.action', 1, NULL, NULL, '功能管理'),
+(36, '2010-11-01 11:55:27', NULL, 'youXiao', 0, '功能查看', '功能查看', '/pingTai/operatorPingTaiAction!viewOperator.action', 1, NULL, NULL, '功能管理'),
+(37, '2010-11-01 11:55:51', NULL, 'youXiao', 0, '功能更新', '功能更新', '/pingTai/operatorPingTaiAction!updateOperator.action', 1, NULL, NULL, '功能管理'),
+(38, '2010-11-01 11:56:14', NULL, 'youXiao', 0, '功能删除', '功能删除', '/pingTai/operatorPingTaiAction!deleteOperator.action', 1, NULL, NULL, '功能管理'),
+(39, '2010-11-01 11:56:33', NULL, 'youXiao', 0, '功能列表', '功能列表', '/pingTai/operatorPingTaiAction!operatorList.action', 1, NULL, NULL, '功能管理'),
+(40, '2010-11-01 11:57:02', NULL, 'youXiao', 0, '菜单保存', '菜单保存', '/pingTai/menuPingTaiAction!saveMenu.action', 1, NULL, NULL, '菜单管理'),
+(41, '2010-11-01 11:57:21', NULL, 'youXiao', 0, '菜单查看', '菜单查看', '/pingTai/menuPingTaiAction!viewMenu.action', 1, NULL, NULL, '菜单管理'),
+(42, '2010-11-01 11:57:49', NULL, 'youXiao', 0, '菜单更新', '菜单更新', '/pingTai/menuPingTaiAction!updateMenu.action', 1, NULL, NULL, '菜单管理'),
+(43, '2010-11-01 11:58:38', NULL, 'youXiao', 0, '菜单删除', '菜单删除', '/pingTai/menuPingTaiAction!deleteMenu.action', 1, NULL, NULL, '菜单管理'),
+(44, '2010-11-01 11:58:59', NULL, 'youXiao', 0, '菜单列表', '菜单列表', '/pingTai/menuPingTaiAction!menuList.action', 1, NULL, NULL, '菜单管理'),
+(45, '2010-11-01 16:40:04', NULL, 'youXiao', 0, '添加用户', '添加用户', '/WEB-INF/jsp/pingtai/user/userAdd.jsp', 1, NULL, NULL, '用户管理'),
+(46, '2010-11-01 16:42:05', NULL, 'youXiao', 0, '添加分组', '添加分组', '/WEB-INF/jsp/pingtai/group/groupAdd.jsp', 1, NULL, NULL, '用户分组'),
+(47, '2010-11-01 16:43:08', NULL, 'youXiao', 0, '角色添加', '角色添加', '/WEB-INF/jsp/pingtai/role/roleAdd.jsp', 1, NULL, NULL, '角色管理'),
+(48, '2010-11-01 16:44:24', NULL, 'youXiao', 0, '功能添加', '功能添加', '/WEB-INF/jsp/pingtai/operator/operatorAdd.jsp', 1, NULL, NULL, '功能管理'),
+(49, '2010-11-01 16:45:26', NULL, 'youXiao', 0, '菜单添加', '菜单添加', '/WEB-INF/jsp/pingtai/menu/menuAdd.jsp', 1, NULL, NULL, '菜单管理'),
+(50, '2010-11-01 23:13:45', NULL, 'youXiao', 0, '字典添加', '字典添加', '/WEB-INF/jsp/pingtai/dict/dictTypeAdd.jsp', 1, NULL, NULL, '字典管理'),
+(51, '2010-11-03 10:26:05', NULL, 'youXiao', 0, '流程列表', '流程列表', '/pingTai/processDefinitionPingTaiAction!processDefinitionList.action', 1, NULL, NULL, '流程管理'),
+(52, '2010-11-03 10:26:34', NULL, 'youXiao', 0, '流程部署', '流程部署', '/pingTai/processDefinitionPingTaiAction!processUploadDeploy.action', 1, NULL, NULL, '流程管理'),
+(53, '2010-11-03 10:26:56', NULL, 'youXiao', 0, '查看流程图', '查看流程图', '/pingTai/processDefinitionPingTaiAction!viewProcessDefinitionImage.action', 1, NULL, NULL, '流程管理'),
+(54, '2010-11-03 10:27:26', '2010-11-03 11:56:11', 'youXiao', 1, '流程删除', '流程删除', '/pingTai/processDefinitionPingTaiAction!processRemove.action', 1, 1, NULL, '流程管理'),
+(55, '2010-11-03 16:19:05', NULL, 'youXiao', 0, '分派列表', '分派列表', '/pingTai/assignModePingTaiAction!assignModeList.action', 1, NULL, NULL, '分派方式'),
+(56, '2010-11-03 16:19:25', NULL, 'youXiao', 0, '分派保存', '分派保存', '/pingTai/assignModePingTaiAction!saveAssignMode.action', 1, NULL, NULL, '分派方式'),
+(57, '2010-11-03 16:19:51', NULL, 'youXiao', 0, '分派查看', '分派查看', '/pingTai/assignModePingTaiAction!viewAssignMode.action', 1, NULL, NULL, '分派方式'),
+(58, '2010-11-03 16:20:12', NULL, 'youXiao', 0, '分派更新', '分派更新', '/pingTai/assignModePingTaiAction!updateAssignMode.action', 1, NULL, NULL, '分派方式'),
+(59, '2010-11-03 16:20:34', NULL, 'youXiao', 0, '分派删除', '分派删除', '/pingTai/assignModePingTaiAction!deleteAssignMode.action', 1, NULL, NULL, '分派方式'),
+(60, '2010-11-03 16:20:57', NULL, 'youXiao', 0, '分派添加', '分派添加', '/WEB-INF/jsp/pingtai/jbpm/assignMode/assignModeAdd.jsp', 1, NULL, NULL, '分派方式'),
+(61, '2010-11-03 23:20:28', NULL, 'youXiao', 0, 'Task分派列表', 'Task分派列表', '/pingTai/processDefinitionPingTaiAction!viewProcessDefinitionTaskList.action', 1, NULL, NULL, '流程管理'),
+(62, '2010-11-03 23:21:13', NULL, 'youXiao', 0, 'Task分派保存', 'Task分派保存', '/pingTai/processDefinitionPingTaiAction!saveProcessDefinitionTaskFlowAssign.action', 1, NULL, NULL, '流程管理'),
+(63, '2010-11-05 15:46:12', NULL, 'youXiao', 0, '对话框', '对话框', '/pingTai/userPingTaiAction!userListDialog.action', 1, NULL, NULL, '用户管理'),
+(90, '2010-11-12 22:44:23', NULL, 'youXiao', 0, '查看用户', '查看用户', '/pingTai/userPingTaiAction!viewUser.action', 1, NULL, NULL, '用户管理'),
+(91, '2010-11-12 22:51:26', NULL, 'youXiao', 0, '用户分组修改', '用户分组修改', '/pingTai/groupPingTaiAction!toUpdateGroup.action', 1, NULL, NULL, '用户分组'),
+(92, '2010-11-12 22:59:34', NULL, 'youXiao', 0, '修改所在组', '修改所在组', '/pingTai/userPingTaiAction!toUserGroupUpdate.action', 1, NULL, NULL, '用户管理'),
+(93, '2010-11-12 23:06:03', NULL, 'youXiao', 0, '修改拥有的角色', '修改拥有的角色', '/pingTai/groupPingTaiAction!toGroupRoleUpdate.action', 1, NULL, NULL, '用户分组'),
+(95, '2010-11-12 23:21:32', NULL, 'youXiao', 0, '角色修改', '角色修改', '/pingTai/rolePingTaiAction!toUpdateRole.action', 1, NULL, NULL, '角色管理'),
+(96, '2010-11-12 23:27:58', NULL, 'youXiao', 0, '功能修改', '功能修改', '/pingTai/operatorPingTaiAction!toUpdateOperator.action', 1, NULL, NULL, '功能管理'),
+(97, '2010-11-12 23:34:40', NULL, 'youXiao', 0, '菜单修改', '菜单修改', '/pingTai/menuPingTaiAction!toUpdateMenu.action', 1, NULL, NULL, '菜单管理'),
+(98, '2010-11-12 23:48:47', NULL, 'youXiao', 0, '字典修改', '字典修改', '/pingTai/dictPingTaiAction!toUpdateDictType.action', 1, NULL, NULL, '字典管理'),
+(99, '2010-11-12 23:54:31', NULL, 'youXiao', 0, '分派修改', '分派修改', '/pingTai/assignModePingTaiAction!toUpdateAssignMode.action', 1, NULL, NULL, '分派方式'),
+(143, '2010-11-20 19:36:16', NULL, 'youXiao', 0, '注销', '注销', '/loginPackage/loginPingTaiAction!logout.action', 1, NULL, NULL, '后台登陆'),
+(144, '2010-11-20 19:36:50', NULL, 'youXiao', 0, '后台注销', '后台注销', '/loginPackage/loginPingTaiAction!logout.action', 1, NULL, NULL, '后台登陆'),
+(145, '2010-11-22 14:28:00', NULL, 'youXiao', 0, '数据访问级别控制', '能访问的用户', '/pingTai/userPingTaiAction!rowUserList.action', 1, NULL, NULL, '用户管理'),
+(146, '2010-11-22 15:37:09', NULL, 'youXiao', 0, '删除能访问的用户', '删除用户', '/pingTai/userPingTaiAction!rowUserListDelete.action', 1, NULL, NULL, '用户管理'),
+(147, '2010-11-22 16:08:13', NULL, 'youXiao', 0, '不能访问的用户', '不能访问的用户', '/pingTai/userPingTaiAction!rowUserListNo.action', 1, NULL, NULL, '用户管理'),
+(148, '2010-11-22 16:44:35', NULL, 'youXiao', 0, '添加用户', '添加用户', '/pingTai/userPingTaiAction!rowUserListAdd.action', 1, NULL, NULL, '用户管理'),
+(149, '2010-11-23 11:15:43', NULL, 'youXiao', 0, '部门保存', '部门保存', '/pingTai/departmentPingTaiAction!saveDepartment.action', 1, NULL, NULL, '部门管理'),
+(150, '2010-11-23 11:16:08', NULL, 'youXiao', 0, '部门查看', '部门查看', '/pingTai/departmentPingTaiAction!viewDepartment.action', 1, NULL, NULL, '部门管理'),
+(151, '2010-11-23 11:16:30', NULL, 'youXiao', 0, '部门修改', '部门修改', '/pingTai/departmentPingTaiAction!toUpdateDepartment.action', 1, NULL, NULL, '部门管理'),
+(152, '2010-11-23 11:17:00', NULL, 'youXiao', 0, '部门更新', '部门更新', '/pingTai/departmentPingTaiAction!updateDepartment.action', 1, NULL, NULL, '部门管理'),
+(153, '2010-11-23 11:17:21', NULL, 'youXiao', 0, '部门删除', '部门删除', '/pingTai/departmentPingTaiAction!deleteDepartment.action', 1, NULL, NULL, '部门管理'),
+(154, '2010-11-23 11:17:47', '2010-11-23 11:59:53', 'youXiao', 1, '部门列表', '部门列表', '/pingTai/departmentPingTaiAction!departmentList.action', 1, 1, NULL, '部门管理'),
+(155, '2010-11-23 11:18:11', NULL, 'youXiao', 0, '部门添加', '部门添加', '/WEB-INF/jsp/pingtai/department/departmentAdd.jsp', 1, NULL, NULL, '部门管理'),
+(156, '2010-11-24 13:38:16', NULL, 'youXiao', 0, '部门对话框', '部门对话框', '/pingTai/departmentPingTaiAction!departmentListDialog.action', 1, NULL, NULL, '部门管理'),
+(157, '2010-11-26 15:47:28', '2010-11-26 15:53:58', 'youXiao', 1, '对话框树', '对话框树', '/pingTai/userPingTaiAction!userListDialogTree.action', 1, 1, NULL, '用户管理'),
+(161, '2010-12-01 11:51:08', NULL, 'youXiao', 0, '角色拥有的功能', '角色拥有的功能', '/pingTai/operatorPingTaiAction!roleOperatorView.action', 1, NULL, NULL, '功能管理'),
+(162, '2010-12-01 11:51:28', NULL, 'youXiao', 0, '角色没有的功能', '角色没有的功能', '/pingTai/operatorPingTaiAction!roleNoOperatorView.action', 1, NULL, NULL, '功能管理'),
+(163, '2010-12-01 11:51:49', NULL, 'youXiao', 0, '角色删除功能', '角色删除功能', '/pingTai/operatorPingTaiAction!roleOperatorDelete.action', 1, NULL, NULL, '功能管理'),
+(164, '2010-12-01 11:52:10', NULL, 'youXiao', 0, '角色添加功能', '角色添加功能', '/pingTai/operatorPingTaiAction!roleOperatorAdd.action', 1, NULL, NULL, '功能管理'),
+(165, '2010-12-05 14:44:00', NULL, 'youXiao', 0, '泳道列表', '泳道列表', '/pingTai/swimlanePingTaiAction!swimlaneList.action', 1, NULL, NULL, '流程管理'),
+(166, '2010-12-05 14:44:25', NULL, 'youXiao', 0, '泳道更新', '泳道更新', '/pingTai/swimlanePingTaiAction!swimlaneUpdate.action', 1, NULL, NULL, '流程管理'),
+(167, '2011-02-26 10:30:18', NULL, 'youXiao', 0, '请假列表', '请假列表', '/applicationAdmin/qingJiaApplicationAdminAction!qingJiaList.action', 1, NULL, NULL, '请假管理'),
+(168, NULL, '2011-02-27 11:09:42', 'youXiao', 4, '领取请假单', '领取请假单', '/applicationAdmin/qingJiaApplicationAdminAction!qingJiaStart.action', 1, 1, NULL, '请假管理'),
+(169, '2011-02-26 18:52:53', NULL, 'youXiao', 0, '任务列表', '任务列表', '/pingTai/taskLogPingTaiAction!taskLogList.action', 1, NULL, NULL, '任务管理'),
+(170, '2011-02-26 19:20:49', NULL, 'youXiao', 0, '任务状态', '任务状态', '/pingTai/taskLogPingTaiAction!viewTaskState.action', 1, NULL, NULL, '任务管理'),
+(171, '2011-02-27 11:15:17', NULL, 'youXiao', 0, '填写请假单', '填写请假单', '/applicationAdmin/qingJiaApplicationAdminAction!qingJiaAdd.action', 1, NULL, NULL, '请假管理'),
+(172, '2011-02-27 11:15:43', NULL, 'youXiao', 0, '保存请假单', '保存请假单', '/applicationAdmin/qingJiaApplicationAdminAction!qingJiaSave.action', 1, NULL, NULL, '请假管理'),
+(173, '2011-02-27 16:01:38', NULL, 'youXiao', 0, '部门经理审批', '部门经理审批', '/applicationAdmin/qingJiaApplicationAdminAction!buMenJingLiAdd.action', 1, NULL, NULL, '请假管理'),
+(174, '2011-02-27 16:02:06', NULL, 'youXiao', 0, '部门经理保存', '部门经理保存', '/applicationAdmin/qingJiaApplicationAdminAction!buMenJingLiSave.action', 1, NULL, NULL, '请假管理'),
+(175, '2011-02-27 16:02:27', NULL, 'youXiao', 0, '总经理审批', '总经理审批', '/applicationAdmin/qingJiaApplicationAdminAction!zongJingLiAdd.action', 1, NULL, NULL, '请假管理'),
+(176, '2011-02-27 16:02:55', NULL, 'youXiao', 0, '总经理保存', '总经理保存', '/applicationAdmin/qingJiaApplicationAdminAction!zongJingLiSave.action', 1, NULL, NULL, '请假管理'),
+(177, NULL, '2011-02-28 21:08:37', 'youXiao', 1, '请假单明细', '请假单明细', '/applicationAdmin/qingJiaApplicationAdminAction!qingJiaView.action', 1, 1, NULL, '请假管理'),
+(178, '2011-03-21 19:21:17', NULL, 'youXiao', 0, '准备登录', '准备登录', '/applicationClient/alipayLoginApplicationClientAction!toLoginJsp.action', 1, NULL, NULL, '支付宝'),
+(179, '2011-03-21 19:21:43', NULL, 'youXiao', 0, '登录返回', '登录返回', '/applicationClient/alipayLoginApplicationClientAction!loginReturnUrl.action', 1, NULL, NULL, '支付宝'),
+(180, '2011-03-21 19:22:08', NULL, 'youXiao', 0, '准备支付', '准备支付', '/applicationClient/alipayPaymentApplicationClientAction!toAlipayPayment.action', 1, NULL, NULL, '支付宝'),
+(181, '2011-03-21 19:22:33', NULL, 'youXiao', 0, '支付返回', '支付返回', '/applicationClient/alipayPaymentApplicationClientAction!alipayReturnUrl.action', 1, NULL, NULL, '支付宝'),
+(182, '2011-03-21 19:22:52', NULL, 'youXiao', 0, '支付补单', '支付补单', '/applicationClient/alipayPaymentApplicationClientAction!alipayNotifyUrl.action', 1, NULL, NULL, '支付宝'),
+(212, '2011-04-23 11:00:14', NULL, 'youXiao', 0, '日志明细', '日志查看', '/pingTai/sysLogPingTaiAction!viewSysLog.action', 1, NULL, NULL, '日志管理'),
+(213, '2011-04-23 11:00:49', NULL, 'youXiao', 0, '日志列表', '日志列表', '/pingTai/sysLogPingTaiAction!icCardList.action', 1, NULL, NULL, '日志管理');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `pingtai_role`
+--
+
+CREATE TABLE IF NOT EXISTS `pingtai_role` (
   `ids` bigint(20) NOT NULL AUTO_INCREMENT,
   `createdDate` datetime DEFAULT NULL,
   `modifiedDate` datetime DEFAULT NULL,
@@ -1361,186 +1452,193 @@ CREATE TABLE `pingtai_role` (
   PRIMARY KEY (`ids`),
   UNIQUE KEY `ids` (`ids`),
   KEY `FKE47ECAABBF045F6D` (`creatorUserIds`),
-  KEY `FKE47ECAAB9BC52230` (`modifiedUserIds`),
-  CONSTRAINT `FKE47ECAAB9BC52230` FOREIGN KEY (`modifiedUserIds`) REFERENCES `pingtai_user` (`ids`),
-  CONSTRAINT `FKE47ECAABBF045F6D` FOREIGN KEY (`creatorUserIds`) REFERENCES `pingtai_user` (`ids`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  KEY `FKE47ECAAB9BC52230` (`modifiedUserIds`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=3 ;
 
--- ----------------------------
--- Records of pingtai_role
--- ----------------------------
-INSERT INTO pingtai_role VALUES ('1', '2010-10-29 21:29:19', '2011-06-01 17:32:12', 'youXiao', '321', '管理员', '管理员', '1', '1');
-INSERT INTO pingtai_role VALUES ('2', '2010-10-29 21:29:38', '2011-06-01 17:31:57', 'youXiao', '57', '普通用户', '普通用户', '1', '1');
+--
+-- 转存表中的数据 `pingtai_role`
+--
 
--- ----------------------------
--- Table structure for `pingtai_rolegroup`
--- ----------------------------
-DROP TABLE IF EXISTS `pingtai_rolegroup`;
-CREATE TABLE `pingtai_rolegroup` (
+INSERT INTO `pingtai_role` (`ids`, `createdDate`, `modifiedDate`, `valid`, `version`, `description`, `names`, `creatorUserIds`, `modifiedUserIds`) VALUES
+(1, '2010-10-29 21:29:19', '2011-06-01 17:32:12', 'youXiao', 321, '管理员', '管理员', 1, 1),
+(2, '2010-10-29 21:29:38', '2011-06-01 17:31:57', 'youXiao', 57, '普通用户', '普通用户', 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `pingtai_rolegroup`
+--
+
+CREATE TABLE IF NOT EXISTS `pingtai_rolegroup` (
   `roleIds` bigint(20) NOT NULL,
   `groupIds` bigint(20) NOT NULL,
   PRIMARY KEY (`roleIds`),
   KEY `FK151A2E94D9C46539` (`roleIds`),
-  KEY `FK151A2E94F2A388512` (`groupIds`),
-  CONSTRAINT `FK151A2E94D9C46539` FOREIGN KEY (`roleIds`) REFERENCES `pingtai_role` (`ids`),
-  CONSTRAINT `FK151A2E94F2A388512` FOREIGN KEY (`groupIds`) REFERENCES `pingtai_group` (`ids`)
+  KEY `FK151A2E94F2A388512` (`groupIds`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- ----------------------------
--- Records of pingtai_rolegroup
--- ----------------------------
-INSERT INTO pingtai_rolegroup VALUES ('1', '1');
-INSERT INTO pingtai_rolegroup VALUES ('2', '2');
+--
+-- 转存表中的数据 `pingtai_rolegroup`
+--
 
--- ----------------------------
--- Table structure for `pingtai_roleoperator`
--- ----------------------------
-DROP TABLE IF EXISTS `pingtai_roleoperator`;
-CREATE TABLE `pingtai_roleoperator` (
+INSERT INTO `pingtai_rolegroup` (`roleIds`, `groupIds`) VALUES
+(1, 1),
+(2, 2);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `pingtai_roleoperator`
+--
+
+CREATE TABLE IF NOT EXISTS `pingtai_roleoperator` (
   `roleIds` bigint(20) NOT NULL,
   `operatorIds` bigint(20) NOT NULL,
   PRIMARY KEY (`roleIds`,`operatorIds`),
   KEY `FK75CF7C6FD9C46539` (`roleIds`),
-  KEY `FK75CF7C6FBEA745F9` (`operatorIds`),
-  CONSTRAINT `FK75CF7C6FBEA745F9` FOREIGN KEY (`operatorIds`) REFERENCES `pingtai_operator` (`ids`),
-  CONSTRAINT `FK75CF7C6FD9C46539` FOREIGN KEY (`roleIds`) REFERENCES `pingtai_role` (`ids`)
+  KEY `FK75CF7C6FBEA745F9` (`operatorIds`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- ----------------------------
--- Records of pingtai_roleoperator
--- ----------------------------
-INSERT INTO pingtai_roleoperator VALUES ('1', '4');
-INSERT INTO pingtai_roleoperator VALUES ('1', '5');
-INSERT INTO pingtai_roleoperator VALUES ('1', '6');
-INSERT INTO pingtai_roleoperator VALUES ('1', '7');
-INSERT INTO pingtai_roleoperator VALUES ('1', '8');
-INSERT INTO pingtai_roleoperator VALUES ('1', '9');
-INSERT INTO pingtai_roleoperator VALUES ('1', '10');
-INSERT INTO pingtai_roleoperator VALUES ('1', '11');
-INSERT INTO pingtai_roleoperator VALUES ('1', '12');
-INSERT INTO pingtai_roleoperator VALUES ('1', '13');
-INSERT INTO pingtai_roleoperator VALUES ('1', '14');
-INSERT INTO pingtai_roleoperator VALUES ('1', '15');
-INSERT INTO pingtai_roleoperator VALUES ('1', '16');
-INSERT INTO pingtai_roleoperator VALUES ('1', '17');
-INSERT INTO pingtai_roleoperator VALUES ('1', '18');
-INSERT INTO pingtai_roleoperator VALUES ('1', '19');
-INSERT INTO pingtai_roleoperator VALUES ('1', '20');
-INSERT INTO pingtai_roleoperator VALUES ('1', '21');
-INSERT INTO pingtai_roleoperator VALUES ('1', '22');
-INSERT INTO pingtai_roleoperator VALUES ('1', '23');
-INSERT INTO pingtai_roleoperator VALUES ('1', '24');
-INSERT INTO pingtai_roleoperator VALUES ('1', '25');
-INSERT INTO pingtai_roleoperator VALUES ('1', '26');
-INSERT INTO pingtai_roleoperator VALUES ('1', '27');
-INSERT INTO pingtai_roleoperator VALUES ('1', '28');
-INSERT INTO pingtai_roleoperator VALUES ('1', '29');
-INSERT INTO pingtai_roleoperator VALUES ('1', '30');
-INSERT INTO pingtai_roleoperator VALUES ('1', '31');
-INSERT INTO pingtai_roleoperator VALUES ('1', '32');
-INSERT INTO pingtai_roleoperator VALUES ('1', '35');
-INSERT INTO pingtai_roleoperator VALUES ('1', '36');
-INSERT INTO pingtai_roleoperator VALUES ('1', '37');
-INSERT INTO pingtai_roleoperator VALUES ('1', '38');
-INSERT INTO pingtai_roleoperator VALUES ('1', '39');
-INSERT INTO pingtai_roleoperator VALUES ('1', '40');
-INSERT INTO pingtai_roleoperator VALUES ('1', '41');
-INSERT INTO pingtai_roleoperator VALUES ('1', '42');
-INSERT INTO pingtai_roleoperator VALUES ('1', '43');
-INSERT INTO pingtai_roleoperator VALUES ('1', '44');
-INSERT INTO pingtai_roleoperator VALUES ('1', '45');
-INSERT INTO pingtai_roleoperator VALUES ('1', '46');
-INSERT INTO pingtai_roleoperator VALUES ('1', '47');
-INSERT INTO pingtai_roleoperator VALUES ('1', '48');
-INSERT INTO pingtai_roleoperator VALUES ('1', '49');
-INSERT INTO pingtai_roleoperator VALUES ('1', '50');
-INSERT INTO pingtai_roleoperator VALUES ('1', '51');
-INSERT INTO pingtai_roleoperator VALUES ('1', '52');
-INSERT INTO pingtai_roleoperator VALUES ('1', '53');
-INSERT INTO pingtai_roleoperator VALUES ('1', '54');
-INSERT INTO pingtai_roleoperator VALUES ('1', '55');
-INSERT INTO pingtai_roleoperator VALUES ('1', '56');
-INSERT INTO pingtai_roleoperator VALUES ('1', '57');
-INSERT INTO pingtai_roleoperator VALUES ('1', '58');
-INSERT INTO pingtai_roleoperator VALUES ('1', '59');
-INSERT INTO pingtai_roleoperator VALUES ('1', '60');
-INSERT INTO pingtai_roleoperator VALUES ('1', '61');
-INSERT INTO pingtai_roleoperator VALUES ('1', '62');
-INSERT INTO pingtai_roleoperator VALUES ('1', '63');
-INSERT INTO pingtai_roleoperator VALUES ('1', '90');
-INSERT INTO pingtai_roleoperator VALUES ('1', '91');
-INSERT INTO pingtai_roleoperator VALUES ('1', '92');
-INSERT INTO pingtai_roleoperator VALUES ('1', '93');
-INSERT INTO pingtai_roleoperator VALUES ('1', '95');
-INSERT INTO pingtai_roleoperator VALUES ('1', '96');
-INSERT INTO pingtai_roleoperator VALUES ('1', '97');
-INSERT INTO pingtai_roleoperator VALUES ('1', '98');
-INSERT INTO pingtai_roleoperator VALUES ('1', '99');
-INSERT INTO pingtai_roleoperator VALUES ('1', '143');
-INSERT INTO pingtai_roleoperator VALUES ('1', '144');
-INSERT INTO pingtai_roleoperator VALUES ('1', '145');
-INSERT INTO pingtai_roleoperator VALUES ('1', '146');
-INSERT INTO pingtai_roleoperator VALUES ('1', '147');
-INSERT INTO pingtai_roleoperator VALUES ('1', '148');
-INSERT INTO pingtai_roleoperator VALUES ('1', '149');
-INSERT INTO pingtai_roleoperator VALUES ('1', '150');
-INSERT INTO pingtai_roleoperator VALUES ('1', '151');
-INSERT INTO pingtai_roleoperator VALUES ('1', '152');
-INSERT INTO pingtai_roleoperator VALUES ('1', '153');
-INSERT INTO pingtai_roleoperator VALUES ('1', '154');
-INSERT INTO pingtai_roleoperator VALUES ('1', '155');
-INSERT INTO pingtai_roleoperator VALUES ('1', '156');
-INSERT INTO pingtai_roleoperator VALUES ('1', '157');
-INSERT INTO pingtai_roleoperator VALUES ('1', '161');
-INSERT INTO pingtai_roleoperator VALUES ('1', '162');
-INSERT INTO pingtai_roleoperator VALUES ('1', '163');
-INSERT INTO pingtai_roleoperator VALUES ('1', '164');
-INSERT INTO pingtai_roleoperator VALUES ('1', '165');
-INSERT INTO pingtai_roleoperator VALUES ('1', '166');
-INSERT INTO pingtai_roleoperator VALUES ('1', '167');
-INSERT INTO pingtai_roleoperator VALUES ('1', '168');
-INSERT INTO pingtai_roleoperator VALUES ('1', '169');
-INSERT INTO pingtai_roleoperator VALUES ('1', '170');
-INSERT INTO pingtai_roleoperator VALUES ('1', '171');
-INSERT INTO pingtai_roleoperator VALUES ('1', '172');
-INSERT INTO pingtai_roleoperator VALUES ('1', '173');
-INSERT INTO pingtai_roleoperator VALUES ('1', '174');
-INSERT INTO pingtai_roleoperator VALUES ('1', '175');
-INSERT INTO pingtai_roleoperator VALUES ('1', '176');
-INSERT INTO pingtai_roleoperator VALUES ('1', '177');
-INSERT INTO pingtai_roleoperator VALUES ('1', '178');
-INSERT INTO pingtai_roleoperator VALUES ('1', '179');
-INSERT INTO pingtai_roleoperator VALUES ('1', '180');
-INSERT INTO pingtai_roleoperator VALUES ('1', '181');
-INSERT INTO pingtai_roleoperator VALUES ('1', '182');
-INSERT INTO pingtai_roleoperator VALUES ('1', '212');
-INSERT INTO pingtai_roleoperator VALUES ('1', '213');
-INSERT INTO pingtai_roleoperator VALUES ('2', '169');
-INSERT INTO pingtai_roleoperator VALUES ('2', '170');
+--
+-- 转存表中的数据 `pingtai_roleoperator`
+--
 
--- ----------------------------
--- Table structure for `pingtai_rolepageoperator`
--- ----------------------------
-DROP TABLE IF EXISTS `pingtai_rolepageoperator`;
-CREATE TABLE `pingtai_rolepageoperator` (
+INSERT INTO `pingtai_roleoperator` (`roleIds`, `operatorIds`) VALUES
+(1, 4),
+(1, 5),
+(1, 6),
+(1, 7),
+(1, 8),
+(1, 9),
+(1, 10),
+(1, 11),
+(1, 12),
+(1, 13),
+(1, 14),
+(1, 15),
+(1, 16),
+(1, 17),
+(1, 18),
+(1, 19),
+(1, 20),
+(1, 21),
+(1, 22),
+(1, 23),
+(1, 24),
+(1, 25),
+(1, 26),
+(1, 27),
+(1, 28),
+(1, 29),
+(1, 30),
+(1, 31),
+(1, 32),
+(1, 35),
+(1, 36),
+(1, 37),
+(1, 38),
+(1, 39),
+(1, 40),
+(1, 41),
+(1, 42),
+(1, 43),
+(1, 44),
+(1, 45),
+(1, 46),
+(1, 47),
+(1, 48),
+(1, 49),
+(1, 50),
+(1, 51),
+(1, 52),
+(1, 53),
+(1, 54),
+(1, 55),
+(1, 56),
+(1, 57),
+(1, 58),
+(1, 59),
+(1, 60),
+(1, 61),
+(1, 62),
+(1, 63),
+(1, 90),
+(1, 91),
+(1, 92),
+(1, 93),
+(1, 95),
+(1, 96),
+(1, 97),
+(1, 98),
+(1, 99),
+(1, 143),
+(1, 144),
+(1, 145),
+(1, 146),
+(1, 147),
+(1, 148),
+(1, 149),
+(1, 150),
+(1, 151),
+(1, 152),
+(1, 153),
+(1, 154),
+(1, 155),
+(1, 156),
+(1, 157),
+(1, 161),
+(1, 162),
+(1, 163),
+(1, 164),
+(1, 165),
+(1, 166),
+(1, 167),
+(1, 168),
+(1, 169),
+(1, 170),
+(1, 171),
+(1, 172),
+(1, 173),
+(1, 174),
+(1, 175),
+(1, 176),
+(1, 177),
+(1, 178),
+(1, 179),
+(1, 180),
+(1, 181),
+(1, 182),
+(1, 212),
+(1, 213),
+(2, 169),
+(2, 170);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `pingtai_rolepageoperator`
+--
+
+CREATE TABLE IF NOT EXISTS `pingtai_rolepageoperator` (
   `roleIds` bigint(20) NOT NULL,
   `pageOperatorIds` bigint(20) NOT NULL,
   PRIMARY KEY (`roleIds`,`pageOperatorIds`),
   KEY `FK4CE1669EA37D040A` (`pageOperatorIds`),
-  KEY `FK4CE1669ED9C46539` (`roleIds`),
-  CONSTRAINT `FK4CE1669EA37D040A` FOREIGN KEY (`pageOperatorIds`) REFERENCES `pingtai_operator` (`ids`),
-  CONSTRAINT `FK4CE1669ED9C46539` FOREIGN KEY (`roleIds`) REFERENCES `pingtai_role` (`ids`)
+  KEY `FK4CE1669ED9C46539` (`roleIds`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- ----------------------------
--- Records of pingtai_rolepageoperator
--- ----------------------------
+--
+-- 转存表中的数据 `pingtai_rolepageoperator`
+--
 
--- ----------------------------
--- Table structure for `pingtai_syslog`
--- ----------------------------
-DROP TABLE IF EXISTS `pingtai_syslog`;
-CREATE TABLE `pingtai_syslog` (
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `pingtai_syslog`
+--
+
+CREATE TABLE IF NOT EXISTS `pingtai_syslog` (
   `ids` bigint(20) NOT NULL AUTO_INCREMENT,
   `createdDate` datetime DEFAULT NULL,
   `modifiedDate` datetime DEFAULT NULL,
@@ -1554,20 +1652,225 @@ CREATE TABLE `pingtai_syslog` (
   PRIMARY KEY (`ids`),
   UNIQUE KEY `ids` (`ids`),
   KEY `FKC23BE64CBF045F6D` (`creatorUserIds`),
-  KEY `FKC23BE64C9BC52230` (`modifiedUserIds`),
-  CONSTRAINT `FKC23BE64C9BC52230` FOREIGN KEY (`modifiedUserIds`) REFERENCES `pingtai_user` (`ids`),
-  CONSTRAINT `FKC23BE64CBF045F6D` FOREIGN KEY (`creatorUserIds`) REFERENCES `pingtai_user` (`ids`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  KEY `FKC23BE64C9BC52230` (`modifiedUserIds`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=204 ;
 
--- ----------------------------
--- Records of pingtai_syslog
--- ----------------------------
+--
+-- 转存表中的数据 `pingtai_syslog`
+--
 
--- ----------------------------
--- Table structure for `pingtai_user`
--- ----------------------------
-DROP TABLE IF EXISTS `pingtai_user`;
-CREATE TABLE `pingtai_user` (
+INSERT INTO `pingtai_syslog` (`ids`, `createdDate`, `modifiedDate`, `valid`, `version`, `description`, `titles`, `types`, `creatorUserIds`, `modifiedUserIds`) VALUES
+(1, '2011-12-03 23:36:18', '2011-12-03 23:36:18', 'youXiao', 0, 'admins(id=1)请求[/pingTai/userPingTaiAction!userList.action]', '用户列表', 's', 1, NULL),
+(2, '2011-12-03 23:41:06', '2011-12-03 23:41:06', 'youXiao', 0, 'admins(id=1)请求[/pingTai/sysLogPingTaiAction!icCardList.action]', '日志列表', 's', 1, NULL),
+(3, '2011-12-03 23:41:14', '2011-12-03 23:41:14', 'youXiao', 0, 'admins(id=1)请求[/pingTai/sysLogPingTaiAction!viewSysLog.action]', '日志查看', 's', 1, NULL),
+(4, '2011-12-03 23:41:45', '2011-12-03 23:41:45', 'youXiao', 0, 'admins(id=1)请求[/pingTai/sysLogPingTaiAction!viewSysLog.action]', '日志查看', 's', 1, NULL),
+(5, '2011-12-03 23:41:49', '2011-12-03 23:41:49', 'youXiao', 0, 'admins(id=1)请求[/pingTai/sysLogPingTaiAction!icCardList.action]', '日志列表', 's', 1, NULL),
+(6, '2011-12-03 23:41:50', '2011-12-03 23:41:50', 'youXiao', 0, 'admins(id=1)请求[/pingTai/sysLogPingTaiAction!icCardList.action]', '日志列表', 's', 1, NULL),
+(7, '2011-12-03 23:41:50', '2011-12-03 23:41:50', 'youXiao', 0, 'admins(id=1)请求[/pingTai/sysLogPingTaiAction!icCardList.action]', '日志列表', 's', 1, NULL),
+(8, '2011-12-03 23:41:51', '2011-12-03 23:41:51', 'youXiao', 0, 'admins(id=1)请求[/pingTai/sysLogPingTaiAction!icCardList.action]', '日志列表', 's', 1, NULL),
+(9, '2011-12-03 23:41:52', '2011-12-03 23:41:52', 'youXiao', 0, 'admins(id=1)请求[/pingTai/sysLogPingTaiAction!icCardList.action]', '日志列表', 's', 1, NULL),
+(10, '2011-12-03 23:41:52', '2011-12-03 23:41:52', 'youXiao', 0, 'admins(id=1)请求[/pingTai/sysLogPingTaiAction!icCardList.action]', '日志列表', 's', 1, NULL),
+(11, '2011-12-09 05:36:26', '2011-12-09 05:36:26', 'youXiao', 0, 'admins(id=1)请求[/pingTai/operatorPingTaiAction!operatorList.action]', '功能列表', 's', 1, NULL),
+(12, '2011-12-09 05:36:33', '2011-12-09 05:36:33', 'youXiao', 0, 'admins(id=1)请求[/pingTai/operatorPingTaiAction!operatorList.action]', '功能列表', 's', 1, NULL),
+(13, '2011-12-09 05:36:34', '2011-12-09 05:36:34', 'youXiao', 0, 'admins(id=1)请求[/pingTai/operatorPingTaiAction!operatorList.action]', '功能列表', 's', 1, NULL),
+(14, '2011-12-09 05:36:35', '2011-12-09 05:36:35', 'youXiao', 0, 'admins(id=1)请求[/pingTai/operatorPingTaiAction!operatorList.action]', '功能列表', 's', 1, NULL),
+(15, '2011-12-09 05:36:35', '2011-12-09 05:36:35', 'youXiao', 0, 'admins(id=1)请求[/pingTai/operatorPingTaiAction!operatorList.action]', '功能列表', 's', 1, NULL),
+(16, '2011-12-09 05:36:36', '2011-12-09 05:36:36', 'youXiao', 0, 'admins(id=1)请求[/pingTai/operatorPingTaiAction!operatorList.action]', '功能列表', 's', 1, NULL),
+(17, '2011-12-09 05:36:37', '2011-12-09 05:36:37', 'youXiao', 0, 'admins(id=1)请求[/pingTai/operatorPingTaiAction!operatorList.action]', '功能列表', 's', 1, NULL),
+(18, '2011-12-09 05:36:40', '2011-12-09 05:36:40', 'youXiao', 0, 'admins(id=1)请求[/pingTai/operatorPingTaiAction!operatorList.action]', '功能列表', 's', 1, NULL),
+(19, '2011-12-09 05:36:44', '2011-12-09 05:36:44', 'youXiao', 0, 'admins(id=1)请求[/aqua-eshop/pingTai/operatorPingTaiAction!goToUrl.action]', '功能添加', 's', 1, NULL),
+(20, '2011-12-09 05:38:14', '2011-12-09 05:38:14', 'youXiao', 0, 'admins(id=1)请求[/pingTai/operatorPingTaiAction!operatorList.action]', '功能列表', 's', 1, NULL),
+(21, '2011-12-09 05:38:17', '2011-12-09 05:38:17', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!menuList.action]', '菜单列表', 's', 1, NULL),
+(22, '2011-12-09 05:38:25', '2011-12-09 05:38:25', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!toUpdateMenu.action]', '菜单修改', 's', 1, NULL),
+(23, '2011-12-09 05:38:40', '2011-12-09 05:38:40', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!updateMenu.action]', '菜单更新', 's', 1, NULL),
+(24, '2011-12-09 05:38:40', '2011-12-09 05:38:40', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!menuList.action]', '菜单列表', 's', 1, NULL),
+(25, '2011-12-09 05:39:08', '2011-12-09 05:39:08', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!toUpdateMenu.action]', '菜单修改', 's', 1, NULL),
+(26, '2011-12-09 05:39:16', '2011-12-09 05:39:16', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!updateMenu.action]', '菜单更新', 's', 1, NULL),
+(27, '2011-12-09 05:39:16', '2011-12-09 05:39:16', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!menuList.action]', '菜单列表', 's', 1, NULL),
+(28, '2011-12-09 05:39:29', '2011-12-09 05:39:29', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!viewMenu.action]', '菜单查看', 's', 1, NULL),
+(29, '2011-12-09 05:39:52', '2011-12-09 05:39:52', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!toUpdateMenu.action]', '菜单修改', 's', 1, NULL),
+(30, '2011-12-09 05:39:57', '2011-12-09 05:39:57', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!updateMenu.action]', '菜单更新', 's', 1, NULL),
+(31, '2011-12-09 05:39:57', '2011-12-09 05:39:57', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!menuList.action]', '菜单列表', 's', 1, NULL),
+(32, '2011-12-09 05:40:05', '2011-12-09 05:40:05', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!toUpdateMenu.action]', '菜单修改', 's', 1, NULL),
+(33, '2011-12-09 05:40:12', '2011-12-09 05:40:12', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!updateMenu.action]', '菜单更新', 's', 1, NULL),
+(34, '2011-12-09 05:40:12', '2011-12-09 05:40:12', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!menuList.action]', '菜单列表', 's', 1, NULL),
+(35, '2011-12-09 05:40:50', '2011-12-09 05:40:50', 'youXiao', 0, 'admins(id=1)请求[/pingTai/rolePingTaiAction!roleList.action]', '角色列表', 's', 1, NULL),
+(36, '2011-12-09 05:41:03', '2011-12-09 05:41:03', 'youXiao', 0, 'admins(id=1)请求[/pingTai/operatorPingTaiAction!roleNoOperatorView.action]', '角色没有的功能', 's', 1, NULL),
+(37, '2011-12-09 05:41:07', '2011-12-09 05:41:07', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!menuList.action]', '菜单列表', 's', 1, NULL),
+(38, '2011-12-09 05:41:17', '2011-12-09 05:41:17', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!toUpdateMenu.action]', '菜单修改', 's', 1, NULL),
+(39, '2011-12-09 05:41:55', '2011-12-09 05:41:55', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!updateMenu.action]', '菜单更新', 's', 1, NULL),
+(40, '2011-12-09 05:41:55', '2011-12-09 05:41:55', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!menuList.action]', '菜单列表', 's', 1, NULL),
+(41, '2011-12-09 05:41:58', '2011-12-09 05:41:58', 'youXiao', 0, 'admins(id=1)请求[/pingTai/rolePingTaiAction!roleList.action]', '角色列表', 's', 1, NULL),
+(42, '2011-12-09 05:42:04', '2011-12-09 05:42:04', 'youXiao', 0, 'admins(id=1)请求[/pingTai/operatorPingTaiAction!roleOperatorView.action]', '角色拥有的功能', 's', 1, NULL),
+(43, '2011-12-09 05:42:09', '2011-12-09 05:42:09', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!menuList.action]', '菜单列表', 's', 1, NULL),
+(44, '2011-12-09 05:42:24', '2011-12-09 05:42:24', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!toUpdateMenu.action]', '菜单修改', 's', 1, NULL),
+(45, '2011-12-09 05:42:41', '2011-12-09 05:42:41', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!updateMenu.action]', '菜单更新', 's', 1, NULL),
+(46, '2011-12-09 05:42:41', '2011-12-09 05:42:41', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!menuList.action]', '菜单列表', 's', 1, NULL),
+(47, '2011-12-09 05:43:19', '2011-12-09 05:43:19', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!toUpdateMenu.action]', '菜单修改', 's', 1, NULL),
+(48, '2011-12-09 05:43:23', '2011-12-09 05:43:23', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!updateMenu.action]', '菜单更新', 's', 1, NULL),
+(49, '2011-12-09 05:43:23', '2011-12-09 05:43:23', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!menuList.action]', '菜单列表', 's', 1, NULL),
+(50, '2011-12-09 05:43:45', '2011-12-09 05:43:45', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!toUpdateMenu.action]', '菜单修改', 's', 1, NULL),
+(51, '2011-12-09 05:43:49', '2011-12-09 05:43:49', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!toUpdateMenu.action]', '菜单修改', 's', 1, NULL),
+(52, '2011-12-09 05:43:52', '2011-12-09 05:43:52', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!toUpdateMenu.action]', '菜单修改', 's', 1, NULL),
+(53, '2011-12-09 05:43:55', '2011-12-09 05:43:55', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!toUpdateMenu.action]', '菜单修改', 's', 1, NULL),
+(54, '2011-12-09 05:43:58', '2011-12-09 05:43:58', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!toUpdateMenu.action]', '菜单修改', 's', 1, NULL),
+(55, '2011-12-09 05:44:01', '2011-12-09 05:44:01', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!toUpdateMenu.action]', '菜单修改', 's', 1, NULL),
+(56, '2011-12-09 05:44:16', '2011-12-09 05:44:16', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!toUpdateMenu.action]', '菜单修改', 's', 1, NULL),
+(57, '2011-12-09 05:44:28', '2011-12-09 05:44:28', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!updateMenu.action]', '菜单更新', 's', 1, NULL),
+(58, '2011-12-09 05:44:28', '2011-12-09 05:44:28', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!menuList.action]', '菜单列表', 's', 1, NULL),
+(59, '2011-12-09 05:44:30', '2011-12-09 05:44:30', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!toUpdateMenu.action]', '菜单修改', 's', 1, NULL),
+(60, '2011-12-09 05:44:32', '2011-12-09 05:44:32', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!updateMenu.action]', '菜单更新', 's', 1, NULL),
+(61, '2011-12-09 05:44:32', '2011-12-09 05:44:32', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!menuList.action]', '菜单列表', 's', 1, NULL),
+(62, '2011-12-09 05:44:42', '2011-12-09 05:44:42', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!menuList.action]', '菜单列表', 's', 1, NULL),
+(63, '2011-12-09 05:44:47', '2011-12-09 05:44:47', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!toUpdateMenu.action]', '菜单修改', 's', 1, NULL),
+(64, '2011-12-09 05:44:53', '2011-12-09 05:44:53', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!toUpdateMenu.action]', '菜单修改', 's', 1, NULL),
+(65, '2011-12-09 05:44:59', '2011-12-09 05:44:59', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!viewMenu.action]', '菜单查看', 's', 1, NULL),
+(66, '2011-12-09 05:45:28', '2011-12-09 05:45:28', 'youXiao', 0, 'admins(id=1)请求[/pingTai/processDefinitionPingTaiAction!processDefinitionList.action]', '流程列表', 's', 1, NULL),
+(67, '2011-12-09 05:45:44', '2011-12-09 05:45:44', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!menuList.action]', '菜单列表', 's', 1, NULL),
+(68, '2011-12-09 05:45:52', '2011-12-09 05:45:52', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!toUpdateMenu.action]', '菜单修改', 's', 1, NULL),
+(69, '2011-12-09 05:46:02', '2011-12-09 05:46:02', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!updateMenu.action]', '菜单更新', 's', 1, NULL),
+(70, '2011-12-09 05:46:02', '2011-12-09 05:46:02', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!menuList.action]', '菜单列表', 's', 1, NULL),
+(71, '2011-12-09 05:46:10', '2011-12-09 05:46:10', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!toUpdateMenu.action]', '菜单修改', 's', 1, NULL),
+(72, '2011-12-09 05:46:15', '2011-12-09 05:46:15', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!updateMenu.action]', '菜单更新', 's', 1, NULL),
+(73, '2011-12-09 05:46:15', '2011-12-09 05:46:15', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!menuList.action]', '菜单列表', 's', 1, NULL),
+(74, '2011-12-09 05:46:44', '2011-12-09 05:46:44', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!toUpdateMenu.action]', '菜单修改', 's', 1, NULL),
+(75, '2011-12-09 05:46:47', '2011-12-09 05:46:47', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!toUpdateMenu.action]', '菜单修改', 's', 1, NULL),
+(76, '2011-12-09 05:46:50', '2011-12-09 05:46:50', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!toUpdateMenu.action]', '菜单修改', 's', 1, NULL),
+(77, '2011-12-09 05:46:56', '2011-12-09 05:46:56', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!toUpdateMenu.action]', '菜单修改', 's', 1, NULL),
+(78, '2011-12-09 05:47:01', '2011-12-09 05:47:01', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!updateMenu.action]', '菜单更新', 's', 1, NULL),
+(79, '2011-12-09 05:47:01', '2011-12-09 05:47:01', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!menuList.action]', '菜单列表', 's', 1, NULL),
+(80, '2011-12-09 05:47:03', '2011-12-09 05:47:03', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!toUpdateMenu.action]', '菜单修改', 's', 1, NULL),
+(81, '2011-12-09 05:47:09', '2011-12-09 05:47:09', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!toUpdateMenu.action]', '菜单修改', 's', 1, NULL),
+(82, '2011-12-09 05:47:15', '2011-12-09 05:47:15', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!updateMenu.action]', '菜单更新', 's', 1, NULL),
+(83, '2011-12-09 05:47:15', '2011-12-09 05:47:15', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!menuList.action]', '菜单列表', 's', 1, NULL),
+(84, '2011-12-09 05:47:18', '2011-12-09 05:47:18', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!toUpdateMenu.action]', '菜单修改', 's', 1, NULL),
+(85, '2011-12-09 05:47:22', '2011-12-09 05:47:22', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!updateMenu.action]', '菜单更新', 's', 1, NULL),
+(86, '2011-12-09 05:47:22', '2011-12-09 05:47:22', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!menuList.action]', '菜单列表', 's', 1, NULL),
+(87, '2011-12-09 05:47:37', '2011-12-09 05:47:37', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!menuList.action]', '菜单列表', 's', 1, NULL),
+(88, '2011-12-09 05:47:44', '2011-12-09 05:47:44', 'youXiao', 0, 'admins(id=1)请求[/aqua-eshop/pingTai/menuPingTaiAction!goToUrl.action]', '菜单添加', 's', 1, NULL),
+(89, '2011-12-09 05:47:53', '2011-12-09 05:47:53', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!toUpdateMenu.action]', '菜单修改', 's', 1, NULL),
+(90, '2011-12-09 05:48:00', '2011-12-09 05:48:00', 'youXiao', 0, 'admins(id=1)请求[/aqua-eshop/pingTai/menuPingTaiAction!goToUrl.action]', '菜单添加', 's', 1, NULL),
+(91, '2011-12-09 05:48:12', '2011-12-09 05:48:12', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!saveMenu.action]', '菜单保存', 's', 1, NULL),
+(92, '2011-12-09 05:48:12', '2011-12-09 05:48:12', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!menuList.action]', '菜单列表', 's', 1, NULL),
+(93, '2011-12-09 05:48:21', '2011-12-09 05:48:21', 'youXiao', 0, 'admins(id=1)请求[/aqua-eshop/pingTai/menuPingTaiAction!goToUrl.action]', '菜单添加', 's', 1, NULL),
+(94, '2011-12-09 05:48:37', '2011-12-09 05:48:37', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!saveMenu.action]', '菜单保存', 's', 1, NULL),
+(95, '2011-12-09 05:48:37', '2011-12-09 05:48:37', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!menuList.action]', '菜单列表', 's', 1, NULL),
+(96, '2011-12-09 05:48:40', '2011-12-09 05:48:40', 'youXiao', 0, 'admins(id=1)请求[/aqua-eshop/pingTai/menuPingTaiAction!goToUrl.action]', '菜单添加', 's', 1, NULL),
+(97, '2011-12-09 05:48:53', '2011-12-09 05:48:53', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!saveMenu.action]', '菜单保存', 's', 1, NULL),
+(98, '2011-12-09 05:48:53', '2011-12-09 05:48:53', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!menuList.action]', '菜单列表', 's', 1, NULL),
+(99, '2011-12-09 05:49:18', '2011-12-09 05:49:18', 'youXiao', 0, 'admins(id=1)请求[/aqua-eshop/pingTai/menuPingTaiAction!goToUrl.action]', '菜单添加', 's', 1, NULL),
+(100, '2011-12-09 05:49:30', '2011-12-09 05:49:30', 'youXiao', 0, 'admins(id=1)请求[/aqua-eshop/pingTai/menuPingTaiAction!goToUrl.action]', '菜单添加', 's', 1, NULL),
+(101, '2011-12-09 05:49:51', '2011-12-09 05:49:51', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!saveMenu.action]', '菜单保存', 's', 1, NULL),
+(102, '2011-12-09 05:49:51', '2011-12-09 05:49:51', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!menuList.action]', '菜单列表', 's', 1, NULL),
+(103, '2011-12-09 05:50:09', '2011-12-09 05:50:09', 'youXiao', 0, 'admins(id=1)请求[/aqua-eshop/pingTai/menuPingTaiAction!goToUrl.action]', '菜单添加', 's', 1, NULL),
+(104, '2011-12-09 05:50:16', '2011-12-09 05:50:16', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!saveMenu.action]', '菜单保存', 's', 1, NULL),
+(105, '2011-12-09 05:50:17', '2011-12-09 05:50:17', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!menuList.action]', '菜单列表', 's', 1, NULL),
+(106, '2011-12-09 05:50:25', '2011-12-09 05:50:25', 'youXiao', 0, 'admins(id=1)请求[/aqua-eshop/pingTai/menuPingTaiAction!goToUrl.action]', '菜单添加', 's', 1, NULL),
+(107, '2011-12-09 05:50:35', '2011-12-09 05:50:35', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!saveMenu.action]', '菜单保存', 's', 1, NULL),
+(108, '2011-12-09 05:50:35', '2011-12-09 05:50:35', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!menuList.action]', '菜单列表', 's', 1, NULL),
+(109, '2011-12-09 05:50:44', '2011-12-09 05:50:44', 'youXiao', 0, 'admins(id=1)请求[/aqua-eshop/pingTai/menuPingTaiAction!goToUrl.action]', '菜单添加', 's', 1, NULL),
+(110, '2011-12-09 05:50:51', '2011-12-09 05:50:51', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!saveMenu.action]', '菜单保存', 's', 1, NULL),
+(111, '2011-12-09 05:50:51', '2011-12-09 05:50:51', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!menuList.action]', '菜单列表', 's', 1, NULL),
+(112, '2011-12-09 05:50:58', '2011-12-09 05:50:58', 'youXiao', 0, 'admins(id=1)请求[/aqua-eshop/pingTai/menuPingTaiAction!goToUrl.action]', '菜单添加', 's', 1, NULL),
+(113, '2011-12-09 05:51:09', '2011-12-09 05:51:09', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!saveMenu.action]', '菜单保存', 's', 1, NULL),
+(114, '2011-12-09 05:51:09', '2011-12-09 05:51:09', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!menuList.action]', '菜单列表', 's', 1, NULL),
+(115, '2011-12-09 05:51:17', '2011-12-09 05:51:17', 'youXiao', 0, 'admins(id=1)请求[/aqua-eshop/pingTai/menuPingTaiAction!goToUrl.action]', '菜单添加', 's', 1, NULL),
+(116, '2011-12-09 05:51:24', '2011-12-09 05:51:24', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!saveMenu.action]', '菜单保存', 's', 1, NULL),
+(117, '2011-12-09 05:51:24', '2011-12-09 05:51:24', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!menuList.action]', '菜单列表', 's', 1, NULL),
+(118, '2011-12-09 05:51:33', '2011-12-09 05:51:33', 'youXiao', 0, 'admins(id=1)请求[/aqua-eshop/pingTai/menuPingTaiAction!goToUrl.action]', '菜单添加', 's', 1, NULL),
+(119, '2011-12-09 05:51:46', '2011-12-09 05:51:46', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!saveMenu.action]', '菜单保存', 's', 1, NULL),
+(120, '2011-12-09 05:51:46', '2011-12-09 05:51:46', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!menuList.action]', '菜单列表', 's', 1, NULL),
+(121, '2011-12-09 05:51:59', '2011-12-09 05:51:59', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!toUpdateMenu.action]', '菜单修改', 's', 1, NULL),
+(122, '2011-12-09 05:52:06', '2011-12-09 05:52:06', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!updateMenu.action]', '菜单更新', 's', 1, NULL),
+(123, '2011-12-09 05:52:06', '2011-12-09 05:52:06', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!menuList.action]', '菜单列表', 's', 1, NULL),
+(124, '2011-12-09 05:52:14', '2011-12-09 05:52:14', 'youXiao', 0, 'admins(id=1)请求[/aqua-eshop/pingTai/menuPingTaiAction!goToUrl.action]', '菜单添加', 's', 1, NULL),
+(125, '2011-12-09 05:52:23', '2011-12-09 05:52:23', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!saveMenu.action]', '菜单保存', 's', 1, NULL),
+(126, '2011-12-09 05:52:23', '2011-12-09 05:52:23', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!menuList.action]', '菜单列表', 's', 1, NULL),
+(127, '2011-12-09 05:52:30', '2011-12-09 05:52:30', 'youXiao', 0, 'admins(id=1)请求[/aqua-eshop/pingTai/menuPingTaiAction!goToUrl.action]', '菜单添加', 's', 1, NULL),
+(128, '2011-12-09 05:52:36', '2011-12-09 05:52:36', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!saveMenu.action]', '菜单保存', 's', 1, NULL),
+(129, '2011-12-09 05:52:36', '2011-12-09 05:52:36', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!menuList.action]', '菜单列表', 's', 1, NULL),
+(130, '2011-12-09 05:52:43', '2011-12-09 05:52:43', 'youXiao', 0, 'admins(id=1)请求[/aqua-eshop/pingTai/menuPingTaiAction!goToUrl.action]', '菜单添加', 's', 1, NULL),
+(131, '2011-12-09 05:52:50', '2011-12-09 05:52:50', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!saveMenu.action]', '菜单保存', 's', 1, NULL),
+(132, '2011-12-09 05:52:50', '2011-12-09 05:52:50', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!menuList.action]', '菜单列表', 's', 1, NULL),
+(133, '2011-12-09 05:52:56', '2011-12-09 05:52:56', 'youXiao', 0, 'admins(id=1)请求[/aqua-eshop/pingTai/menuPingTaiAction!goToUrl.action]', '菜单添加', 's', 1, NULL),
+(134, '2011-12-09 05:53:06', '2011-12-09 05:53:06', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!saveMenu.action]', '菜单保存', 's', 1, NULL),
+(135, '2011-12-09 05:53:06', '2011-12-09 05:53:06', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!menuList.action]', '菜单列表', 's', 1, NULL),
+(136, '2011-12-09 05:53:18', '2011-12-09 05:53:18', 'youXiao', 0, 'admins(id=1)请求[/aqua-eshop/pingTai/menuPingTaiAction!goToUrl.action]', '菜单添加', 's', 1, NULL),
+(137, '2011-12-09 05:53:25', '2011-12-09 05:53:25', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!saveMenu.action]', '菜单保存', 's', 1, NULL),
+(138, '2011-12-09 05:53:25', '2011-12-09 05:53:25', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!menuList.action]', '菜单列表', 's', 1, NULL),
+(139, '2011-12-09 05:53:31', '2011-12-09 05:53:31', 'youXiao', 0, 'admins(id=1)请求[/aqua-eshop/pingTai/menuPingTaiAction!goToUrl.action]', '菜单添加', 's', 1, NULL),
+(140, '2011-12-09 05:53:36', '2011-12-09 05:53:36', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!saveMenu.action]', '菜单保存', 's', 1, NULL),
+(141, '2011-12-09 05:53:36', '2011-12-09 05:53:36', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!menuList.action]', '菜单列表', 's', 1, NULL),
+(142, '2011-12-09 05:53:43', '2011-12-09 05:53:43', 'youXiao', 0, 'admins(id=1)请求[/aqua-eshop/pingTai/menuPingTaiAction!goToUrl.action]', '菜单添加', 's', 1, NULL),
+(143, '2011-12-09 05:53:50', '2011-12-09 05:53:50', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!saveMenu.action]', '菜单保存', 's', 1, NULL),
+(144, '2011-12-09 05:53:50', '2011-12-09 05:53:50', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!menuList.action]', '菜单列表', 's', 1, NULL),
+(145, '2011-12-09 05:53:57', '2011-12-09 05:53:57', 'youXiao', 0, 'admins(id=1)请求[/aqua-eshop/pingTai/menuPingTaiAction!goToUrl.action]', '菜单添加', 's', 1, NULL),
+(146, '2011-12-09 05:54:02', '2011-12-09 05:54:02', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!saveMenu.action]', '菜单保存', 's', 1, NULL),
+(147, '2011-12-09 05:54:02', '2011-12-09 05:54:02', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!menuList.action]', '菜单列表', 's', 1, NULL),
+(148, '2011-12-09 05:54:07', '2011-12-09 05:54:07', 'youXiao', 0, 'admins(id=1)请求[/aqua-eshop/pingTai/menuPingTaiAction!goToUrl.action]', '菜单添加', 's', 1, NULL),
+(149, '2011-12-09 05:54:17', '2011-12-09 05:54:17', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!saveMenu.action]', '菜单保存', 's', 1, NULL),
+(150, '2011-12-09 05:54:17', '2011-12-09 05:54:17', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!menuList.action]', '菜单列表', 's', 1, NULL),
+(151, '2011-12-09 05:54:28', '2011-12-09 05:54:28', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!toUpdateMenu.action]', '菜单修改', 's', 1, NULL),
+(152, '2011-12-09 05:54:33', '2011-12-09 05:54:33', 'youXiao', 0, 'admins(id=1)请求[/aqua-eshop/pingTai/menuPingTaiAction!goToUrl.action]', '菜单添加', 's', 1, NULL),
+(153, '2011-12-09 05:54:40', '2011-12-09 05:54:40', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!saveMenu.action]', '菜单保存', 's', 1, NULL),
+(154, '2011-12-09 05:54:40', '2011-12-09 05:54:40', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!menuList.action]', '菜单列表', 's', 1, NULL),
+(155, '2011-12-09 05:54:47', '2011-12-09 05:54:47', 'youXiao', 0, 'admins(id=1)请求[/aqua-eshop/pingTai/menuPingTaiAction!goToUrl.action]', '菜单添加', 's', 1, NULL),
+(156, '2011-12-09 05:54:54', '2011-12-09 05:54:54', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!saveMenu.action]', '菜单保存', 's', 1, NULL),
+(157, '2011-12-09 05:54:54', '2011-12-09 05:54:54', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!menuList.action]', '菜单列表', 's', 1, NULL),
+(158, '2011-12-09 05:55:08', '2011-12-09 05:55:08', 'youXiao', 0, 'admins(id=1)请求[/aqua-eshop/pingTai/menuPingTaiAction!goToUrl.action]', '菜单添加', 's', 1, NULL),
+(159, '2011-12-09 05:55:14', '2011-12-09 05:55:14', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!saveMenu.action]', '菜单保存', 's', 1, NULL),
+(160, '2011-12-09 05:55:14', '2011-12-09 05:55:14', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!menuList.action]', '菜单列表', 's', 1, NULL),
+(161, '2011-12-09 05:55:19', '2011-12-09 05:55:19', 'youXiao', 0, 'admins(id=1)请求[/aqua-eshop/pingTai/menuPingTaiAction!goToUrl.action]', '菜单添加', 's', 1, NULL),
+(162, '2011-12-09 05:55:26', '2011-12-09 05:55:26', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!saveMenu.action]', '菜单保存', 's', 1, NULL),
+(163, '2011-12-09 05:55:26', '2011-12-09 05:55:26', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!menuList.action]', '菜单列表', 's', 1, NULL),
+(164, '2011-12-09 05:55:33', '2011-12-09 05:55:33', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!viewMenu.action]', '菜单查看', 's', 1, NULL),
+(165, '2011-12-09 05:55:37', '2011-12-09 05:55:37', 'youXiao', 0, 'admins(id=1)请求[/aqua-eshop/pingTai/menuPingTaiAction!goToUrl.action]', '菜单添加', 's', 1, NULL),
+(166, '2011-12-09 05:55:44', '2011-12-09 05:55:44', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!saveMenu.action]', '菜单保存', 's', 1, NULL),
+(167, '2011-12-09 05:55:44', '2011-12-09 05:55:44', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!menuList.action]', '菜单列表', 's', 1, NULL),
+(168, '2011-12-09 05:55:50', '2011-12-09 05:55:50', 'youXiao', 0, 'admins(id=1)请求[/aqua-eshop/pingTai/menuPingTaiAction!goToUrl.action]', '菜单添加', 's', 1, NULL),
+(169, '2011-12-09 05:55:59', '2011-12-09 05:55:59', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!saveMenu.action]', '菜单保存', 's', 1, NULL),
+(170, '2011-12-09 05:55:59', '2011-12-09 05:55:59', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!menuList.action]', '菜单列表', 's', 1, NULL),
+(171, '2011-12-09 05:56:08', '2011-12-09 05:56:08', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!viewMenu.action]', '菜单查看', 's', 1, NULL),
+(172, '2011-12-09 05:56:10', '2011-12-09 05:56:10', 'youXiao', 0, 'admins(id=1)请求[/aqua-eshop/pingTai/menuPingTaiAction!goToUrl.action]', '菜单添加', 's', 1, NULL),
+(173, '2011-12-09 05:56:16', '2011-12-09 05:56:16', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!saveMenu.action]', '菜单保存', 's', 1, NULL),
+(174, '2011-12-09 05:56:17', '2011-12-09 05:56:17', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!menuList.action]', '菜单列表', 's', 1, NULL),
+(175, '2011-12-09 05:56:24', '2011-12-09 05:56:24', 'youXiao', 0, 'admins(id=1)请求[/aqua-eshop/pingTai/menuPingTaiAction!goToUrl.action]', '菜单添加', 's', 1, NULL),
+(176, '2011-12-09 05:56:30', '2011-12-09 05:56:30', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!saveMenu.action]', '菜单保存', 's', 1, NULL),
+(177, '2011-12-09 05:56:30', '2011-12-09 05:56:30', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!menuList.action]', '菜单列表', 's', 1, NULL),
+(178, '2011-12-09 05:56:37', '2011-12-09 05:56:37', 'youXiao', 0, 'admins(id=1)请求[/aqua-eshop/pingTai/menuPingTaiAction!goToUrl.action]', '菜单添加', 's', 1, NULL),
+(179, '2011-12-09 05:56:44', '2011-12-09 05:56:44', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!saveMenu.action]', '菜单保存', 's', 1, NULL),
+(180, '2011-12-09 05:56:44', '2011-12-09 05:56:44', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!menuList.action]', '菜单列表', 's', 1, NULL),
+(181, '2011-12-09 05:56:49', '2011-12-09 05:56:49', 'youXiao', 0, 'admins(id=1)请求[/aqua-eshop/pingTai/menuPingTaiAction!goToUrl.action]', '菜单添加', 's', 1, NULL),
+(182, '2011-12-09 05:56:55', '2011-12-09 05:56:55', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!saveMenu.action]', '菜单保存', 's', 1, NULL),
+(183, '2011-12-09 05:56:55', '2011-12-09 05:56:55', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!menuList.action]', '菜单列表', 's', 1, NULL),
+(184, '2011-12-09 05:57:02', '2011-12-09 05:57:02', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!viewMenu.action]', '菜单查看', 's', 1, NULL),
+(185, '2011-12-09 05:57:04', '2011-12-09 05:57:04', 'youXiao', 0, 'admins(id=1)请求[/aqua-eshop/pingTai/menuPingTaiAction!goToUrl.action]', '菜单添加', 's', 1, NULL),
+(186, '2011-12-09 05:57:11', '2011-12-09 05:57:11', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!saveMenu.action]', '菜单保存', 's', 1, NULL),
+(187, '2011-12-09 05:57:11', '2011-12-09 05:57:11', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!menuList.action]', '菜单列表', 's', 1, NULL),
+(188, '2011-12-09 05:57:24', '2011-12-09 05:57:24', 'youXiao', 0, 'admins(id=1)请求[/aqua-eshop/pingTai/menuPingTaiAction!goToUrl.action]', '菜单添加', 's', 1, NULL),
+(189, '2011-12-09 05:57:30', '2011-12-09 05:57:30', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!saveMenu.action]', '菜单保存', 's', 1, NULL),
+(190, '2011-12-09 05:57:30', '2011-12-09 05:57:30', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!menuList.action]', '菜单列表', 's', 1, NULL),
+(191, '2011-12-09 05:57:50', '2011-12-09 05:57:50', 'youXiao', 0, 'admins(id=1)请求[/pingTai/rolePingTaiAction!roleList.action]', '角色列表', 's', 1, NULL),
+(192, '2011-12-09 05:57:54', '2011-12-09 05:57:54', 'youXiao', 0, 'admins(id=1)请求[/pingTai/operatorPingTaiAction!roleNoOperatorView.action]', '角色没有的功能', 's', 1, NULL),
+(193, '2011-12-11 00:43:51', '2011-12-11 00:43:51', 'youXiao', 0, 'admins(id=1)请求[/pingTai/userPingTaiAction!userList.action]', '用户列表', 's', 1, NULL),
+(194, '2011-12-11 00:43:52', '2011-12-11 00:43:52', 'youXiao', 0, 'admins(id=1)请求[/pingTai/groupPingTaiAction!groupList.action]', '用户分组列表', 's', 1, NULL),
+(195, '2011-12-11 00:43:54', '2011-12-11 00:43:54', 'youXiao', 0, 'admins(id=1)请求[/pingTai/rolePingTaiAction!roleList.action]', '角色列表', 's', 1, NULL),
+(196, '2011-12-11 00:43:55', '2011-12-11 00:43:55', 'youXiao', 0, 'admins(id=1)请求[/pingTai/departmentPingTaiAction!departmentList.action]', '部门列表', 's', 1, NULL),
+(197, '2011-12-11 00:43:56', '2011-12-11 00:43:56', 'youXiao', 0, 'admins(id=1)请求[/pingTai/dictPingTaiAction!dictTypeList.action]', '字典列表', 's', 1, NULL),
+(198, '2011-12-11 00:43:57', '2011-12-11 00:43:57', 'youXiao', 0, 'admins(id=1)请求[/pingTai/departmentPingTaiAction!departmentList.action]', '部门列表', 's', 1, NULL),
+(199, '2011-12-24 22:01:55', '2011-12-24 22:01:55', 'youXiao', 0, 'admins(id=1)请求[/pingTai/userPingTaiAction!userList.action]', '用户列表', 's', 1, NULL),
+(200, '2011-12-24 22:01:56', '2011-12-24 22:01:56', 'youXiao', 0, 'admins(id=1)请求[/pingTai/groupPingTaiAction!groupList.action]', '用户分组列表', 's', 1, NULL),
+(201, '2011-12-24 22:01:57', '2011-12-24 22:01:57', 'youXiao', 0, 'admins(id=1)请求[/pingTai/rolePingTaiAction!roleList.action]', '角色列表', 's', 1, NULL),
+(202, '2011-12-24 22:01:57', '2011-12-24 22:01:57', 'youXiao', 0, 'admins(id=1)请求[/pingTai/departmentPingTaiAction!departmentList.action]', '部门列表', 's', 1, NULL),
+(203, '2011-12-24 22:05:40', '2011-12-24 22:05:40', 'youXiao', 0, 'admins(id=1)请求[/pingTai/rolePingTaiAction!roleList.action]', '角色列表', 's', 1, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `pingtai_user`
+--
+
+CREATE TABLE IF NOT EXISTS `pingtai_user` (
   `ids` bigint(20) NOT NULL AUTO_INCREMENT,
   `createdDate` datetime DEFAULT NULL,
   `modifiedDate` datetime DEFAULT NULL,
@@ -1587,45 +1890,47 @@ CREATE TABLE `pingtai_user` (
   KEY `FKE4803600BF045F6D` (`creatorUserIds`),
   KEY `FKE4803600D5C6B2F9` (`departmentIds`),
   KEY `FKE4803600C3431DF9` (`userInfoIds`),
-  KEY `FKE48036009BC52230` (`modifiedUserIds`),
-  CONSTRAINT `FKE48036009BC52230` FOREIGN KEY (`modifiedUserIds`) REFERENCES `pingtai_user` (`ids`),
-  CONSTRAINT `FKE4803600BF045F6D` FOREIGN KEY (`creatorUserIds`) REFERENCES `pingtai_user` (`ids`),
-  CONSTRAINT `FKE4803600C3431DF9` FOREIGN KEY (`userInfoIds`) REFERENCES `pingtai_userinfo` (`ids`),
-  CONSTRAINT `FKE4803600D5C6B2F9` FOREIGN KEY (`departmentIds`) REFERENCES `pingtai_department` (`ids`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  KEY `FKE48036009BC52230` (`modifiedUserIds`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=8 ;
 
--- ----------------------------
--- Records of pingtai_user
--- ----------------------------
-INSERT INTO pingtai_user VALUES ('1', null, '2011-05-24 20:38:00', 'youXiao', '45', '6D08AE8564E289CBFC652C6558335A1530ADD472EE50DCD9C1D8D8F1', 'userClass_houTai', 'admins', '1', '1', '4', '11', 'userOperatorDataLevel_buMenJi');
-INSERT INTO pingtai_user VALUES ('6', '2011-04-13 21:02:55', '2011-06-01 15:15:28', 'wuXiao', '16', '7F873D4381095CFF32E81411EA04CEBE0DE91444D1F6A732FA8E4603', 'userClass_houTai', 'test001', '1', '1', '4', '21', 'userOperatorDataLevel_yongHuJi');
-INSERT INTO pingtai_user VALUES ('7', '2011-05-23 21:36:57', '2011-06-01 15:15:38', 'wuXiao', '9', 'BF3C4D317FF7964264C95861E8080C8B8EDD5203C94E4CAF900D6FDA', 'userClass_houTai', 'test002', '1', '1', '4', '22', 'userOperatorDataLevel_yongHuJi');
+--
+-- 转存表中的数据 `pingtai_user`
+--
 
--- ----------------------------
--- Table structure for `pingtai_usergroup`
--- ----------------------------
-DROP TABLE IF EXISTS `pingtai_usergroup`;
-CREATE TABLE `pingtai_usergroup` (
+INSERT INTO `pingtai_user` (`ids`, `createdDate`, `modifiedDate`, `valid`, `version`, `passWord`, `userClass`, `userName`, `creatorUserIds`, `modifiedUserIds`, `departmentIds`, `userInfoIds`, `userOperatorDataLevel`) VALUES
+(1, NULL, '2011-05-24 20:38:00', 'youXiao', 45, '6D08AE8564E289CBFC652C6558335A1530ADD472EE50DCD9C1D8D8F1', 'userClass_houTai', 'admins', 1, 1, 4, 11, 'userOperatorDataLevel_buMenJi'),
+(6, '2011-04-13 21:02:55', '2011-06-01 15:15:28', 'wuXiao', 16, '6D08AE8564E289CBFC652C6558335A1530ADD472EE50DCD9C1D8D8F1', 'userClass_houTai', 'test001', 1, 1, 4, 21, 'userOperatorDataLevel_yongHuJi'),
+(7, '2011-05-23 21:36:57', '2011-06-01 15:15:38', 'wuXiao', 9, 'BF3C4D317FF7964264C95861E8080C8B8EDD5203C94E4CAF900D6FDA', 'userClass_houTai', 'test002', 1, 1, 4, 22, 'userOperatorDataLevel_yongHuJi');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `pingtai_usergroup`
+--
+
+CREATE TABLE IF NOT EXISTS `pingtai_usergroup` (
   `userIds` bigint(20) NOT NULL,
   `groupIds` bigint(20) NOT NULL,
   PRIMARY KEY (`userIds`,`groupIds`),
   KEY `FK154F905F8C37B037` (`groupIds`),
-  KEY `FK154F905F7EEF2919` (`userIds`),
-  CONSTRAINT `FK154F905F7EEF2919` FOREIGN KEY (`userIds`) REFERENCES `pingtai_user` (`ids`),
-  CONSTRAINT `FK154F905F8C37B037` FOREIGN KEY (`groupIds`) REFERENCES `pingtai_group` (`ids`)
+  KEY `FK154F905F7EEF2919` (`userIds`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- ----------------------------
--- Records of pingtai_usergroup
--- ----------------------------
-INSERT INTO pingtai_usergroup VALUES ('1', '1');
-INSERT INTO pingtai_usergroup VALUES ('1', '2');
+--
+-- 转存表中的数据 `pingtai_usergroup`
+--
 
--- ----------------------------
--- Table structure for `pingtai_userinfo`
--- ----------------------------
-DROP TABLE IF EXISTS `pingtai_userinfo`;
-CREATE TABLE `pingtai_userinfo` (
+INSERT INTO `pingtai_usergroup` (`userIds`, `groupIds`) VALUES
+(1, 1),
+(1, 2);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `pingtai_userinfo`
+--
+
+CREATE TABLE IF NOT EXISTS `pingtai_userinfo` (
   `ids` bigint(20) NOT NULL AUTO_INCREMENT,
   `createdDate` datetime DEFAULT NULL,
   `modifiedDate` datetime DEFAULT NULL,
@@ -1666,42 +1971,352 @@ CREATE TABLE `pingtai_userinfo` (
   PRIMARY KEY (`ids`),
   UNIQUE KEY `ids` (`ids`),
   KEY `FK9D980ECEBF045F6D` (`creatorUserIds`),
-  KEY `FK9D980ECE9BC52230` (`modifiedUserIds`),
-  CONSTRAINT `FK9D980ECE9BC52230` FOREIGN KEY (`modifiedUserIds`) REFERENCES `pingtai_user` (`ids`),
-  CONSTRAINT `FK9D980ECEBF045F6D` FOREIGN KEY (`creatorUserIds`) REFERENCES `pingtai_user` (`ids`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  KEY `FK9D980ECE9BC52230` (`modifiedUserIds`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=26 ;
 
--- ----------------------------
--- Records of pingtai_userinfo
--- ----------------------------
-INSERT INTO pingtai_userinfo VALUES ('11', null, '2011-05-24 20:38:00', 'youXiao', '47', '湖北钟祥', '55', '2010-10-25', 'bloodGroup_A', 'wenHuaChenDu_chuZhong', '湖北钟祥', 'dongcb678@163.com', '2010-10-25', 'folk_han', 'government_dangYuan', 'http://www.4bu4.com', '湖北钟祥', '420881198609285832', 'marriage_no', '13871558042', '管理员', '湖北钟祥', '431924', '150584428', '西安外事学院', 'man', '电子商务', '165', '02765155060', '1', '1', null, null, null, null, null, null);
-INSERT INTO pingtai_userinfo VALUES ('12', '2011-04-05 15:32:25', '2011-05-07 12:14:46', 'youXiao', '9', 'AAA', null, null, null, null, 'AAA', 'dongcb678@163.com', null, null, null, null, null, null, null, '13871558042', 'AAA', null, '431924', '150584428', null, null, null, null, '027-65155060', '1', '1', null, null, null, null, null, null);
-INSERT INTO pingtai_userinfo VALUES ('13', '2011-04-05 15:36:12', '2011-05-07 12:11:20', 'youXiao', '5', 'BBB', null, null, null, null, 'BBB', 'dongcb678@163.com', null, null, null, null, null, null, null, '13871558042', 'BBB', null, '431924', '150584428', null, null, null, null, '027-65155060', '1', '1', null, null, null, null, null, null);
-INSERT INTO pingtai_userinfo VALUES ('14', '2011-04-05 15:42:17', '2011-05-07 11:25:50', 'youXiao', '3', 'CCC', null, null, null, null, 'CCC', 'dongcb678@163.com', null, null, null, null, null, null, null, '18271227821', 'CCC', null, '431924', '150584428', null, null, null, null, '027-65155060', '1', '1', null, null, null, null, null, null);
-INSERT INTO pingtai_userinfo VALUES ('15', '2011-04-05 15:51:03', '2011-05-07 11:25:42', 'youXiao', '3', 'DDD', null, null, null, null, 'DDD', 'dongcb678@163.com', null, null, null, null, null, null, null, '13871558042', 'DDD', null, '431924', '150584428', null, null, null, null, '027-65155060', '1', '1', null, null, null, null, null, null);
-INSERT INTO pingtai_userinfo VALUES ('16', '2011-04-05 15:53:54', '2011-05-07 11:25:37', 'youXiao', '3', 'EEE', null, null, null, null, 'EEE', 'dongcb678@163.com', null, null, null, null, null, null, null, '13871558042', 'EEE', null, '431924', '150584428', null, null, null, null, '027-65155060', '1', '1', null, null, null, null, null, null);
-INSERT INTO pingtai_userinfo VALUES ('17', '2011-04-05 15:57:14', '2011-05-07 11:25:30', 'youXiao', '3', 'FFF', null, null, null, null, 'FFF', 'dongcb678@163.com', null, null, null, null, null, null, null, '13871558042', 'FFF', null, '431924', '150584428', null, null, null, null, '027-65155060', '1', '1', null, null, null, null, null, null);
-INSERT INTO pingtai_userinfo VALUES ('18', '2011-04-05 17:53:33', '2011-04-14 14:23:09', 'youXiao', '7', 'GGG', null, null, null, null, 'GGG', 'dongcb678@163.com', null, null, null, null, null, null, null, '13871558042', 'GGG', null, '431924', '150584428', null, null, null, null, '027-65155060', '1', '1', null, null, null, null, null, null);
-INSERT INTO pingtai_userinfo VALUES ('19', '2011-04-09 23:40:04', '2011-04-14 14:11:06', 'youXiao', '10', 'III', null, null, null, null, 'III', 'dongcb678@163.com', null, null, null, null, null, null, null, '13871558042', 'III', null, '431924', '150584428', null, null, null, null, '027-65155060', '1', '1', null, null, null, null, null, null);
-INSERT INTO pingtai_userinfo VALUES ('21', '2011-04-13 21:02:55', '2011-06-01 15:15:28', 'wuXiao', '16', '钟祥', '66', '2011-04-13', 'bloodGroup_A', 'wenHuaChenDu_dazhaun', '钟祥', 'dongcb678@163.com', '2008-03-13', 'folk_han', 'government_qunZhong', 'http://www.4bu4.com', '钟祥', '420881198609285842', 'marriage_no', '13871558042', '董华健', '钟祥', '431924', '150584429', '西安外事学院', 'man', '电子商务', '166', '027-65155060', '1', '1', null, null, null, null, null, null);
-INSERT INTO pingtai_userinfo VALUES ('22', '2011-05-23 21:36:56', '2011-06-01 15:15:38', 'wuXiao', '9', '湖北钟祥', '58', '2011-05-23', 'bloodGroup_A', 'wenHuaChenDu_dazhaun', '湖北钟祥', 'dongcb678@163.com', '2011-05-23', 'folk_han', 'government_qunZhong', 'http://www.4bu4.com', '湖北钟祥', '420881198609285832', 'marriage_no', '13871558042', 'test002', '湖北钟祥', '431924', '150584428', '西安外事学院', 'man', '电子商务', '166', '02765155060', '1', '1', null, null, null, null, null, null);
-INSERT INTO pingtai_userinfo VALUES ('24', '2011-05-29 19:24:20', null, 'youXiao', '0', '湖北钟祥', null, null, null, null, '无', 'dongcb678@163.com', null, null, null, null, null, null, null, '13871558042', 'JJJ', null, '431924', '150584428', null, null, null, null, '027-65155060', '1', null, null, null, null, null, null, null);
-INSERT INTO pingtai_userinfo VALUES ('25', '2011-05-29 21:53:21', null, 'youXiao', '0', '湖北钟祥', null, null, null, null, '无', 'dongcb678@163.com', null, null, null, null, null, null, null, '13871558042', '董华健', null, '431924', '150584428', null, null, null, null, '027-65155060', '1', null, null, null, null, null, null, null);
+--
+-- 转存表中的数据 `pingtai_userinfo`
+--
 
--- ----------------------------
--- Table structure for `pingtai_userviewrowbyuser`
--- ----------------------------
-DROP TABLE IF EXISTS `pingtai_userviewrowbyuser`;
-CREATE TABLE `pingtai_userviewrowbyuser` (
+INSERT INTO `pingtai_userinfo` (`ids`, `createdDate`, `modifiedDate`, `valid`, `version`, `address`, `avoirdupois`, `birthday`, `bloodGroup`, `culture`, `description`, `email`, `finishSchoolDate`, `folk`, `government`, `homepage`, `householder`, `idCard`, `marriage`, `mobile`, `names`, `nativityAddress`, `postboy`, `qq`, `schoolName`, `sex`, `speciality`, `stature`, `telephone`, `creatorUserIds`, `modifiedUserIds`, `consumeIntegral`, `integral`, `inefficacyIntegral`, `alipayUserIds`, `clientLevelEnd`, `clientLevelStart`) VALUES
+(11, NULL, '2011-05-24 20:38:00', 'youXiao', 47, '湖北钟祥', '55', '2010-10-25', 'bloodGroup_A', 'wenHuaChenDu_chuZhong', '湖北钟祥', 'dongcb678@163.com', '2010-10-25', 'folk_han', 'government_dangYuan', 'http://www.4bu4.com', '湖北钟祥', '420881198609285832', 'marriage_no', '13871558042', '管理员', '湖北钟祥', '431924', '150584428', '西安外事学院', 'man', '电子商务', '165', '02765155060', 1, 1, NULL, NULL, NULL, NULL, NULL, NULL),
+(12, '2011-04-05 15:32:25', '2011-05-07 12:14:46', 'youXiao', 9, 'AAA', NULL, NULL, NULL, NULL, 'AAA', 'dongcb678@163.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '13871558042', 'AAA', NULL, '431924', '150584428', NULL, NULL, NULL, NULL, '027-65155060', 1, 1, NULL, NULL, NULL, NULL, NULL, NULL),
+(13, '2011-04-05 15:36:12', '2011-05-07 12:11:20', 'youXiao', 5, 'BBB', NULL, NULL, NULL, NULL, 'BBB', 'dongcb678@163.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '13871558042', 'BBB', NULL, '431924', '150584428', NULL, NULL, NULL, NULL, '027-65155060', 1, 1, NULL, NULL, NULL, NULL, NULL, NULL),
+(14, '2011-04-05 15:42:17', '2011-05-07 11:25:50', 'youXiao', 3, 'CCC', NULL, NULL, NULL, NULL, 'CCC', 'dongcb678@163.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '18271227821', 'CCC', NULL, '431924', '150584428', NULL, NULL, NULL, NULL, '027-65155060', 1, 1, NULL, NULL, NULL, NULL, NULL, NULL),
+(15, '2011-04-05 15:51:03', '2011-05-07 11:25:42', 'youXiao', 3, 'DDD', NULL, NULL, NULL, NULL, 'DDD', 'dongcb678@163.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '13871558042', 'DDD', NULL, '431924', '150584428', NULL, NULL, NULL, NULL, '027-65155060', 1, 1, NULL, NULL, NULL, NULL, NULL, NULL),
+(16, '2011-04-05 15:53:54', '2011-05-07 11:25:37', 'youXiao', 3, 'EEE', NULL, NULL, NULL, NULL, 'EEE', 'dongcb678@163.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '13871558042', 'EEE', NULL, '431924', '150584428', NULL, NULL, NULL, NULL, '027-65155060', 1, 1, NULL, NULL, NULL, NULL, NULL, NULL),
+(17, '2011-04-05 15:57:14', '2011-05-07 11:25:30', 'youXiao', 3, 'FFF', NULL, NULL, NULL, NULL, 'FFF', 'dongcb678@163.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '13871558042', 'FFF', NULL, '431924', '150584428', NULL, NULL, NULL, NULL, '027-65155060', 1, 1, NULL, NULL, NULL, NULL, NULL, NULL),
+(18, '2011-04-05 17:53:33', '2011-04-14 14:23:09', 'youXiao', 7, 'GGG', NULL, NULL, NULL, NULL, 'GGG', 'dongcb678@163.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '13871558042', 'GGG', NULL, '431924', '150584428', NULL, NULL, NULL, NULL, '027-65155060', 1, 1, NULL, NULL, NULL, NULL, NULL, NULL),
+(19, '2011-04-09 23:40:04', '2011-04-14 14:11:06', 'youXiao', 10, 'III', NULL, NULL, NULL, NULL, 'III', 'dongcb678@163.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '13871558042', 'III', NULL, '431924', '150584428', NULL, NULL, NULL, NULL, '027-65155060', 1, 1, NULL, NULL, NULL, NULL, NULL, NULL),
+(21, '2011-04-13 21:02:55', '2011-06-01 15:15:28', 'wuXiao', 16, '钟祥', '66', '2011-04-13', 'bloodGroup_A', 'wenHuaChenDu_dazhaun', '钟祥', 'dongcb678@163.com', '2008-03-13', 'folk_han', 'government_qunZhong', 'http://www.4bu4.com', '钟祥', '420881198609285842', 'marriage_no', '13871558042', '董华健', '钟祥', '431924', '150584429', '西安外事学院', 'man', '电子商务', '166', '027-65155060', 1, 1, NULL, NULL, NULL, NULL, NULL, NULL),
+(22, '2011-05-23 21:36:56', '2011-06-01 15:15:38', 'wuXiao', 9, '湖北钟祥', '58', '2011-05-23', 'bloodGroup_A', 'wenHuaChenDu_dazhaun', '湖北钟祥', 'dongcb678@163.com', '2011-05-23', 'folk_han', 'government_qunZhong', 'http://www.4bu4.com', '湖北钟祥', '420881198609285832', 'marriage_no', '13871558042', 'test002', '湖北钟祥', '431924', '150584428', '西安外事学院', 'man', '电子商务', '166', '02765155060', 1, 1, NULL, NULL, NULL, NULL, NULL, NULL),
+(24, '2011-05-29 19:24:20', NULL, 'youXiao', 0, '湖北钟祥', NULL, NULL, NULL, NULL, '无', 'dongcb678@163.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '13871558042', 'JJJ', NULL, '431924', '150584428', NULL, NULL, NULL, NULL, '027-65155060', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(25, '2011-05-29 21:53:21', NULL, 'youXiao', 0, '湖北钟祥', NULL, NULL, NULL, NULL, '无', 'dongcb678@163.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '13871558042', '董华健', NULL, '431924', '150584428', NULL, NULL, NULL, NULL, '027-65155060', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `pingtai_userviewrowbyuser`
+--
+
+CREATE TABLE IF NOT EXISTS `pingtai_userviewrowbyuser` (
   `userIds` bigint(20) NOT NULL,
   `targetUserIds` bigint(20) NOT NULL,
   PRIMARY KEY (`userIds`,`targetUserIds`),
   KEY `FK5F4B8BF7A50A0268` (`targetUserIds`),
-  KEY `FK5F4B8BF77EEF2919` (`userIds`),
-  CONSTRAINT `FK5F4B8BF77EEF2919` FOREIGN KEY (`userIds`) REFERENCES `pingtai_user` (`ids`),
-  CONSTRAINT `FK5F4B8BF7A50A0268` FOREIGN KEY (`targetUserIds`) REFERENCES `pingtai_user` (`ids`)
+  KEY `FK5F4B8BF77EEF2919` (`userIds`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- ----------------------------
--- Records of pingtai_userviewrowbyuser
--- ----------------------------
+--
+-- 转存表中的数据 `pingtai_userviewrowbyuser`
+--
+
+
+--
+-- 限制导出的表
+--
+
+--
+-- 限制表 `application_alipay_returnparamater`
+--
+ALTER TABLE `application_alipay_returnparamater`
+  ADD CONSTRAINT `FK30446D79BC52230` FOREIGN KEY (`modifiedUserIds`) REFERENCES `pingtai_user` (`ids`),
+  ADD CONSTRAINT `FK30446D7BF045F6D` FOREIGN KEY (`creatorUserIds`) REFERENCES `pingtai_user` (`ids`);
+
+--
+-- 限制表 `application_qingjia`
+--
+ALTER TABLE `application_qingjia`
+  ADD CONSTRAINT `FKC3CCE3A28EB82C68` FOREIGN KEY (`qingJiaUserIds`) REFERENCES `pingtai_user` (`ids`),
+  ADD CONSTRAINT `FKC3CCE3A29BC52230` FOREIGN KEY (`modifiedUserIds`) REFERENCES `pingtai_user` (`ids`),
+  ADD CONSTRAINT `FKC3CCE3A2BF045F6D` FOREIGN KEY (`creatorUserIds`) REFERENCES `pingtai_user` (`ids`);
+
+--
+-- 限制表 `jbpm4_deployprop`
+--
+ALTER TABLE `jbpm4_deployprop`
+  ADD CONSTRAINT `FK_DEPLPROP_DEPL` FOREIGN KEY (`DEPLOYMENT_`) REFERENCES `jbpm4_deployment` (`DBID_`);
+
+--
+-- 限制表 `jbpm4_execution`
+--
+ALTER TABLE `jbpm4_execution`
+  ADD CONSTRAINT `FK_EXEC_INSTANCE` FOREIGN KEY (`INSTANCE_`) REFERENCES `jbpm4_execution` (`DBID_`),
+  ADD CONSTRAINT `FK_EXEC_PARENT` FOREIGN KEY (`PARENT_`) REFERENCES `jbpm4_execution` (`DBID_`),
+  ADD CONSTRAINT `FK_EXEC_SUBPI` FOREIGN KEY (`SUBPROCINST_`) REFERENCES `jbpm4_execution` (`DBID_`),
+  ADD CONSTRAINT `FK_EXEC_SUPEREXEC` FOREIGN KEY (`SUPEREXEC_`) REFERENCES `jbpm4_execution` (`DBID_`);
+
+--
+-- 限制表 `jbpm4_hist_actinst`
+--
+ALTER TABLE `jbpm4_hist_actinst`
+  ADD CONSTRAINT `FK_HACTI_HPROCI` FOREIGN KEY (`HPROCI_`) REFERENCES `jbpm4_hist_procinst` (`DBID_`),
+  ADD CONSTRAINT `FK_HTI_HTASK` FOREIGN KEY (`HTASK_`) REFERENCES `jbpm4_hist_task` (`DBID_`);
+
+--
+-- 限制表 `jbpm4_hist_detail`
+--
+ALTER TABLE `jbpm4_hist_detail`
+  ADD CONSTRAINT `FK_HDETAIL_HACTI` FOREIGN KEY (`HACTI_`) REFERENCES `jbpm4_hist_actinst` (`DBID_`),
+  ADD CONSTRAINT `FK_HDETAIL_HPROCI` FOREIGN KEY (`HPROCI_`) REFERENCES `jbpm4_hist_procinst` (`DBID_`),
+  ADD CONSTRAINT `FK_HDETAIL_HTASK` FOREIGN KEY (`HTASK_`) REFERENCES `jbpm4_hist_task` (`DBID_`),
+  ADD CONSTRAINT `FK_HDETAIL_HVAR` FOREIGN KEY (`HVAR_`) REFERENCES `jbpm4_hist_var` (`DBID_`);
+
+--
+-- 限制表 `jbpm4_hist_task`
+--
+ALTER TABLE `jbpm4_hist_task`
+  ADD CONSTRAINT `FK_HSUPERT_SUB` FOREIGN KEY (`SUPERTASK_`) REFERENCES `jbpm4_hist_task` (`DBID_`);
+
+--
+-- 限制表 `jbpm4_hist_var`
+--
+ALTER TABLE `jbpm4_hist_var`
+  ADD CONSTRAINT `FK_HVAR_HPROCI` FOREIGN KEY (`HPROCI_`) REFERENCES `jbpm4_hist_procinst` (`DBID_`),
+  ADD CONSTRAINT `FK_HVAR_HTASK` FOREIGN KEY (`HTASK_`) REFERENCES `jbpm4_hist_task` (`DBID_`);
+
+--
+-- 限制表 `jbpm4_id_group`
+--
+ALTER TABLE `jbpm4_id_group`
+  ADD CONSTRAINT `FK_GROUP_PARENT` FOREIGN KEY (`PARENT_`) REFERENCES `jbpm4_id_group` (`DBID_`);
+
+--
+-- 限制表 `jbpm4_id_membership`
+--
+ALTER TABLE `jbpm4_id_membership`
+  ADD CONSTRAINT `FK_MEM_GROUP` FOREIGN KEY (`GROUP_`) REFERENCES `jbpm4_id_group` (`DBID_`),
+  ADD CONSTRAINT `FK_MEM_USER` FOREIGN KEY (`USER_`) REFERENCES `jbpm4_id_user` (`DBID_`);
+
+--
+-- 限制表 `jbpm4_job`
+--
+ALTER TABLE `jbpm4_job`
+  ADD CONSTRAINT `FK_JOB_CFG` FOREIGN KEY (`CFG_`) REFERENCES `jbpm4_lob` (`DBID_`);
+
+--
+-- 限制表 `jbpm4_lob`
+--
+ALTER TABLE `jbpm4_lob`
+  ADD CONSTRAINT `FK_LOB_DEPLOYMENT` FOREIGN KEY (`DEPLOYMENT_`) REFERENCES `jbpm4_deployment` (`DBID_`);
+
+--
+-- 限制表 `jbpm4_participation`
+--
+ALTER TABLE `jbpm4_participation`
+  ADD CONSTRAINT `FK_PART_SWIMLANE` FOREIGN KEY (`SWIMLANE_`) REFERENCES `jbpm4_swimlane` (`DBID_`),
+  ADD CONSTRAINT `FK_PART_TASK` FOREIGN KEY (`TASK_`) REFERENCES `jbpm4_task` (`DBID_`);
+
+--
+-- 限制表 `jbpm4_swimlane`
+--
+ALTER TABLE `jbpm4_swimlane`
+  ADD CONSTRAINT `FK_SWIMLANE_EXEC` FOREIGN KEY (`EXECUTION_`) REFERENCES `jbpm4_execution` (`DBID_`);
+
+--
+-- 限制表 `jbpm4_task`
+--
+ALTER TABLE `jbpm4_task`
+  ADD CONSTRAINT `FK_TASK_SUPERTASK` FOREIGN KEY (`SUPERTASK_`) REFERENCES `jbpm4_task` (`DBID_`),
+  ADD CONSTRAINT `FK_TASK_SWIML` FOREIGN KEY (`SWIMLANE_`) REFERENCES `jbpm4_swimlane` (`DBID_`);
+
+--
+-- 限制表 `jbpm4_variable`
+--
+ALTER TABLE `jbpm4_variable`
+  ADD CONSTRAINT `FK_VAR_EXECUTION` FOREIGN KEY (`EXECUTION_`) REFERENCES `jbpm4_execution` (`DBID_`),
+  ADD CONSTRAINT `FK_VAR_EXESYS` FOREIGN KEY (`EXESYS_`) REFERENCES `jbpm4_execution` (`DBID_`),
+  ADD CONSTRAINT `FK_VAR_LOB` FOREIGN KEY (`LOB_`) REFERENCES `jbpm4_lob` (`DBID_`),
+  ADD CONSTRAINT `FK_VAR_TASK` FOREIGN KEY (`TASK_`) REFERENCES `jbpm4_task` (`DBID_`);
+
+--
+-- 限制表 `pingtai_department`
+--
+ALTER TABLE `pingtai_department`
+  ADD CONSTRAINT `FK7CE251C72A908E8F` FOREIGN KEY (`parentDepartmentIds`) REFERENCES `pingtai_department` (`ids`),
+  ADD CONSTRAINT `FK7CE251C73F48C92B` FOREIGN KEY (`principalUserIds`) REFERENCES `pingtai_user` (`ids`),
+  ADD CONSTRAINT `FK7CE251C79BC52230` FOREIGN KEY (`modifiedUserIds`) REFERENCES `pingtai_user` (`ids`),
+  ADD CONSTRAINT `FK7CE251C7BF045F6D` FOREIGN KEY (`creatorUserIds`) REFERENCES `pingtai_user` (`ids`);
+
+--
+-- 限制表 `pingtai_dict`
+--
+ALTER TABLE `pingtai_dict`
+  ADD CONSTRAINT `FKE47855EB5B65E699` FOREIGN KEY (`dictTypeIds`) REFERENCES `pingtai_dicttype` (`ids`),
+  ADD CONSTRAINT `FKE47855EB9BC52230` FOREIGN KEY (`modifiedUserIds`) REFERENCES `pingtai_user` (`ids`),
+  ADD CONSTRAINT `FKE47855EBBF045F6D` FOREIGN KEY (`creatorUserIds`) REFERENCES `pingtai_user` (`ids`);
+
+--
+-- 限制表 `pingtai_dicttype`
+--
+ALTER TABLE `pingtai_dicttype`
+  ADD CONSTRAINT `FKA35D6BC59BC52230` FOREIGN KEY (`modifiedUserIds`) REFERENCES `pingtai_user` (`ids`),
+  ADD CONSTRAINT `FKA35D6BC5BF045F6D` FOREIGN KEY (`creatorUserIds`) REFERENCES `pingtai_user` (`ids`);
+
+--
+-- 限制表 `pingtai_group`
+--
+ALTER TABLE `pingtai_group`
+  ADD CONSTRAINT `FKAAC0F2EA9BC52230` FOREIGN KEY (`modifiedUserIds`) REFERENCES `pingtai_user` (`ids`),
+  ADD CONSTRAINT `FKAAC0F2EABF045F6D` FOREIGN KEY (`creatorUserIds`) REFERENCES `pingtai_user` (`ids`);
+
+--
+-- 限制表 `pingtai_jbpm4_assignmode`
+--
+ALTER TABLE `pingtai_jbpm4_assignmode`
+  ADD CONSTRAINT `FK3920C0679BC52230` FOREIGN KEY (`modifiedUserIds`) REFERENCES `pingtai_user` (`ids`),
+  ADD CONSTRAINT `FK3920C067BF045F6D` FOREIGN KEY (`creatorUserIds`) REFERENCES `pingtai_user` (`ids`);
+
+--
+-- 限制表 `pingtai_jbpm4_groupimpl`
+--
+ALTER TABLE `pingtai_jbpm4_groupimpl`
+  ADD CONSTRAINT `FK8EBD6D2A8C37B037` FOREIGN KEY (`groupIds`) REFERENCES `pingtai_group` (`ids`),
+  ADD CONSTRAINT `FK8EBD6D2A9BC52230` FOREIGN KEY (`modifiedUserIds`) REFERENCES `pingtai_user` (`ids`),
+  ADD CONSTRAINT `FK8EBD6D2ABF045F6D` FOREIGN KEY (`creatorUserIds`) REFERENCES `pingtai_user` (`ids`);
+
+--
+-- 限制表 `pingtai_jbpm4_swimlane`
+--
+ALTER TABLE `pingtai_jbpm4_swimlane`
+  ADD CONSTRAINT `FK20087099BC52230` FOREIGN KEY (`modifiedUserIds`) REFERENCES `pingtai_user` (`ids`),
+  ADD CONSTRAINT `FK2008709BF045F6D` FOREIGN KEY (`creatorUserIds`) REFERENCES `pingtai_user` (`ids`);
+
+--
+-- 限制表 `pingtai_jbpm4_taskassignment`
+--
+ALTER TABLE `pingtai_jbpm4_taskassignment`
+  ADD CONSTRAINT `FKCBC4BCE79BC52230` FOREIGN KEY (`modifiedUserIds`) REFERENCES `pingtai_user` (`ids`),
+  ADD CONSTRAINT `FKCBC4BCE7BF045F6D` FOREIGN KEY (`creatorUserIds`) REFERENCES `pingtai_user` (`ids`),
+  ADD CONSTRAINT `FKCBC4BCE7C8439DC2` FOREIGN KEY (`assignModeId`) REFERENCES `pingtai_jbpm4_assignmode` (`ids`);
+
+--
+-- 限制表 `pingtai_jbpm4_tasklog`
+--
+ALTER TABLE `pingtai_jbpm4_tasklog`
+  ADD CONSTRAINT `FKD629B66A9BC52230` FOREIGN KEY (`modifiedUserIds`) REFERENCES `pingtai_user` (`ids`),
+  ADD CONSTRAINT `FKD629B66ABF045F6D` FOREIGN KEY (`creatorUserIds`) REFERENCES `pingtai_user` (`ids`),
+  ADD CONSTRAINT `FKD629B66AF4D89954` FOREIGN KEY (`taskAssignmentId`) REFERENCES `pingtai_jbpm4_taskassignment` (`ids`);
+
+--
+-- 限制表 `pingtai_jbpm4_taskloghistory`
+--
+ALTER TABLE `pingtai_jbpm4_taskloghistory`
+  ADD CONSTRAINT `FKEA1A02EA9BC52230` FOREIGN KEY (`modifiedUserIds`) REFERENCES `pingtai_user` (`ids`),
+  ADD CONSTRAINT `FKEA1A02EABF045F6D` FOREIGN KEY (`creatorUserIds`) REFERENCES `pingtai_user` (`ids`);
+
+--
+-- 限制表 `pingtai_jbpm4_taskoperation`
+--
+ALTER TABLE `pingtai_jbpm4_taskoperation`
+  ADD CONSTRAINT `FKEBD5740D9BC52230` FOREIGN KEY (`modifiedUserIds`) REFERENCES `pingtai_user` (`ids`),
+  ADD CONSTRAINT `FKEBD5740DBF045F6D` FOREIGN KEY (`creatorUserIds`) REFERENCES `pingtai_user` (`ids`),
+  ADD CONSTRAINT `FKEBD5740DFAD37A42` FOREIGN KEY (`taskAssignmentId`) REFERENCES `pingtai_jbpm4_taskassignment` (`ids`);
+
+--
+-- 限制表 `pingtai_jbpm4_taskoperator`
+--
+ALTER TABLE `pingtai_jbpm4_taskoperator`
+  ADD CONSTRAINT `FK51EE1D3E9BC52230` FOREIGN KEY (`modifiedUserIds`) REFERENCES `pingtai_user` (`ids`),
+  ADD CONSTRAINT `FK51EE1D3EBF045F6D` FOREIGN KEY (`creatorUserIds`) REFERENCES `pingtai_user` (`ids`),
+  ADD CONSTRAINT `FK51EE1D3EFAD37A42` FOREIGN KEY (`taskAssignmentId`) REFERENCES `pingtai_jbpm4_taskassignment` (`ids`);
+
+--
+-- 限制表 `pingtai_jbpm4_usergroup`
+--
+ALTER TABLE `pingtai_jbpm4_usergroup`
+  ADD CONSTRAINT `FKFA022D7F59B665D5` FOREIGN KEY (`groupIds`) REFERENCES `pingtai_jbpm4_groupimpl` (`ids`),
+  ADD CONSTRAINT `FKFA022D7F5FB6973B` FOREIGN KEY (`userIds`) REFERENCES `pingtai_jbpm4_userimpl` (`ids`);
+
+--
+-- 限制表 `pingtai_jbpm4_userimpl`
+--
+ALTER TABLE `pingtai_jbpm4_userimpl`
+  ADD CONSTRAINT `FKF79BD7007EEF2919` FOREIGN KEY (`userIds`) REFERENCES `pingtai_user` (`ids`),
+  ADD CONSTRAINT `FKF79BD7009BC52230` FOREIGN KEY (`modifiedUserIds`) REFERENCES `pingtai_user` (`ids`),
+  ADD CONSTRAINT `FKF79BD700BF045F6D` FOREIGN KEY (`creatorUserIds`) REFERENCES `pingtai_user` (`ids`);
+
+--
+-- 限制表 `pingtai_menu`
+--
+ALTER TABLE `pingtai_menu`
+  ADD CONSTRAINT `FKE47C5F947A3994AF` FOREIGN KEY (`parentMenuIds`) REFERENCES `pingtai_menu` (`ids`),
+  ADD CONSTRAINT `FKE47C5F949BC52230` FOREIGN KEY (`modifiedUserIds`) REFERENCES `pingtai_user` (`ids`),
+  ADD CONSTRAINT `FKE47C5F94BEA745F9` FOREIGN KEY (`operatorIds`) REFERENCES `pingtai_operator` (`ids`),
+  ADD CONSTRAINT `FKE47C5F94BF045F6D` FOREIGN KEY (`creatorUserIds`) REFERENCES `pingtai_user` (`ids`);
+
+--
+-- 限制表 `pingtai_operator`
+--
+ALTER TABLE `pingtai_operator`
+  ADD CONSTRAINT `FK8FA950599BC52230` FOREIGN KEY (`modifiedUserIds`) REFERENCES `pingtai_user` (`ids`),
+  ADD CONSTRAINT `FK8FA95059BF045F6D` FOREIGN KEY (`creatorUserIds`) REFERENCES `pingtai_user` (`ids`);
+
+--
+-- 限制表 `pingtai_role`
+--
+ALTER TABLE `pingtai_role`
+  ADD CONSTRAINT `FKE47ECAAB9BC52230` FOREIGN KEY (`modifiedUserIds`) REFERENCES `pingtai_user` (`ids`),
+  ADD CONSTRAINT `FKE47ECAABBF045F6D` FOREIGN KEY (`creatorUserIds`) REFERENCES `pingtai_user` (`ids`);
+
+--
+-- 限制表 `pingtai_rolegroup`
+--
+ALTER TABLE `pingtai_rolegroup`
+  ADD CONSTRAINT `FK151A2E94D9C46539` FOREIGN KEY (`roleIds`) REFERENCES `pingtai_role` (`ids`),
+  ADD CONSTRAINT `FK151A2E94F2A388512` FOREIGN KEY (`groupIds`) REFERENCES `pingtai_group` (`ids`);
+
+--
+-- 限制表 `pingtai_roleoperator`
+--
+ALTER TABLE `pingtai_roleoperator`
+  ADD CONSTRAINT `FK75CF7C6FBEA745F9` FOREIGN KEY (`operatorIds`) REFERENCES `pingtai_operator` (`ids`),
+  ADD CONSTRAINT `FK75CF7C6FD9C46539` FOREIGN KEY (`roleIds`) REFERENCES `pingtai_role` (`ids`);
+
+--
+-- 限制表 `pingtai_rolepageoperator`
+--
+ALTER TABLE `pingtai_rolepageoperator`
+  ADD CONSTRAINT `FK4CE1669EA37D040A` FOREIGN KEY (`pageOperatorIds`) REFERENCES `pingtai_operator` (`ids`),
+  ADD CONSTRAINT `FK4CE1669ED9C46539` FOREIGN KEY (`roleIds`) REFERENCES `pingtai_role` (`ids`);
+
+--
+-- 限制表 `pingtai_syslog`
+--
+ALTER TABLE `pingtai_syslog`
+  ADD CONSTRAINT `FKC23BE64C9BC52230` FOREIGN KEY (`modifiedUserIds`) REFERENCES `pingtai_user` (`ids`),
+  ADD CONSTRAINT `FKC23BE64CBF045F6D` FOREIGN KEY (`creatorUserIds`) REFERENCES `pingtai_user` (`ids`);
+
+--
+-- 限制表 `pingtai_user`
+--
+ALTER TABLE `pingtai_user`
+  ADD CONSTRAINT `FKE48036009BC52230` FOREIGN KEY (`modifiedUserIds`) REFERENCES `pingtai_user` (`ids`),
+  ADD CONSTRAINT `FKE4803600BF045F6D` FOREIGN KEY (`creatorUserIds`) REFERENCES `pingtai_user` (`ids`),
+  ADD CONSTRAINT `FKE4803600C3431DF9` FOREIGN KEY (`userInfoIds`) REFERENCES `pingtai_userinfo` (`ids`),
+  ADD CONSTRAINT `FKE4803600D5C6B2F9` FOREIGN KEY (`departmentIds`) REFERENCES `pingtai_department` (`ids`);
+
+--
+-- 限制表 `pingtai_usergroup`
+--
+ALTER TABLE `pingtai_usergroup`
+  ADD CONSTRAINT `FK154F905F7EEF2919` FOREIGN KEY (`userIds`) REFERENCES `pingtai_user` (`ids`),
+  ADD CONSTRAINT `FK154F905F8C37B037` FOREIGN KEY (`groupIds`) REFERENCES `pingtai_group` (`ids`);
+
+--
+-- 限制表 `pingtai_userinfo`
+--
+ALTER TABLE `pingtai_userinfo`
+  ADD CONSTRAINT `FK9D980ECE9BC52230` FOREIGN KEY (`modifiedUserIds`) REFERENCES `pingtai_user` (`ids`),
+  ADD CONSTRAINT `FK9D980ECEBF045F6D` FOREIGN KEY (`creatorUserIds`) REFERENCES `pingtai_user` (`ids`);
+
+--
+-- 限制表 `pingtai_userviewrowbyuser`
+--
+ALTER TABLE `pingtai_userviewrowbyuser`
+  ADD CONSTRAINT `FK5F4B8BF77EEF2919` FOREIGN KEY (`userIds`) REFERENCES `pingtai_user` (`ids`),
+  ADD CONSTRAINT `FK5F4B8BF7A50A0268` FOREIGN KEY (`targetUserIds`) REFERENCES `pingtai_user` (`ids`);
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
