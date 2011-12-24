@@ -178,7 +178,7 @@
 	
 	<!-- welcome file list -->
   	<welcome-file-list>
-  		<welcome-file>login.html</welcome-file>
+  		<welcome-file>loginPackage/loginPingTaiAction!toLoginJsp.action</welcome-file>
   	</welcome-file-list>
   	
   	<!-- session timeout -->

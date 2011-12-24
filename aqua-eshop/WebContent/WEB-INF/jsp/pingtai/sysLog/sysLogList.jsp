@@ -113,8 +113,8 @@
 			<tr align="center" bgcolor="#FFFFFF" class="STYLE19">
 				<td align="center">${sysLog.titles }</td>
 				<td align="center">
-					${sysLog.types eq "1" ? "说明类型":""}
-					${sysLog.types eq "2" ? "错误类型":""}
+					${sysLog.types eq "s" ? "说明类型":""}
+					${sysLog.types eq "e" ? "错误类型":""}
 				</td>
 				<td align="center">${sysLog.creator.userInfo.names }</td>
 				<td align="center"><s:date name="createdDate" format="yyyy-MM-dd HH:mm:ss"/></td>
