@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主机: localhost
--- 生成日期: 2011 年 12 月 24 日 14:07
+-- 生成日期: 2011 年 12 月 24 日 14:20
 -- 服务器版本: 5.1.41
 -- PHP 版本: 5.3.1
 
@@ -1319,7 +1319,7 @@ CREATE TABLE IF NOT EXISTS `pingtai_operator` (
   KEY `FK8FA95059BF045F6D` (`creatorUserIds`),
   KEY `FK8FA950599BC52230` (`modifiedUserIds`),
   KEY `FK8FA95059DCA344F7` (`operatorClassIds`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=214 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=216 ;
 
 --
 -- 转存表中的数据 `pingtai_operator`
@@ -1431,7 +1431,8 @@ INSERT INTO `pingtai_operator` (`ids`, `createdDate`, `modifiedDate`, `valid`, `
 (181, '2011-03-21 19:22:33', NULL, 'youXiao', 0, '支付返回', '支付返回', '/applicationClient/alipayPaymentApplicationClientAction!alipayReturnUrl.action', 1, NULL, NULL, '支付宝'),
 (182, '2011-03-21 19:22:52', NULL, 'youXiao', 0, '支付补单', '支付补单', '/applicationClient/alipayPaymentApplicationClientAction!alipayNotifyUrl.action', 1, NULL, NULL, '支付宝'),
 (212, '2011-04-23 11:00:14', NULL, 'youXiao', 0, '日志明细', '日志查看', '/pingTai/sysLogPingTaiAction!viewSysLog.action', 1, NULL, NULL, '日志管理'),
-(213, '2011-04-23 11:00:49', NULL, 'youXiao', 0, '日志列表', '日志列表', '/pingTai/sysLogPingTaiAction!icCardList.action', 1, NULL, NULL, '日志管理');
+(213, '2011-04-23 11:00:49', NULL, 'youXiao', 0, '日志列表', '日志列表', '/pingTai/sysLogPingTaiAction!icCardList.action', 1, NULL, NULL, '日志管理'),
+(215, '2011-12-24 22:19:36', NULL, 'youXiao', 0, '占位', '占位', '#', 1, NULL, NULL, '占位');
 
 -- --------------------------------------------------------
 
@@ -1460,7 +1461,7 @@ CREATE TABLE IF NOT EXISTS `pingtai_role` (
 --
 
 INSERT INTO `pingtai_role` (`ids`, `createdDate`, `modifiedDate`, `valid`, `version`, `description`, `names`, `creatorUserIds`, `modifiedUserIds`) VALUES
-(1, '2010-10-29 21:29:19', '2011-06-01 17:32:12', 'youXiao', 321, '管理员', '管理员', 1, 1),
+(1, '2010-10-29 21:29:19', '2011-12-24 22:20:18', 'youXiao', 322, '管理员', '管理员', 1, 1),
 (2, '2010-10-29 21:29:38', '2011-06-01 17:31:57', 'youXiao', 57, '普通用户', '普通用户', 1, 1);
 
 -- --------------------------------------------------------
@@ -1610,6 +1611,7 @@ INSERT INTO `pingtai_roleoperator` (`roleIds`, `operatorIds`) VALUES
 (1, 182),
 (1, 212),
 (1, 213),
+(1, 215),
 (2, 169),
 (2, 170);
 
@@ -1653,7 +1655,7 @@ CREATE TABLE IF NOT EXISTS `pingtai_syslog` (
   UNIQUE KEY `ids` (`ids`),
   KEY `FKC23BE64CBF045F6D` (`creatorUserIds`),
   KEY `FKC23BE64C9BC52230` (`modifiedUserIds`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=204 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=265 ;
 
 --
 -- 转存表中的数据 `pingtai_syslog`
@@ -1862,7 +1864,68 @@ INSERT INTO `pingtai_syslog` (`ids`, `createdDate`, `modifiedDate`, `valid`, `ve
 (200, '2011-12-24 22:01:56', '2011-12-24 22:01:56', 'youXiao', 0, 'admins(id=1)请求[/pingTai/groupPingTaiAction!groupList.action]', '用户分组列表', 's', 1, NULL),
 (201, '2011-12-24 22:01:57', '2011-12-24 22:01:57', 'youXiao', 0, 'admins(id=1)请求[/pingTai/rolePingTaiAction!roleList.action]', '角色列表', 's', 1, NULL),
 (202, '2011-12-24 22:01:57', '2011-12-24 22:01:57', 'youXiao', 0, 'admins(id=1)请求[/pingTai/departmentPingTaiAction!departmentList.action]', '部门列表', 's', 1, NULL),
-(203, '2011-12-24 22:05:40', '2011-12-24 22:05:40', 'youXiao', 0, 'admins(id=1)请求[/pingTai/rolePingTaiAction!roleList.action]', '角色列表', 's', 1, NULL);
+(203, '2011-12-24 22:05:40', '2011-12-24 22:05:40', 'youXiao', 0, 'admins(id=1)请求[/pingTai/rolePingTaiAction!roleList.action]', '角色列表', 's', 1, NULL),
+(204, '2011-12-24 22:16:12', '2011-12-24 22:16:12', 'youXiao', 0, 'admins(id=1)请求[/pingTai/operatorPingTaiAction!roleNoOperatorView.action]', '角色没有的功能', 's', 1, NULL),
+(205, '2011-12-24 22:16:22', '2011-12-24 22:16:22', 'youXiao', 0, 'admins(id=1)请求[/pingTai/operatorPingTaiAction!operatorList.action]', '功能列表', 's', 1, NULL),
+(206, '2011-12-24 22:16:25', '2011-12-24 22:16:25', 'youXiao', 0, 'admins(id=1)请求[/pingTai/operatorPingTaiAction!operatorList.action]', '功能列表', 's', 1, NULL),
+(207, '2011-12-24 22:16:29', '2011-12-24 22:16:29', 'youXiao', 0, 'admins(id=1)请求[/aqua-eshop/pingTai/operatorPingTaiAction!goToUrl.action]', '功能添加', 's', 1, NULL),
+(208, '2011-12-24 22:17:13', '2011-12-24 22:17:13', 'youXiao', 0, 'admins(id=1)请求[/pingTai/operatorPingTaiAction!saveOperator.action]', '功能保存', 's', 1, NULL),
+(209, '2011-12-24 22:17:13', '2011-12-24 22:17:13', 'youXiao', 0, 'admins(id=1)请求[/pingTai/operatorPingTaiAction!operatorList.action]', '功能列表', 's', 1, NULL),
+(210, '2011-12-24 22:17:16', '2011-12-24 22:17:16', 'youXiao', 0, 'admins(id=1)请求[/pingTai/operatorPingTaiAction!operatorList.action]', '功能列表', 's', 1, NULL),
+(211, '2011-12-24 22:17:17', '2011-12-24 22:17:17', 'youXiao', 0, 'admins(id=1)请求[/pingTai/userPingTaiAction!userList.action]', '用户列表', 's', 1, NULL),
+(212, '2011-12-24 22:17:34', '2011-12-24 22:17:34', 'youXiao', 0, 'admins(id=1)请求[/pingTai/operatorPingTaiAction!operatorList.action]', '功能列表', 's', 1, NULL),
+(213, '2011-12-24 22:17:37', '2011-12-24 22:17:37', 'youXiao', 0, 'admins(id=1)请求[/pingTai/operatorPingTaiAction!operatorList.action]', '功能列表', 's', 1, NULL),
+(214, '2011-12-24 22:17:45', '2011-12-24 22:17:45', 'youXiao', 0, 'admins(id=1)请求[/pingTai/operatorPingTaiAction!operatorList.action]', '功能列表', 's', 1, NULL),
+(215, '2011-12-24 22:17:49', '2011-12-24 22:17:49', 'youXiao', 0, 'admins(id=1)请求[/pingTai/operatorPingTaiAction!operatorList.action]', '功能列表', 's', 1, NULL),
+(216, '2011-12-24 22:17:55', '2011-12-24 22:17:55', 'youXiao', 0, 'admins(id=1)请求[/pingTai/operatorPingTaiAction!operatorList.action]', '功能列表', 's', 1, NULL),
+(217, '2011-12-24 22:17:59', '2011-12-24 22:17:59', 'youXiao', 0, 'admins(id=1)请求[/pingTai/operatorPingTaiAction!operatorList.action]', '功能列表', 's', 1, NULL),
+(218, '2011-12-24 22:18:01', '2011-12-24 22:18:01', 'youXiao', 0, 'admins(id=1)请求[/pingTai/operatorPingTaiAction!operatorList.action]', '功能列表', 's', 1, NULL),
+(219, '2011-12-24 22:18:02', '2011-12-24 22:18:02', 'youXiao', 0, 'admins(id=1)请求[/pingTai/operatorPingTaiAction!operatorList.action]', '功能列表', 's', 1, NULL),
+(220, '2011-12-24 22:18:04', '2011-12-24 22:18:04', 'youXiao', 0, 'admins(id=1)请求[/pingTai/operatorPingTaiAction!operatorList.action]', '功能列表', 's', 1, NULL),
+(221, '2011-12-24 22:18:05', '2011-12-24 22:18:05', 'youXiao', 0, 'admins(id=1)请求[/pingTai/operatorPingTaiAction!operatorList.action]', '功能列表', 's', 1, NULL),
+(222, '2011-12-24 22:18:07', '2011-12-24 22:18:07', 'youXiao', 0, 'admins(id=1)请求[/pingTai/operatorPingTaiAction!operatorList.action]', '功能列表', 's', 1, NULL),
+(223, '2011-12-24 22:18:19', '2011-12-24 22:18:19', 'youXiao', 0, 'admins(id=1)请求[/pingTai/operatorPingTaiAction!operatorList.action]', '功能列表', 's', 1, NULL),
+(224, '2011-12-24 22:18:21', '2011-12-24 22:18:21', 'youXiao', 0, 'admins(id=1)请求[/pingTai/operatorPingTaiAction!operatorList.action]', '功能列表', 's', 1, NULL),
+(225, '2011-12-24 22:18:23', '2011-12-24 22:18:23', 'youXiao', 0, 'admins(id=1)请求[/pingTai/operatorPingTaiAction!operatorList.action]', '功能列表', 's', 1, NULL),
+(226, '2011-12-24 22:18:25', '2011-12-24 22:18:25', 'youXiao', 0, 'admins(id=1)请求[/pingTai/operatorPingTaiAction!operatorList.action]', '功能列表', 's', 1, NULL),
+(227, '2011-12-24 22:18:27', '2011-12-24 22:18:27', 'youXiao', 0, 'admins(id=1)请求[/pingTai/operatorPingTaiAction!operatorList.action]', '功能列表', 's', 1, NULL),
+(228, '2011-12-24 22:18:28', '2011-12-24 22:18:28', 'youXiao', 0, 'admins(id=1)请求[/pingTai/operatorPingTaiAction!operatorList.action]', '功能列表', 's', 1, NULL),
+(229, '2011-12-24 22:18:30', '2011-12-24 22:18:30', 'youXiao', 0, 'admins(id=1)请求[/pingTai/operatorPingTaiAction!operatorList.action]', '功能列表', 's', 1, NULL),
+(230, '2011-12-24 22:18:34', '2011-12-24 22:18:34', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!menuList.action]', '菜单列表', 's', 1, NULL),
+(231, '2011-12-24 22:18:39', '2011-12-24 22:18:39', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!toUpdateMenu.action]', '菜单修改', 's', 1, NULL),
+(232, '2011-12-24 22:18:48', '2011-12-24 22:18:48', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!toUpdateMenu.action]', '菜单修改', 's', 1, NULL),
+(233, '2011-12-24 22:19:00', '2011-12-24 22:19:00', 'youXiao', 0, 'admins(id=1)请求[/pingTai/menuPingTaiAction!toUpdateMenu.action]', '菜单修改', 's', 1, NULL),
+(234, '2011-12-24 22:19:08', '2011-12-24 22:19:08', 'youXiao', 0, 'admins(id=1)请求[/pingTai/operatorPingTaiAction!operatorList.action]', '功能列表', 's', 1, NULL),
+(235, '2011-12-24 22:19:15', '2011-12-24 22:19:15', 'youXiao', 0, 'admins(id=1)请求[/pingTai/operatorPingTaiAction!operatorList.action]', '功能列表', 's', 1, NULL),
+(236, '2011-12-24 22:19:18', '2011-12-24 22:19:18', 'youXiao', 0, 'admins(id=1)请求[/pingTai/operatorPingTaiAction!operatorList.action]', '功能列表', 's', 1, NULL),
+(237, '2011-12-24 22:19:19', '2011-12-24 22:19:19', 'youXiao', 0, 'admins(id=1)请求[/pingTai/operatorPingTaiAction!operatorList.action]', '功能列表', 's', 1, NULL),
+(238, '2011-12-24 22:19:20', '2011-12-24 22:19:20', 'youXiao', 0, 'admins(id=1)请求[/pingTai/operatorPingTaiAction!operatorList.action]', '功能列表', 's', 1, NULL),
+(239, '2011-12-24 22:19:21', '2011-12-24 22:19:21', 'youXiao', 0, 'admins(id=1)请求[/pingTai/operatorPingTaiAction!operatorList.action]', '功能列表', 's', 1, NULL),
+(240, '2011-12-24 22:19:22', '2011-12-24 22:19:22', 'youXiao', 0, 'admins(id=1)请求[/pingTai/operatorPingTaiAction!operatorList.action]', '功能列表', 's', 1, NULL),
+(241, '2011-12-24 22:19:23', '2011-12-24 22:19:23', 'youXiao', 0, 'admins(id=1)请求[/pingTai/operatorPingTaiAction!operatorList.action]', '功能列表', 's', 1, NULL),
+(242, '2011-12-24 22:19:25', '2011-12-24 22:19:25', 'youXiao', 0, 'admins(id=1)请求[/aqua-eshop/pingTai/operatorPingTaiAction!goToUrl.action]', '功能添加', 's', 1, NULL),
+(243, '2011-12-24 22:19:36', '2011-12-24 22:19:36', 'youXiao', 0, 'admins(id=1)请求[/pingTai/operatorPingTaiAction!saveOperator.action]', '功能保存', 's', 1, NULL),
+(244, '2011-12-24 22:19:36', '2011-12-24 22:19:36', 'youXiao', 0, 'admins(id=1)请求[/pingTai/operatorPingTaiAction!operatorList.action]', '功能列表', 's', 1, NULL),
+(245, '2011-12-24 22:19:51', '2011-12-24 22:19:51', 'youXiao', 0, 'admins(id=1)请求[/pingTai/operatorPingTaiAction!operatorList.action]', '功能列表', 's', 1, NULL),
+(246, '2011-12-24 22:19:54', '2011-12-24 22:19:54', 'youXiao', 0, 'admins(id=1)请求[/pingTai/operatorPingTaiAction!operatorList.action]', '功能列表', 's', 1, NULL),
+(247, '2011-12-24 22:19:55', '2011-12-24 22:19:55', 'youXiao', 0, 'admins(id=1)请求[/pingTai/operatorPingTaiAction!operatorList.action]', '功能列表', 's', 1, NULL),
+(248, '2011-12-24 22:19:57', '2011-12-24 22:19:57', 'youXiao', 0, 'admins(id=1)请求[/pingTai/operatorPingTaiAction!operatorList.action]', '功能列表', 's', 1, NULL),
+(249, '2011-12-24 22:19:59', '2011-12-24 22:19:59', 'youXiao', 0, 'admins(id=1)请求[/pingTai/operatorPingTaiAction!operatorList.action]', '功能列表', 's', 1, NULL),
+(250, '2011-12-24 22:20:00', '2011-12-24 22:20:00', 'youXiao', 0, 'admins(id=1)请求[/pingTai/operatorPingTaiAction!operatorList.action]', '功能列表', 's', 1, NULL),
+(251, '2011-12-24 22:20:00', '2011-12-24 22:20:00', 'youXiao', 0, 'admins(id=1)请求[/pingTai/operatorPingTaiAction!operatorList.action]', '功能列表', 's', 1, NULL),
+(252, '2011-12-24 22:20:04', '2011-12-24 22:20:04', 'youXiao', 0, 'admins(id=1)请求[/pingTai/operatorPingTaiAction!deleteOperator.action]', '功能删除', 's', 1, NULL),
+(253, '2011-12-24 22:20:04', '2011-12-24 22:20:04', 'youXiao', 0, 'admins(id=1)请求[/pingTai/operatorPingTaiAction!operatorList.action]', '功能列表', 's', 1, NULL),
+(254, '2011-12-24 22:20:06', '2011-12-24 22:20:06', 'youXiao', 0, 'admins(id=1)请求[/pingTai/operatorPingTaiAction!operatorList.action]', '功能列表', 's', 1, NULL),
+(255, '2011-12-24 22:20:06', '2011-12-24 22:20:06', 'youXiao', 0, 'admins(id=1)请求[/pingTai/operatorPingTaiAction!operatorList.action]', '功能列表', 's', 1, NULL),
+(256, '2011-12-24 22:20:07', '2011-12-24 22:20:07', 'youXiao', 0, 'admins(id=1)请求[/pingTai/operatorPingTaiAction!operatorList.action]', '功能列表', 's', 1, NULL),
+(257, '2011-12-24 22:20:08', '2011-12-24 22:20:08', 'youXiao', 0, 'admins(id=1)请求[/pingTai/operatorPingTaiAction!operatorList.action]', '功能列表', 's', 1, NULL),
+(258, '2011-12-24 22:20:08', '2011-12-24 22:20:08', 'youXiao', 0, 'admins(id=1)请求[/pingTai/operatorPingTaiAction!operatorList.action]', '功能列表', 's', 1, NULL),
+(259, '2011-12-24 22:20:10', '2011-12-24 22:20:10', 'youXiao', 0, 'admins(id=1)请求[/pingTai/operatorPingTaiAction!operatorList.action]', '功能列表', 's', 1, NULL),
+(260, '2011-12-24 22:20:11', '2011-12-24 22:20:11', 'youXiao', 0, 'admins(id=1)请求[/pingTai/operatorPingTaiAction!operatorList.action]', '功能列表', 's', 1, NULL),
+(261, '2011-12-24 22:20:13', '2011-12-24 22:20:13', 'youXiao', 0, 'admins(id=1)请求[/pingTai/rolePingTaiAction!roleList.action]', '角色列表', 's', 1, NULL),
+(262, '2011-12-24 22:20:16', '2011-12-24 22:20:16', 'youXiao', 0, 'admins(id=1)请求[/pingTai/operatorPingTaiAction!roleNoOperatorView.action]', '角色没有的功能', 's', 1, NULL),
+(263, '2011-12-24 22:20:18', '2011-12-24 22:20:18', 'youXiao', 0, 'admins(id=1)请求[/pingTai/operatorPingTaiAction!roleOperatorAdd.action]', '角色添加功能', 's', 1, NULL),
+(264, '2011-12-24 22:20:18', '2011-12-24 22:20:18', 'youXiao', 0, 'admins(id=1)请求[/pingTai/operatorPingTaiAction!roleNoOperatorView.action]', '角色没有的功能', 's', 1, NULL);
 
 -- --------------------------------------------------------
 
