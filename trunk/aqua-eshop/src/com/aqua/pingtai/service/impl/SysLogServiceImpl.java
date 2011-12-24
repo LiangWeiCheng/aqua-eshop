@@ -1,5 +1,7 @@
 package com.aqua.pingtai.service.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.apache.commons.logging.Log;
@@ -68,5 +70,10 @@ public class SysLogServiceImpl implements SysLogService {
 	@Override
 	public void save(SysLog entity) {
 		sysLogDaoImpl.save(entity);
+	}
+
+	@Override
+	public List<SysLog> findManyEntity(String filterString) throws Exception {
+		return daoHibernateBase.findManyEntity(SysLog.class, filterString);
 	}
 }
