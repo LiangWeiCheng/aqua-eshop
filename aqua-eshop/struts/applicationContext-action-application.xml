@@ -22,6 +22,12 @@
 	
 	<bean id="qingJiaApplicationAdminAction" class="com.aqua.application.admin.action.QingJiaAction" scope="prototype" autowire="byName" />
 	
+	<bean id="materialCategoryAction" class="com.aqua.material.action.MaterialCategoryAction" scope="prototype" autowire="byName" />
+	
+	<bean id="materialAction" class="com.aqua.material.action.MaterialAction" scope="prototype" autowire="byName" />
+	
+	<bean id="materialShopAction" class="com.aqua.material.action.MaterialShopAction" scope="prototype" autowire="byName" />
+	
 	<!-- 前台 -->
 	<bean id="alipayLoginApplicationClientAction" class="com.aqua.application.client.action.AlipayLoginAction" scope="prototype" autowire="byName" />
 	

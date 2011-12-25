@@ -14,6 +14,52 @@
     
     <include file="com/aqua/pingtai/resources/struts-application.xml" />
 
+    <package name="material" extends="json-default" namespace="/material" >
+		
+		<interceptors>
+			<interceptor name="formToken" class="com.aqua.pingtai.interceptor.FormTokenInterceptor"/><!-- 表单重复提交 -->
+			<interceptor name="queryParameterInterceptor" class="com.aqua.pingtai.interceptor.QueryParameterInterceptor" /><!-- 查询封装 -->
+			<interceptor-stack name="applicationStack">
+				<!--<interceptor-ref name="authority" />-->
+				<interceptor-ref name="formToken" />
+				<interceptor-ref name="queryParameterInterceptor" />
+				<interceptor-ref name="defaultStack"/>
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="applicationStack"/><!--必须重写-->
+		
+		<global-results><!-- 定义全局Result -->
+			<result name="success" type="json"><param name="root">success</param></result>
+	        <result name="error" type="json"><param name="root">error</param></result>
+			<result name="redirect" type="redirect">${returnPageURL}</result>
+			<result name="dispatcher" type="dispatcher">${returnPageURL}</result>
+			<result name="login" type="dispatcher">/WEB-INF/jsp/error/toRedirectLogin.jsp</result>
+			<result name="operatorMessage" type="dispatcher">/WEB-INF/jsp/error/operatorMessage.jsp</result>
+			<result name="exceptionError" type="dispatcher">/WEB-INF/jsp/error/exception.jsp</result>
+		</global-results>
+		
+		<global-exception-mappings><!-- 全局异常处理 -->
+			<exception-mapping result="exceptionError" exception="java.lang.NullPointerException" />
+			<exception-mapping result="exceptionError" exception="java.lang.NoSuchMethodException" />
+			<exception-mapping result="exceptionError" exception="java.lang.Exception" /> 
+		</global-exception-mappings>
+		
+		<action name="materialCategoryAction" class="materialCategoryAction">
+			<result name="categoryList" type="json">
+                <param name="root">categoryMap</param>
+            </result>
+		</action>
+		
+		<action name="materialAction" class="materialAction">
+			<result name="materialList" type="json">
+                <param name="root">materialMap</param>
+            </result>
+		</action>
+		
+		<action name="materialShopAction" class="materialShopAction" />
+		
+	</package>
+
     <unknown-handler-stack>
         <unknown-handler-ref name="notHandler" />
     </unknown-handler-stack>
