@@ -1269,8 +1269,8 @@ INSERT INTO `pingtai_menu` (`ids`, `createdDate`, `modifiedDate`, `valid`, `vers
 (55, '2011-12-09 05:49:51', NULL, 'youXiao', 0, '业务数据管理', '#', 1, NULL, 1, '业务数据管理', 'menuType_houTai', 1, 2, NULL, 'main_40.gif'),
 (56, '2011-12-09 05:50:16', NULL, 'youXiao', 0, '项目管理', '#', 1, NULL, 55, '项目管理', 'menuType_houTai', 2, 1, NULL, 'main_40.gif'),
 (57, '2011-12-09 05:50:35', NULL, 'youXiao', 0, '供应商管理', '#', 1, NULL, 55, '供应商管理', 'menuType_houTai', 2, 2, NULL, 'main_40.gif'),
-(58, '2011-12-09 05:50:51', NULL, 'youXiao', 0, '物料目录管理', '#', 1, NULL, 55, '物料目录管理', 'menuType_houTai', 2, 3, NULL, 'main_40.gif'),
-(59, '2011-12-09 05:51:09', NULL, 'youXiao', 0, '物料管理', '#', 1, NULL, 55, '物料管理', 'menuType_houTai', 2, 4, NULL, 'main_40.gif'),
+(58, '2011-12-09 05:50:51', NULL, 'youXiao', 0, '物料目录管理', '/material/materialCategoryAction!categoryList.action', 1, NULL, 55, '物料目录管理', 'menuType_houTai', 2, 3, NULL, 'main_40.gif'),
+(59, '2011-12-09 05:51:09', NULL, 'youXiao', 0, '物料管理', '/material/materialAction!materialList.action', 1, NULL, 55, '物料管理', 'menuType_houTai', 2, 4, NULL, 'main_40.gif'),
 (60, '2011-12-09 05:51:24', NULL, 'youXiao', 0, '合同信息管理', '#', 1, NULL, 55, '合同信息管理', 'menuType_houTai', 2, 5, NULL, 'main_40.gif'),
 (61, '2011-12-09 05:51:46', NULL, 'youXiao', 0, '项目信息', '#', 1, NULL, 1, '项目信息', 'menuType_houTai', 1, 3, NULL, 'main_40.gif'),
 (62, '2011-12-09 05:52:23', NULL, 'youXiao', 0, '供应商信息', '#', 1, NULL, 1, '供应商信息', 'menuType_houTai', 1, 4, NULL, 'main_40.gif'),
@@ -2383,3 +2383,35 @@ ALTER TABLE `pingtai_userviewrowbyuser`
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+-- Table structure for `material_category`
+-- ----------------------------
+DROP TABLE IF EXISTS `material_category`;
+CREATE TABLE `material_category` (
+	`id` bigint(20) NOT NULL AUTO_INCREMENT,
+	`name` VARCHAR(30) NOT NULL,
+	`level` int(1),
+	`parent_category` bigint(20),
+	`description` VARCHAR(100),
+	`created_date` datetime DEFAULT NULL,
+    PRIMARY KEY (`id`),
+    UNIQUE KEY name (name)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Table structure for `material_category`
+-- ----------------------------
+DROP TABLE IF EXISTS `material`;
+CREATE TABLE `material` (
+	`id` bigint(20) NOT NULL AUTO_INCREMENT,
+	`name` VARCHAR(50) NOT NULL,
+	`material_code` VARCHAR(50) NOT NULL,
+	`brand` VARCHAR(50),
+	`category_id` bigint(20),
+	`description` VARCHAR(100),
+	`created_date` datetime DEFAULT NULL,
+    PRIMARY KEY (`id`),
+    UNIQUE KEY name (name),
+    UNIQUE KEY material_code (material_code)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+ALTER TABLE `material` ADD CONSTRAINT `FKMaterialCategory` FOREIGN KEY (`category_id`) REFERENCES `material_category`(`id`);
