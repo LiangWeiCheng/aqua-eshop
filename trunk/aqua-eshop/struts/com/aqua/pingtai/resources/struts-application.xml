@@ -80,6 +80,12 @@
 		
 		<action name="alipayPaymentApplicationClientAction" class="alipayPaymentApplicationClientAction" />
 		
+		<action name="materialCategoryAction" class="materialCategoryAction" />
+		
+		<action name="materialAction" class="materialAction" />
+		
+		<action name="materialShopAction" class="materialShopAction" />
+		
 	</package>
 	
 </struts>
