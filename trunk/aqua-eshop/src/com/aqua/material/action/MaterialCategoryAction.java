@@ -8,7 +8,6 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import com.aqua.material.entitybean.MaterialCategory;
@@ -45,43 +44,55 @@ public class MaterialCategoryAction extends BaseAction{
 	private List<MaterialCategory> materialCategories = new ArrayList<MaterialCategory>();
 	
 	public String categoryList(){
+		initQueryList(true);
+		if(this.categoryName==null||this.categoryName.replaceAll(" ", "").equals("")){
+			materialCategoryServiceImpl.splitPageQueryMaterialCategory(""," order by createdDate desc", queryResult);
+		}else {
+			this.categoryName = AjaxCodeUtil.unescape(this.categoryName);
+			materialCategoryServiceImpl.splitPageQueryMaterialCategory(" where name='"+this.categoryName+"'"," order by createdDate desc", queryResult);
+		}
 		returnPageURL = "/WEB-INF/jsp/material_management/material_category_list.jsp";
 		return "dispatcher";
 	}
 	
-	public String categoryListJson(){
-		try {
-			List<MaterialCategory> list = null;
-			if(this.categoryName==null||this.categoryName.replaceAll(" ", "").equals("")){
-				list = materialCategoryServiceImpl.queryMaterialCategory(" order by createdDate desc");
-			}else {
-				list = materialCategoryServiceImpl.queryMaterialCategory(" where name='"+this.categoryName+"' order by createdDate desc");
-			}
-			JSONArray jsonArray = new JSONArray();
-			for (MaterialCategory materialCategory : list) {
-				JSONObject jsonObject = new JSONObject();
-				jsonObject.put("categoryId", materialCategory.getId());
-				jsonObject.put("name", materialCategory.getName());
-				jsonObject.put("level", materialCategory.getLevel());
-				if(materialCategory.getParentCategory()==null){
-					jsonObject.put("parentCategory.name", "");
-				}else{
-					jsonObject.put("parentCategory.name", materialCategory.getParentCategory().getName());
-				}
-				jsonObject.put("description", materialCategory.getDescription());
-				if(materialCategory.getCreatedDate()!=null){
-					jsonObject.put("createdDate", dateFormat.format(materialCategory.getCreatedDate()));
-				}else {
-					jsonObject.put("createdDate", "");
-				}
-				jsonArray.add(jsonObject);
-			}
-			categoryMap.put("items", jsonArray);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return "categoryList";
-	}
+//	public String categoryList(){
+//		returnPageURL = "/WEB-INF/jsp/material_management/material_category_list.jsp";
+//		return "dispatcher";
+//	}
+//	
+//	public String categoryListJson(){
+//		try {
+//			List<MaterialCategory> list = null;
+//			if(this.categoryName==null||this.categoryName.replaceAll(" ", "").equals("")){
+//				list = materialCategoryServiceImpl.queryMaterialCategory(" order by createdDate desc");
+//			}else {
+//				list = materialCategoryServiceImpl.queryMaterialCategory(" where name='"+this.categoryName+"' order by createdDate desc");
+//			}
+//			JSONArray jsonArray = new JSONArray();
+//			for (MaterialCategory materialCategory : list) {
+//				JSONObject jsonObject = new JSONObject();
+//				jsonObject.put("categoryId", materialCategory.getId());
+//				jsonObject.put("name", materialCategory.getName());
+//				jsonObject.put("level", materialCategory.getLevel());
+//				if(materialCategory.getParentCategory()==null){
+//					jsonObject.put("parentCategory.name", "");
+//				}else{
+//					jsonObject.put("parentCategory.name", materialCategory.getParentCategory().getName());
+//				}
+//				jsonObject.put("description", materialCategory.getDescription());
+//				if(materialCategory.getCreatedDate()!=null){
+//					jsonObject.put("createdDate", dateFormat.format(materialCategory.getCreatedDate()));
+//				}else {
+//					jsonObject.put("createdDate", "");
+//				}
+//				jsonArray.add(jsonObject);
+//			}
+//			categoryMap.put("items", jsonArray);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		return "categoryList";
+//	}
 	
 	public String categoryShow(){
 		if(this.selectedId!=0){
@@ -120,19 +131,30 @@ public class MaterialCategoryAction extends BaseAction{
 	}
 	
 	public String selectCategories(){
+		initQueryList(true);
 		if(this.categoryName==null||this.categoryName.equals("")){
-			materialCategories = this.materialCategoryServiceImpl.queryMaterialCategory(" where level="+level+" order by createdDate desc");
+			this.materialCategoryServiceImpl.splitPageQueryMaterialCategory(" where level="+level, " order by createdDate desc", queryResult);
 		}else {
 			this.categoryName=AjaxCodeUtil.unescape(this.categoryName);
-			materialCategories = this.materialCategoryServiceImpl.queryMaterialCategory(" where level="+level+" and name='"+ this.categoryName+ "' order by createdDate desc");
+			this.materialCategoryServiceImpl.splitPageQueryMaterialCategory(" where level="+level+" and name='"+ this.categoryName+"'", " order by createdDate desc", queryResult);
 		}
 		returnPageURL = "/WEB-INF/jsp/material_management/select_category.jsp";
 		return "dispatcher";
 	}
 	
+	public String eshop(){
+		returnPageURL = "/WEB-INF/jsp/material_eshop/material_shop_main.jsp";
+		return "dispatcher";
+	}
+	
+	public String leftTree(){
+		materialCategories = this.materialCategoryServiceImpl.queryMaterialCategory(" order by name");
+		returnPageURL="/WEB-INF/jsp/material_eshop/left_tree.jsp";
+		return "dispatcher";
+	}
+	
 	@Override
 	protected String makeFilterString(QueryParameter queryParameter) {
-		// TODO Auto-generated method stub
 		return "";
 	}
 
@@ -220,6 +242,12 @@ public class MaterialCategoryAction extends BaseAction{
 
 	public void setMaterialCategories(List<MaterialCategory> materialCategories) {
 		this.materialCategories = materialCategories;
+	}
+	
+	protected String initQueryList(boolean isRowFilter) {
+		queryParameter = new QueryParameter();
+		initQueryResult(BaseAction.queryResultCountPingTai);
+		return "";
 	}
 
 }
