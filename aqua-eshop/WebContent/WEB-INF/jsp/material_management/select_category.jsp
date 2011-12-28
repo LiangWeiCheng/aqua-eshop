@@ -7,25 +7,26 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>物料目录列表</title>
-<style type="text/css">
-@import	"${pageContext.request.contextPath }/jsFile/dojoroot/dojo/resources/dojo.css";
-@import	"${pageContext.request.contextPath }/jsFile/dojoroot/dijit/themes/soria/soria.css";
-@import	"${pageContext.request.contextPath }/jsFile/dojoroot/dojox/grid/resources/soriaGrid.css";
-</style>
-
-<script type="text/javascript"
-	djConfig="parseOnLoad: true, isDebug: true"
-	src="${pageContext.request.contextPath }/WebContent/jsFile/dojoroot/dojo/dojo.js"></script>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/pingTai/pingTai.css">
 <script type="text/javascript">  
-	dojo.require("dojo.parser");
-	dojo.require("dojo.data.ItemFileReadStore");  
 	
 	function queryCategory(){
 		var categoryNameSearch=document.getElementById("categoryNameSearch").value;
 		window.location.href = encodeURI("${pageContext.request.contextPath }/material/materialCategoryAction!selectCategories.action?categoryName="+escape(categoryNameSearch)+"&level=${level }");
 	}
 	
-	function selectCategory(){
+	function chooseCategory(id, name){
+		if('1'=='${level}'){
+			opener.document.getElementById("selectedCategory.parentCategory.name").value=name;
+			opener.document.getElementById("parentCategoryId").value=id;
+		}else {
+			opener.document.getElementById("selectedMaterial.category.name").value=name;
+			opener.document.getElementById("categoryId").value=id;
+		}
+		window.close();
+	}
+	
+	function chooseCategory2(){
 		var categorySelectors=document.categoryGridForm.selectCategory;
 		if(categorySelectors!=null){
 			var categoryIdAndName="";
@@ -63,61 +64,90 @@
  </script> 
 </head>
 <body class="soria">
-<div style="border: 1px solid #0099CC;">
-	<div>
-	<span>物料目录列表</span>
-	</div>	
-	<div>
-	<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
-		<tr height="20" valign="baseline">
-			<td>
-				<input type="button" value="确定" onclick="selectCategory();"/>
-			</td>
-			<td>
-			<label for="categoryNameSearch">目录名称：</label>
-			<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-			<input type="text" dojoType="dijit.form.TextBox" id="categoryNameSearch" name="categoryNameSearch" value="${categoryName }" />
-			<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-			<input type="button" id="search" value="查询" onclick="queryCategory();"/>
-			</td>
-			<td align="right"><span class="STYLE1"></span></td>
-		</tr>
-		<tr>
-			<td height="3" colspan="2"></td>
-		</tr>
+<form name="categoryGridForm" id="categoryGridForm">
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+	  	<tr height="20" valign="baseline">
+		    <td bgcolor="#353c44">
+		    	<input type="button" class="button2" value="确定" onclick="chooseCategory();"/>
+		    </td>
+		    <td bgcolor="#353c44">
+		    </td>
+		    <td align="right" bgcolor="#353c44">
+		    	<span class="STYLE1">
+              	</span>
+		    </td>
+	  	</tr>
+	  	<tr>
+		    <td height="3" colspan="2"></td>
+	  	</tr>
 	</table>
-	</div>
-</div>
-<form dojoType="dijit.form.Form" name="categoryGridForm" id="categoryGridForm">
-<table id="grid" align="left" valign="middle" border="1" style="solid #0099CC;" width="100%">
-<tr>
-	<td align=center bgcolor="#9DBEEE"><span>&nbsp;</span></td>
-	<td align=center bgcolor="#9DBEEE"><span>物料目录</span></td>
-	<td align=center bgcolor="#9DBEEE"><span>目录级别</span></td>
-	<s:if test="level==2">
-	<td align=center><span bgcolor="#9DBEEE">上级目录</span></td>
-	</s:if>
-	<td align=center bgcolor="#9DBEEE"><span>描述</span></td>
-	<td align=center bgcolor="#9DBEEE"><span>创建时间</span></td>
-</tr>
-<s:if test="materialCategories.size !=0">
-		<s:set name="listSize" value="materialCategories.size"/>
-		<s:iterator value="materialCategories" status="start">
-		<tr onmouseover="this.style.backgroundColor='#60A1EA'" onmouseout="this.style.backgroundColor=''">			
-			<td align=center><span><input type="radio" name="selectCategory" value="${id};${name}"/></span></td>
-			<td align=center><span>${name }</span></td>
-			<td align=center><span>${level }</span></td>
+	
+	<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+	  	<tr height="20" valign="baseline">
+		    <td>
+		    	<label for="categoryNameSearch">目录名称：</label>
+		    	<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+				<input type="text" id="categoryNameSearch" name="categoryNameSearch" value="${categoryName }" />
+				<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+				<input type="button" class="button2" value="查询" onclick="queryCategory();" />
+		    </td>
+		    <td>
+		    </td>
+		    <td align="right">
+		    	<span class="STYLE1">
+              	</span>
+		    </td>
+	  	</tr>
+	  	<tr>
+		    <td height="3" colspan="2"></td>
+	  	</tr>
+	</table>
+	
+	<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+		<tr>
+		    <td height="3"></td>
+	  	</tr>    
+	  	<tr height="20" valign="baseline">
+		    <td bgcolor="#353c44">
+		    	<img src="${pageContext.request.contextPath}/images/pingTai/tb.gif" width="14" height="14" />
+		    	<span class="STYLE1">物料目录列表</span>
+		    </td>
+		    <td align="right" bgcolor="#353c44">
+		    	<span class="STYLE1">
+              	</span>
+		    </td>
+	  	</tr>
+	  	<tr>
+		    <td height="3" colspan="2"></td>
+	  	</tr>
+	</table>
+	
+	<table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#a8c7ce" onmouseover="changeto()"  onmouseout="changeback()" onclick="clickto()">
+		<tr align="center" class="STYLE10" height="20" bgcolor="d3eaef">
+			<td>&nbsp;&nbsp;</td>
+			<td>物料目录</td>
+			<td>目录级别</td>
 			<s:if test="level==2">
-				<td align=center><span>${parentCategory.name }</span></td>
+				<td>上级目录</td>
 			</s:if>
-			<td align=center><span>${description }</span></td>
-			<td align=center><span>
-			<s:date	name="createdDate" format="yyyy-MM-dd HH:mm:ss" />
-			</span></td>
+			<td>描述</td>
+			<td>登记时间</td>
 		</tr>
-		</s:iterator>
-	</s:if>	
-</table>
+			<s:iterator value="queryResult.resultList" var="category">
+				<tr align="center" bgcolor="#FFFFFF" class="STYLE19">
+					<td><input type="radio" name="selectCategory" value="${id};${name}" onclick="chooseCategory(${id},'${name}');"/></td>
+					<td align="center"><s:property value="name"/></td>
+					<td align="center"><s:property value="level"/></td>
+					<s:if test="level==2">
+						<td align="center"><s:property value="parentCategory.name"/></td>
+					</s:if>
+					<td align="center"><s:property value="description"/></td>
+					<td align="center"><s:date name="createdDate" format="yyyy-MM-dd HH:mm:ss"/></td>
+				</tr>
+			</s:iterator>
+	</table>
+	
+	
 </form>
 </body>
 </html>
