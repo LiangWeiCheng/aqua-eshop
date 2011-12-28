@@ -46,43 +46,55 @@ public class MaterialAction extends BaseAction{
 	public HashMap<String, Serializable> materialMap = new JSONObject();
 	
 	public String materialList(){
+		initQueryList(true);
+		if(this.materialName==null||this.materialName.replaceAll(" ", "").equals("")){
+			materialServiceImpl.splitPageQueryMaterial(""," order by createdDate desc", queryResult);
+		}else {
+			this.materialName = AjaxCodeUtil.unescape(this.materialName);
+			materialServiceImpl.splitPageQueryMaterial(" where name='"+this.materialName+"'", " order by createdDate desc", queryResult);
+		}
 		returnPageURL = "/WEB-INF/jsp/material_management/material_list.jsp";
 		return "dispatcher";
 	}
 	
-	public String materialListJson(){
-		try {
-			List<Material> list = null;
-			if(this.materialName==null||this.materialName.replaceAll(" ", "").equals("")){
-				list = materialServiceImpl.queryMaterial(" order by createdDate desc");
-			}else {
-				list = materialServiceImpl.queryMaterial(" where name='"+this.materialName+"' order by createdDate desc");
-			}
-			JSONArray jsonArray = new JSONArray();
-			for (Material material : list) {
-				JSONObject jsonObject = new JSONObject();
-				jsonObject.put("materialId", material.getId());
-				jsonObject.put("name", material.getName());
-				jsonObject.put("materialCode", material.getMaterialCode());
-				if(material.getCategory()!=null){
-					jsonObject.put("categoryName", material.getCategory().getName());
-				}else {
-					jsonObject.put("categoryName", "");
-				}
-				jsonObject.put("description", material.getDescription());
-				if(material.getCreatedDate()!=null){
-					jsonObject.put("createdDate", dateFormat.format(material.getCreatedDate()));
-				}else {
-					jsonObject.put("createdDate", "");
-				}
-				jsonArray.add(jsonObject);
-			}
-			materialMap.put("items", jsonArray);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return "materialList";
-	}
+//	public String materialList(){
+//		returnPageURL = "/WEB-INF/jsp/material_management/material_list.jsp";
+//		return "dispatcher";
+//	}
+//	
+//	public String materialListJson(){
+//		try {
+//			List<Material> list = null;
+//			if(this.materialName==null||this.materialName.replaceAll(" ", "").equals("")){
+//				list = materialServiceImpl.queryMaterial(" order by createdDate desc");
+//			}else {
+//				list = materialServiceImpl.queryMaterial(" where name='"+this.materialName+"' order by createdDate desc");
+//			}
+//			JSONArray jsonArray = new JSONArray();
+//			for (Material material : list) {
+//				JSONObject jsonObject = new JSONObject();
+//				jsonObject.put("materialId", material.getId());
+//				jsonObject.put("name", material.getName());
+//				jsonObject.put("materialCode", material.getMaterialCode());
+//				if(material.getCategory()!=null){
+//					jsonObject.put("categoryName", material.getCategory().getName());
+//				}else {
+//					jsonObject.put("categoryName", "");
+//				}
+//				jsonObject.put("description", material.getDescription());
+//				if(material.getCreatedDate()!=null){
+//					jsonObject.put("createdDate", dateFormat.format(material.getCreatedDate()));
+//				}else {
+//					jsonObject.put("createdDate", "");
+//				}
+//				jsonArray.add(jsonObject);
+//			}
+//			materialMap.put("items", jsonArray);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		return "materialList";
+//	}
 	
 	public String materialShow(){
 		if(this.selectedId!=0){
@@ -205,5 +217,10 @@ public class MaterialAction extends BaseAction{
 		this.materialName = materialName;
 	}
 
-
+	protected String initQueryList(boolean isRowFilter) {
+		queryParameter = new QueryParameter();
+		initQueryResult(BaseAction.queryResultCountPingTai);
+		return "";
+	}
+	
 }
