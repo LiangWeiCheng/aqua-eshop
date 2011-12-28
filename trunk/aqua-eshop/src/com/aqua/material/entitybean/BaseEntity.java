@@ -27,7 +27,7 @@ public abstract class BaseEntity
     
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name="created_date")
-    private Date createdDate;
+    private Date createdDate = new Date();
     
     public void setId( Long id )
     {
@@ -48,9 +48,6 @@ public abstract class BaseEntity
 	}
 
 	public Date getCreatedDate() {
-		if(createdDate==null){
-			createdDate=new Date();
-		}
 		return createdDate;
 	}
 
